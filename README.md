@@ -1,2 +1,6 @@
-# vgd2015-m2
-The Dream, milestone 2
+# fantastic_m2
+## The Dream, milestone 2
+* Hannah
+* Eric
+* Matt
+* Gina
