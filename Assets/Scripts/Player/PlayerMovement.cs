@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 	public float backwardsSpeed = 2.0f;
 	public float walkingSpeed = 3.0f;
