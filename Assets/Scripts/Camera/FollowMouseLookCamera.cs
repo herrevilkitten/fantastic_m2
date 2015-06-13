@@ -43,7 +43,6 @@ public class FollowMouseLookCamera : MonoBehaviour
 		float desiredY = placeholder.transform.eulerAngles.y;
 
 		if (looking) {
-
 			yPosition = yPosition + upDown;//Mathf.Clamp (yPosition + upDown, -45f, 45f);//Mathf.Max (-10f, Mathf.Min (10f, yPosition + upDown));
 //		xPosition = Mathf.Clamp (xPosition + leftRight, -180f, 180f);//Mathf.Max (-10f, Mathf.Min (10f, yPosition + upDown));
 			xPosition = xPosition + leftRight;
@@ -56,13 +55,24 @@ public class FollowMouseLookCamera : MonoBehaviour
 			xPosition = desiredX; //Mathf.Lerp (xPosition, desiredX, Time.deltaTime);
 			transform.position = placeholder.transform.position;// target.transform.position - (rotation * offset);
 		}
-		
-		Debug.Log ("Mouse Y: " + upDown + " Mouse X: " + leftRight + "   " + placeholder.transform.position + "/" + placeholder.transform.eulerAngles + "   " + transform.position + "/" + transform.eulerAngles);
+
+		RaycastHit hit;
+		Debug.Log ("Testing for collision: " + target.transform.position + " " + transform.eulerAngles);
+		Debug.DrawRay (target.transform.position, transform.eulerAngles);
+		//Debug.DrawLine (target.transform.position, transform.position);
+		if (Physics.Linecast (target.transform.position, transform.position, out hit)) {
+			if (hit.collider.tag != "Player") {
+				Debug.Log ("Camera collision at " + hit.collider + " " + hit.point + " " + hit.distance);
+				transform.position = hit.point;
+			}
+		}
+
 		statusText.text = "Mouse Y: " + upDown + "\n"
 			+ "Mouse X: " + leftRight + "\n"
 			+ "MouseDown: " + looking + "\n"
 			+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
-			+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n";
+			+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
+			+ "Collision: " + hit.point + "\n   With:" + hit.collider;
 		
 		transform.LookAt (target.transform);
 	}
