@@ -2,19 +2,20 @@
 using System.Collections;
 
 public class PlayerPhysics : MonoBehaviour {
-	public float pushPower = 2.0f;
+	public float pushPower = 10.0f;
 
 	void OnControllerColliderHit (ControllerColliderHit hit) { 
 
 		Rigidbody body = hit.collider.attachedRigidbody;
 		Vector3 pushDir;
-		
+
 		// no rigidbody
 		if (body == null || body.isKinematic) { return; }
-		
+
+		Debug.Log (hit.moveDirection);
 		// We dont want to push objects below us
 		if (hit.moveDirection.y < -0.3) { return; }
-		
+
 		// Calculate push direction from move direction,
 		// we only push objects to the sides never up and down
 		pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
