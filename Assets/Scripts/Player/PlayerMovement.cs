@@ -24,18 +24,14 @@ public class PlayerMovement : MonoBehaviour
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
-		controller = GetComponent<CharacterController> ();
+		//controller = GetComponent<CharacterController> ();
 	}
 
 	void Update ()
 	{
 		if (jumping) {
-			if (controller.isGrounded) {
 				jumping = false;
 				animator.SetBool ("IsJumping", false);
-			} else {
-				return;
-			}
 		}
 
 		if (Input.GetButton ("Jump")) {
@@ -73,9 +69,9 @@ public class PlayerMovement : MonoBehaviour
 			// Going forward
 			if (running) {
 				currentSpeed = Mathf.Min (runningSpeed, (currentSpeed + accelerationSpeed));
-				controller.slopeLimit = 60;
+				//controller.slopeLimit = 60;
 			} else {
-				controller.slopeLimit = 45;
+				//controller.slopeLimit = 45;
 				if (currentSpeed > walkingSpeed) {
 					// Decelerate
 					currentSpeed = Mathf.Max (walkingSpeed, currentSpeed - accelerationSpeed);
@@ -96,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		if (currentSpeed > 0f) {
-			controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
+			//controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
 		} else {
 			direction = 1f;
 		}
