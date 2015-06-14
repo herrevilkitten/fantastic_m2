@@ -5,10 +5,13 @@ public class PlayerPhysics : MonoBehaviour {
 	public float pushPower = 10.0f;
 
 	void OnControllerColliderHit (ControllerColliderHit hit) { 
-
+		Debug.Log ("detect a controller collider hit");
 		Rigidbody body = hit.collider.attachedRigidbody;
 		Vector3 pushDir;
 
+		Debug.Log ("body = " + (body==null));
+		if (body!=null) 
+			Debug.Log ("body = " + (body.isKinematic));
 		// no rigidbody
 		if (body == null || body.isKinematic) { return; }
 

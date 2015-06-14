@@ -22,7 +22,7 @@ public class PlayerSound : MonoBehaviour {
 		if ((Input.GetAxis ("Vertical") != 0f) || (Input.GetAxis ("Horizontal") != 0f)) {
 			currentFloorTag = GetFloorType();
 
-			Debug.Log ("floor tag=" + currentFloorTag);
+//			Debug.Log ("floor tag=" + currentFloorTag);
 			//Then you use the floorTag to choose the type of footstep
 			if (currentFloorTag == "Pavement") {
 				audioSource.clip = pavementSteppingClip;
