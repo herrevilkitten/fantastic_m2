@@ -21,7 +21,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 		if (body.tag == "Door") {
 			Debug.Log("Pushing door");
-			body.AddForce(-transform.forward * pushPower, ForceMode.Acceleration);
+			body.AddForce(-transform.forward * 1000f, ForceMode.Acceleration);
 			body.useGravity = true;
 		} else {
 			// Calculate push direction from move direction,
