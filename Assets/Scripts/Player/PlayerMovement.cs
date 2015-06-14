@@ -30,12 +30,8 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
 	{
 		if (jumping) {
-			if (controller.isGrounded) {
 				jumping = false;
 				animator.SetBool ("IsJumping", false);
-			} else {
-				return;
-			}
 		}
 
 		if (Input.GetButton ("Jump")) {
