@@ -18,6 +18,7 @@ public class BouncingBallContainer : MonoBehaviour
 
 	void OnTriggerExit (Collider other)
 	{
-		other.attachedRigidbody.velocity = -other.attachedRigidbody.velocity * .25f;
+		Debug.Log ("Ball Barrier: " + other);
+		other.attachedRigidbody.velocity = -other.attachedRigidbody.velocity * .5f;
 	}
 }

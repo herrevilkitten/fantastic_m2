@@ -102,42 +102,8 @@ public class PlayerMovement : MonoBehaviour
 			direction = 1f;
 		}
 
-/*
-		if (currentSpeed > 0f) {
-<<<<<<< HEAD
-//			rigidBody.transform.Translate (vector * currentSpeed * Time.deltaTime * movementMultiplier);
-			controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
-=======
-			//controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
->>>>>>> c6f1ed5db6259df87905ef2175926e3016920be8
-		} else {
-			direction = 1f;
-		}
-*/
 		animator.SetFloat ("VSpeed", currentSpeed * direction);
 		animator.SetBool ("IsMoving", currentSpeed != 0f || rotate != 0f);
 		animator.SetBool ("IsStrafing", strafe != 0f);
-
-		//Debug.Log ("Movement: " + controller.isGrounded + " Rotation: " + rotate + ", Speed: " + currentSpeed + "   " + movement + "   " + vector);
 	}
-	/*
-	void OnControllerColliderHit (ControllerColliderHit hit)
-	{
-		// Layer 8 is terrain
-		if (hit.collider.gameObject.layer == 8) {
-			return;
-		}
-
-		Rigidbody body = hit.collider.attachedRigidbody;
-		if (body == null || body.isKinematic)
-			return;
-		Debug.Log ("Controller collided with " + hit.collider);
-
-		if (hit.moveDirection.y < -0.3F)
-			return;
-
-		Vector3 pushDir = new Vector3 (hit.moveDirection.x, 0, hit.moveDirection.z);
-		body.velocity = pushDir * currentSpeed;
-	}
-	*/
 }

@@ -31,6 +31,5 @@ public class LightingCycler : MonoBehaviour
 		} else if (roundedIntensity >= maximumIntensity) {
 			direction = -1;
 		}
-		Debug.Log ("Intensity: " + roundedIntensity + ", Direction: " + direction + ", Range: " + minimumIntensity + " => " + maximumIntensity);
 	}
 }
