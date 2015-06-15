@@ -4,39 +4,52 @@ using System.Collections;
 public class PlayerDoorCollision : MonoBehaviour
 {
 	Rigidbody rigidBody;
-	Light light;
+	Light teleporterLight;
+	AudioSource teleporterSound;
+	public string destination;
 
-	int intensity;
-	int target;
+	int target = 0;
 
 	void Start ()
 	{
 		rigidBody = GetComponent<Rigidbody> ();
-		light = GetComponent<Light> ();
+
+		teleporterLight = GetComponent<Light> ();
+		teleporterLight.intensity = 0;
+
+		teleporterSound = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		light.intensity = Mathf.Lerp (light.intensity, target, Time.deltaTime);
-		light.bounceIntensity = Mathf.Lerp (light.bounceIntensity, target, Time.deltaTime);
-		if (light.intensity < 1) {
-			light.enabled = false;
+		teleporterLight.intensity = Mathf.Lerp (teleporterLight.intensity, target, Time.deltaTime);
+		teleporterLight.bounceIntensity = Mathf.Lerp (teleporterLight.bounceIntensity, target, Time.deltaTime);
+		teleporterSound.volume = Mathf.Lerp (teleporterSound.volume, target / 8f, Time.deltaTime);
+		if (teleporterLight.intensity < 1) {
+			teleporterLight.enabled = false;
+			teleporterSound.Stop ();
+		} else if (target > 0 && teleporterLight.intensity > 7.5 && destination != null) {
+			Application.LoadLevel (destination);
 		} else {
-			light.enabled = true;
+			teleporterLight.enabled = true;
+			if (!teleporterSound.isPlaying) {
+				teleporterSound.Play ();
+			}
 		}
-		Debug.Log ("Intensity: " + light.intensity + "/" + light.bounceIntensity);
 	}
 	
 	void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("OnTriggerEnter: " + transform.gameObject);
-		target = 8;
+		if (other.gameObject.tag == "Player") {
+			target = 8;
+		}
 	}
 
 	void OnTriggerExit (Collider other)
 	{
-		Debug.Log ("OnTriggerExit: " + transform.gameObject);
-		target = 0;
+		if (other.gameObject.tag == "Player") {
+			target = 0;
+		}
 	}
 }

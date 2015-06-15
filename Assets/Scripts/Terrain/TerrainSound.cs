@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class TerrainSound : MonoBehaviour {
+public class TerrainSound : MonoBehaviour
+{
 	public AudioClip grassSteppingClip;
 	public AudioClip stoneSteppingClip;
 	public AudioClip sandSteppingClip;
@@ -15,7 +16,8 @@ public class TerrainSound : MonoBehaviour {
 	AudioSource audioSource;
 
 
-	void Start() {
+	void Start ()
+	{
 		audioSource = GetComponent<AudioSource> ();
 
 		surfaceAudioMap = new AudioClip[6]{
@@ -29,16 +31,18 @@ public class TerrainSound : MonoBehaviour {
 	}
 
 
-	void OnStep(string foot) {
-		var surfaceIndex = TerrainSurface.GetMainTexture(transform.position);
-		
+	void OnStep (string foot)
+	{
+		var surfaceIndex = TerrainSurface.GetMainTexture (transform.position);
+
 		audioSource.Stop ();
 		audioSource.volume = playerMovement.getCurrentSpeed () * maxVolume;
 		audioSource.clip = surfaceAudioMap [surfaceIndex];
 		audioSource.Play ();
 	}
 
-	private void StopClip() {
+	private void StopClip ()
+	{
 		if (audioSource.isPlaying) {
 			audioSource.Stop ();
 		}

@@ -23,9 +23,8 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody rigidBody;
 
 	//Accessor for Terrain Sound script
-	public float getCurrentSpeed() {
-		Debug.Log ("currentSpeed");
-		Debug.Log (currentSpeed / runningSpeed);
+	public float getCurrentSpeed ()
+	{
 		return currentSpeed / runningSpeed;
 	}
 
@@ -121,10 +120,10 @@ public class PlayerMovement : MonoBehaviour
 
 		//Debug.Log ("Movement: " + controller.isGrounded + " Rotation: " + rotate + ", Speed: " + currentSpeed + "   " + movement + "   " + vector);
 	}
-
-	float pushPower = 12.0f;
+	/*
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
+		// Layer 8 is terrain
 		if (hit.collider.gameObject.layer == 8) {
 			return;
 		}
@@ -136,8 +135,9 @@ public class PlayerMovement : MonoBehaviour
 
 		if (hit.moveDirection.y < -0.3F)
 			return;
-		
+
 		Vector3 pushDir = new Vector3 (hit.moveDirection.x, 0, hit.moveDirection.z);
 		body.velocity = pushDir * currentSpeed;
 	}
+	*/
 }

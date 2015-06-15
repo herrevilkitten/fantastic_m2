@@ -19,6 +19,6 @@ public class ForceTrigger : MonoBehaviour
 	void OnTriggerStay (Collider other)
 	{
 		//Debug.Log ("Collision with " + other);
-		other.attachedRigidbody.AddForce (Vector3.up * Random.Range (90f, 210f), ForceMode.Acceleration);
+		other.attachedRigidbody.AddForce (Vector3.up * Random.Range (90f, 270f), ForceMode.Force);
 	}
 }
