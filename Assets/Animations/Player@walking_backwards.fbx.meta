@@ -183,7 +183,7 @@ ModelImporter:
       curves: []
       events:
       - time: .211268425
-        functionName: onStep
+        functionName: OnStep
         data: leftFoot
         objectReferenceParameter: {fileID: 182738, guid: c0231625587c626498368af03e2b8a71,
           type: 2}
