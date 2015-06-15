@@ -25,19 +25,19 @@ public class PlayerMovement : MonoBehaviour
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
+<<<<<<< HEAD
 		controller = GetComponent<CharacterController> ();
 		rigidBody = GetComponent<Rigidbody> ();
+=======
+		//controller = GetComponent<CharacterController> ();
+>>>>>>> c6f1ed5db6259df87905ef2175926e3016920be8
 	}
 
 	void Update ()
 	{
 		if (jumping) {
-			if (controller.isGrounded) {
 				jumping = false;
 				animator.SetBool ("IsJumping", false);
-			} else {
-				return;
-			}
 		}
 
 		if (Input.GetButton ("Jump")) {
@@ -75,9 +75,9 @@ public class PlayerMovement : MonoBehaviour
 			// Going forward
 			if (running) {
 				currentSpeed = Mathf.Min (runningSpeed, (currentSpeed + accelerationSpeed));
-				controller.slopeLimit = 60;
+				//controller.slopeLimit = 60;
 			} else {
-				controller.slopeLimit = 45;
+				//controller.slopeLimit = 45;
 				if (currentSpeed > walkingSpeed) {
 					// Decelerate
 					currentSpeed = Mathf.Max (walkingSpeed, currentSpeed - accelerationSpeed);
@@ -98,12 +98,22 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		if (currentSpeed > 0f) {
-//			rigidBody.transform.Translate (vector * currentSpeed * Time.deltaTime * movementMultiplier);
-			controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
 		} else {
 			direction = 1f;
 		}
 
+/*
+		if (currentSpeed > 0f) {
+<<<<<<< HEAD
+//			rigidBody.transform.Translate (vector * currentSpeed * Time.deltaTime * movementMultiplier);
+			controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
+=======
+			//controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
+>>>>>>> c6f1ed5db6259df87905ef2175926e3016920be8
+		} else {
+			direction = 1f;
+		}
+*/
 		animator.SetFloat ("VSpeed", currentSpeed * direction);
 		animator.SetBool ("IsMoving", currentSpeed != 0f || rotate != 0f);
 		animator.SetBool ("IsStrafing", strafe != 0f);

@@ -6,6 +6,7 @@ public class PlayerSound : MonoBehaviour {
 
 	public AudioClip grassSteppingClip;
 	public AudioClip pavementSteppingClip;
+	public AudioClip gravelSteppingClip;
 
 	string currentFloorTag = "";
 	string previousFloorTag = "";
@@ -21,11 +22,7 @@ public class PlayerSound : MonoBehaviour {
 		if ((Input.GetAxis ("Vertical") != 0f) || (Input.GetAxis ("Horizontal") != 0f)) {
 			currentFloorTag = GetFloorType();
 
-			if (!currentFloorTag.Equals(previousFloorTag)) {
-				audioSource.Stop();
-			}
-
-			Debug.Log ("floor tag=" + currentFloorTag);
+//			Debug.Log ("floor tag=" + currentFloorTag);
 			//Then you use the floorTag to choose the type of footstep
 			if (currentFloorTag == "Pavement") {
 				audioSource.clip = pavementSteppingClip;
@@ -35,12 +32,22 @@ public class PlayerSound : MonoBehaviour {
 				audioSource.clip = grassSteppingClip;
 			}
 
-			audioSource.volume = 0.5f;
+			if (currentFloorTag == "Gravel") {
+				audioSource.clip = gravelSteppingClip;
+			}
+
+			audioSource.volume = 0.3f;
+
+			
+			if (!currentFloorTag.Equals(previousFloorTag)) {
+				audioSource.Stop();
+			}
 
 			if (!audioSource.isPlaying) {
 				previousFloorTag = currentFloorTag;
 				audioSource.Play ();
-			}
+			} 
+
 		} else {
 			
 		}
