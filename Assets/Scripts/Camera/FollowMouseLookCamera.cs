@@ -67,12 +67,14 @@ public class FollowMouseLookCamera : MonoBehaviour
 			}
 		}
 
-		statusText.text = "Mouse Y: " + upDown + "\n"
-			+ "Mouse X: " + leftRight + "\n"
-			+ "MouseDown: " + looking + "\n"
-			+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
-			+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
-			+ "Collision: " + hit.point + "\n   With:" + hit.collider;
+		if (statusText != null) {
+			statusText.text = "Mouse Y: " + upDown + "\n"
+				+ "Mouse X: " + leftRight + "\n"
+				+ "MouseDown: " + looking + "\n"
+				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
+				+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
+				+ "Collision: " + hit.point + "\n   With:" + hit.collider;
+		}
 		
 		transform.LookAt (target.transform);
 	}

@@ -21,6 +21,13 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody playerRigidBody;
 	CharacterController controller;
 
+	//Accessor for Terrain Sound script
+	public float getCurrentSpeed() {
+		Debug.Log ("currentSpeed");
+		Debug.Log (currentSpeed / runningSpeed);
+		return currentSpeed / runningSpeed;
+	}
+
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
