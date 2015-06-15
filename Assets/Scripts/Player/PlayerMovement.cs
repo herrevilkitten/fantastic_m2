@@ -20,11 +20,13 @@ public class PlayerMovement : MonoBehaviour
 	Animator animator;
 	Rigidbody playerRigidBody;
 	CharacterController controller;
+	Rigidbody rigidBody;
 
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
 		controller = GetComponent<CharacterController> ();
+		rigidBody = GetComponent<Rigidbody> ();
 	}
 
 	void Update ()
@@ -96,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		if (currentSpeed > 0f) {
+//			rigidBody.transform.Translate (vector * currentSpeed * Time.deltaTime * movementMultiplier);
 			controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
 		} else {
 			direction = 1f;
@@ -106,5 +109,24 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetBool ("IsStrafing", strafe != 0f);
 
 		//Debug.Log ("Movement: " + controller.isGrounded + " Rotation: " + rotate + ", Speed: " + currentSpeed + "   " + movement + "   " + vector);
+	}
+
+	float pushPower = 12.0f;
+	void OnControllerColliderHit (ControllerColliderHit hit)
+	{
+		if (hit.collider.gameObject.layer == 8) {
+			return;
+		}
+
+		Rigidbody body = hit.collider.attachedRigidbody;
+		if (body == null || body.isKinematic)
+			return;
+		Debug.Log ("Controller collided with " + hit.collider);
+
+		if (hit.moveDirection.y < -0.3F)
+			return;
+		
+		Vector3 pushDir = new Vector3 (hit.moveDirection.x, 0, hit.moveDirection.z);
+		body.velocity = pushDir * currentSpeed;
 	}
 }

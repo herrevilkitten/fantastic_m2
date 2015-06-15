@@ -57,18 +57,17 @@ public class FollowMouseLookCamera : MonoBehaviour
 		}
 
 		RaycastHit hit;
-		Debug.Log ("Testing for collision: " + target.transform.position + " " + transform.eulerAngles);
-		Debug.DrawRay (target.transform.position, transform.eulerAngles);
+//		Debug.Log ("Testing for collision: " + target.transform.position + " " + transform.eulerAngles);
 		//Debug.DrawLine (target.transform.position, transform.position);
 		if (Physics.Linecast (target.transform.position, transform.position, out hit)) {
 			if (hit.collider.tag != "Player") {
-				Debug.Log ("Camera collision at " + hit.collider + " " + hit.point + " " + hit.distance);
+//				Debug.Log ("Camera collision at " + hit.collider + " " + hit.point + " " + hit.distance);
 				transform.position = hit.point;
 			}
 		}
 
-		statusText.text = "Mouse Y: " + upDown + "\n"
-			+ "Mouse X: " + leftRight + "\n"
+		statusText.text = "Mouse Y: " + upDown + "/" + yPosition + "\n"
+			+ "Mouse X: " + leftRight + "/" + xPosition + "\n"
 			+ "MouseDown: " + looking + "\n"
 			+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
 			+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
