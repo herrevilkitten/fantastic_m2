@@ -3,10 +3,11 @@ using System.Collections;
 
 // http://answers.unity3d.com/questions/34328/terrain-with-multiple-splat-textures-how-can-i-det.html
 
-public class TerrainSurface : MonoBehaviour {
+public class TerrainSurface : MonoBehaviour
+{
 
-	public static float[] GetTextureMix(Vector3 worldPos) {
-		
+	public static float[] GetTextureMix (Vector3 worldPos)
+	{
 		// returns an array containing the relative mix of textures
 		// on the main terrain at this world position.
 		
@@ -22,40 +23,37 @@ public class TerrainSurface : MonoBehaviour {
 		int mapZ = (int)(((worldPos.z - terrainPos.z) / terrainData.size.z) * terrainData.alphamapHeight);
 		
 		// get the splat data for this cell as a 1x1xN 3d array (where N = number of textures)
-		float[,,] splatmapData = terrainData.GetAlphamaps(mapX,mapZ,1,1);
-		
+		float[,,] splatmapData = terrainData.GetAlphamaps (mapX, mapZ, 1, 1);
+
 		// extract the 3D array data to a 1D array:
-		float[] cellMix = new float[splatmapData.GetUpperBound(2)+1];
-		for (int n=0; n < cellMix.Length; ++n)
-		{
-			cellMix[n] = splatmapData[0,0,n];    
+		float[] cellMix = new float[splatmapData.GetUpperBound (2) + 1];
+		for (int n=0; n < cellMix.Length; ++n) {
+			cellMix [n] = splatmapData [0, 0, n];    
 		}
-		
-		return cellMix;        
+
+		return cellMix;
 		
 	}
 	
-	public static int GetMainTexture(Vector3 worldPos) {
+	public static int GetMainTexture (Vector3 worldPos)
+	{
 		
 		// returns the zero-based index of the most dominant texture
 		// on the main terrain at this world position.
 		
-		float[] mix = GetTextureMix(worldPos);
-		
-		
+		float[] mix = GetTextureMix (worldPos);
+
 		float maxMix = 0;
 		int maxIndex = 0;
 		
 		// loop through each mix value and find the maximum
-		for (int n=0; n < mix.Length; ++n)
-		{
-			if (mix[n] > maxMix)
-			{
+		for (int n=0; n < mix.Length; ++n) {
+			if (mix [n] > maxMix) {
 				maxIndex = n;
-				maxMix = mix[n];
+				maxMix = mix [n];
 			}
 		}
-		
+
 		return maxIndex;
 		
 	}

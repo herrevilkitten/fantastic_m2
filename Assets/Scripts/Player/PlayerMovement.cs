@@ -20,25 +20,24 @@ public class PlayerMovement : MonoBehaviour
 	Animator animator;
 	Rigidbody playerRigidBody;
 	CharacterController controller;
+	Rigidbody rigidBody;
 
 	//Accessor for Terrain Sound script
-	public float getCurrentSpeed() {
-		Debug.Log ("currentSpeed");
-		Debug.Log (currentSpeed / runningSpeed);
+	public float getCurrentSpeed ()
+	{
 		return currentSpeed / runningSpeed;
 	}
 
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
-		//controller = GetComponent<CharacterController> ();
 	}
 
 	void Update ()
 	{
 		if (jumping) {
-				jumping = false;
-				animator.SetBool ("IsJumping", false);
+			jumping = false;
+			animator.SetBool ("IsJumping", false);
 		}
 
 		if (Input.GetButton ("Jump")) {
@@ -99,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		if (currentSpeed > 0f) {
-			//controller.SimpleMove (vector * currentSpeed * Time.deltaTime * movementMultiplier);
 		} else {
 			direction = 1f;
 		}
@@ -107,7 +105,5 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetFloat ("VSpeed", currentSpeed * direction);
 		animator.SetBool ("IsMoving", currentSpeed != 0f || rotate != 0f);
 		animator.SetBool ("IsStrafing", strafe != 0f);
-
-		//Debug.Log ("Movement: " + controller.isGrounded + " Rotation: " + rotate + ", Speed: " + currentSpeed + "   " + movement + "   " + vector);
 	}
 }
