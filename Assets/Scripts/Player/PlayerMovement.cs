@@ -25,19 +25,13 @@ public class PlayerMovement : MonoBehaviour
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
-<<<<<<< HEAD
-		controller = GetComponent<CharacterController> ();
-		rigidBody = GetComponent<Rigidbody> ();
-=======
-		//controller = GetComponent<CharacterController> ();
->>>>>>> c6f1ed5db6259df87905ef2175926e3016920be8
 	}
 
 	void Update ()
 	{
 		if (jumping) {
-				jumping = false;
-				animator.SetBool ("IsJumping", false);
+			jumping = false;
+			animator.SetBool ("IsJumping", false);
 		}
 
 		if (Input.GetButton ("Jump")) {
