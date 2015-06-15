@@ -5,22 +5,22 @@ public class PlayerPhysics : MonoBehaviour {
 	public float pushPower = 10.0f;
 
 	void OnControllerColliderHit (ControllerColliderHit hit) { 
-		Debug.Log ("detect a controller collider hit");
+		//Debug.Log ("detect a controller collider hit");
 		Rigidbody body = hit.collider.attachedRigidbody;
 		Vector3 pushDir;
 
-		Debug.Log ("body = " + (body==null));
+		//Debug.Log ("body = " + (body==null));
 		if (body!=null) 
-			Debug.Log ("body = " + (body.isKinematic));
+			//Debug.Log ("body = " + (body.isKinematic));
 		// no rigidbody
 		if (body == null || body.isKinematic) { return; }
 
-		Debug.Log (hit.moveDirection);
+		//Debug.Log (hit.moveDirection);
 		// We dont want to push objects below us
 		if (hit.moveDirection.y < -0.3) { return; }
 
 		if (body.tag == "Door") {
-			Debug.Log("Pushing door");
+			//Debug.Log("Pushing door");
 			body.AddForce(-transform.forward * 1000f, ForceMode.Acceleration);
 			body.useGravity = true;
 		} else {

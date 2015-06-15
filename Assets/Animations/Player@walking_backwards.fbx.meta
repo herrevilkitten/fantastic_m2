@@ -152,16 +152,6 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 'MuscleClip ''Player@walking_backwards'' conversion warning:
-      ''mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2'' is between
-      humanoid transforms and has rotation animation. This might lower retargeting
-      quality.
-
-
-'
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -191,7 +181,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .211268425
+        functionName: onStep
+        data: leftFoot
+        objectReferenceParameter: {fileID: 182738, guid: c0231625587c626498368af03e2b8a71,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .727549493
+        functionName: OnStep
+        data: rightFoot
+        objectReferenceParameter: {fileID: 182738, guid: c0231625587c626498368af03e2b8a71,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
