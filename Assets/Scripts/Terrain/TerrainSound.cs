@@ -6,6 +6,7 @@ public class TerrainSound : MonoBehaviour {
 	public AudioClip grassSteppingClip;
 	public AudioClip stoneSteppingClip;
 	public AudioClip sandSteppingClip;
+	public AudioClip pathSteppingClip;
 
 	public PlayerMovement playerMovement;
 	public float maxVolume = 0.25f;
@@ -23,7 +24,7 @@ public class TerrainSound : MonoBehaviour {
 			sandSteppingClip, //Sand
 			grassSteppingClip, //DirtGrass
 			stoneSteppingClip, //Rock
-			grassSteppingClip //Pebble
+			pathSteppingClip //Path
 		};
 	}
 
