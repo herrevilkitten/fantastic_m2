@@ -41,20 +41,17 @@ public class FollowMouseLookCamera : MonoBehaviour
 			yPosition = yPosition + upDown;
 			xPosition = xPosition + leftRight;
 			Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
-			Debug.Log ("Rotation: " + rotation);
-			transform.position = target.transform.position - (rotation * offset);
+			Debug.Log ("Rotation: " + rotation + " " + target.transform.rotation);
+			transform.localPosition = target.transform.localPosition - (rotation * offset);
 		} else {
 			transform.position = placeholder.transform.position;
-			yPosition = placeholder.transform.localRotation.y;
-			xPosition = placeholder.transform.localRotation.x;
+			yPosition = placeholder.transform.rotation.y;
+			xPosition = placeholder.transform.rotation.x;
 		}
 
 		RaycastHit hit;
-//		Debug.Log ("Testing for collision: " + target.transform.position + " " + transform.eulerAngles);
-		//Debug.DrawLine (target.transform.position, transform.position);
 		if (Physics.Linecast (target.transform.position, transform.position, out hit)) {
 			if (hit.collider.tag != "Player") {
-//				Debug.Log ("Camera collision at " + hit.collider + " " + hit.point + " " + hit.distance);
 				transform.position = hit.point;
 			}
 		}
