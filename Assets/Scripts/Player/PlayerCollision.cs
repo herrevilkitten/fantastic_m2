@@ -41,11 +41,13 @@ public class PlayerCollision : MonoBehaviour
 			force = movement.getCurrentSpeed () * movement.runningSpeed;
 		}
 
-		foreach (CharacterCollisionHandler collisionHandler in collisionHandlers) {
-			Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
-			bool stop = collisionHandler.handleCollision (hit, body, force);
-			if (stop) {
-				break;
+		if (collisionHandlers != null) {
+			foreach (CharacterCollisionHandler collisionHandler in collisionHandlers) {
+				Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
+				bool stop = collisionHandler.handleCollision (hit, body, force);
+				if (stop) {
+					break;
+				}
 			}
 		}
 	}

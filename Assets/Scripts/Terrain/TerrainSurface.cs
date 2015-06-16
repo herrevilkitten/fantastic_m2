@@ -21,7 +21,7 @@ public class TerrainSurface : MonoBehaviour
 		// calculate which splat map cell the worldPos falls within (ignoring y)
 		int mapX = (int)(((worldPos.x - terrainPos.x) / terrainData.size.x) * terrainData.alphamapWidth);
 		int mapZ = (int)(((worldPos.z - terrainPos.z) / terrainData.size.z) * terrainData.alphamapHeight);
-		
+
 		// get the splat data for this cell as a 1x1xN 3d array (where N = number of textures)
 		float[,,] splatmapData = terrainData.GetAlphamaps (mapX, mapZ, 1, 1);
 
