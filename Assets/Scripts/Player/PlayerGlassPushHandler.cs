@@ -24,10 +24,11 @@ public class PlayerGlassPushHandler : MonoBehaviour, CharacterCollisionHandler
 			audioSource.Play ();
 		}
 
-		Vector3 pushDir = Vector3.up * .05f * force;
+		// Add a little upward "oomf" like you're kicking it
+		Vector3 pushDir = Vector3.up * .1f * force;
 		pushDir.x = hit.moveDirection.x;
 		pushDir.z = hit.moveDirection.z;
-		body.velocity = pushDir * force;
+		body.AddForce (pushDir * force);
 		return true;
 	}
 }
