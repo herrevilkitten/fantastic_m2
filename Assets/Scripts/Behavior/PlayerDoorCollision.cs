@@ -6,7 +6,7 @@ public class PlayerDoorCollision : MonoBehaviour
 	Rigidbody rigidBody;
 	Light teleporterLight;
 	AudioSource teleporterSound;
-	public string destination;
+	public int destination;
 
 	int target = 0;
 
