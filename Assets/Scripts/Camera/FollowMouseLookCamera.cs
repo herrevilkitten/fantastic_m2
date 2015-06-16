@@ -18,12 +18,10 @@ public class FollowMouseLookCamera : MonoBehaviour
 
 		placeholder.transform.LookAt (target.transform);
 
-		yPosition = placeholder.transform.eulerAngles.y;
-		xPosition = placeholder.transform.eulerAngles.x;
+		yPosition = placeholder.transform.rotation.y;
+		xPosition = placeholder.transform.rotation.x;
 
-		Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
-
-		transform.position = placeholder.transform.position;// - (rotation * offset);
+		transform.position = placeholder.transform.position;
 		transform.LookAt (target.transform);
 	}
 	
@@ -31,29 +29,24 @@ public class FollowMouseLookCamera : MonoBehaviour
 	void LateUpdate ()
 	{
 		bool looking = Input.GetButton ("Fire1");
-		float upDown = Input.GetAxis ("Mouse Y") * -5f;
-		float leftRight = Input.GetAxis ("Mouse X") * -5f;
+		float upDown = Input.GetAxis ("Mouse Y") * 5f;
+		float leftRight = Input.GetAxis ("Mouse X") * 5f;
 
 		// Use the placeholder to get the default angle to the target
 		// First, look at the target
 		placeholder.transform.LookAt (target.transform);
 		
 		// Then get the x and y angles
-		float desiredX = placeholder.transform.eulerAngles.x;
-		float desiredY = placeholder.transform.eulerAngles.y;
-
 		if (looking) {
-			yPosition = yPosition + upDown;//Mathf.Clamp (yPosition + upDown, -45f, 45f);//Mathf.Max (-10f, Mathf.Min (10f, yPosition + upDown));
-//		xPosition = Mathf.Clamp (xPosition + leftRight, -180f, 180f);//Mathf.Max (-10f, Mathf.Min (10f, yPosition + upDown));
+			yPosition = yPosition + upDown;
 			xPosition = xPosition + leftRight;
-//		float desiredAngle = target.transform.eulerAngles.y;
-//		Quaternion rotation = Quaternion.Euler (yPosition, desiredAngle, 0);
 			Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
+			Debug.Log ("Rotation: " + rotation);
 			transform.position = target.transform.position - (rotation * offset);
 		} else {
-			yPosition = desiredY; //Mathf.Lerp (yPosition, desiredY, Time.deltaTime);
-			xPosition = desiredX; //Mathf.Lerp (xPosition, desiredX, Time.deltaTime);
-			transform.position = placeholder.transform.position;// target.transform.position - (rotation * offset);
+			transform.position = placeholder.transform.position;
+			yPosition = placeholder.transform.localRotation.y;
+			xPosition = placeholder.transform.localRotation.x;
 		}
 
 		RaycastHit hit;
@@ -75,6 +68,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 				+ "MouseDown: " + looking + "\n"
 				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
 				+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
+				+ "Mouse: " + xPosition + ", " + yPosition + "\n"
 				+ "Collision: " + hit.point + "\n   With:" + hit.collider;
 		}
 		
