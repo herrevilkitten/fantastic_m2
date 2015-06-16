@@ -67,7 +67,10 @@ public class FollowMouseLookCamera : MonoBehaviour
 		}
 
 		if (statusText != null) {
-			statusText.text = "Mouse Y: " + upDown + "\n"
+			statusText.text = 
+				"Looking at: " + target + "\n" +
+				"From: " + placeholder + "\n" +
+				"Mouse Y: " + upDown + "\n"
 				+ "Mouse X: " + leftRight + "\n"
 				+ "MouseDown: " + looking + "\n"
 				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"

@@ -29,7 +29,7 @@ public class PlayerDoorCollision : MonoBehaviour
 		if (teleporterLight.intensity < 1) {
 			teleporterLight.enabled = false;
 			teleporterSound.Stop ();
-		} else if (target > 0 && teleporterLight.intensity > 7.5 && destination != null) {
+		} else if (target > 0 && teleporterLight.intensity > 6.5 && destination != null) {
 			Application.LoadLevel (destination);
 		} else {
 			teleporterLight.enabled = true;
