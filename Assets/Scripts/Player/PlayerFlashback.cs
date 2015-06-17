@@ -24,7 +24,6 @@ public class PlayerFlashback : MonoBehaviour {
 		Debug.Log ("I've collided with something");
 		if (hit.collider.tag == "Flashback") {
 
-			animator.SetBool ("IsFlashbacking", true);
 			Invoke ("FlashbackMoment", 1f);
 
 		}
@@ -33,7 +32,6 @@ public class PlayerFlashback : MonoBehaviour {
 	void FlashbackMoment() {
 		SetKinematic (false);
 		GetComponent<Animator> ().enabled = false;
-		animator.SetBool ("IsFlashbacking", false);
 
 	}
 
