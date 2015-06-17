@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour
 	public float defaultForce = 3f;
 
 	PlayerMovement movement;
-	CharacterCollisionHandler[] collisionHandlers;
+	CharacterCollisionHandler[] collisionHandlers = {};
 
 	// Use this for initialization
 	void Start ()
@@ -20,6 +20,11 @@ public class PlayerCollision : MonoBehaviour
 			Debug.Log ("Collision Handler: " + collisionHandler);
 		}
 	}
+
+	void Initialize ()
+	{
+		Start ();
+	}
 	
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
@@ -27,15 +32,15 @@ public class PlayerCollision : MonoBehaviour
 		if (hit.collider.gameObject.layer == TERRAIN_LAYER) {
 			return;
 		}
-		
+
 		Rigidbody body = hit.collider.attachedRigidbody;
 		if (body == null || body.isKinematic)
 			return;
-		Debug.Log ("Controller collided with " + hit.collider);
+//		Debug.Log ("Controller collided with " + hit.collider + " at " + hit.moveDirection);
 		
-		if (hit.moveDirection.y < -0.3F)
-			return;
-		
+//		if (hit.moveDirection.y < -0.3F)
+//			return;
+
 		float force = defaultForce;
 		if (movement != null) {
 			force = movement.getCurrentSpeed () * movement.runningSpeed;
@@ -43,7 +48,7 @@ public class PlayerCollision : MonoBehaviour
 
 		if (collisionHandlers != null) {
 			foreach (CharacterCollisionHandler collisionHandler in collisionHandlers) {
-				Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
+//				Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
 				bool stop = collisionHandler.handleCollision (hit, body, force);
 				if (stop) {
 					break;
