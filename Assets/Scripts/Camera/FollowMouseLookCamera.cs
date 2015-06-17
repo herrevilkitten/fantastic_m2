@@ -41,7 +41,6 @@ public class FollowMouseLookCamera : MonoBehaviour
 			yPosition = yPosition + upDown;
 			xPosition = xPosition + leftRight;
 			Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
-			Debug.Log ("Rotation: " + rotation + " " + target.transform.rotation);
 			transform.localPosition = target.transform.localPosition - (rotation * offset);
 		} else {
 			transform.position = placeholder.transform.position;
