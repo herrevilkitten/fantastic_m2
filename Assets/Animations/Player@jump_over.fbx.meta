@@ -184,7 +184,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -193,22 +193,68 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves:
-      - name: Height
+      - name: CharacterHeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: .0916666687
+            value: 2
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .226536691
+            value: 1.76249993
+            inSlope: -1.18950057
+            outSlope: -1.18950057
+            tangentMode: 0
+          - time: .368003339
+            value: .5
+            inSlope: -.00412563281
+            outSlope: -.00412563281
+            tangentMode: 0
+          - time: .468640924
+            value: 1.97673178
+            inSlope: .462837875
+            outSlope: .462837875
+            tangentMode: 0
+          - time: .543667078
+            value: 1.98517025
+            inSlope: -.971032262
+            outSlope: -.971032262
+            tangentMode: 0
+          - time: .682136416
+            value: .53616941
+            inSlope: .166296959
+            outSlope: .166296959
+            tangentMode: 0
+          - time: .837499976
+            value: 2
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
+      - name: gravityWeight
         curve:
           serializedVersion: 2
           curve:
           - time: 0
-            value: 2
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          - time: .214036688
             value: 1
             inSlope: 0
             outSlope: 0
             tangentMode: 0
-          - time: 1
-            value: 2
+          - time: .200000003
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .800000012
+            value: .00999999978
+            inSlope: -.000103192382
+            outSlope: -.000103192382
+            tangentMode: 0
+          - time: .899999976
+            value: 1
             inSlope: 0
             outSlope: 0
             tangentMode: 0
