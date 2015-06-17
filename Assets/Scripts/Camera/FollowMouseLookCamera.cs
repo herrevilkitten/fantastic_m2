@@ -61,7 +61,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 				"From: " + placeholder + "\n" +
 				"Mouse Y: " + upDown + "\n"
 				+ "Mouse X: " + leftRight + "\n"
-				+ "MouseDown: " + looking + "\n"
+				//+ "MouseDown: " + looking + "\n"
 				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
 				+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
 				+ "Mouse: " + xPosition + ", " + yPosition + "\n"
