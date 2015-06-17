@@ -3,9 +3,15 @@ using System.Collections;
 
 public class PlayerFlashback : MonoBehaviour {
 
+	public AudioClip screamClip;
+
+	AudioSource audioSource;
+	Animator animator;
 	// Use this for initialization
 	void Start () {
-	
+		animator = GetComponent<Animator> ();
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.clip = screamClip;
 	}
 	
 	// Update is called once per frame
@@ -17,13 +23,27 @@ public class PlayerFlashback : MonoBehaviour {
 		Debug.Log (hit.collider.tag);
 		Debug.Log ("I've collided with something");
 		if (hit.collider.tag == "Flashback") {
-			SetKinematic (false);
-			GetComponent<Animator> ().enabled = false;
+
+			animator.SetBool ("IsFlashbacking", true);
+			Invoke ("FlashbackMoment", 1f);
+
 		}
+	}
+
+	void FlashbackMoment() {
+		SetKinematic (false);
+		GetComponent<Animator> ().enabled = false;
+		animator.SetBool ("IsFlashbacking", false);
+
 	}
 
 	void SetKinematic(bool newValue)
 	{
+		//animationClip.Play ();
+		audioSource.volume = 0.3f;
+		audioSource.clip = screamClip;
+		audioSource.Play ();
+
 		Rigidbody[] bodies=GetComponentsInChildren<Rigidbody>();
 		
 		foreach (Rigidbody rigidParts in bodies) {
