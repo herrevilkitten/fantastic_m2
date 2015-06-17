@@ -152,6 +152,18 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "MuscleClip 'Player@jump_over' conversion warning: Bone
+      length is different in avatar and animation\n\n     'mixamorig:LeftUpLeg' :
+      position error = 4.717764 mm\n\n     'mixamorig:LeftLeg' : position error =
+      2.718265 mm\n\n     'mixamorig:LeftFoot' : position error = 7.140522 mm\n\n
+      \    'mixamorig:RightUpLeg' : position error = 4.718789 mm\n\n     'mixamorig:RightLeg'
+      : position error = 2.900151 mm\n\n     'mixamorig:RightFoot' : position error
+      = 7.154905 mm\n\nMuscleClip 'Player@jump_over' conversion warning: 'mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2'
+      is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.\n\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -181,33 +193,22 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves:
-      - name: Rotation
-        curve:
-          serializedVersion: 2
-          curve:
-          - time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          - time: 1
-            value: 1
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-          preInfinity: 2
-          postInfinity: 2
       - name: Height
         curve:
           serializedVersion: 2
           curve:
           - time: 0
-            value: 0
+            value: 2
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .214036688
+            value: 1
             inSlope: 0
             outSlope: 0
             tangentMode: 0
           - time: 1
-            value: 0
+            value: 2
             inSlope: 0
             outSlope: 0
             tangentMode: 0
