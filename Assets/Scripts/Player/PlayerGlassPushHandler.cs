@@ -31,9 +31,11 @@ public class PlayerGlassPushHandler : MonoBehaviour, CharacterCollisionHandler
 			Destroy (instance, 1f);
 		}
 
+		Debug.Log ("movementDirection: " + hit.moveDirection);
 		// Add a little upward "oomf" like you're kicking it
-		Vector3 pushDir = Vector3.up * .1f * force;
+		Vector3 pushDir = Vector3.up * .25f * force;
 		if (hit.moveDirection.y < 0f) {
+			// But not if the vector is coming from above
 			pushDir = Vector3.zero;
 			pushDir.y = hit.moveDirection.y;
 		}
