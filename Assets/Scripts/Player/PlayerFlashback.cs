@@ -20,8 +20,7 @@ public class PlayerFlashback : MonoBehaviour {
 	}
 	
 	void OnControllerColliderHit(ControllerColliderHit hit) {
-		Debug.Log (hit.collider.tag);
-		Debug.Log ("I've collided with something");
+
 		if (hit.collider.tag == "Flashback") {
 			
 			Invoke ("FlashbackMoment", 0.5f);
