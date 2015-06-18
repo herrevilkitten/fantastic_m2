@@ -27,7 +27,7 @@ public class AJCollider : MonoBehaviour {
 			nav.enabled = true;
 			nav.SetDestination (new Vector3(targetDestinationX, collider.transform.position.y, targetDestinationZ)) ;
 			animator.SetBool ("IsPlayerNear", true);
-			//Invoke ("StopAJ", 15f);
+			Invoke ("StopAJ", 25f);
 		}
 	}
 	

@@ -20,7 +20,7 @@ public class SphereInteraction : MonoBehaviour, InteractiveObject
 	public void Interact (GameObject actor)
 	{
 		Rigidbody sphereBody = GetComponent<Rigidbody> ();
-		sphereBody.AddForce (Vector3.forward * 20f);
+		sphereBody.AddForce (actor.transform.forward * 20f);
 	}
 
 	void OnMouseEnter ()

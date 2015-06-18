@@ -27,6 +27,11 @@ public class PlayerHardCollisionHandler : MonoBehaviour, CharacterCollisionHandl
 			audioSource.Play();
 		}
 
+		Debug.Log (GetComponent<CharacterController> ().velocity);
+		if (body.tag.Contains ("Ice") && GetComponent<CharacterController>().velocity.magnitude > 1.1f) {
+
+		}
+
 		return true;
 	}
 }
