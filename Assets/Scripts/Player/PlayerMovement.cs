@@ -53,11 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if(currentBaseState.nameHash == Animator.StringToHash("Base Layer.jump_over"))
 		{
-			//  ..and not still in transition..
-			if(!animator.IsInTransition(0))
-			{
-				controller.height = animator.GetFloat("CharacterHeight");
-			}
+			controller.height = animator.GetFloat("CharacterHeight");
 			
 			// Raycast down from the center of the character.. 
 			Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);
@@ -65,14 +61,13 @@ public class PlayerMovement : MonoBehaviour
 			
 			if (Physics.Raycast(ray, out hitInfo))
 			{
-				// ..if distance to the ground is more than 1.75, use Match Target
-				if (hitInfo.distance > 1.75f)
+				if (hitInfo.distance > 2.5f)
 				{
 					
 					// MatchTarget allows us to take over animation and smoothly transition our character towards a location - the hit point from the ray.
 					// Here we're telling the Root of the character to only be influenced on the Y axis (MatchTargetWeightMask) and only occur between 0.35 and 0.5
 					// of the timeline of our animation clip
-					animator.MatchTarget(hitInfo.point, Quaternion.identity, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(0, 1, 0), 0), 0.35f, 0.5f);
+					animator.MatchTarget(hitInfo.point, Quaternion.identity, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(0, 1, 0), 0), 0.2f, 0.55f);
 				}
 			}
 		}
