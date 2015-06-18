@@ -256,16 +256,16 @@ To figure out what object was under the mouse, I used this
 * http://answers.unity3d.com/questions/229778/how-to-find-out-which-object-is-under-a-specific-p.html
 
 The model for the door is door_2_1
-*
+* https://www.assetstore.unity3d.com/en/#!/content/860
 
 The background music is The Night Sky
-*
+* https://www.assetstore.unity3d.com/en/#!/content/35720
 
 The buzzing sound for the teleporter is idle_power_fist_1
-*
+* https://www.assetstore.unity3d.com/en/#!/content/15644
 
 The explosion sound when running into the Repulsor is explosion_bazooka
-* 
+* https://www.assetstore.unity3d.com/en/#!/content/15644
 
 The Barricade, Well, Nightstand, and Lamp models are taken from their
 appropriate scenes.
@@ -276,10 +276,10 @@ The footstep and glass tinkling are from the same asset set
 - Yuk Mountain: Forest_B_1
 - City Madness: Pavement_A_1
 - Glass tinkling: Glass_A_1
-* 
+* https://www.assetstore.unity3d.com/en/#!/content/25410
 
 The capsule collision is lrg_rock_softland_concrete_01
-* 
+* https://www.assetstore.unity3d.com/en/#!/content/21405
 
 The skybox is Skybox_BlueNebula
 * https://www.assetstore.unity3d.com/en/#!/content/25142 
@@ -288,7 +288,7 @@ The grid texture is grid.png
 * http://code.tutsplus.com/tutorials/unity3d-third-person-cameras--mobile-11230
 
 The hand icon is a shrunken, inverted version of Gloves
-* 
+* https://www.assetstore.unity3d.com/en/#!/content/36440
 
 
 
