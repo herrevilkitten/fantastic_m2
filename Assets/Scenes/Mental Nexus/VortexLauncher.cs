@@ -3,19 +3,13 @@ using System.Collections;
 
 public class VortexLauncher : MonoBehaviour
 {
-
+	AudioSource repulsionSound;
 	// Use this for initialization
 	void Start ()
 	{
-	
+		repulsionSound = GetComponent<AudioSource> ();
 	}
 	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
-
 	IEnumerator OnTriggerEnter (Collider other)
 	{
 		if (other.gameObject.tag == "Player") {
@@ -24,6 +18,7 @@ public class VortexLauncher : MonoBehaviour
 //			controller.SimpleMove (Vector3.up * 200f);
 //			other.attachedRigidbody.AddForce (Vector3.up * 120f);
 
+			repulsionSound.Play ();
 			//Get an array of components that are of type Rigidbody
 			Rigidbody[] bodies = other.gameObject.GetComponentsInChildren<Rigidbody> ();
 
@@ -33,7 +28,7 @@ public class VortexLauncher : MonoBehaviour
 				rb.isKinematic = false;
 			}
 			other.gameObject.GetComponent<Animator> ().enabled = false;
-			other.gameObject.transform.position += Vector3.back;
+			other.gameObject.transform.position += Vector3.back * 2f;
 
 			yield return new WaitForSeconds (3f);
 			foreach (Rigidbody rb in bodies) {

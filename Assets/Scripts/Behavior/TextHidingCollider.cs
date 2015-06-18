@@ -15,13 +15,15 @@ public class TextHidingCollider : MonoBehaviour
 	
 	void OnTriggerEnter (Collider other)
 	{
-		if (textLighting != null) {
-			textLighting.enabled = false;
-		}
+		if (other.gameObject.tag == "Player") {
+			if (textLighting != null) {
+				textLighting.enabled = false;
+			}
 
-		if (textLighting != null) {
-			textLighting.enabled = false;
+			if (textLighting != null) {
+				textLighting.enabled = false;
+			}
+			text.text = "";
 		}
-		text.text = "";
 	}
 }
