@@ -51,10 +51,14 @@ Varied Height Terrain - Complete
 Terrain & multi level bridges that can be jumped between.
 
 Three Material Sounds - Complete
-Different sounds play based on the texture under the feet. 
+Different sounds play based on the primary texture under the feet. Grass, Sand,
+Stone, and the path all have separate footstep sounds. The footstep loudness
+increases with speed.
 
 Game Feel - Complete
-Need I really explain?
+Fog, rain, dark lighting, and a nebulous sky box add to the "dreamyness" 
+state of the character. This dream scene features a romantic proposal, a past 
+event in the character's life. Warm lighting adds to the "happy moment" feel.
 
 Assets used in the creation of the scene:
 Valentines Chocolates and Roses (TurkCheeps)
