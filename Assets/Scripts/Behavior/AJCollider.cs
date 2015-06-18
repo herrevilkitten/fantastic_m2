@@ -5,7 +5,8 @@ public class AJCollider : MonoBehaviour {
 	
 	Animator animator;
 	NavMeshAgent nav;
-	float runningRange = 5000.0f;
+	float runningRange = 1000.0f;
+	float runningRange2 = 1000.0f;
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -20,19 +21,21 @@ public class AJCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.tag == "Player") {
 			
-			float targetDestination = collider.transform.position.x  - (Random.value*runningRange);
+			float targetDestinationX = collider.transform.position.x  - (Random.value*runningRange);
+			float targetDestinationZ = collider.transform.position.z  - (Random.value*runningRange2);
 			// Use this targetDestination to where you want to move your enemy NavMesh Agent
 			nav.enabled = true;
-			nav.SetDestination (new Vector3(targetDestination,collider.transform.position.y, collider.transform.position.z)) ;
+			nav.SetDestination (new Vector3(targetDestinationX, collider.transform.position.y, targetDestinationZ)) ;
 			animator.SetBool ("IsPlayerNear", true);
-			Invoke ("StopAJ", 10f);
+			//Invoke ("StopAJ", 15f);
 		}
 	}
 	
 	void OnTriggerExit(Collider collider) {
+		/*
 		if (collider.tag == "Player") {
 			animator.SetBool ("IsPlayerNear", false);
-		}
+		}*/
 	}
 	
 	void StopAJ() {
