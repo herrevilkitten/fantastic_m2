@@ -39,7 +39,7 @@
   
      if (object) {
   
-         object.position = ray.GetPoint(dist) + offSet;    // Only move the object on a 2D plane.
+         object.position = ray.GetPoint(dist/10) + offSet;    // Only move the object on a 2D plane.
   
      }
   
