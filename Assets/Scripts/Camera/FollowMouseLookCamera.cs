@@ -38,11 +38,13 @@ public class FollowMouseLookCamera : MonoBehaviour
 		
 		// Then get the x and y angles
 		if (looking) {
+			Cursor.lockState = CursorLockMode.Locked;
 			yPosition = yPosition + upDown;
 			xPosition = xPosition + leftRight;
 			Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
 			transform.localPosition = target.transform.localPosition - (rotation * offset);
 		} else {
+			Cursor.lockState = CursorLockMode.None;
 			transform.position = placeholder.transform.position;
 			yPosition = placeholder.transform.rotation.y;
 			xPosition = placeholder.transform.rotation.x;
@@ -61,7 +63,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 				"From: " + placeholder + "\n" +
 				"Mouse Y: " + upDown + "\n"
 				+ "Mouse X: " + leftRight + "\n"
-				//+ "MouseDown: " + looking + "\n"
+			//+ "MouseDown: " + looking + "\n"
 				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
 				+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
 				+ "Mouse: " + xPosition + ", " + yPosition + "\n"

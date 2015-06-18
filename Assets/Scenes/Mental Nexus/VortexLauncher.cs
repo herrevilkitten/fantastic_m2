@@ -19,6 +19,7 @@ public class VortexLauncher : MonoBehaviour
 //			other.attachedRigidbody.AddForce (Vector3.up * 120f);
 
 			repulsionSound.Play ();
+
 			//Get an array of components that are of type Rigidbody
 			Rigidbody[] bodies = other.gameObject.GetComponentsInChildren<Rigidbody> ();
 
