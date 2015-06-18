@@ -3,13 +3,11 @@ using System.Collections;
 using System;
 
 public class TerrainSound : MonoBehaviour
-{/*
-	public AudioClip grassSteppingClip;
-	public AudioClip stoneSteppingClip;
-	public AudioClip sandSteppingClip;
-	public AudioClip pathSteppingClip;
+{
+	/*public AudioClip Grass;
+	public AudioClip Floor;
+	public AudioClip Sand;
 	*/
-
 	public AudioClip[] clips;
 
 	public PlayerMovement playerMovement;
