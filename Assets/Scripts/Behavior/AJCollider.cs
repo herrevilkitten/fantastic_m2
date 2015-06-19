@@ -21,8 +21,8 @@ public class AJCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.tag == "Player") {
 			
-			float targetDestinationX = collider.transform.position.x  - (Random.value*runningRange);
-			float targetDestinationZ = collider.transform.position.z  - (Random.value*runningRange2);
+			float targetDestinationX = collider.transform.position.x  + (Random.value*runningRange);
+			float targetDestinationZ = collider.transform.position.z  + (Random.value*runningRange2);
 			// Use this targetDestination to where you want to move your enemy NavMesh Agent
 			nav.enabled = true;
 			nav.SetDestination (new Vector3(targetDestinationX, collider.transform.position.y, targetDestinationZ)) ;
