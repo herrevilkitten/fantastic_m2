@@ -247,6 +247,10 @@ level transitions.  If we stay with this model, I'll look at LoadLevelAsync
 Interactions are really cool, but need polish.  Also, maybe use Mouse2 for
 MouseLook and Mouse1 for Interact instead of pressing E.
 
+Setting the cursor seems to be somewhat hit-and-miss.  When running in
+Unity, it works great.  Otherwise, it seems to be OS (and maybe browser)
+dependent.
+
 Assets used in the creation of the scene:
 
 The font used for the Story Points is Daniel Black
