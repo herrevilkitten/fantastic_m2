@@ -335,6 +335,8 @@ Known Issues:
 1. Character can walk on top of the barrier and does not move the barrier. 
 2. Camera can behave oddly when stuck in a collider
 3. Use own playermovement and terrainsound script (should merge back into the team's prefab, but did not have time to regression test all scenes)
+4. Mesh Colliders on some of the objects are causing warnings
+5. Missing one prefab tree
 
 Assets used in the creation of the scene:
 1. All environment models (except for the ramp, terrain, and the first house on the right) were attained via the asset store. 
