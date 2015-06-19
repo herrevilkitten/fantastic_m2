@@ -27,6 +27,9 @@ Ragdoll Simulation - Complete
  - You can press Z at any time in any scene to instantly become a ragdoll. 
  Eric's Nexus scene also has an area where the player will get thrown back 
  as a ragdoll.
+ Gina's City Madness scene also has an area where the player has a flashback and 
+ becomes a ragdoll. Player must run towards the accident scene (at the edge of the scene) 
+ and collide into the car. 
 
 Game Feel - Complete
  - We were aiming for a "dreamy" feel. You are experiencing dreams in the form 
@@ -37,7 +40,7 @@ Individual Requirements: Matthew Moldavan (Yuk Mountain Scene)
 ================================================================================
 Five Unique Physical Actors - Complete
  - Carts, barrels, crates, signs, and the origami paper cranes are all rigid
- bodies nd are interactable with the player.
+ bodies and are interactable with the player.
 
 At Least Two Compound Objects Consisting of Joints - Complete
  - There are three compound objects in my scene:
@@ -294,17 +297,65 @@ The hand icon is a shrunken, inverted version of Gloves
 Individual Requirements: Gina Nguyen (City Scene)
 ================================================================================
 Five Unique Physical Actors - Complete
+1. Bouncing Red Ball and Bouncing White Ball
+2. Hinge Joint Door on first house on the right. Opens based on physics force
+3. Square boxes - moves on collision
+4. Hinge Joint on Sign near first house on the right. Swings a little bit when physics force applied by character
+5. Spring Joint on Left Post. Structures bounce a little bit on start up.
 
 At Least Two Compound Objects Consisting of Joints - Complete
+1. Hinge joint door
+2. Hinge joint on sign
+3. Spring joint on left post
  
 Varied Height Terrain - Complete
+1. Side walk borders
+2. Ramp
+3. Bridge
 
 Three Material Sounds - Complete
+1. Metal boxes make noise upon collision
+2. Doors make noise when opening
+3. Character has unique footsteps: pavement, wood, gravel, and grass
+4. If player hits the wall on his home hard enough, he makes an oomph sound
+5. When player goes into flashback mode, he screams
 
 Game Feel - Complete
+This scene is supposed to feel eerie and dreamy. Character is having an unpleasant nightmare / flashback of the accident that took away his family. 
+1. Added the character's son. The son runs away from the character when character approaches him. The son leads him to the accident scene (where character can have painful flashback)
+2. Fog added to give the dreamy effect. Shadows are soft. 
+3. Character runs faster or slower depending on surface (example: forest/grass = slower; stairs = slower)
+4. Eerie background music
+5. Footstep sounds and speed change based on surface that the player is on
+
+Known Issues:
+1. Character can walk on top of the barrier and does not move the barrier. 
+2. Camera can behave oddly when stuck in a collider
+3. Use own playermovement and terrainsound script (should merge back into the prefab)
 
 Assets used in the creation of the scene:
-
+1. All environment models (except for the ramp, terrain, and the first house on the right) were attained via the asset store. 
+Sources:
+1. Sevn-Interactive - Atlas Buildings 00 (office buildings)
+2. Universal Image - Barricade
+3. msgvevo - Classic skybox (skybox for camera)
+4. VIS Games - Damaged Old Car (flashback scene)
+5. Play fuel studio - Dark Wood Texture (on sign)
+6. Webcadabra - Door collection (for custom house door)
+7. Juggernaut Realm - Door Sounds Collection (for door open soundwave)
+8. mataii - Fire Hydrant
+9. no9 Game Sounds - Footsteps pack 1
+10. Ryuno - Free Dark Ambient Loop
+11. Vigilante Audio - Screams Pain Agony (for flashback sound)
+12. Unity - Shanty Town: Brush Vegetation
+13. Unity - Shanty Town: Building Eight
+14. Unity - Shanty Town: Building Six
+15. Unity - Shanty Town: Trees
+16. Jacek Jankowski - Simple Modular Street Kit (streets)
+17. Side Effects Software - Staircase
+18. quirogalabs - The Ultimate Footsteps Sounds FX Pack
+19. Xenosmash Games - White Smoke Particle System (smoke from the flashback accident)
+20. Nobiax / Yughues - Yughues Free Wooden Floor Materials  
 
 ================================================================================
 Individual Requirements: Hannah Glazebrook (Home Sweet Home scene)
