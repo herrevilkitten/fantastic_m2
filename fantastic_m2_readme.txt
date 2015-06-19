@@ -3,7 +3,7 @@ Milestone 2 - Team Fantastic!
 ================================================================================
 Authors:
 Matthew Moldavan - mmoldavan@gatech.edu - mmoldavan3
-Hannah Glazebrook - hannah.glazebrook@gatech.edu
+Hannah Glazebrook - hannah.glazebrook@gatech.edu - hjahant3
 Eric Kidder - ekidder3@gatech.edu
 Gina Nguyen - gnguyen37@gatech.edu
 
@@ -290,23 +290,6 @@ The grid texture is grid.png
 The hand icon is a shrunken, inverted version of Gloves
 * https://www.assetstore.unity3d.com/en/#!/content/36440
 
-
-
-================================================================================
-Individual Requirements: Hannah Glazebrook (Home Sweet Home Scene)
-================================================================================
-Five Unique Physical Actors - Complete
-
-At Least Two Compound Objects Consisting of Joints - Complete
- 
-Varied Height Terrain - Complete
-
-Three Material Sounds - Complete
-
-Game Feel - Complete
-
-Assets used in the creation of the scene:
-
 ================================================================================
 Individual Requirements: Gina Nguyen (City Scene)
 ================================================================================
@@ -321,6 +304,48 @@ Three Material Sounds - Complete
 Game Feel - Complete
 
 Assets used in the creation of the scene:
+
+
+================================================================================
+Individual Requirements: Hannah Glazebrook (Home Sweet Home scene)
+================================================================================
+Hannah Glazebrook   hannah.glazebrook@gatech.edu    hjahant3  
+(Home Sweet Home scene)
+
+External Assets: 
+House and Furnishings from Unity Asset Store: Smith’s Home by Wensk (http://www.wensk.com)
+TerrainSounds script: from Unity Standard Assets
+home_sweet_home Sounds: from FreeSound.org
+
+Requirements
+
+-5 unique actors with dynamic physical properties:
+	Moves on contact: bouncing ball on roof, box that slides on ramp, capsule chain in 	courtyard, knife on hinge in kitchen, room doors on hinges, chairs in dining room.
+        Moves on click: drawers and doors on cabinets and nightstands can be opened and		closed with a click. Refrigerator and oven also open upon click. 
+	Physics materials: Sand box in back yard has high friction material. Ramps in 		courtyard have slippery material. Balls in bedroom and on roof have bouncy 		material.
+Issues: character can step on bouncy ball, and seems to jump with it?, a couple of spots in the game force the character to lift up into the air as if stepping on an invisible collider, but I cannot seem to find it anywhere. Bouncy balls seem to gain momentum rather than slowing down with each bounce.
+
+-At least 2 compound objects consisting of joints:
+	Bedroom, front and bathroom doors have hinge joint
+	Blue ball in courtyard has spring joint
+	Knife in kitchen has hinge joint
+	Capsule chain in yard has 2 hinge joints (connected hinge joints)
+Issues: doors on hinges seem to almost break upon impact sometimes, even though the settings for break force, etc are set to infinity. From what I found on the internet, this may be a bug in Unity 5. The bedroom door to the master bedroom snaps to the wall when the game begins to run. This also appears to be a bug in Unity. I tried changing the mass and drag of the door, making sure it wasn’t at an angle that forced gravity to pull it to the wall, and re-setting the axis and anchor of the door to no avail.
+
+-Variable height terrain:
+	Ramps leading up to roof, sandbox (jump into), patio (jump into), can climb on 		beds, chairs, sofas in bedroom, table
+Issues: the character controller’s jump animation is more of a “leap forward” animation than one that blends with movement allowing for more smooth transitions to handle elevation.
+
+-3 material sounds that play while character interacts with the ground surface
+	Sounds are mapped to each of 5 tagged surface types: a distinct sound for the sand 	in the 	courtyard, the grass in the courtyard, the floor inside the house, the 		cement roof, and the 	metal ramps up to the ceiling.
+Issues: sometimes there is a lag in transition where an extra sound will play from the previous surface.
+
+-Game feel and polish
+	Eerie background music to convey the oddness and confusion, dark skybox to match 	the main level to convey that this is still a dreamlike state, odd things in the 	environment such as the knife in the kitchen and the odd floating objects outside 	convey a sense of darkness and suspense. Fog to convey a sense of confusion and 	fuzziness. Lighting mapped to the skybox to convey a sense of mystery, darkness 	and occlusion.
+
+Level movement/instructions: use WASD or arrow keys to move around. spacebar to jump. shift + WASD to run, click to snap camera, click on cabinets and drawers to open and close, doors, objects in the courtyard (capsule chain, blue ball on spring, ball on ceiling, cube on ramp) move when you walk/run into them using WASD (and shift if you want to run) keys. Objects to test to meet requirements are listed above under requirements. 
+
+Game feel is intended to be eerie, confusing, and mysterious, as though the player is lost in his or her own mind, or a strange world with bizarre memories with missing pieces.
 
 
 ================================================================================
