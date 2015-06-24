@@ -4,6 +4,8 @@ using System.Collections;
 public class VortexLauncher : MonoBehaviour
 {
 	AudioSource repulsionSound;
+	public StateManager stateManager;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -12,7 +14,7 @@ public class VortexLauncher : MonoBehaviour
 	
 	IEnumerator OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player" && !stateManager.canPassBarrier) {
 			Debug.Log ("Vector on " + other.gameObject);
 //			CharacterController controller = other.gameObject.GetComponent<CharacterController> ();
 //			controller.SimpleMove (Vector3.up * 200f);

@@ -38,11 +38,13 @@ public class InteractiveHighlighter : MonoBehaviour
 		InteractiveObject interaction = other.gameObject.GetComponent<InteractiveObject> ();
 		if (interaction != null) {
 			if (particles != null) {
-				ParticleSystem instance = (ParticleSystem)Instantiate (particles, other.transform.position, Quaternion.LookRotation (other.transform.up, other.transform.forward));
+				ParticleSystem instance = (ParticleSystem)Instantiate (particles, other.transform.position, Quaternion.LookRotation (Vector3.up, Vector3.up));
+				instance.transform.Rotate (Vector3.up);
 				instance.name = HIGHLIGHTER_NAME;
 				instance.playOnAwake = true;
 				instance.loop = true;
 				instance.Play ();
+				instance.GetComponent<ObjectHighlightMover> ().highlightedObject = other.transform;
 				instance.transform.SetParent (other.gameObject.transform);
 			}
 		}

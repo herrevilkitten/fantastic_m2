@@ -12,8 +12,11 @@ public class PlayerDoorCollision : MonoBehaviour
 
 	void Start ()
 	{
-		rigidBody = GetComponent<Rigidbody> ();
-
+		foreach (Rigidbody component in transform.GetComponentsInChildren<Rigidbody> ()) {
+			if (component.tag == "Portal") {
+				rigidBody = component;
+			}
+		}
 		teleporterLight = GetComponent<Light> ();
 		teleporterLight.intensity = 0;
 
@@ -23,6 +26,9 @@ public class PlayerDoorCollision : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (rigidBody.constraints != RigidbodyConstraints.None) {
+			return;
+		}
 		teleporterLight.intensity = Mathf.Lerp (teleporterLight.intensity, target, Time.deltaTime);
 		teleporterLight.bounceIntensity = Mathf.Lerp (teleporterLight.bounceIntensity, target, Time.deltaTime);
 		teleporterSound.volume = Mathf.Lerp (teleporterSound.volume, target / 8f, Time.deltaTime);
