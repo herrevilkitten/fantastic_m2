@@ -22,11 +22,11 @@ public class GreeterDialog : InteractiveObject
 		dialogManager.DisableDialogs ();
 		switch (dialogState) {
 		case 0:
-			dialogManager.SetText ("Another traveller.  It's been so long since someone has wandered these hallowed halls.  But you're not like the others, you know.");
+			dialogManager.SetText ("Another traveler.  It's been so long since someone has wandered these hallowed halls.  But you're not like the others, you know.");
 			dialogManager.SetDialog (0, "What do you mean?", changeState (1));
 			break;
 		case 1:
-			dialogManager.SetText ("The others wandered, gazing out with dream-filled eyes.  But your eyes are clear with purpose.\n\nTell me: have you lost something or has something lost you?");
+			dialogManager.SetText ("The others wandered, gazing with dream-filled eyes.  But your eyes are clear with purpose.\n\nTell me: have you lost something or has something lost you?");
 			dialogManager.SetDialog (0, "I have lost something.", changeState (2));
 			dialogManager.SetDialog (1, "Something has lost me.", changeState (3));
 			break;

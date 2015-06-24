@@ -26,7 +26,7 @@ public class HomeSweetHomeDialog : InteractiveObject
 			dialogManager.SetDialog (0, "Ok", changeState (2));
 			break;
 		case 1:
-			dialogManager.SetText ("Does this key open a door you really want to open?");
+			dialogManager.SetText ("Are you sure you want to go back there?");
 			dialogManager.SetDialog (0, "Ok", changeState (2));
 			break;
 		case 2:
