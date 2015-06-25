@@ -35,7 +35,7 @@ public class YukMountainDialog : InteractiveObject
 			dialogManager.Hide ();
 			break;
 		case 2:
-			dialogManager.SetText ("That depends on how motivated you are to find it.\n\nAnd how much the thing wants to remain lost.  What do you think you're looking for?");
+			dialogManager.SetText ("That depends on how motivated you are to find them.\n\nAnd how much they want to remain lost.  What do you think you're looking for?");
 			dialogManager.SetDialog (0, "Keys.", changeState (3));
 			dialogManager.SetDialog (1, "Memories.", changeState (4));
 			dialogManager.SetDialog (2, "Hopes.", changeState (5));

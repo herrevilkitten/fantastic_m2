@@ -247,6 +247,10 @@ level transitions.  If we stay with this model, I'll look at LoadLevelAsync
 Interactions are really cool, but need polish.  Also, maybe use Mouse2 for
 MouseLook and Mouse1 for Interact instead of pressing E.
 
+Setting the cursor seems to be somewhat hit-and-miss.  When running in
+Unity, it works great.  Otherwise, it seems to be OS (and maybe browser)
+dependent.
+
 Assets used in the creation of the scene:
 
 The font used for the Story Points is Daniel Black
@@ -304,14 +308,14 @@ Five Unique Physical Actors - Complete
 5. Spring Joint on Left Post. Structures bounce a little bit on start up.
 
 At Least Two Compound Objects Consisting of Joints - Complete
-1. Hinge joint door
-2. Hinge joint on sign
-3. Spring joint on left post
+1. Hinge joint door (on tiny house)
+2. Hinge joint on sign (on sign)
+3. Spring joint on left post (Balls hanging from post)
  
 Varied Height Terrain - Complete
 1. Side walk borders
 2. Ramp
-3. Bridge
+3. Bridge with stairs
 
 Three Material Sounds - Complete
 1. Metal boxes make noise upon collision
@@ -324,14 +328,19 @@ Game Feel - Complete
 This scene is supposed to feel eerie and dreamy. Character is having an unpleasant nightmare / flashback of the accident that took away his family. 
 1. Added the character's son. The son runs away from the character when character approaches him. The son leads him to the accident scene (where character can have painful flashback)
 2. Fog added to give the dreamy effect. Shadows are soft. 
-3. Character runs faster or slower depending on surface (example: forest/grass = slower; stairs = slower)
+3. Character runs faster or slower depending on surface (example: forest/grass = slower; stairs = slower). 
+-- Grass is the left side of the field. 
+-- Gravel is on the other side and does not impact speed. 
+-- stairs will slow down the player. 
 4. Eerie background music
 5. Footstep sounds and speed change based on surface that the player is on
 
 Known Issues:
 1. Character can walk on top of the barrier and does not move the barrier. 
 2. Camera can behave oddly when stuck in a collider
-3. Use own playermovement and terrainsound script (should merge back into the prefab)
+3. Use own playermovement and terrainsound script (should merge back into the team's prefab, but did not have time to regression test all scenes)
+4. Mesh Colliders on some of the objects are causing warnings
+5. Missing one prefab tree
 
 Assets used in the creation of the scene:
 1. All environment models (except for the ramp, terrain, and the first house on the right) were attained via the asset store. 
@@ -428,4 +437,4 @@ Scenes/Mental Nexus/Mental Nexus.unity
 ================================================================================
 Game Url:
 ================================================================================
-http://projects.mattmoldavan.com/cs6457/m2/
+http://www.redcoatmedia.com/cs6475/milestone2/index.html
