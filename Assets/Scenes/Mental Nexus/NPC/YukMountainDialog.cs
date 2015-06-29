@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class YukMountainDialog : InteractiveObject
+public class YukMountainDialog : TalkableObject
 {
 	public StateManager stateManager;
 	public InventoryManager inventoryManager;
@@ -80,8 +80,8 @@ public class YukMountainDialog : InteractiveObject
 			break;
 		}
 	}
-	
-	override public void Interact (GameObject actor)
+
+	override public void OnInteractClick (GameObject actor)
 	{
 		Debug.Log ("Interacting with " + transform);
 		if (dialogManager == null) {

@@ -3,31 +3,31 @@ using System.Collections;
 
 abstract public class InteractiveObject : MonoBehaviour
 {
-	public CursorManager cursorManager;
-	public string gameScripts = "Game Scripts";
-	public Texture2D interactionCursor;
-	public Vector2 interactionHotspot;
+	public interface ContinuousInteraction
+	{
+		void OnInteractContinuous (GameObject actor, bool changed);
+	}
 
-	abstract public void Interact (GameObject actor);
+	public interface ClickableInteraction
+	{
+		void OnInteractClick (GameObject actor);
+	}
+
+	protected CursorManager cursorManager;
+	public string gameScripts = "Game Scripts";
 
 	void Awake ()
 	{
 		cursorManager = GameObject.Find (gameScripts).GetComponent<CursorManager> ();
 	}
 
-	void OnMouseEnter ()
+	public void OnMouseEnter ()
 	{
-		if (interactionCursor == null) {
-			interactionCursor = cursorManager.interactionCursor;
-		}
-		if (interactionHotspot == null) {
-			interactionHotspot = Vector2.zero;
-		}
-		cursorManager.SetCursor (interactionCursor);
+		cursorManager.UseCursor ();
 	}
 	
-	void OnMouseExit ()
+	public void OnMouseExit ()
 	{
-		cursorManager.SetDefaultCursor ();
+		cursorManager.DefaultCursor ();
 	}
 }

@@ -95,7 +95,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 	{
 		if (mouseDown) {
 			Rect mousePosition = new Rect (mouseX, mouseY, 32, 32);
-			Texture cursor = cursorManager.GetCursor ();
+			Texture cursor = cursorManager.GetCursorTexture ();
 			Debug.Log ("Cursor is " + cursor);
 			Debug.Log ("Cursor position is " + mousePosition);
 			GUI.DrawTexture (mousePosition,

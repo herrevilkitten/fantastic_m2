@@ -12,11 +12,17 @@ public class InteractiveHighlighter : MonoBehaviour
 	{
 	
 	}
-	
-	// Update is called once per frame
+
+	bool previousUse = false;
 	void Update ()
 	{
-		if (Input.GetButton ("Use")) {
+		bool use = Input.GetButton ("Use");
+		bool changed = false;
+		if (use != previousUse) {
+			changed = true;
+		}
+
+		if (use) {
 			Camera playerCamera = transform.parent.FindChild ("FollowCamera").gameObject.GetComponent<Camera> ();
 			// http://answers.unity3d.com/questions/229778/how-to-find-out-which-object-is-under-a-specific-p.html
 			Ray ray = playerCamera.ScreenPointToRay (Input.mousePosition);
@@ -27,10 +33,16 @@ public class InteractiveHighlighter : MonoBehaviour
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				if (interaction != null && objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
 					Debug.Log ("Interacting with " + objectHit);
-					interaction.Interact (gameObject);
+					if (changed && interaction is InteractiveObject.ClickableInteraction) {
+						((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
+					}
+					if (interaction is InteractiveObject.ContinuousInteraction) {
+						((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (gameObject, changed);
+					}
 				}
 			}
 		}
+		previousUse = use;
 	}
 
 	void OnTriggerEnter (Collider other)

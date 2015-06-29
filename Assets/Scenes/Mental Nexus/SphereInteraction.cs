@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SphereInteraction : InteractiveObject
+public class SphereInteraction : UsableObject
 {
-	override public void Interact (GameObject actor)
+	override public void OnInteractContinuous (GameObject actor, bool changed)
 	{
 		Rigidbody sphereBody = GetComponent<Rigidbody> ();
 		sphereBody.AddForce (actor.transform.forward * 20f);

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarInteraction : InteractiveObject
+public class CarInteraction : ClickableObject
 {
 	public InventoryManager inventoryManager;
 	
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		inventoryManager.PickupHope ();
 		Destroy (gameObject);

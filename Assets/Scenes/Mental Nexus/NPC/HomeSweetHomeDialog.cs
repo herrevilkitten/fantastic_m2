@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HomeSweetHomeDialog : InteractiveObject
+public class HomeSweetHomeDialog : TalkableObject
 {
 	public InventoryManager inventoryManager;
 	public DialogManager dialogManager;
@@ -35,7 +35,7 @@ public class HomeSweetHomeDialog : InteractiveObject
 		}
 	}
 	
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		Debug.Log ("Interacting with " + transform);
 		if (dialogManager == null) {

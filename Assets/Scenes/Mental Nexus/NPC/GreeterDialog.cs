@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GreeterDialog : InteractiveObject
+public class GreeterDialog : TalkableObject
 {
 	public StateManager stateManager;
 	public DialogManager dialogManager;
@@ -52,7 +52,7 @@ public class GreeterDialog : InteractiveObject
 		Destroy (gameObject);
 	}
 	
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		Debug.Log ("Interacting with " + transform);
 		if (dialogManager == null) {

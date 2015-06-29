@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class QuestGiverInteraction : InteractiveObject
+public class QuestGiverInteraction : TalkableObject
 {
 	public Canvas dialogSystem;
 	float timescale;
@@ -19,7 +19,7 @@ public class QuestGiverInteraction : InteractiveObject
 	
 	}
 
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		Debug.Log ("Interacting with " + transform);
 		if (dialogSystem == null) {

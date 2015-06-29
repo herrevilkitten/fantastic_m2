@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CityMadnessDialog : InteractiveObject
+public class CityMadnessDialog : TalkableObject
 {
 	public StateManager stateManager;
 	public InventoryManager inventoryManager;
@@ -66,9 +66,8 @@ public class CityMadnessDialog : InteractiveObject
 		}
 	}
 	
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
-		Debug.Log ("Interacting with " + transform);
 		if (dialogManager == null) {
 			return;
 		}

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BeerInteraction : InteractiveObject
+public class BeerInteraction : ClickableObject
 {
 	public InventoryManager inventoryManager;
 
-	override public void Interact (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		inventoryManager.PickupKey ();
 		Destroy (gameObject);
