@@ -5,7 +5,7 @@ abstract public class ClickableObject : InteractiveObject, InteractiveObject.Cli
 {
 	abstract public void OnInteractClick (GameObject actor);
 
-	public void OnMouseEnter ()
+	override public void OnMouseEnter ()
 	{
 		cursorManager.ClickCursor ();
 	}

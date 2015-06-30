@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CursorManager : MonoBehaviour
@@ -27,10 +28,13 @@ public class CursorManager : MonoBehaviour
 	 * is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
 	 */
 
+	public Image crosshairs;
+
 	CursorData defaultCursor;
 	CursorData talkCursor;
 	CursorData useCursor;
 	CursorData clickCursor;
+	CursorData crosshairsCursor;
 
 	Texture2D currentCursor;
 
@@ -57,10 +61,16 @@ public class CursorManager : MonoBehaviour
 			Vector2.zero
 		);
 
-		Debug.Log ("Default Cursor: " + defaultCursor.cursor);
-		Debug.Log ("Talk Cursor:    " + talkCursor.cursor);
-		Debug.Log ("Use Cursor:     " + useCursor.cursor);
-		Debug.Log ("Click Cursor:   " + clickCursor.cursor);
+		crosshairsCursor = new CursorData (
+			Resources.Load ("Cursors/crosshairs") as Texture2D,
+			new Vector2 (16, 16)
+		);
+
+		Debug.Log ("Default Cursor:    " + defaultCursor.cursor);
+		Debug.Log ("Talk Cursor:       " + talkCursor.cursor);
+		Debug.Log ("Use Cursor:        " + useCursor.cursor);
+		Debug.Log ("Click Cursor:      " + clickCursor.cursor);
+		Debug.Log ("Crosshairs Cursor: " + crosshairsCursor.cursor);
 
 		Invoke ("DefaultCursor", 2f);
 	}
@@ -97,14 +107,23 @@ public class CursorManager : MonoBehaviour
 		SetCursor (clickCursor.cursor, clickCursor.hotspot);
 	}
 	
+	public void CrosshairsCursor ()
+	{
+		if (clickCursor == null) {
+			return;
+		}
+		SetCursor (crosshairsCursor.cursor, clickCursor.hotspot);
+	}
+	
 	public void SetCursor (Texture2D cursor, Vector2 hotspot)
 	{
 		if (cursor == null) {
 			return;
 		}
-		Debug.Log ("Setting cursor to " + cursor + " (" + hotspot + ")");
+		Debug.Log ("Setting cursor to " + cursor + " " + hotspot);
 		currentCursor = cursor;
 		Cursor.SetCursor (cursor, hotspot, CursorMode.ForceSoftware);
+		crosshairs.sprite = Sprite.Create (cursor, new Rect (Vector2.zero, new Vector2 (32, 32)), Vector2.zero);
 	}
 
 	public void SetCursor (Texture2D cursor)

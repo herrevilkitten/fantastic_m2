@@ -21,7 +21,7 @@ abstract public class InteractiveObject : MonoBehaviour
 		cursorManager = GameObject.Find (gameScripts).GetComponent<CursorManager> ();
 	}
 
-	public void OnMouseEnter ()
+	virtual public void OnMouseEnter ()
 	{
 		cursorManager.UseCursor ();
 	}

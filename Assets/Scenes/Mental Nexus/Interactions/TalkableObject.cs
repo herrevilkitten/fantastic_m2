@@ -5,7 +5,7 @@ abstract public class TalkableObject : InteractiveObject, InteractiveObject.Clic
 {
 	abstract public void OnInteractClick (GameObject actor);
 
-	public void OnMouseEnter ()
+	override public void OnMouseEnter ()
 	{
 		cursorManager.TalkCursor ();
 	}

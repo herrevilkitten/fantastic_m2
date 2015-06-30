@@ -5,6 +5,8 @@ using System;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+	public StateManager stateManager;
+
 	public float backwardsSpeed = 2.0f;
 	public float walkingSpeed = 3.0f;
 	public float runningSpeed = 7.5f;
@@ -51,23 +53,20 @@ public class PlayerMovement : MonoBehaviour
 			return;
 		}
 
-		if(currentBaseState.nameHash == Animator.StringToHash("Base Layer.jump_over"))
-		{
-			controller.height = animator.GetFloat("CharacterHeight");
+		if (currentBaseState.nameHash == Animator.StringToHash ("Base Layer.jump_over")) {
+			controller.height = animator.GetFloat ("CharacterHeight");
 			
 			// Raycast down from the center of the character.. 
-			Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);
-			RaycastHit hitInfo = new RaycastHit();
+			Ray ray = new Ray (transform.position + Vector3.up, -Vector3.up);
+			RaycastHit hitInfo = new RaycastHit ();
 			
-			if (Physics.Raycast(ray, out hitInfo))
-			{
-				if (hitInfo.distance > 2.5f)
-				{
+			if (Physics.Raycast (ray, out hitInfo)) {
+				if (hitInfo.distance > 2.5f) {
 					
 					// MatchTarget allows us to take over animation and smoothly transition our character towards a location - the hit point from the ray.
 					// Here we're telling the Root of the character to only be influenced on the Y axis (MatchTargetWeightMask) and only occur between 0.35 and 0.5
 					// of the timeline of our animation clip
-					animator.MatchTarget(hitInfo.point, Quaternion.identity, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(0, 1, 0), 0), 0.2f, 0.55f);
+					animator.MatchTarget (hitInfo.point, Quaternion.identity, AvatarTarget.Root, new MatchTargetWeightMask (new Vector3 (0, 1, 0), 0), 0.2f, 0.55f);
 				}
 			}
 		}
@@ -75,7 +74,13 @@ public class PlayerMovement : MonoBehaviour
 		// http://answers.unity3d.com/questions/543421/gradual-acceleration.html
 		Boolean running = Input.GetButton ("Run");
 
-		float rotate = Input.GetAxis ("Horizontal") * turningSpeed * Time.deltaTime;
+		float rotate = 0f;
+		if (stateManager.cameraMode == StateManager.CameraMode.Floating) {
+			rotate = Input.GetAxis ("Horizontal");
+		} else {
+			rotate = Input.GetAxisRaw ("Mouse X") * 2f;
+		}
+		rotate = rotate * turningSpeed * Time.deltaTime;
 		if (running) {
 			rotate = rotate * 2f;
 		}

@@ -4,11 +4,14 @@ using System.Collections;
 
 public class FollowMouseLookCamera : MonoBehaviour
 {
-	public GameObject target;
-	public GameObject placeholder;
+	public GameObject eyePosition;
+	public GameObject followPosition;
 	public CursorManager cursorManager;
+	public StateManager stateManager;
 	public Text statusText;
-	Vector3 offset;
+	Transform cameraPosition;
+	Vector3 followOffset;
+	Vector3 eyeOffset;
 	float yPosition;
 	float xPosition;
 	float mouseX;
@@ -18,15 +21,16 @@ public class FollowMouseLookCamera : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		offset = target.transform.position - placeholder.transform.position;
+		followOffset = eyePosition.transform.position - followPosition.transform.position;
+		eyeOffset = Vector3.zero;
 
-		placeholder.transform.LookAt (target.transform);
+		followPosition.transform.LookAt (eyePosition.transform);
 
-		yPosition = placeholder.transform.rotation.y;
-		xPosition = placeholder.transform.rotation.x;
+		yPosition = followPosition.transform.rotation.y;
+		xPosition = followPosition.transform.rotation.x;
 
-		transform.position = placeholder.transform.position;
-		transform.LookAt (target.transform);
+		transform.position = followPosition.transform.position;
+		transform.LookAt (eyePosition.transform);
 	}
 	
 	// Update is called once per frame	
@@ -36,61 +40,71 @@ public class FollowMouseLookCamera : MonoBehaviour
 		float upDown = Input.GetAxis ("Mouse Y") * -5f;
 		float leftRight = Input.GetAxis ("Mouse X") * 5f;
 
-		// Use the placeholder to get the default angle to the target
-		// First, look at the target
-		placeholder.transform.LookAt (target.transform);
-		
-		// Then get the x and y angles
-		if (looking) {
-			if (!mouseDown) {
-				mouseX = Input.mousePosition.x;
-				mouseY = Input.mousePosition.y;
-				mouseDown = true;
-				Cursor.lockState = CursorLockMode.Confined;
-//				Cursor.visible = false;
+		if (stateManager.cameraMode == StateManager.CameraMode.Fixed) {
+			if (Input.GetButton ("Run")) {
+				transform.localPosition = eyePosition.transform.localPosition + new Vector3 (0f, -.1f, .04f);
+			} else {
+				transform.localPosition = eyePosition.transform.localPosition;
 			}
-//			Cursor.lockState = CursorLockMode.Locked;
 			yPosition = yPosition + upDown;
-			xPosition = xPosition + leftRight;
-			Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
-			transform.localPosition = target.transform.localPosition - (rotation * offset);
+			Quaternion rotation = Quaternion.Euler (yPosition, 0, 0);
+			transform.localRotation = rotation;
+//			transform.localPosition = cameraPosition.transform.localPosition - (rotation * eyeOffset);
 		} else {
-			Cursor.lockState = CursorLockMode.None;
-			mouseDown = false;
-			Cursor.visible = true;
-			//			Cursor.lockState = CursorLockMode.None;
-			GameObject playerObject = transform.parent.gameObject;
-			Animator playerAnimator = playerObject.GetComponent<Animator> ();
-			if (playerAnimator.GetBool ("IsMoving")) {
-				transform.position = Vector3.Slerp (transform.position, placeholder.transform.position, Time.timeScale * .1f);
-				yPosition = placeholder.transform.rotation.y;
-				xPosition = placeholder.transform.rotation.x;
+			// Use the placeholder to get the default angle to the target
+			// First, look at the target
+			followPosition.transform.LookAt (eyePosition.transform);
+			
+			// Then get the x and y angles
+			if (looking) {
+				if (!mouseDown) {
+					mouseX = Input.mousePosition.x;
+					mouseY = Input.mousePosition.y;
+					mouseDown = true;
+					Cursor.lockState = CursorLockMode.Locked;
+				}
+				yPosition = yPosition + upDown;
+				xPosition = xPosition + leftRight;
+				Quaternion rotation = Quaternion.Euler (yPosition, xPosition, 0);
+				transform.localPosition = eyePosition.transform.localPosition - (rotation * followOffset);
+			} else {
+				Cursor.lockState = CursorLockMode.None;
+				mouseDown = false;
+				Cursor.visible = true;
+				//			Cursor.lockState = CursorLockMode.None;
+				GameObject playerObject = transform.parent.gameObject;
+				Animator playerAnimator = playerObject.GetComponent<Animator> ();
+				if (playerAnimator.GetBool ("IsMoving")) {
+					transform.position = Vector3.Slerp (transform.position, followPosition.transform.position, Time.timeScale * .1f);
+					yPosition = followPosition.transform.rotation.y;
+					xPosition = followPosition.transform.rotation.x;
+				}
 			}
-		}
 
-		RaycastHit hit;
-		if (Physics.Linecast (target.transform.position, transform.position, out hit)) {
-			if (hit.collider.transform != transform.parent) {
-				transform.position = hit.point;
+			RaycastHit hit;
+			if (Physics.Linecast (eyePosition.transform.position, transform.position, out hit)) {
+				if (hit.collider.transform != transform.parent) {
+					transform.position = hit.point;
+				}
 			}
-		}
 
-		if (statusText != null) {
-			statusText.text = 
-				"Looking at: " + target + "\n" +
-				"From: " + placeholder + "\n" +
-				"Mouse Y: " + upDown + "\n"
-				+ "Mouse X: " + leftRight + "\n"
-			//+ "MouseDown: " + looking + "\n"
-				+ "Follow Cam:\n   " + placeholder.transform.position + "/" + "\n   " + placeholder.transform.eulerAngles + "\n"
-				+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
-				+ "Mouse: " + xPosition + ", " + yPosition + "\n"
-				+ "Collision: " + hit.point + "\n   With:" + hit.collider;
-		}
+			if (statusText != null) {
+				statusText.text = 
+				"Looking at: " + eyePosition + "\n" +
+					"From: " + followPosition + "\n" +
+					"Mouse Y: " + upDown + "\n"
+					+ "Mouse X: " + leftRight + "\n"
+				//+ "MouseDown: " + looking + "\n"
+					+ "Follow Cam:\n   " + followPosition.transform.position + "/" + "\n   " + followPosition.transform.eulerAngles + "\n"
+					+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
+					+ "Mouse: " + xPosition + ", " + yPosition + "\n"
+					+ "Collision: " + hit.point + "\n   With:" + hit.collider;
+			}
 		
-		transform.LookAt (target.transform);
+			transform.LookAt (eyePosition.transform);
+		}
 	}
-
+/*
 	void OnGUI2 ()
 	{
 		if (mouseDown) {
@@ -103,5 +117,5 @@ public class FollowMouseLookCamera : MonoBehaviour
 			                 ScaleMode.ScaleToFit, true, 0);
 
 		}
-	}
+	}*/
 }

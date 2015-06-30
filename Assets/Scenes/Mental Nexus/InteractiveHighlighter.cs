@@ -6,30 +6,44 @@ public class InteractiveHighlighter : MonoBehaviour
 	const string HIGHLIGHTER_NAME = "Interactive Hightlight";
 
 	public ParticleSystem particles;
-
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
+	public StateManager stateManager;
+	public CursorManager cursorManager;
 
 	bool previousUse = false;
 	void Update ()
 	{
+		Camera playerCamera = transform.parent.FindChild ("FollowCamera").gameObject.GetComponent<Camera> ();
+		Vector3 rayTarget = Input.mousePosition;
+
 		bool use = Input.GetButton ("Use");
 		bool changed = false;
 		if (use != previousUse) {
 			changed = true;
 		}
 
+		if (stateManager.cameraMode == StateManager.CameraMode.Fixed) {
+			rayTarget = new Vector3 (Screen.width / 2, Screen.height / 2, 0);
+			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
+			RaycastHit hit;
+			InteractiveObject interaction = null;
+			if (Physics.Raycast (ray, out hit, 100)) {
+				interaction = hit.collider.gameObject.GetComponent<InteractiveObject> ();
+			}
+
+			if (interaction != null) {
+				Debug.Log ("Interactive object is " + interaction);
+				interaction.OnMouseEnter ();
+			} else {
+				cursorManager.CrosshairsCursor ();
+			}
+		} 
 		if (use) {
-			Camera playerCamera = transform.parent.FindChild ("FollowCamera").gameObject.GetComponent<Camera> ();
 			// http://answers.unity3d.com/questions/229778/how-to-find-out-which-object-is-under-a-specific-p.html
-			Ray ray = playerCamera.ScreenPointToRay (Input.mousePosition);
+			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {
 				//    Debug.DrawLine (ray.origin, hit.point);
-				var objectHit = hit.collider.gameObject;
+				GameObject objectHit = hit.collider.gameObject;
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				if (interaction != null && objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
 					Debug.Log ("Interacting with " + objectHit);
@@ -41,6 +55,7 @@ public class InteractiveHighlighter : MonoBehaviour
 					}
 				}
 			}
+
 		}
 		previousUse = use;
 	}
