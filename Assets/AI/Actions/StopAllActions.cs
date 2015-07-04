@@ -5,13 +5,8 @@ using RAIN.Action;
 using RAIN.Core;
 
 [RAINAction]
-public class StopPatrolling : RAINAction
+public class StopAllActions : RAINAction
 {
-	public StopPatrolling() 
-	{
-		actionName = "StopPatrolling";
-	}
-
     public override void Start(RAIN.Core.AI ai)
     {
         base.Start(ai);
@@ -20,8 +15,8 @@ public class StopPatrolling : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
 		ai.Motor.Stop ();
-		VariableManager.StartWandering (ai);
-		return ActionResult.SUCCESS;
+		VariableManager.StartInteractingWithPlayer (ai);
+        return ActionResult.SUCCESS;
     }
 
     public override void Stop(RAIN.Core.AI ai)

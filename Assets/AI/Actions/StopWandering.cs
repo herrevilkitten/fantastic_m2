@@ -15,8 +15,7 @@ public class StopWandering : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
 		ai.Motor.Stop ();
-		ai.WorkingMemory.SetItem ("donePatrolling", false);
-		ai.WorkingMemory.SetItem ("doneWandering", true);
+		VariableManager.StartPatrolling (ai);
         return ActionResult.SUCCESS;
     }
 
