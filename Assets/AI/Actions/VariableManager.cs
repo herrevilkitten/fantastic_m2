@@ -6,23 +6,23 @@ using RAIN.Core;
 public class VariableManager {
 
 	private static void reset(RAIN.Core.AI ai) {
-		ai.WorkingMemory.SetItem ("donePatrolling", true);
-		ai.WorkingMemory.SetItem ("doneWandering", true);
-		ai.WorkingMemory.SetItem ("doneWithPlayer", true);
+		ai.WorkingMemory.SetItem ("isPatrolling", false);
+		ai.WorkingMemory.SetItem ("isWandering", false);
+		ai.WorkingMemory.SetItem ("isInteractingWithPlayer", false);
 	}
 
 	public static void StartPatrolling(RAIN.Core.AI ai) {
 		reset (ai);
-		ai.WorkingMemory.SetItem ("donePatrolling", false);
+		ai.WorkingMemory.SetItem ("isPatrolling", true);
 	}
 
 	public static void StartWandering(RAIN.Core.AI ai) {
 		reset (ai);
-		ai.WorkingMemory.SetItem ("doneWandering", false);
+		ai.WorkingMemory.SetItem ("isWandering", true);
 	}
 
 	public static void StartInteractingWithPlayer(RAIN.Core.AI ai) {
 		reset (ai);
-		ai.WorkingMemory.SetItem ("doneWithPlayer", false);
+		ai.WorkingMemory.SetItem ("isInteractingWithPlayer", true);
 	}
 }
