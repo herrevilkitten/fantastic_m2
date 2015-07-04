@@ -5,8 +5,13 @@ using RAIN.Action;
 using RAIN.Core;
 
 [RAINAction]
-public class StopAllActions : RAINAction
+public class StartInteractingWithPlayer : RAINAction
 {
+	public StartInteractingWithPlayer() 
+	{
+		actionName = "StartInteractingWithPlayer";
+	}
+
     public override void Start(RAIN.Core.AI ai)
     {
         base.Start(ai);
