@@ -60,7 +60,7 @@ public class CityMadnessTerrainSound : MonoBehaviour
 			
 			var surfaceIndex = TerrainSurface.GetMainTexture (transform.position);
 			
-			Debug.Log ("surfaceIndex=" + surfaceIndex);
+			//Debug.Log ("surfaceIndex=" + surfaceIndex);
 			if (surfaceIndex < 0 || surfaceIndex >= clips.Length) {
 				return;
 			}
