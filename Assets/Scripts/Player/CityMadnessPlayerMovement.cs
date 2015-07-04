@@ -45,7 +45,7 @@ public class CityMadnessPlayerMovement : MonoBehaviour
 		turningSpeed = configuredTurningSpeed;
 		accelerationSpeed = configuredAccelerationSpeed*GetSlowDownMultiplier ();
 		movementMultiplier = configuredMovementMultiplier*GetSlowDownMultiplier ();
-		Debug.Log ("Update variables");
+//		Debug.Log ("Update variables");
 	}
 
 	private float GetSlowDownMultiplier() {
@@ -58,7 +58,7 @@ public class CityMadnessPlayerMovement : MonoBehaviour
 			surfaceTag = hit.collider.tag;
 		}
 
-		Debug.Log("tag present=" + surfaceTag);
+		//Debug.Log("tag present=" + surfaceTag);
 
 		switch (surfaceTag) {
 		case "Stairs":
@@ -75,7 +75,7 @@ public class CityMadnessPlayerMovement : MonoBehaviour
 
 		}
 
-		Debug.Log ("multiplier = " + multiplier);
+		//Debug.Log ("multiplier = " + multiplier);
 		
 		return multiplier;
 	}

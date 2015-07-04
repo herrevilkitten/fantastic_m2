@@ -21,6 +21,8 @@ public class StartInteractingWithPlayer : RAINAction
     {
 		ai.Motor.Stop ();
 		VariableManager.StartInteractingWithPlayer (ai);
+		Vector3 targetPosition = ai.WorkingMemory.GetItem<Vector3>("player") - ai.Body.transform.forward;
+		Debug.Log ("Position = " + targetPosition);
         return ActionResult.SUCCESS;
     }
 
