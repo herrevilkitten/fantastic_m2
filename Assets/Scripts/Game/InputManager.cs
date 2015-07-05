@@ -4,8 +4,6 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
-	public StateManager stateManager;
-	public CursorManager cursorManager;
 	public Image crosshairs;
 
 	// Update is called once per frame
@@ -26,18 +24,18 @@ public class InputManager : MonoBehaviour
 		}
 
 		if (Input.GetButtonDown ("Toggle Camera")) {
-			if (stateManager.cameraMode == StateManager.CameraMode.Fixed) {
-				stateManager.cameraMode = StateManager.CameraMode.Floating;
+			if (StateManager.cameraMode == StateManager.CameraMode.Fixed) {
+				StateManager.cameraMode = StateManager.CameraMode.Floating;
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
 				crosshairs.enabled = false;
-				cursorManager.DefaultCursor ();
+				CursorManager.DefaultCursor ();
 			} else {
-				stateManager.cameraMode = StateManager.CameraMode.Fixed;
+				StateManager.cameraMode = StateManager.CameraMode.Fixed;
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
 				crosshairs.enabled = true;
-				cursorManager.CrosshairsCursor ();
+				CursorManager.CrosshairsCursor ();
 			}
 		}
 	}

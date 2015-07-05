@@ -6,8 +6,6 @@ public class InteractiveHighlighter : MonoBehaviour
 	const string HIGHLIGHTER_NAME = "Interactive Hightlight";
 
 	public ParticleSystem particles;
-	public StateManager stateManager;
-	public CursorManager cursorManager;
 
 	bool previousUse = false;
 	void Update ()
@@ -21,7 +19,7 @@ public class InteractiveHighlighter : MonoBehaviour
 			changed = true;
 		}
 
-		if (stateManager.cameraMode == StateManager.CameraMode.Fixed) {
+		if (StateManager.cameraMode == StateManager.CameraMode.Fixed) {
 			rayTarget = new Vector3 (Screen.width / 2, Screen.height / 2, 0);
 			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
 			RaycastHit hit;
@@ -34,7 +32,7 @@ public class InteractiveHighlighter : MonoBehaviour
 				Debug.Log ("Interactive object is " + interaction);
 				interaction.OnMouseEnter ();
 			} else {
-				cursorManager.CrosshairsCursor ();
+				CursorManager.CrosshairsCursor ();
 			}
 		} 
 		if (use) {

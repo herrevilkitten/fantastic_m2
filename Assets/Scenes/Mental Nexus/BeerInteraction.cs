@@ -7,7 +7,7 @@ public class BeerInteraction : ClickableObject
 
 	override public void OnInteractClick (GameObject actor)
 	{
-		inventoryManager.PickupKey ();
+		InventoryManager.PickupKey ();
 		Destroy (gameObject);
 	}
 }

@@ -5,8 +5,6 @@ using System;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-	public StateManager stateManager;
-
 	public float backwardsSpeed = 2.0f;
 	public float walkingSpeed = 3.0f;
 	public float runningSpeed = 7.5f;
@@ -75,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 		Boolean running = Input.GetButton ("Run");
 
 		float rotate = 0f;
-		if (stateManager.cameraMode == StateManager.CameraMode.Floating) {
+		if (StateManager.cameraMode == StateManager.CameraMode.Floating) {
 			rotate = Input.GetAxis ("Horizontal");
 		} else {
 			rotate = Input.GetAxisRaw ("Mouse X") * 2f;
@@ -136,5 +134,10 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetFloat ("VSpeed", currentSpeed * direction);
 		animator.SetBool ("IsMoving", currentSpeed != 0f || rotate != 0f);
 		animator.SetBool ("IsStrafing", strafe != 0f);
+	}
+
+	void OnStep (string foot)
+	{
+		// Do nothing to give a fallback
 	}
 }

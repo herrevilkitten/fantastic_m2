@@ -13,21 +13,13 @@ abstract public class InteractiveObject : MonoBehaviour
 		void OnInteractClick (GameObject actor);
 	}
 
-	protected CursorManager cursorManager;
-	public string gameScripts = "Game Scripts";
-
-	void Awake ()
-	{
-		cursorManager = GameObject.Find (gameScripts).GetComponent<CursorManager> ();
-	}
-
 	virtual public void OnMouseEnter ()
 	{
-		cursorManager.UseCursor ();
+		CursorManager.UseCursor ();
 	}
 	
 	public void OnMouseExit ()
 	{
-		cursorManager.DefaultCursor ();
+		CursorManager.DefaultCursor ();
 	}
 }
