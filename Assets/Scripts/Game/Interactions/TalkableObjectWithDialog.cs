@@ -7,9 +7,10 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	protected const int DIALOG_CLOSE = -1;
 	protected int dialogState = DIALOG_START;
 
-	public void OnInteractClick (GameObject actor)
+	override public void OnInteractClick (GameObject actor)
 	{
 		dialogState = GetInitialDialogState ();
+		DialogManager.Show ();
 	}
 
 	protected int GetInitialDialogState ()
