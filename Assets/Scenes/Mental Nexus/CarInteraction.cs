@@ -7,7 +7,7 @@ public class CarInteraction : ClickableObject
 	
 	override public void OnInteractClick (GameObject actor)
 	{
-		inventoryManager.PickupHope ();
+		InventoryManager.PickupHope ();
 		Destroy (gameObject);
 	}
 }

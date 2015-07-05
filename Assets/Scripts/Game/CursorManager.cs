@@ -28,18 +28,18 @@ public class CursorManager : MonoBehaviour
 	 * is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
 	 */
 
-	public Image crosshairs;
+	static Image crosshairs;
 
-	CursorData defaultCursor;
-	CursorData talkCursor;
-	CursorData useCursor;
-	CursorData clickCursor;
-	CursorData crosshairsCursor;
+	static CursorData defaultCursor;
+	static CursorData talkCursor;
+	static CursorData useCursor;
+	static CursorData clickCursor;
+	static CursorData crosshairsCursor;
 
-	Texture2D currentCursor;
+	static Texture2D currentCursor;
 
 	// Use this for initialization
-	void Start ()
+	static CursorManager ()
 	{
 		defaultCursor = new CursorData (
 			Resources.Load ("Cursors/default") as Texture2D,
@@ -66,16 +66,19 @@ public class CursorManager : MonoBehaviour
 			new Vector2 (16, 16)
 		);
 
+		crosshairs = GameObject.Find ("FirstPersonCrosshairs").GetComponent<Image> ();
+
 		Debug.Log ("Default Cursor:    " + defaultCursor.cursor);
 		Debug.Log ("Talk Cursor:       " + talkCursor.cursor);
 		Debug.Log ("Use Cursor:        " + useCursor.cursor);
 		Debug.Log ("Click Cursor:      " + clickCursor.cursor);
 		Debug.Log ("Crosshairs Cursor: " + crosshairsCursor.cursor);
+		Debug.Log ("1st Person Cursor: " + crosshairs);
 
-		Invoke ("DefaultCursor", 2f);
+		DefaultCursor ();
 	}
 	
-	public void DefaultCursor ()
+	public static void DefaultCursor ()
 	{
 		if (defaultCursor == null) {
 			return;
@@ -83,7 +86,7 @@ public class CursorManager : MonoBehaviour
 		SetCursor (defaultCursor.cursor, defaultCursor.hotspot);
 	}
 
-	public void TalkCursor ()
+	public static void TalkCursor ()
 	{
 		if (talkCursor == null) {
 			return;
@@ -91,7 +94,7 @@ public class CursorManager : MonoBehaviour
 		SetCursor (talkCursor.cursor, talkCursor.hotspot);
 	}
 
-	public void UseCursor ()
+	public static void UseCursor ()
 	{
 		if (useCursor == null) {
 			return;
@@ -99,7 +102,7 @@ public class CursorManager : MonoBehaviour
 		SetCursor (useCursor.cursor, useCursor.hotspot);
 	}
 	
-	public void ClickCursor ()
+	public static void ClickCursor ()
 	{
 		if (clickCursor == null) {
 			return;
@@ -107,7 +110,7 @@ public class CursorManager : MonoBehaviour
 		SetCursor (clickCursor.cursor, clickCursor.hotspot);
 	}
 	
-	public void CrosshairsCursor ()
+	public static void CrosshairsCursor ()
 	{
 		if (clickCursor == null) {
 			return;
@@ -115,7 +118,7 @@ public class CursorManager : MonoBehaviour
 		SetCursor (crosshairsCursor.cursor, clickCursor.hotspot);
 	}
 	
-	public void SetCursor (Texture2D cursor, Vector2 hotspot)
+	public static void SetCursor (Texture2D cursor, Vector2 hotspot)
 	{
 		if (cursor == null) {
 			return;
@@ -126,12 +129,12 @@ public class CursorManager : MonoBehaviour
 		crosshairs.sprite = Sprite.Create (cursor, new Rect (Vector2.zero, new Vector2 (32, 32)), Vector2.zero);
 	}
 
-	public void SetCursor (Texture2D cursor)
+	public static void SetCursor (Texture2D cursor)
 	{
 		SetCursor (cursor, Vector2.zero);
 	}
 
-	public Texture2D GetCursorTexture ()
+	public static Texture2D GetCursorTexture ()
 	{
 		return currentCursor;
 	}

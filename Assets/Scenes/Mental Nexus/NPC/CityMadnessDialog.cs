@@ -3,9 +3,6 @@ using System.Collections;
 
 public class CityMadnessDialog : TalkableObject
 {
-	public StateManager stateManager;
-	public InventoryManager inventoryManager;
-	public DialogManager dialogManager;
 	int dialogState = 0;
 	bool chattedWith;
 	
@@ -21,16 +18,16 @@ public class CityMadnessDialog : TalkableObject
 	{
 		string text = "";
 		Debug.Log ("Dialog state: " + dialogState);
-		dialogManager.DisableDialogs ();
-		dialogManager.SetText ("");
+		DialogManager.DisableDialogs ();
+		DialogManager.SetText ("");
 		switch (dialogState) {
 		case 0:
-			if (inventoryManager.HasHope ()) {
-				dialogManager.SetText ("I can do nothing more.  Pass through the portal!");
-				dialogManager.SetDialog (0, "Ok.", changeState (1));
-			} else if (inventoryManager.HasKey () && inventoryManager.HasMemory ()) {
-				dialogManager.SetText ("Memories are the keys to hope.\n\nWait. That doesn't make any sense.\nWhatever. The important thing is that you have them both.");
-				dialogManager.SetDialog (0, "Okay?", changeState (2));
+			if (InventoryManager.HasHope ()) {
+				DialogManager.SetText ("I can do nothing more.  Pass through the portal!");
+				DialogManager.SetDialog (0, "Ok.", changeState (1));
+			} else if (InventoryManager.HasKey () && InventoryManager.HasMemory ()) {
+				DialogManager.SetText ("Memories are the keys to hope.\n\nWait. That doesn't make any sense.\nWhatever. The important thing is that you have them both.");
+				DialogManager.SetDialog (0, "Okay?", changeState (2));
 			} else {
 				switch (Random.Range (0, 4)) {
 				case 0:
@@ -47,33 +44,29 @@ public class CityMadnessDialog : TalkableObject
 					break;
 				}
 				text += "\nThere are rules and there are times to break rules. But this is not one of those times. You must bring me two things before I can send you on your way.";
-				if (!inventoryManager.HasMemory ()) {
+				if (!InventoryManager.HasMemory ()) {
 					text += "\nYou should talk to my compatriot on top of the mountain about lost things being found.";
-					stateManager.knowsAboutYukMountain = true;
+					StateManager.knowsAboutYukMountain = true;
 				}
-				dialogManager.SetText (text);
-				dialogManager.SetDialog (0, "I will return.", changeState (1));
+				DialogManager.SetText (text);
+				DialogManager.SetDialog (0, "I will return.", changeState (1));
 			}
 			break;
 		case 1:
-			dialogManager.Hide ();
+			DialogManager.Hide ();
 			break;
 		case 2:
-			dialogManager.SetText ("I bestow upon you my blessing: 'the gray fires shall not scald your flesh, nor shall you be thrown back'!\nGo now and retrieve the final token!");
-			stateManager.canPassBarrier = true;
-			dialogManager.SetDialog (0, "Thanks?", changeState (1));
+			DialogManager.SetText ("I bestow upon you my blessing: 'the gray fires shall not scald your flesh, nor shall you be thrown back'!\nGo now and retrieve the final token!");
+			StateManager.canPassBarrier = true;
+			DialogManager.SetDialog (0, "Thanks?", changeState (1));
 			break;
 		}
 	}
 	
 	override public void OnInteractClick (GameObject actor)
 	{
-		if (dialogManager == null) {
-			return;
-		}
-		
 		dialogState = 0;
-		dialogManager.Show ();
+		DialogManager.Show ();
 		dialogFSM ();
 	}
 }

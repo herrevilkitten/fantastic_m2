@@ -40,7 +40,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 		float upDown = Input.GetAxis ("Mouse Y") * -5f;
 		float leftRight = Input.GetAxis ("Mouse X") * 5f;
 
-		if (stateManager.cameraMode == StateManager.CameraMode.Fixed) {
+		if (StateManager.cameraMode == StateManager.CameraMode.Fixed) {
 			if (Input.GetButton ("Run")) {
 				transform.localPosition = eyePosition.transform.localPosition + new Vector3 (0f, -.1f, .04f);
 			} else {

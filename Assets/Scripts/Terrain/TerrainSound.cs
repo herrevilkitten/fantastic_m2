@@ -1,13 +1,9 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 using System;
 
 public class TerrainSound : MonoBehaviour
 {
-	/*public AudioClip Grass;
-	public AudioClip Floor;
-	public AudioClip Sand;
-	*/
 	public AudioClip[] clips;
 
 	public PlayerMovement playerMovement;
@@ -20,16 +16,6 @@ public class TerrainSound : MonoBehaviour
 	void Start ()
 	{
 		audioSource = GetComponent<AudioSource> ();
-/*
-		surfaceAudioMap = new AudioClip[6]{
-			grassSteppingClip, //Grass
-			stoneSteppingClip, //SandStone
-			sandSteppingClip, //Sand
-			grassSteppingClip, //DirtGrass
-			stoneSteppingClip, //Rock
-			pathSteppingClip //Path
-		};
-		*/
 	}
 
 
@@ -49,10 +35,10 @@ public class TerrainSound : MonoBehaviour
 		}
 		
 		if (!surfaceTag.Equals ("Untagged")) {
-			Debug.Log("tag present=" + surfaceTag);
-			for(int i=0; i<clips.Length; i++) {
-				if (clips[i].name.StartsWith(surfaceTag)) {
-					footStepAudio = clips[i];
+			Debug.Log ("tag present=" + surfaceTag);
+			for (int i=0; i<clips.Length; i++) {
+				if (clips [i].name.StartsWith (surfaceTag)) {
+					footStepAudio = clips [i];
 					break;
 				}
 			}
@@ -65,7 +51,7 @@ public class TerrainSound : MonoBehaviour
 				return;
 			}
 			
-			footStepAudio = clips[surfaceIndex];
+			footStepAudio = clips [surfaceIndex];
 		}
 		
 		audioSource.Stop ();
