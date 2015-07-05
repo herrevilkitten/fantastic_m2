@@ -6,9 +6,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 {
 	public GameObject eyePosition;
 	public GameObject followPosition;
-	public CursorManager cursorManager;
-	public StateManager stateManager;
-	public Text statusText;
+	Text cameraStatusText;
 	Transform cameraPosition;
 	Vector3 followOffset;
 	Vector3 eyeOffset;
@@ -21,6 +19,14 @@ public class FollowMouseLookCamera : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		if (eyePosition == null) {
+			eyePosition = transform.parent.FindChild ("EyeCameraPlaceholder").gameObject;
+		}
+
+		if (followPosition == null) {
+			followPosition = transform.parent.FindChild ("FollowCameraPlaceholder").gameObject;
+		}
+
 		followOffset = eyePosition.transform.position - followPosition.transform.position;
 		eyeOffset = Vector3.zero;
 
@@ -31,6 +37,8 @@ public class FollowMouseLookCamera : MonoBehaviour
 
 		transform.position = followPosition.transform.position;
 		transform.LookAt (eyePosition.transform);
+
+		cameraStatusText = GameObject.Find ("CameraStatusText").gameObject.GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame	
@@ -88,8 +96,8 @@ public class FollowMouseLookCamera : MonoBehaviour
 				}
 			}
 
-			if (statusText != null) {
-				statusText.text = 
+			if (cameraStatusText != null) {
+				cameraStatusText.text = 
 				"Looking at: " + eyePosition + "\n" +
 					"From: " + followPosition + "\n" +
 					"Mouse Y: " + upDown + "\n"
@@ -104,18 +112,4 @@ public class FollowMouseLookCamera : MonoBehaviour
 			transform.LookAt (eyePosition.transform);
 		}
 	}
-/*
-	void OnGUI2 ()
-	{
-		if (mouseDown) {
-			Rect mousePosition = new Rect (mouseX, mouseY, 32, 32);
-			Texture cursor = cursorManager.GetCursorTexture ();
-			Debug.Log ("Cursor is " + cursor);
-			Debug.Log ("Cursor position is " + mousePosition);
-			GUI.DrawTexture (mousePosition,
-			                 cursor,
-			                 ScaleMode.ScaleToFit, true, 0);
-
-		}
-	}*/
 }
