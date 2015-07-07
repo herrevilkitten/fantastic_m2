@@ -15,15 +15,21 @@ public class DialogManager : MonoBehaviour
 
 	public static void Show ()
 	{
-		dialogCanvas.enabled = true;
-		timescale = Time.timeScale;
-		Time.timeScale = 0.0f;
+		if (!dialogCanvas.enabled) {
+			timescale = Time.timeScale;
+			Time.timeScale = 0.0f;
+			dialogCanvas.enabled = true;
+			dialogText = dialogCanvas.transform.Find ("DialogText/DialogText").GetComponent<Text> ();
+			dialogText.color = new Color (1f, 1f, 1f, 1f);
+		}
 	}
 
 	public static void Hide ()
 	{
-		dialogCanvas.enabled = false;
-		Time.timeScale = timescale;
+		if (dialogCanvas.enabled) {
+			dialogCanvas.enabled = false;
+			Time.timeScale = timescale;
+		}
 	}
 
 	public static bool IsShown ()
@@ -56,5 +62,12 @@ public class DialogManager : MonoBehaviour
 		button.transform.FindChild ("Button").FindChild ("Text").GetComponent<Text> ().text = " " + text;
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.AddListener (action);
+	}
+
+	public static void PopUp (string text)
+	{
+		GameObject popupHandler = GameObject.Find ("PopupHandler");
+		PopupManager popupManager = popupHandler.GetComponent<PopupManager> ();
+		popupManager.PopUp (text);
 	}
 }

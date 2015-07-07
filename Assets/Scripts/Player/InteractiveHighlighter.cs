@@ -35,6 +35,7 @@ public class InteractiveHighlighter : MonoBehaviour
 				CursorManager.CrosshairsCursor ();
 			}
 		} 
+
 		if (use) {
 			// http://answers.unity3d.com/questions/229778/how-to-find-out-which-object-is-under-a-specific-p.html
 			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
@@ -51,6 +52,9 @@ public class InteractiveHighlighter : MonoBehaviour
 					if (interaction is InteractiveObject.ContinuousInteraction) {
 						((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (gameObject, changed);
 					}
+				} else {
+					// Out of range
+					DialogManager.PopUp ("You are too far away to use that.");
 				}
 			}
 

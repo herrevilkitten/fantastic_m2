@@ -1,0 +1,53 @@
+{
+	onLeave: {
+		invoke: "RemoveGreeter"
+	},
+	states: [
+	{
+		state: 0,
+		dialog: "Another traveler.  It's been so long since someone has wandered these hallowed halls.  But you're not like the others, you know.",
+		options: [
+			{
+				text: "What do you mean?",
+				state: 1
+			}
+		]
+	},
+	{
+		state: 1,
+		dialog: "The others wandered, gazing with dream-filled eyes.  But your eyes are clear with purpose.\n\nTell me: have you lost something or has something lost you?",
+		options: [
+			{
+				text: "I have lost something.",
+				state: 2
+			},
+			{
+				text: "Something has lost me.",
+				state: 3
+			}
+		]
+	},
+	{
+		state: 2,
+		dialog: "This is a place where lost things can sometimes be found.  If it's not in the box behind me, you should continue looking.",
+		options: [
+			{
+				text: "Thanks."
+			}
+		]
+	},
+	{
+		state: 3,
+		dialog: "There is looking for things that are lost and then there is looking for things that wish to be lost.  On the hill in the far side is a friend of mine, who can help you with that task.",
+		setFlag: "YukMountainKnowledge",
+		onEnter: {
+			invoke: "GainYukMountainKnowledge"
+		},
+		options: [
+			{
+				text: "Thanks."
+			}
+		]
+	}
+]
+}
