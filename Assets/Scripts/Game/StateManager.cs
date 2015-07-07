@@ -20,7 +20,10 @@ public class StateManager : MonoBehaviour
 
 	static StateManager ()
 	{
-		crosshairs = GameObject.Find ("FirstPersonCrosshairs").GetComponent<Image> ();
+		GameObject crosshairsObject = GameObject.Find ("FirstPersonCrosshairs");
+		if (crosshairsObject != null) {
+			crosshairs = crosshairsObject.GetComponent<Image> ();
+		}
 	}
 
 	public static void Pause ()
@@ -55,13 +58,17 @@ public class StateManager : MonoBehaviour
 			StateManager.cameraMode = StateManager.CameraMode.Floating;
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-			crosshairs.enabled = false;
+			if (crosshairs != null) {
+				crosshairs.enabled = false;
+			}
 			CursorManager.DefaultCursor ();
 		} else {
 			StateManager.cameraMode = StateManager.CameraMode.Fixed;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-			crosshairs.enabled = true;
+			if (crosshairs != null) {
+				crosshairs.enabled = true;
+			}
 			CursorManager.CrosshairsCursor ();
 		}
 	}
