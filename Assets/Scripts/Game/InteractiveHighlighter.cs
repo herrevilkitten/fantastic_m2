@@ -36,7 +36,7 @@ public class InteractiveHighlighter : MonoBehaviour
 			}
 		} 
 
-		if (use) {
+		if (!StateManager.IsPaused () && use) {
 			// http://answers.unity3d.com/questions/229778/how-to-find-out-which-object-is-under-a-specific-p.html
 			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
 			RaycastHit hit;
@@ -44,17 +44,19 @@ public class InteractiveHighlighter : MonoBehaviour
 				//    Debug.DrawLine (ray.origin, hit.point);
 				GameObject objectHit = hit.collider.gameObject;
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
-				if (interaction != null && objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
-					Debug.Log ("Interacting with " + objectHit);
-					if (changed && interaction is InteractiveObject.ClickableInteraction) {
-						((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
+				if (interaction != null) {
+					if (objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
+						Debug.Log ("Interacting with " + objectHit);
+						if (changed && interaction is InteractiveObject.ClickableInteraction) {
+							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
+						}
+						if (interaction is InteractiveObject.ContinuousInteraction) {
+							((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (gameObject, changed);
+						}
+					} else {
+						// Out of range
+						DialogManager.PopUp ("You are too far away to use that.");
 					}
-					if (interaction is InteractiveObject.ContinuousInteraction) {
-						((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (gameObject, changed);
-					}
-				} else {
-					// Out of range
-					DialogManager.PopUp ("You are too far away to use that.");
 				}
 			}
 

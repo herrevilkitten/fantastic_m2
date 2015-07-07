@@ -6,7 +6,6 @@ public class DialogManager : MonoBehaviour
 {
 	static Canvas dialogCanvas;
 	static Text dialogText;
-	static float timescale;
 
 	static DialogManager ()
 	{
@@ -16,8 +15,7 @@ public class DialogManager : MonoBehaviour
 	public static void Show ()
 	{
 		if (!dialogCanvas.enabled) {
-			timescale = Time.timeScale;
-			Time.timeScale = 0.0f;
+			StateManager.Pause ();
 			dialogCanvas.enabled = true;
 			dialogText = dialogCanvas.transform.Find ("DialogText/DialogText").GetComponent<Text> ();
 			dialogText.color = new Color (1f, 1f, 1f, 1f);
@@ -27,8 +25,8 @@ public class DialogManager : MonoBehaviour
 	public static void Hide ()
 	{
 		if (dialogCanvas.enabled) {
+			StateManager.Play ();
 			dialogCanvas.enabled = false;
-			Time.timeScale = timescale;
 		}
 	}
 
