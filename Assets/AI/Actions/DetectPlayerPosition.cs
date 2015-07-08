@@ -49,7 +49,7 @@ public class DetectPlayerPosition : RAINAction
 			headoffPosition.x = currentPlayerPosition.x - 0.1f;
 			headoffPosition.y = currentPlayerPosition.y;
 			headoffPosition.z = currentPlayerPosition.z - 0.1f;
-			ai.WorkingMemory.SetItem ("headoffPosition", GetCurrentPosition (ai));
+			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 		}
 	}
 	

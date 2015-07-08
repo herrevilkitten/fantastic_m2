@@ -23,7 +23,7 @@ public class IsStationary : RAINAction
 		//Debug.Log ("npc is stationary=" + npcIsStationary);
 
 		ai.WorkingMemory.SetItem ("npcLastPosition", ai.Body.transform.position);
-		ai.WorkingMemory.SetItem ("npcIsStationary", npcIsStationary);
+		ai.WorkingMemory.SetItem ("trigSecrAnim", npcIsStationary);
 
         return ActionResult.SUCCESS;
     }
