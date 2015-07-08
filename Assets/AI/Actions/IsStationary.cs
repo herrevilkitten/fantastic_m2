@@ -20,10 +20,10 @@ public class IsStationary : RAINAction
 							   ai.Body.transform.position.y == lastPosition.y &&
 							   ai.Body.transform.position.z == lastPosition.z;
 
-		Debug.Log ("npc is stationary=" + npcIsStationary);
+		//Debug.Log ("npc is stationary=" + npcIsStationary);
 
 		ai.WorkingMemory.SetItem ("npcLastPosition", ai.Body.transform.position);
-		ai.WorkingMemory.SetItem ("npcIsStationary", npcIsStationary);
+		ai.WorkingMemory.SetItem ("trigSecrAnim", npcIsStationary);
 
         return ActionResult.SUCCESS;
     }
