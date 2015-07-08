@@ -25,7 +25,7 @@ public class ObjectInteractionUtilities {
 	public static bool IsPlayerMoving(RAIN.Core.AI ai) 
 	{
 		Vector3 velocity = GetVelocity(ai);
-		
+		Debug.Log ("Current velocity = " + velocity);
 		return IsLastPositionInitialized(ai) && (velocity.x != 0 || velocity.y != 0 || velocity.z != 0);
 	}
 	
@@ -39,6 +39,7 @@ public class ObjectInteractionUtilities {
 	public static bool IsLastPositionInitialized(RAIN.Core.AI ai)  
 	{
 		Vector3 lastPosition = GetLastPosition (ai);
+		Debug.Log ("lastPosition = " + lastPosition);
 		return (lastPosition.x != 0 || lastPosition.y != 0 || lastPosition.z != 0);
 		
 	}
@@ -60,6 +61,7 @@ public class ObjectInteractionUtilities {
 	
 	public static float GetTimePassed()
 	{
+		Debug.Log ("Time.deltaTime = " + Time.deltaTime);
 		return Time.deltaTime;
 	}
 }

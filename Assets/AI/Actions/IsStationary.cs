@@ -14,25 +14,26 @@ public class IsStationary : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
+		Debug.Log ("Entering IsStationary Logic");
 		Vector3 lastPosition = ai.WorkingMemory.GetItem <Vector3> ("npcLastPosition");
 
 		if (!ObjectInteractionUtilities.IsPlayerMoving (ai)) {
-			Debug.Log ("Player is moving = " + ObjectInteractionUtilities.IsPlayerMoving (ai));
-			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 0.5)) {
-				Debug.Log ("Player is close to NPC = " + ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 0.5));
+			Debug.Log ("Player is not moving");
+			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 1.0)) {
+				Debug.Log ("Player is close to NPC");
 				ai.WorkingMemory.SetItem ("trigSecrAnim", true);
 			} else {
-				Debug.Log ("Player is NOT close to NPC = " + ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 0.5));
+				Debug.Log ("Player is NOT close to NPC");
 				ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 			}
 		} else {
-			Debug.Log ("neither");
+			Debug.Log ("Player is moving");
 			ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 		}
 
 		ai.WorkingMemory.SetItem ("npcLastPosition", ai.Body.transform.position);
 
-
+		Debug.Log ("Exiting IsStationary Logic");
         return ActionResult.SUCCESS;
     }
 
