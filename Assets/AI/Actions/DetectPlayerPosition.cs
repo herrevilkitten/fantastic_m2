@@ -46,9 +46,9 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 currentPlayerPosition = GetCurrentPosition(ai);
 			Vector3 velocity = GetVelocity(ai);
 
-			headoffPosition.x = currentPlayerPosition.x - 0.1f;
+			headoffPosition.x = currentPlayerPosition.x - 0.5f;
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z - 0.1f;
+			headoffPosition.z = currentPlayerPosition.z - 0.5f;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 		}
 	}
