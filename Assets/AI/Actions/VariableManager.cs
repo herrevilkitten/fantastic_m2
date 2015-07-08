@@ -9,6 +9,8 @@ public class VariableManager {
 		ai.WorkingMemory.SetItem ("isPatrolling", false);
 		ai.WorkingMemory.SetItem ("isWandering", false);
 		ai.WorkingMemory.SetItem ("isInteractingWithPlayer", false);
+		ai.WorkingMemory.SetItem ("playerLastPosition", new Vector3());
+		ai.WorkingMemory.SetItem ("playerNewPosition", new Vector3());
 	}
 
 	public static void StartPatrolling(RAIN.Core.AI ai) {
