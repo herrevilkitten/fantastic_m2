@@ -21,7 +21,15 @@ public class IsStationary : RAINAction
 			Debug.Log ("Player is not moving");
 			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 1.0)) {
 				Debug.Log ("Player is close to NPC");
-				ai.WorkingMemory.SetItem ("trigSecrAnim", true);
+				float timeSinceStartOfGame = Time.time;
+
+				if (IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 30.0f)) {
+					ai.WorkingMemory.SetItem ("trigSecrAnim", true);	
+					ai.WorkingMemory.SetItem ("lastSecretTriggerTime", timeSinceStartOfGame);
+				} else {
+					Debug.Log ("Not triggering animation b/c it was done within the last 10 seconds");
+					ai.WorkingMemory.SetItem ("trigSecrAnim", false);
+				}
 			} else {
 				Debug.Log ("Player is NOT close to NPC");
 				ai.WorkingMemory.SetItem ("trigSecrAnim", false);
@@ -36,6 +44,20 @@ public class IsStationary : RAINAction
 		Debug.Log ("Exiting IsStationary Logic");
         return ActionResult.SUCCESS;
     }
+
+	private bool IsTimeToTriggerAnimation(RAIN.Core.AI ai, float timeSinceStartOfGame, float range) 
+	{
+		float lastSecretTriggerTime = ai.WorkingMemory.GetItem<float> ("lastSecretTriggerTime");
+
+		Debug.Log ("timeSinceStartOfGame - lastSecretTriggerTime = " + (timeSinceStartOfGame - lastSecretTriggerTime));
+		if (lastSecretTriggerTime == 0) {
+			return true;
+		} if (timeSinceStartOfGame - lastSecretTriggerTime > range) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     public override void Stop(RAIN.Core.AI ai)
     {

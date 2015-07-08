@@ -15,20 +15,21 @@ public class DetectPlayerPosition : RAINAction
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
 	{
+		/*
 		Debug.Log ("Entering Detect Player Position Logic");
 		Debug.Log ("pNew = " + ai.WorkingMemory.GetItem<Vector3> ("pNew"));
 		Debug.Log ("pLast = " + ai.WorkingMemory.GetItem<Vector3> ("pLast"));
 		Debug.Log ("npcLastPosition = " + ai.WorkingMemory.GetItem<Vector3> ("npcLastPosition"));
-
+*/
 		SetHeadoffLocation (ai);
 		SetPositionVariables (ai);
-		Debug.Log ("Exiting Detect Player Position Logic");
+//		Debug.Log ("Exiting Detect Player Position Logic");
 		return ActionResult.SUCCESS;
 	}
 	
 	private void SetHeadoffLocation(RAIN.Core.AI ai) 
 	{
-		Debug.Log ("IsPlayerMoving (ai)=" + ObjectInteractionUtilities.IsPlayerMoving (ai));
+//		Debug.Log ("IsPlayerMoving (ai)=" + ObjectInteractionUtilities.IsPlayerMoving (ai));
 		bool IsTriggeringSecret = ai.WorkingMemory.GetItem<bool> ("trigSecrAnim");
 
 		if (ObjectInteractionUtilities.IsPlayerMoving (ai)) {
@@ -41,8 +42,10 @@ public class DetectPlayerPosition : RAINAction
 			headoffPosition.y = currentPlayerPosition.y;
 			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*4);
 
+			/*
 			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
+			*/
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 			ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
 		} else {

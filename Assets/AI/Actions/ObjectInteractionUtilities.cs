@@ -61,7 +61,7 @@ public class ObjectInteractionUtilities {
 	
 	public static float GetTimePassed()
 	{
-		Debug.Log ("Time.deltaTime = " + Time.deltaTime);
-		return Time.deltaTime;
+		Debug.Log ("Time.fixedDeltaTime = " + Time.fixedDeltaTime);
+		return Time.fixedDeltaTime;
 	}
 }
