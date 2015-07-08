@@ -38,7 +38,10 @@ public class FollowMouseLookCamera : MonoBehaviour
 		transform.position = followPosition.transform.position;
 		transform.LookAt (eyePosition.transform);
 
-		cameraStatusText = GameObject.Find ("CameraStatusText").gameObject.GetComponent<Text> ();
+		GameObject cameraStatus = GameObject.Find ("CameraStatusText");
+		if (cameraStatus != null) {
+			cameraStatusText = cameraStatus.GetComponent<Text> ();
+		}
 	}
 	
 	// Update is called once per frame	
@@ -83,7 +86,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 				GameObject playerObject = transform.parent.gameObject;
 				Animator playerAnimator = playerObject.GetComponent<Animator> ();
 				if (playerAnimator.GetBool ("IsMoving")) {
-					transform.position = Vector3.Slerp (transform.position, followPosition.transform.position, Time.timeScale * .1f);
+					transform.localPosition = Vector3.Slerp (transform.localPosition, followPosition.transform.localPosition, Time.timeScale * .1f);
 					yPosition = followPosition.transform.rotation.y;
 					xPosition = followPosition.transform.rotation.x;
 				}
@@ -102,7 +105,6 @@ public class FollowMouseLookCamera : MonoBehaviour
 					"From: " + followPosition + "\n" +
 					"Mouse Y: " + upDown + "\n"
 					+ "Mouse X: " + leftRight + "\n"
-				//+ "MouseDown: " + looking + "\n"
 					+ "Follow Cam:\n   " + followPosition.transform.position + "/" + "\n   " + followPosition.transform.eulerAngles + "\n"
 					+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
 					+ "Mouse: " + xPosition + ", " + yPosition + "\n"

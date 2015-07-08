@@ -35,7 +35,7 @@ public class TerrainSound : MonoBehaviour
 		}
 		
 		if (!surfaceTag.Equals ("Untagged")) {
-			Debug.Log ("tag present=" + surfaceTag);
+//			Debug.Log ("tag present=" + surfaceTag);
 			for (int i=0; i<clips.Length; i++) {
 				if (clips [i].name.StartsWith (surfaceTag)) {
 					footStepAudio = clips [i];
@@ -46,7 +46,7 @@ public class TerrainSound : MonoBehaviour
 			
 			var surfaceIndex = TerrainSurface.GetMainTexture (transform.position);
 			
-			Debug.Log ("surfaceIndex=" + surfaceIndex);
+//			Debug.Log ("surfaceIndex=" + surfaceIndex);
 			if (surfaceIndex < 0 || surfaceIndex >= clips.Length) {
 				return;
 			}

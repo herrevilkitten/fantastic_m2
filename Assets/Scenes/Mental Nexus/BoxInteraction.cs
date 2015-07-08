@@ -35,5 +35,6 @@ public class BoxInteraction : ClickableObject
 		Rigidbody boxBody = GetComponent<Rigidbody> ();
 		boxBody.constraints = RigidbodyConstraints.None;
 		isOpen = !isOpen;
+		DialogManager.PopUp ("You " + (isOpen ? "open" : "close") + " the box.");
 	}
 }
