@@ -34,9 +34,11 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 velocity = GetVelocity(ai);
 			float getTimePassed = GetTimePassed();
 			
-			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*2);
-			headoffPosition.y = currentPlayerPosition.y + (velocity.y * getTimePassed*2);
-			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*2);
+			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*4);
+			headoffPosition.y = currentPlayerPosition.y;
+			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*4);
+
+			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 		} else {
@@ -83,9 +85,6 @@ public class DetectPlayerPosition : RAINAction
 	
 	private Vector3 GetVelocity(RAIN.Core.AI ai) 
 	{
-		Debug.Log ("GetCurrentPosition(ai)="+GetCurrentPosition(ai));
-		Debug.Log ("GetLastPosition(ai)="+GetNewLastPosition(ai));
-		
 		return (GetCurrentPosition(ai) - GetLastPosition(ai)) / GetTimePassed ();
 	}
 	
