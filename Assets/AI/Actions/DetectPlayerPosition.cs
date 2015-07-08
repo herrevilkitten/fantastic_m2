@@ -27,7 +27,8 @@ public class DetectPlayerPosition : RAINAction
 	private void SetHeadoffLocation(RAIN.Core.AI ai) 
 	{
 		Debug.Log ("IsPlayerMoving (ai)=" + IsPlayerMoving (ai));
-		
+		bool IsTriggeringSecret = ai.WorkingMemory.GetItem<bool> ("trigSecrAnim");
+
 		if (IsPlayerMoving (ai)) {
 			Vector3 headoffPosition = new Vector3();
 			Vector3 currentPlayerPosition = GetCurrentPosition(ai);
@@ -41,7 +42,7 @@ public class DetectPlayerPosition : RAINAction
 			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
-			ai.WorkingMemory.SetItem("continueChasingPlayer", true);
+			ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
 		} else {
 			Vector3 headoffPosition = new Vector3();
 			Vector3 currentPlayerPosition = GetCurrentPosition(ai);
@@ -57,7 +58,7 @@ public class DetectPlayerPosition : RAINAction
 			}
 			else 
 			{
-				ai.WorkingMemory.SetItem("continueChasingPlayer", true);
+				ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
 			}
 		}
 	}
