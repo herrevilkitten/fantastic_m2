@@ -92,7 +92,7 @@ public class DetectPlayerPosition : RAINAction
 	
 	private Vector3 GetCurrentPosition(RAIN.Core.AI ai) 
 	{
-		GameObject player = ai.WorkingMemory.GetItem<GameObject> ("player");
+		GameObject player = ai.WorkingMemory.GetItem<GameObject> ("objectBeingChased");
 		
 		return player.transform.position;
 	}

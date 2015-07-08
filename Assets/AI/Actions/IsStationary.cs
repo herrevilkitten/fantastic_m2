@@ -66,7 +66,7 @@ public class IsStationary : RAINAction
 	
 	private Vector3 GetCurrentPlayerPosition(RAIN.Core.AI ai) 
 	{
-		GameObject player = ai.WorkingMemory.GetItem<GameObject> ("player");
+		GameObject player = ai.WorkingMemory.GetItem<GameObject> ("objectBeingChased");
 		
 		return player.transform.position;
 	}

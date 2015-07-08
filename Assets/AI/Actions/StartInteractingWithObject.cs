@@ -5,9 +5,9 @@ using RAIN.Action;
 using RAIN.Core;
 
 [RAINAction]
-public class StartInteractingWithPlayer : RAINAction
+public class StartInteractingWithObject : RAINAction
 {
-	public StartInteractingWithPlayer() 
+	public StartInteractingWithObject() 
 	{
 		actionName = "StartInteractingWithPlayer";
 	}

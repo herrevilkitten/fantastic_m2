@@ -25,6 +25,6 @@ public class VariableManager {
 
 	public static void StartInteractingWithPlayer(RAIN.Core.AI ai) {
 		reset (ai);
-		ai.WorkingMemory.SetItem ("isInteractingWithPlayer", true);
+		//ai.WorkingMemory.SetItem ("isInteractingWithPlayer", true);
 	}
 }
