@@ -44,8 +44,8 @@ public class IsStationary : RAINAction
 
 		Debug.Log ("difference = " + difference);
 
-		bool xNear = -1.0 <= difference.x && difference.x <= 1.0;
-		bool zNear = -1.0 <= difference.z && difference.z <= 1.0;
+		bool xNear = -1.5 <= difference.x && difference.x <= 1.5;
+		bool zNear = -1.5 <= difference.z && difference.z <= 1.5;
 
 		return xNear && zNear;
 	}
@@ -58,7 +58,9 @@ public class IsStationary : RAINAction
 	private bool IsPlayerMoving(RAIN.Core.AI ai) 
 	{
 		Vector3 velocity = GetVelocity(ai);
-		
+
+		Debug.Log ("player velocity = " + velocity);
+
 		return IsLastPositionInitialized(ai) && (velocity.x != 0 || velocity.y != 0 || velocity.z != 0);
 	}
 	

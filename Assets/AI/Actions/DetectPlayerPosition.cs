@@ -34,13 +34,14 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 velocity = GetVelocity(ai);
 			float getTimePassed = GetTimePassed();
 			
-			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*3);
+			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*4);
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*3);
+			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*4);
 
 			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
+			ai.WorkingMemory.SetItem("continueChasingPlayer", true);
 		} else {
 			Vector3 headoffPosition = new Vector3();
 			Vector3 currentPlayerPosition = GetCurrentPosition(ai);
@@ -50,9 +51,31 @@ public class DetectPlayerPosition : RAINAction
 			headoffPosition.y = currentPlayerPosition.y;
 			headoffPosition.z = currentPlayerPosition.z - 0.5f;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
+			if (IsPlayerCloseToNPC(ai)) 
+			{
+				ai.WorkingMemory.SetItem("continueChasingPlayer", false);
+			}
+			else 
+			{
+				ai.WorkingMemory.SetItem("continueChasingPlayer", true);
+			}
 		}
 	}
-	
+
+	private bool IsPlayerCloseToNPC(RAIN.Core.AI ai) {
+		Vector3 playerPosition = GetCurrentPosition (ai);
+		Vector3 npcPosition = ai.Body.transform.position;
+		
+		Vector3 difference = playerPosition - npcPosition;
+		
+		Debug.Log ("difference = " + difference);
+		
+		bool xNear = -0.9 <= difference.x && difference.x <= 0.9;
+		bool zNear = -0.9 <= difference.z && difference.z <= 0.9;
+		
+		return xNear && zNear;
+	}
+
 	private void SetPositionVariables(RAIN.Core.AI ai) 
 	{
 		ai.WorkingMemory.SetItem ("pLast", GetNewLastPosition(ai));
