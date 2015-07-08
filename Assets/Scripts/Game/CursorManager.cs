@@ -66,7 +66,10 @@ public class CursorManager : MonoBehaviour
 			new Vector2 (16, 16)
 		);
 
-		crosshairs = GameObject.Find ("FirstPersonCrosshairs").GetComponent<Image> ();
+		GameObject crosshairsObject = GameObject.Find ("FirstPersonCrosshairs");
+		if (crosshairsObject != null) {
+			crosshairs = crosshairsObject.GetComponent<Image> ();
+		}
 
 		Debug.Log ("Default Cursor:    " + defaultCursor.cursor);
 		Debug.Log ("Talk Cursor:       " + talkCursor.cursor);
@@ -126,7 +129,9 @@ public class CursorManager : MonoBehaviour
 		Debug.Log ("Setting cursor to " + cursor + " " + hotspot);
 		currentCursor = cursor;
 		Cursor.SetCursor (cursor, hotspot, CursorMode.ForceSoftware);
-		crosshairs.sprite = Sprite.Create (cursor, new Rect (Vector2.zero, new Vector2 (32, 32)), Vector2.zero);
+		if (crosshairs != null) {
+			crosshairs.sprite = Sprite.Create (cursor, new Rect (Vector2.zero, new Vector2 (32, 32)), Vector2.zero);
+		}
 	}
 
 	public static void SetCursor (Texture2D cursor)
