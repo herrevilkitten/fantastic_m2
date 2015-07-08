@@ -34,9 +34,9 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 velocity = GetVelocity(ai);
 			float getTimePassed = GetTimePassed();
 			
-			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*4);
+			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*3);
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*4);
+			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*3);
 
 			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
