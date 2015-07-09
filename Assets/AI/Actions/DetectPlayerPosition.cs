@@ -53,9 +53,9 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 currentPlayerPosition = ObjectInteractionUtilities.GetCurrentPosition(ai);
 			Vector3 velocity = ObjectInteractionUtilities.GetVelocity(ai);
 
-			headoffPosition.x = currentPlayerPosition.x - 0.5f;
+			headoffPosition.x = currentPlayerPosition.x - 0.8f;
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z - 0.5f;
+			headoffPosition.z = currentPlayerPosition.z - 0.8f;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 			if (ObjectInteractionUtilities.IsPlayerCloseToNPC(ai, 0.9)) 
 			{

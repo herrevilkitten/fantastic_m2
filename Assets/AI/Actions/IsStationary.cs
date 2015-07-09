@@ -7,6 +7,10 @@ using RAIN.Core;
 [RAINAction]
 public class IsStationary : RAINAction
 {
+	private const int TRIGGER_START_ANIMATION = 0;
+	private const int ALLOW_ANIMATION_TO_FINISH = 1;
+	private const int TRIGGER_STOP_ANIMATION = 2;
+
     public override void Start(RAIN.Core.AI ai)
     {
         base.Start(ai);
@@ -19,14 +23,24 @@ public class IsStationary : RAINAction
 
 		if (!ObjectInteractionUtilities.IsPlayerMoving (ai)) {
 			Debug.Log ("Player is not moving");
-			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 1.0)) {
+			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 1.5)) {
 				Debug.Log ("Player is close to NPC");
 				float timeSinceStartOfGame = Time.time;
 
-				if (IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 30.0f)) {
+				int isTriggerAnim = IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 30.0f);
+
+				if (isTriggerAnim==TRIGGER_START_ANIMATION) {
+					Debug.Log ("Trigger animation");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", true);	
 					ai.WorkingMemory.SetItem ("lastSecretTriggerTime", timeSinceStartOfGame);
-				} else {
+				} 
+
+				if (isTriggerAnim==ALLOW_ANIMATION_TO_FINISH) {
+					Debug.Log ("Continue animation");
+					ai.WorkingMemory.SetItem ("trigSecrAnim", true);	
+				} 
+
+				if (isTriggerAnim==TRIGGER_STOP_ANIMATION) {
 					Debug.Log ("Not triggering animation b/c it was done within the last 10 seconds");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 				}
@@ -45,18 +59,27 @@ public class IsStationary : RAINAction
         return ActionResult.SUCCESS;
     }
 
-	private bool IsTimeToTriggerAnimation(RAIN.Core.AI ai, float timeSinceStartOfGame, float range) 
+	private int IsTimeToTriggerAnimation(RAIN.Core.AI ai, float timeSinceStartOfGame, float range) 
 	{
 		float lastSecretTriggerTime = ai.WorkingMemory.GetItem<float> ("lastSecretTriggerTime");
-
+		Debug.Log ("lastSecretTriggerTime=" + lastSecretTriggerTime);
 		Debug.Log ("timeSinceStartOfGame - lastSecretTriggerTime = " + (timeSinceStartOfGame - lastSecretTriggerTime));
+
+		//first time triggering
 		if (lastSecretTriggerTime == 0) {
-			return true;
-		} if (timeSinceStartOfGame - lastSecretTriggerTime > range) {
-			return true;
-		} else {
-			return false;
-		}
+			return TRIGGER_START_ANIMATION;
+		} 
+
+		if (timeSinceStartOfGame - lastSecretTriggerTime < 12.0f) {
+			//let the clip finish playing before deactivating?
+			return ALLOW_ANIMATION_TO_FINISH;
+		} 
+
+		if (timeSinceStartOfGame - lastSecretTriggerTime > range) {
+			return TRIGGER_START_ANIMATION;
+		} 
+
+		return TRIGGER_STOP_ANIMATION;
 	}
 
     public override void Stop(RAIN.Core.AI ai)
