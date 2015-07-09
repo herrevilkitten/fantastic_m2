@@ -27,7 +27,7 @@ public class IsStationary : RAINAction
 				Debug.Log ("Player is close to NPC");
 				float timeSinceStartOfGame = Time.time;
 				
-				int isTriggerAnim = IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 30.0f);
+				int isTriggerAnim = IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 45.0f);
 				
 				
 				if (isTriggerAnim==TRIGGER_START_ANIMATION) {
@@ -42,13 +42,16 @@ public class IsStationary : RAINAction
 				} 
 				
 				if (isTriggerAnim==TRIGGER_STOP_ANIMATION) {
-					Debug.Log ("Player is NOT close to NPC");
+					Debug.Log ("Stop trigger animation");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 				}
 			}
 		} else {
 			Debug.Log ("Player is moving");
 			ai.WorkingMemory.SetItem ("trigSecrAnim", false);
+			//reset the last secret trigger time
+			Debug.Log ("Reset the last trigger time");
+			ai.WorkingMemory.SetItem ("lastSecretTriggerTime", 0);
 		}
 		
 		ai.WorkingMemory.SetItem ("npcLastPosition", ai.Body.transform.position);
@@ -60,7 +63,7 @@ public class IsStationary : RAINAction
 	private int IsTimeToTriggerAnimation(RAIN.Core.AI ai, float timeSinceStartOfGame, float range) 
 	{
 		float lastSecretTriggerTime = ai.WorkingMemory.GetItem<float> ("lastSecretTriggerTime");
-		
+		Debug.Log ("lastSecretTriggerTime=" + lastSecretTriggerTime);
 		Debug.Log ("timeSinceStartOfGame - lastSecretTriggerTime = " + (timeSinceStartOfGame - lastSecretTriggerTime));
 		if (lastSecretTriggerTime == 0) {
 			return TRIGGER_START_ANIMATION;
