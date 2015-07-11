@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d62fe7c999bd93e4593fc8648f256746
-timeCreated: 1435934930
+guid: 627d4a01fe1fcc048898ed8bd25fb8b6
+timeCreated: 1436580012
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -14,72 +14,72 @@ ModelImporter:
     100012: Hips
     100014: Hood
     100016: Hood1
-    100018: //RootNode
-    100020: LBackpack_Strap
-    100022: LeftArm
-    100024: LeftFoot
-    100026: LeftForeArm
-    100028: LeftHand
-    100030: LeftHandIndex1
-    100032: LeftHandIndex2
-    100034: LeftHandIndex3
-    100036: LeftHandMiddle1
-    100038: LeftHandMiddle2
-    100040: LeftHandMiddle3
-    100042: LeftHandPinky1
-    100044: LeftHandPinky2
-    100046: LeftHandPinky3
-    100048: LeftHandRing1
-    100050: LeftHandRing2
-    100052: LeftHandRing3
-    100054: LeftHandThumb1
-    100056: LeftHandThumb2
-    100058: LeftHandThumb3
-    100060: LeftLeg
-    100062: LeftPantLeg
-    100064: LeftShoulder
-    100066: LeftToeBase
-    100068: LeftUpLeg
-    100070: LFootTongue
-    100072: LHoodieString
-    100074: LHoodieString1
-    100076: LHoodieString2
-    100078: LSleeve
-    100080: Neck
-    100082: Pelvis
-    100084: RBackpack_Strap
-    100086: RFootTongue
-    100088: RHoodieString
-    100090: RHoodieString1
-    100092: RHoodieString2
-    100094: RightArm
-    100096: RightFoot
-    100098: RightForeArm
-    100100: RightHand
-    100102: RightHandIndex1
-    100104: RightHandIndex2
-    100106: RightHandIndex3
-    100108: RightHandMiddle1
-    100110: RightHandMiddle2
-    100112: RightHandMiddle3
-    100114: RightHandPinky1
-    100116: RightHandPinky2
-    100118: RightHandPinky3
-    100120: RightHandRing1
-    100122: RightHandRing2
-    100124: RightHandRing3
-    100126: RightHandThumb1
-    100128: RightHandThumb2
-    100130: RightHandThumb3
-    100132: RightLeg
-    100134: RightPantLeg
-    100136: RightShoulder
-    100138: RightToeBase
-    100140: RightUpLeg
-    100142: RSleeve
-    100144: Spine
-    100146: Spine1
-    100148: Spine2
+    100018: LBackpack_Strap
+    100020: LeftArm
+    100022: LeftFoot
+    100024: LeftForeArm
+    100026: LeftHand
+    100028: LeftHandIndex1
+    100030: LeftHandIndex2
+    100032: LeftHandIndex3
+    100034: LeftHandMiddle1
+    100036: LeftHandMiddle2
+    100038: LeftHandMiddle3
+    100040: LeftHandPinky1
+    100042: LeftHandPinky2
+    100044: LeftHandPinky3
+    100046: LeftHandRing1
+    100048: LeftHandRing2
+    100050: LeftHandRing3
+    100052: LeftHandThumb1
+    100054: LeftHandThumb2
+    100056: LeftHandThumb3
+    100058: LeftLeg
+    100060: LeftPantLeg
+    100062: LeftShoulder
+    100064: LeftToeBase
+    100066: LeftUpLeg
+    100068: LFootTongue
+    100070: LHoodieString
+    100072: LHoodieString1
+    100074: LHoodieString2
+    100076: LSleeve
+    100078: Neck
+    100080: Pelvis
+    100082: RBackpack_Strap
+    100084: RFootTongue
+    100086: RHoodieString
+    100088: RHoodieString1
+    100090: RHoodieString2
+    100092: RightArm
+    100094: RightFoot
+    100096: RightForeArm
+    100098: RightHand
+    100100: RightHandIndex1
+    100102: RightHandIndex2
+    100104: RightHandIndex3
+    100106: RightHandMiddle1
+    100108: RightHandMiddle2
+    100110: RightHandMiddle3
+    100112: RightHandPinky1
+    100114: RightHandPinky2
+    100116: RightHandPinky3
+    100118: RightHandRing1
+    100120: RightHandRing2
+    100122: RightHandRing3
+    100124: RightHandThumb1
+    100126: RightHandThumb2
+    100128: RightHandThumb3
+    100130: RightLeg
+    100132: RightPantLeg
+    100134: RightShoulder
+    100136: RightToeBase
+    100138: RightUpLeg
+    100140: RSleeve
+    100142: Spine
+    100144: Spine1
+    100146: Spine2
+    100148: //RootNode
     400000: Backpack
     400002: BoyFacialAnim_Joint
     400004: HairA
@@ -89,73 +89,73 @@ ModelImporter:
     400012: Hips
     400014: Hood
     400016: Hood1
-    400018: //RootNode
-    400020: LBackpack_Strap
-    400022: LeftArm
-    400024: LeftFoot
-    400026: LeftForeArm
-    400028: LeftHand
-    400030: LeftHandIndex1
-    400032: LeftHandIndex2
-    400034: LeftHandIndex3
-    400036: LeftHandMiddle1
-    400038: LeftHandMiddle2
-    400040: LeftHandMiddle3
-    400042: LeftHandPinky1
-    400044: LeftHandPinky2
-    400046: LeftHandPinky3
-    400048: LeftHandRing1
-    400050: LeftHandRing2
-    400052: LeftHandRing3
-    400054: LeftHandThumb1
-    400056: LeftHandThumb2
-    400058: LeftHandThumb3
-    400060: LeftLeg
-    400062: LeftPantLeg
-    400064: LeftShoulder
-    400066: LeftToeBase
-    400068: LeftUpLeg
-    400070: LFootTongue
-    400072: LHoodieString
-    400074: LHoodieString1
-    400076: LHoodieString2
-    400078: LSleeve
-    400080: Neck
-    400082: Pelvis
-    400084: RBackpack_Strap
-    400086: RFootTongue
-    400088: RHoodieString
-    400090: RHoodieString1
-    400092: RHoodieString2
-    400094: RightArm
-    400096: RightFoot
-    400098: RightForeArm
-    400100: RightHand
-    400102: RightHandIndex1
-    400104: RightHandIndex2
-    400106: RightHandIndex3
-    400108: RightHandMiddle1
-    400110: RightHandMiddle2
-    400112: RightHandMiddle3
-    400114: RightHandPinky1
-    400116: RightHandPinky2
-    400118: RightHandPinky3
-    400120: RightHandRing1
-    400122: RightHandRing2
-    400124: RightHandRing3
-    400126: RightHandThumb1
-    400128: RightHandThumb2
-    400130: RightHandThumb3
-    400132: RightLeg
-    400134: RightPantLeg
-    400136: RightShoulder
-    400138: RightToeBase
-    400140: RightUpLeg
-    400142: RSleeve
-    400144: Spine
-    400146: Spine1
-    400148: Spine2
-    7400000: aj_idle_clip
+    400018: LBackpack_Strap
+    400020: LeftArm
+    400022: LeftFoot
+    400024: LeftForeArm
+    400026: LeftHand
+    400028: LeftHandIndex1
+    400030: LeftHandIndex2
+    400032: LeftHandIndex3
+    400034: LeftHandMiddle1
+    400036: LeftHandMiddle2
+    400038: LeftHandMiddle3
+    400040: LeftHandPinky1
+    400042: LeftHandPinky2
+    400044: LeftHandPinky3
+    400046: LeftHandRing1
+    400048: LeftHandRing2
+    400050: LeftHandRing3
+    400052: LeftHandThumb1
+    400054: LeftHandThumb2
+    400056: LeftHandThumb3
+    400058: LeftLeg
+    400060: LeftPantLeg
+    400062: LeftShoulder
+    400064: LeftToeBase
+    400066: LeftUpLeg
+    400068: LFootTongue
+    400070: LHoodieString
+    400072: LHoodieString1
+    400074: LHoodieString2
+    400076: LSleeve
+    400078: Neck
+    400080: Pelvis
+    400082: RBackpack_Strap
+    400084: RFootTongue
+    400086: RHoodieString
+    400088: RHoodieString1
+    400090: RHoodieString2
+    400092: RightArm
+    400094: RightFoot
+    400096: RightForeArm
+    400098: RightHand
+    400100: RightHandIndex1
+    400102: RightHandIndex2
+    400104: RightHandIndex3
+    400106: RightHandMiddle1
+    400108: RightHandMiddle2
+    400110: RightHandMiddle3
+    400112: RightHandPinky1
+    400114: RightHandPinky2
+    400116: RightHandPinky3
+    400118: RightHandRing1
+    400120: RightHandRing2
+    400122: RightHandRing3
+    400124: RightHandThumb1
+    400126: RightHandThumb2
+    400128: RightHandThumb3
+    400130: RightLeg
+    400132: RightPantLeg
+    400134: RightShoulder
+    400136: RightToeBase
+    400138: RightUpLeg
+    400140: RSleeve
+    400142: Spine
+    400144: Spine1
+    400146: Spine2
+    400148: //RootNode
+    7400000: aj_waving
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -167,7 +167,7 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 'MuscleClip ''idle'' conversion warning: ''Hips/Spine/Spine1/Spine2''
+    animationImportWarnings: 'MuscleClip ''aj_waving'' conversion warning: ''Hips/Spine/Spine1/Spine2''
       is between humanoid transforms and has rotation animation. This might lower
       retargeting quality.
 
@@ -183,16 +183,16 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: aj_idle_clip
+      name: aj_waving
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 250
+      lastFrame: 142
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -211,7 +211,7 @@ ModelImporter:
       - path: Hips
         weight: 1
       - path: Hips/BoyFacialAnim_Joint
-        weight: 1
+        weight: 0
       - path: Hips/Pelvis
         weight: 1
       - path: Hips/Pelvis/LeftUpLeg
@@ -223,9 +223,9 @@ ModelImporter:
       - path: Hips/Pelvis/LeftUpLeg/LeftLeg/LeftFoot/LeftToeBase
         weight: 1
       - path: Hips/Pelvis/LeftUpLeg/LeftLeg/LeftFoot/LFootTongue
-        weight: 1
+        weight: 0
       - path: Hips/Pelvis/LeftUpLeg/LeftLeg/LeftPantLeg
-        weight: 1
+        weight: 0
       - path: Hips/Pelvis/RightUpLeg
         weight: 1
       - path: Hips/Pelvis/RightUpLeg/RightLeg
@@ -233,27 +233,27 @@ ModelImporter:
       - path: Hips/Pelvis/RightUpLeg/RightLeg/RightFoot
         weight: 1
       - path: Hips/Pelvis/RightUpLeg/RightLeg/RightFoot/RFootTongue
-        weight: 1
+        weight: 0
       - path: Hips/Pelvis/RightUpLeg/RightLeg/RightFoot/RightToeBase
         weight: 1
       - path: Hips/Pelvis/RightUpLeg/RightLeg/RightPantLeg
-        weight: 1
+        weight: 0
       - path: Hips/Spine
         weight: 1
       - path: Hips/Spine/Spine1
         weight: 1
       - path: Hips/Spine/Spine1/LBackpack_Strap
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/RBackpack_Strap
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/Backpack
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/Hood
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/Hood/Hood1
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/LeftShoulder
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/LeftShoulder/LeftArm
@@ -293,13 +293,13 @@ ModelImporter:
       - path: Hips/Spine/Spine1/Spine2/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/LeftShoulder/LeftArm/LeftForeArm/LSleeve
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/LHoodieString
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/LHoodieString/LHoodieString1
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/LHoodieString/LHoodieString1/LHoodieString2
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/Neck
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/Neck/Head
@@ -311,11 +311,11 @@ ModelImporter:
       - path: Hips/Spine/Spine1/Spine2/Neck/Head/Hat
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/RHoodieString
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/RHoodieString/RHoodieString1
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/RHoodieString/RHoodieString1/RHoodieString2
-        weight: 1
+        weight: 0
       - path: Hips/Spine/Spine1/Spine2/RightShoulder
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/RightShoulder/RightArm
@@ -355,7 +355,7 @@ ModelImporter:
       - path: Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3
         weight: 1
       - path: Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RSleeve
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
     isReadable: 1
