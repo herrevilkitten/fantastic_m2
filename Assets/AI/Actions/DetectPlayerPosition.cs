@@ -8,8 +8,8 @@ using System;
 [RAINAction]
 public class DetectPlayerPosition : RAINAction
 {
-	private const float offset = 0.5f;
-	private const float acceptableRange = 1f;
+	private const float offset = 0.25f;
+	private const float acceptableRange = 0.5f;
 
 	public override void Start(RAIN.Core.AI ai)
 	{
@@ -56,9 +56,9 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 currentPlayerPosition = ObjectInteractionUtilities.GetCurrentPosition(ai);
 			Vector3 velocity = ObjectInteractionUtilities.GetVelocity(ai);
 
-			headoffPosition.x = currentPlayerPosition.x - offset;
+			headoffPosition.x = currentPlayerPosition.x;
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z - offset;
+			headoffPosition.z = currentPlayerPosition.z;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 			if (ObjectInteractionUtilities.IsPlayerCloseToNPC(ai, acceptableRange)) 
 			{
