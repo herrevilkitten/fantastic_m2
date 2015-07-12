@@ -26,9 +26,17 @@ Team Requirements
 7) Custom RAIN AI Element for a NPC to predict player position - Complete
 
 
+
+
 ================================================================================
 Individual Requirements: Matthew Moldavan
 ================================================================================
+I made a ghost (semi-transparent) myserious girl roam around the park trail. She
+floats through the air flailing her arms as she roams. When the player gets in
+range, she starts dancing.
+
+It modifies our base SimpleBehaviorTree to make the ghost stop aproaching if
+less than 5m
 
 ================================================================================
 Individual Requirement: Eric Kidder
@@ -74,3 +82,8 @@ Scenes/Yuk City Park/Yuk City Market.unity
 Game Url:
 ================================================================================
 http://www.redcoatmedia.com/cs6475/milestone3/index.html
+
+================================================================================
+Assets Used
+================================================================================
+NPCs without AI made by Matt with Fuse. Animations from Mixamo.
