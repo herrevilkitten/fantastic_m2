@@ -17,8 +17,10 @@ public class LoseMemory : RAINAction
 		float spottedPlayerTime = ai.WorkingMemory.GetItem<float> (item + "Time");
 		float currentTime = Time.time;
 
+		Debug.Log ("Looking at " + item + " " + spottedPlayerTime);
 		// Have we spotted player?
 		if (ai.WorkingMemory.GetItem (item) != null) {
+			Debug.Log ("We have spotted " + item + " " + spottedPlayerTime);
 			ai.WorkingMemory.SetItem<bool> ("spottedAnything", true);
 			
 			if (spottedPlayerTime == 0f) {
