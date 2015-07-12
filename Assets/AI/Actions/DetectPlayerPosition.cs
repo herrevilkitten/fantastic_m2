@@ -8,6 +8,9 @@ using System;
 [RAINAction]
 public class DetectPlayerPosition : RAINAction
 {
+	private const float offset = 0.5f;
+	private const float acceptableRange = 1f;
+
 	public override void Start(RAIN.Core.AI ai)
 	{
 		base.Start(ai);
@@ -38,9 +41,9 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 velocity = ObjectInteractionUtilities.GetVelocity(ai);
 			float getTimePassed = ObjectInteractionUtilities.GetTimePassed();
 			
-			headoffPosition.x = currentPlayerPosition.x + (velocity.x * getTimePassed*4);
+			headoffPosition.x = currentPlayerPosition.x - offset + (velocity.x * getTimePassed*4);
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z + (velocity.z * getTimePassed*4);
+			headoffPosition.z = currentPlayerPosition.z - offset + (velocity.z * getTimePassed*4);
 
 			/*
 			Debug.Log ("velocity="+velocity);
@@ -53,11 +56,11 @@ public class DetectPlayerPosition : RAINAction
 			Vector3 currentPlayerPosition = ObjectInteractionUtilities.GetCurrentPosition(ai);
 			Vector3 velocity = ObjectInteractionUtilities.GetVelocity(ai);
 
-			headoffPosition.x = currentPlayerPosition.x - 0.8f;
+			headoffPosition.x = currentPlayerPosition.x - offset;
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z - 0.8f;
+			headoffPosition.z = currentPlayerPosition.z - offset;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
-			if (ObjectInteractionUtilities.IsPlayerCloseToNPC(ai, 1.5)) 
+			if (ObjectInteractionUtilities.IsPlayerCloseToNPC(ai, acceptableRange)) 
 			{
 				ai.WorkingMemory.SetItem("continueChasingPlayer", false);
 			}
@@ -67,6 +70,7 @@ public class DetectPlayerPosition : RAINAction
 			}
 		}
 	}
+
 
 	private void SetPositionVariables(RAIN.Core.AI ai) 
 	{
