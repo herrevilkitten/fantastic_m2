@@ -18,15 +18,15 @@ public class DetectPlayerPosition : RAINAction
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
 	{
-		/*
+
 		Debug.Log ("Entering Detect Player Position Logic");
 		Debug.Log ("pNew = " + ai.WorkingMemory.GetItem<Vector3> ("pNew"));
 		Debug.Log ("pLast = " + ai.WorkingMemory.GetItem<Vector3> ("pLast"));
 		Debug.Log ("npcLastPosition = " + ai.WorkingMemory.GetItem<Vector3> ("npcLastPosition"));
-*/
+
 		SetHeadoffLocation (ai);
 		SetPositionVariables (ai);
-//		Debug.Log ("Exiting Detect Player Position Logic");
+		Debug.Log ("Exiting Detect Player Position Logic");
 		return ActionResult.SUCCESS;
 	}
 	

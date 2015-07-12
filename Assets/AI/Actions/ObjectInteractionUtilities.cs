@@ -12,7 +12,7 @@ public class ObjectInteractionUtilities {
 		
 		Vector3 difference = playerPosition - npcPosition;
 		
-//		Debug.Log ("difference = " + difference);
+		Debug.Log ("difference = " + difference);
 		
 		bool xNear = ((-1)*range) <= difference.x && difference.x <= range;
 		bool zNear = ((-1)*range) <= difference.z && difference.z <= range;
