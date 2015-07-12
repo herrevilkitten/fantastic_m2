@@ -23,7 +23,7 @@ public class IsStationary : RAINAction
 		
 		if (!ObjectInteractionUtilities.IsPlayerMoving (ai)) {
 			Debug.Log ("Player is not moving");
-			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 0.5)) {
+			if (ObjectInteractionUtilities.IsPlayerCloseToNPC (ai, 1.25)) {
 				Debug.Log ("Player is close to NPC");
 				float timeSinceStartOfGame = Time.time;
 				

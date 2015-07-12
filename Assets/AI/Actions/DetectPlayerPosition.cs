@@ -8,8 +8,8 @@ using System;
 [RAINAction]
 public class DetectPlayerPosition : RAINAction
 {
-	private const float offset = 0.25f;
-	private const float acceptableRange = 0.5f;
+	private const float offset = 0.75f;
+	private const float acceptableRange = 1.0f;
 
 	public override void Start(RAIN.Core.AI ai)
 	{
@@ -50,16 +50,18 @@ public class DetectPlayerPosition : RAINAction
 			Debug.Log ("Heading off Player at " + headoffPosition);
 			*/
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
+			ai.WorkingMemory.SetItem ("objectToFace", headoffPosition);
 			ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
 		} else {
 			Vector3 headoffPosition = new Vector3();
 			Vector3 currentPlayerPosition = ObjectInteractionUtilities.GetCurrentPosition(ai);
 			Vector3 velocity = ObjectInteractionUtilities.GetVelocity(ai);
 
-			headoffPosition.x = currentPlayerPosition.x;
+			headoffPosition.x = currentPlayerPosition.x - offset;
 			headoffPosition.y = currentPlayerPosition.y;
-			headoffPosition.z = currentPlayerPosition.z;
+			headoffPosition.z = currentPlayerPosition.z - offset;
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
+			ai.WorkingMemory.SetItem ("objectToFace", ai.WorkingMemory.GetItem<GameObject> ("objectBeingChased"));
 			if (ObjectInteractionUtilities.IsPlayerCloseToNPC(ai, acceptableRange)) 
 			{
 				ai.WorkingMemory.SetItem("continueChasingPlayer", false);
