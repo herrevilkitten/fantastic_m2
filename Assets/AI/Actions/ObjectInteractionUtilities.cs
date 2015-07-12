@@ -25,11 +25,11 @@ public class ObjectInteractionUtilities {
 	public static bool IsPlayerMoving(RAIN.Core.AI ai) 
 	{
 		Vector3 velocity = GetVelocity(ai);
-		Debug.Log ("Current velocity = " + velocity);
-		Debug.Log ("IsLastPositionInitialized(ai) = " + IsLastPositionInitialized (ai));
-		Debug.Log ("velocity.x != 0 = " + (velocity.x != 0));
+		//Debug.Log ("Current velocity = " + velocity);
+		//Debug.Log ("IsLastPositionInitialized(ai) = " + IsLastPositionInitialized (ai));
+		//Debug.Log ("velocity.x != 0 = " + (velocity.x != 0));
 		//Debug.Log ("velocity.y != 0 = " + (velocity.y != 0));
-		Debug.Log ("velocity.z != 0 = " + (velocity.z != 0));
+		//Debug.Log ("velocity.z != 0 = " + (velocity.z != 0));
 		return IsLastPositionInitialized(ai) && (velocity.x != 0 || velocity.z != 0);
 	}
 	
