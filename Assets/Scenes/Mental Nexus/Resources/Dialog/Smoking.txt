@@ -1,0 +1,33 @@
+{
+	states: [
+	{
+		state: 0,
+		dialog: "<i>The man stares at his cigarette.</i>\nYeah, I know I should quit, but I just can't. It keeps my mind off of Victoria.",
+		options: [
+			{
+				text: "Victoria?",
+				state: 1
+			}
+		]
+	},
+	{
+		state: 1,
+		dialog: "My wife. Ex-wife. I don't even know anymore. Where'd it go bad? When'd it go bad?",
+		options: [
+			{
+				text: "...",
+				state: 2
+			}
+		]
+	},
+	{
+		state: 2,
+		dialog: "<i>A puff of smoke escapes his lips.</i>\nBut the smokes help. Nicotine keeps me calm and helps me think of life before her. I quit for her, too. So I guess it makes sense that I'm going back.\nAnyway, I'm going to enjoy this and think about things.",
+		options: [
+			{
+				text: "Bye."
+			}
+		]
+	}
+]
+}
