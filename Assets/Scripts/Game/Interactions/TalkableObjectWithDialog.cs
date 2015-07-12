@@ -21,13 +21,13 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 			LoadDialog (resourceName);
 		}
 		if (!jsonOptions.ContainsKey (resourceName)) {
-			Debug.Log ("No dialog found for resource named " + resourceName);
+			Debug.LogError ("No dialog found for resource named " + resourceName);
 			return;
 		}
 		json = jsonOptions [resourceName];
 
 		if (json == null) {
-			Debug.Log ("No dialog found for resource named " + resourceName);
+			Debug.LogError ("No dialog found for resource named " + resourceName);
 			return;
 		}
 
@@ -80,10 +80,8 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 			return;
 		}
 
-		Debug.Log ("dialogState: " + dialogState + " " + states);
 		JSONNode jsonState;
 		if (states.TryGetValue (dialogState, out jsonState)) {
-			Debug.Log ("In state: " + jsonState);
 			InvokeJson (jsonState ["onEnter"]);
 			DialogManager.SetText (jsonState ["dialog"]);
 			JSONArray options = jsonState ["options"].AsArray;
@@ -126,21 +124,17 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		// http://stackoverflow.com/questions/21583104/unity-load-text-from-resources
 		TextAsset dialogResource = Resources.Load (resourceName) as TextAsset;
 		if (dialogResource == null) {
-			Debug.Log ("Unable to load TextAsset resource: " + resourceName);
+			Debug.LogError ("Unable to load TextAsset resource: " + resourceName);
 			return;
 		}
-
-		Debug.Log ("DialogResource: " + dialogResource.text);
 
 		JSONNode results = JSON.Parse (dialogResource.text);
 		Debug.Log (resourceName + " = " + results.ToJSON (0));
 		if (results ["states"] == null) {
-			Debug.Log ("No state information found in " + resourceName);
 			results = null;
 		}
 
 		jsonOptions [resourceName] = results;
-		Debug.Log (resourceName + " 2 = " + jsonOptions [resourceName].ToJSON (0));
 	}
 
 	abstract public string GetDialogResourceName ();

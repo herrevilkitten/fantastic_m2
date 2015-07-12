@@ -7,7 +7,6 @@ public class PuffCigarette : MonoBehaviour
 
 	public void Puff (string stuff)
 	{
-		Debug.Log ("Puffing on a cigarette");
 		if (particleSystem == null) {
 			return;
 		}
