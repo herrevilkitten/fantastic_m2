@@ -68,4 +68,13 @@ public class DialogManager : MonoBehaviour
 		PopupManager popupManager = popupHandler.GetComponent<PopupManager> ();
 		popupManager.PopUp (text);
 	}
+
+	public static void Floating (GameObject target, string text, float duration = 2f, float height = 2f)
+	{
+		GameObject overheadText = MonoBehaviour.Instantiate (Resources.Load ("OverheadText") as GameObject);
+		overheadText.GetComponent<TextMesh> ().text = text;
+		overheadText.GetComponent<FadeAway> ().duration = duration;
+		overheadText.GetComponent<StayWithObject> ().target = target;
+		overheadText.GetComponent<StayWithObject> ().offset = Vector3.up * height;
+	}
 }

@@ -1,42 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HomeSweetHomeDialog : TalkableObject
+public class HomeSweetHomeDialog : TalkableObjectWithDialog
 {
-	int dialogState = 0;
-	bool chattedWith;
-	
-	UnityEngine.Events.UnityAction changeState (int state)
+	Animator animator;
+
+	void Start ()
 	{
-		return () => {
-			dialogState = state;
-			dialogFSM ();
-		};
+		animator = GetComponent<Animator> ();
 	}
 
-	void dialogFSM ()
+	override public string GetDialogResourceName ()
 	{
-		Debug.Log ("Dialog state: " + dialogState);
-		DialogManager.DisableDialogs ();
-		switch (dialogState) {
-		case 0:
-			DialogManager.SetText ("Every door has a key. But not all keys are what they seem. Perhaps the pillars could shed some light.");
-			DialogManager.SetDialog (0, "Ok", changeState (2));
-			break;
-		case 1:
-			DialogManager.SetText ("Are you sure you want to go back there?");
-			DialogManager.SetDialog (0, "Ok", changeState (2));
-			break;
-		case 2:
-			DialogManager.Hide ();
-			break;
+		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("smoking")) {
+			return "Dialog/Smoking";
+		} else {
+			return "Dialog/NotSmoking";
 		}
-	}
-	
-	override public void OnInteractClick (GameObject actor)
-	{
-		dialogState = InventoryManager.HasKey () ? 1 : 0;
-		DialogManager.Show ();
-		dialogFSM ();
 	}
 }

@@ -8,14 +8,35 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	protected const int DIALOG_START = 0;
 	protected const int DIALOG_CLOSE = -1;
 	protected int dialogState = DIALOG_START;
+	protected Dictionary<string,JSONNode> jsonOptions = new Dictionary<string, JSONNode> ();
 	protected JSONNode json;
 	protected Dictionary<int,JSONNode> states;
 
 	override public void OnInteractClick (GameObject actor)
 	{
-		if (json == null) {
-			LoadDialog ();
+		string resourceName = GetDialogResourceName ();
+
+		json = null;
+		if (!jsonOptions.ContainsKey (resourceName)) {
+			LoadDialog (resourceName);
 		}
+		if (!jsonOptions.ContainsKey (resourceName)) {
+			Debug.Log ("No dialog found for resource named " + resourceName);
+			return;
+		}
+		json = jsonOptions [resourceName];
+
+		if (json == null) {
+			Debug.Log ("No dialog found for resource named " + resourceName);
+			return;
+		}
+
+		states = new Dictionary<int, JSONNode> ();
+		JSONArray jsonStates = json ["states"].AsArray;
+		foreach (JSONNode stateChild in jsonStates.Children) {
+			states [stateChild ["state"].AsInt] = stateChild;
+		}
+
 		dialogState = GetInitialDialogState ();
 		InvokeJson (json ["onEnter"]);
 		DialogManager.Show ();
@@ -37,7 +58,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		if (node ["delay"] != null) {
 			delay = node ["delay"].AsFloat;
 		}
-		Debug.Log ("Invoking " + invoke + " after " + delay + " seconds.");
 		Invoke (invoke, delay);
 	}
 
@@ -52,7 +72,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 
 	void ShowDialogState ()
 	{
-		Debug.Log ("Dialog state: " + dialogState);
 		DialogManager.DisableDialogs ();
 
 		if (dialogState == DIALOG_CLOSE) {
@@ -61,9 +80,10 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 			return;
 		}
 
+		Debug.Log ("dialogState: " + dialogState + " " + states);
 		JSONNode jsonState;
 		if (states.TryGetValue (dialogState, out jsonState)) {
-			Debug.Log ("Node: " + jsonState.ToJSON (0));
+			Debug.Log ("In state: " + jsonState);
 			InvokeJson (jsonState ["onEnter"]);
 			DialogManager.SetText (jsonState ["dialog"]);
 			JSONArray options = jsonState ["options"].AsArray;
@@ -97,9 +117,8 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		return DIALOG_START;
 	}
 
-	void LoadDialog ()
+	void LoadDialog (string resourceName)
 	{
-		string resourceName = GetDialogResourceName ();
 		if (resourceName == null) {
 			return;
 		}
@@ -111,16 +130,17 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 			return;
 		}
 
-		json = JSON.Parse (dialogResource.text);
-		if (json ["states"] == null) {
-			json = null;
+		Debug.Log ("DialogResource: " + dialogResource.text);
+
+		JSONNode results = JSON.Parse (dialogResource.text);
+		Debug.Log (resourceName + " = " + results.ToJSON (0));
+		if (results ["states"] == null) {
+			Debug.Log ("No state information found in " + resourceName);
+			results = null;
 		}
 
-		states = new Dictionary<int, JSONNode> ();
-		JSONArray jsonStates = json ["states"].AsArray;
-		foreach (JSONNode stateChild in jsonStates.Children) {
-			states [stateChild ["state"].AsInt] = stateChild;
-		}
+		jsonOptions [resourceName] = results;
+		Debug.Log (resourceName + " 2 = " + jsonOptions [resourceName].ToJSON (0));
 	}
 
 	abstract public string GetDialogResourceName ();

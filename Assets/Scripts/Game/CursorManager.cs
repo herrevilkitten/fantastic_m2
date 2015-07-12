@@ -126,7 +126,6 @@ public class CursorManager : MonoBehaviour
 		if (cursor == null) {
 			return;
 		}
-		Debug.Log ("Setting cursor to " + cursor + " " + hotspot);
 		currentCursor = cursor;
 		Cursor.SetCursor (cursor, hotspot, CursorMode.ForceSoftware);
 		if (crosshairs != null) {

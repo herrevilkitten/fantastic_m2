@@ -29,7 +29,6 @@ public class InteractiveHighlighter : MonoBehaviour
 			}
 
 			if (interaction != null) {
-				Debug.Log ("Interactive object is " + interaction);
 				interaction.OnMouseEnter ();
 			} else {
 				CursorManager.CrosshairsCursor ();
@@ -46,7 +45,6 @@ public class InteractiveHighlighter : MonoBehaviour
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				if (interaction != null) {
 					if (objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
-						Debug.Log ("Interacting with " + objectHit);
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
 							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
 						}

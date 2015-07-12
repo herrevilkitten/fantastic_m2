@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
 			Application.LoadLevel (3);
 		}
 
+		if (Input.GetKeyDown ("f")) {
+			DialogManager.Floating (GameObject.FindWithTag ("Player"), "Oh man");
+		}
+
 		if (Input.GetButtonDown ("Cancel")) {
 			Application.LoadLevel (Application.loadedLevel);
 		}
