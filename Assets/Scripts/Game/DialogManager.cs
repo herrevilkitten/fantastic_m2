@@ -59,6 +59,8 @@ public class DialogManager : MonoBehaviour
 		button.SetActive (true);
 		button.transform.FindChild ("Button").FindChild ("Text").GetComponent<Text> ().text = " " + text;
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.RemoveAllListeners ();
+		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.AddListener (() => {
+			Debug.Log ("Chose " + index);});
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.AddListener (action);
 	}
 

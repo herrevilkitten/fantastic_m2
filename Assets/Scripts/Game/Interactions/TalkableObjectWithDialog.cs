@@ -64,6 +64,7 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	UnityEngine.Events.UnityAction changeState (int state, JSONNode node)
 	{
 		return () => {
+			Debug.Log ("Player chose " + json.ToJSON (0));
 			dialogState = state;
 			InvokeJson (node);
 			ShowDialogState ();
@@ -104,6 +105,7 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 						invoke = options [i] ["invoke"];
 					}
 
+					Debug.Log ("Setting dialog " + i + " to " + text);
 					DialogManager.SetDialog (i, text, changeState (destination, option));
 				}
 			}

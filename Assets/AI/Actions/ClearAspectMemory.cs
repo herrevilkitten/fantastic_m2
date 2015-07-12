@@ -29,7 +29,6 @@ public class ClearAspectMemory : RAINAction
 		
 		if (spottedTime != 0f) {
 			if (spottedTime + maximumMemory < currentTime) {
-				Debug.Log ("Removing memory");
 				ai.WorkingMemory.SetItem<float> (item + "Time", 0f);
 			}
 		}
