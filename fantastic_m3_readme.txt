@@ -162,6 +162,11 @@ the patrol tree utilizes a waypoint route called Cat Patrol Route.
 
 d. The cat can detect the player, and follow him when he approaches.
 
+Other: the cat does not turn to face the player when he paws up at him, 
+the cat sometimes appears to run up onto the player and tug at him annoyingly. 
+This is pretty accurate as to how cats behave, but may be very annoying to a 
+player.
+
 ================================================================================
 Special Instructions for building and running code
 ================================================================================
