@@ -66,11 +66,20 @@ based on the current velocity of the player.
 Individual Requirements: Matthew Moldavan
 ================================================================================
 I made a ghost (semi-transparent) myserious girl roam around the park trail. She
-floats through the air flailing her arms as she roams. When the player gets in
+floats through the air flailing her arms as she wonders. When the player gets in
 range, she starts dancing.
 
-It modifies our base SimpleBehaviorTree to make the ghost stop aproaching if
-less than 5m
+a. I modified our base SimpleBehaviorTree to modify the interaction with the
+player. It sets a IsDancing boolean when nearby the player and doesn't need
+to get as close (only 5m) to begin interacting as the origina ltree.
+
+b. It avoids obstacles using our nav mesh in the scene and wonders between set
+points on the navigation network.
+
+c. the NPC utilizes the waypoint network around the lake.
+
+d. the NPC detects player movment near them using a visual sense and a visual
+asepct attached to the player. When the girl is near the player, it will dance.
 
 ================================================================================
 Individual Requirement: Eric Kidder
@@ -159,8 +168,11 @@ camera.
 ================================================================================
 Steps to show game requirements:
 ================================================================================
-Keyboard numbers 1-4 switch between scenes. Scenes can also be access by
-entering the doors found in the Mental Nexus (first scene that loads, also key 1)
+All AI characters begin near the player's spawn area and on the left side of the
+lake. They are generally easy to find. AJ (Gina's AI) begins on the hill to the
+left. The Mysterious Girl (red and black, transparent ghost) is Matt's AI and 
+also on the hill to the left. Eric's ghost begins near the girl. The gray cat
+near where the player spawns is Hannah's
 
 ================================================================================
 Scene:
@@ -176,3 +188,19 @@ http://www.redcoatmedia.com/cs6475/milestone3/index.html
 Assets Used
 ================================================================================
 NPCs without AI made by Matt with Fuse. Animations from Mixamo.
+
+Assets used in the creation of the scene:
+Piano (Miroslav Uhlir)
+ https://kharma.unity3d.com/en/#!/content/154
+Origami Paper Crane (Longitude Unknown)
+ https://kharma.unity3d.com/en/#!/content/16630
+Medieval Buildings (Lukas Bobor) - Bridge and Sign model only
+ https://kharma.unity3d.com/en/#!/content/34770
+Park Bench (Universal Image)
+ https://kharma.unity3d.com/en/#!/content/850
+Terrain Assets (Unity Technologies)
+ https://kharma.unity3d.com/en/#!/content/
+Cinema Themes (Cinema Suite Inc) - For the camera filter
+ https://kharma.unity3d.com/en/#!/content/20394
+Bird churping and water fountain sounds from
+ http://www.pacdv.com/sounds/ambience_sounds.html
