@@ -147,3 +147,19 @@ http://www.redcoatmedia.com/cs6475/milestone3/index.html
 Assets Used
 ================================================================================
 NPCs without AI made by Matt with Fuse. Animations from Mixamo.
+
+Assets used in the creation of the scene:
+Piano (Miroslav Uhlir)
+ https://kharma.unity3d.com/en/#!/content/154
+Origami Paper Crane (Longitude Unknown)
+ https://kharma.unity3d.com/en/#!/content/16630
+Medieval Buildings (Lukas Bobor) - Bridge and Sign model only
+ https://kharma.unity3d.com/en/#!/content/34770
+Park Bench (Universal Image)
+ https://kharma.unity3d.com/en/#!/content/850
+Terrain Assets (Unity Technologies)
+ https://kharma.unity3d.com/en/#!/content/
+Cinema Themes (Cinema Suite Inc) - For the camera filter
+ https://kharma.unity3d.com/en/#!/content/20394
+Bird churping and water fountain sounds from
+ http://www.pacdv.com/sounds/ambience_sounds.html
