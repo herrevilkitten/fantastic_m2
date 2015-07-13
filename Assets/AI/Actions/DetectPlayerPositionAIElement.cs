@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using RAIN.Action;
 using RAIN.Core;
@@ -77,7 +78,7 @@ public class DetectPlayerPositionAIElement : CustomAIElement {
 		
 		Vector3 difference = playerPosition - npcPosition;
 		
-		Debug.Log ("difference = " + difference);
+		//Debug.Log ("difference = " + difference);
 		
 		bool xNear = ((-1)*acceptableRangeToStopChasing) <= difference.x && difference.x <= acceptableRangeToStopChasing;
 		bool zNear = ((-1)*acceptableRangeToStopChasing) <= difference.z && difference.z <= acceptableRangeToStopChasing;
@@ -90,7 +91,7 @@ public class DetectPlayerPositionAIElement : CustomAIElement {
 
 		Vector3 difference = playerPosition - npcPosition;
 		
-		Debug.Log ("difference = " + difference);
+		//Debug.Log ("difference = " + difference);
 		
 		bool xNear = ((-1)*acceptableRangeToStartTrigger) <= difference.x && difference.x <= acceptableRangeToStartTrigger;
 		bool zNear = ((-1)*acceptableRangeToStartTrigger) <= difference.z && difference.z <= acceptableRangeToStartTrigger;
@@ -126,7 +127,34 @@ public class DetectPlayerPositionAIElement : CustomAIElement {
 		return pLast;
 	}
 
-	public Vector3 GetHeadoffPosition() {
+	public Vector3 GetPositionForNPC() 
+	{
+		if (IsPlayerMoving ()) {
+			return GetHeadoffPosition();
+		}
+
+		return GetCurrentPositionWithOffset ();
+	}
+
+	public System.Object GetObjectForNPCToFace() 
+	{
+		if (IsPlayerMoving ()) {
+			return GetHeadoffPosition();
+		}
+		
+		return goObjectBeingChased;
+	}
+
+	public bool ShouldContinueChasingPlayer(Vector3 npcPosition) 
+	{
+		if (IsPlayerCloseToNPCForStopping (npcPosition)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private Vector3 GetHeadoffPosition() {
 		Vector3 headoffPosition = new Vector3();
 		Vector3 currentPlayerPosition = GetCurrentPosition();
 		Vector3 velocity = GetVelocity();
@@ -138,7 +166,7 @@ public class DetectPlayerPositionAIElement : CustomAIElement {
 		return headoffPosition;
 	}
 
-	public Vector3 GetCurrentPositionWithOffset() {
+	private Vector3 GetCurrentPositionWithOffset() {
 		Vector3 headoffPosition = new Vector3();
 		Vector3 currentPlayerPosition = GetCurrentPosition();
 		Vector3 velocity = GetVelocity();
@@ -148,6 +176,11 @@ public class DetectPlayerPositionAIElement : CustomAIElement {
 		headoffPosition.z = currentPlayerPosition.z - offset;
 
 		return headoffPosition;
+	}
+
+	public void ResetPlayerPositions() {
+		SetPLast (GetNewLastPosition ());
+		SetPNew (GetCurrentPosition ());
 	}
 	
 	private float GetTimePassed()

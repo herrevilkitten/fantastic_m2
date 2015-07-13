@@ -23,53 +23,53 @@ public class AJIsStationary : RAINAction
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
 	{
-		Debug.Log ("Entering IsStationary Logic");
+		//Debug.Log ("Entering IsStationary Logic");
 		Vector3 lastPosition = ai.WorkingMemory.GetItem <Vector3> ("npcLastPosition");
 		
 		if (!_detectPlayerPosition.IsPlayerMoving ()) {
-			Debug.Log ("Player is not moving");
+		//	Debug.Log ("Player is not moving");
 			if (_detectPlayerPosition.IsPlayerCloseToNPCForTrigger (ai.Body.transform.position)) {
-				Debug.Log ("Player is close to NPC");
+				//Debug.Log ("Player is close to NPC");
 				float timeSinceStartOfGame = Time.time;
 				
 				int isTriggerAnim = IsTimeToTriggerAnimation(ai, timeSinceStartOfGame, 45.0f);
 				
 				
 				if (isTriggerAnim==TRIGGER_START_ANIMATION) {
-					Debug.Log ("Trigger animation");
+		//			Debug.Log ("Trigger animation");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", true);	
 					ai.WorkingMemory.SetItem ("lastSecretTriggerTime", timeSinceStartOfGame);
 				} 
 				
 				if (isTriggerAnim==ALLOW_ANIMATION_TO_FINISH) {
-					Debug.Log ("Continue animation");
+		//			Debug.Log ("Continue animation");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", true);	
 				} 
 				
 				if (isTriggerAnim==TRIGGER_STOP_ANIMATION) {
-					Debug.Log ("Stop trigger animation");
+		//			Debug.Log ("Stop trigger animation");
 					ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 				}
 			}
 		} else {
-			Debug.Log ("Player is moving");
+		//	Debug.Log ("Player is moving");
 			ai.WorkingMemory.SetItem ("trigSecrAnim", false);
 			//reset the last secret trigger time
-			Debug.Log ("Reset the last trigger time");
+		//	Debug.Log ("Reset the last trigger time");
 			ai.WorkingMemory.SetItem ("lastSecretTriggerTime", 0);
 		}
 		
 		ai.WorkingMemory.SetItem ("npcLastPosition", ai.Body.transform.position);
 		
-		Debug.Log ("Exiting IsStationary Logic");
+		//Debug.Log ("Exiting IsStationary Logic");
 		return ActionResult.SUCCESS;
 	}
 	
 	private int IsTimeToTriggerAnimation(RAIN.Core.AI ai, float timeSinceStartOfGame, float range) 
 	{
 		float lastSecretTriggerTime = ai.WorkingMemory.GetItem<float> ("lastSecretTriggerTime");
-		Debug.Log ("lastSecretTriggerTime=" + lastSecretTriggerTime);
-		Debug.Log ("timeSinceStartOfGame - lastSecretTriggerTime = " + (timeSinceStartOfGame - lastSecretTriggerTime));
+		//Debug.Log ("lastSecretTriggerTime=" + lastSecretTriggerTime);
+		//Debug.Log ("timeSinceStartOfGame - lastSecretTriggerTime = " + (timeSinceStartOfGame - lastSecretTriggerTime));
 		if (lastSecretTriggerTime == 0) {
 			return TRIGGER_START_ANIMATION;
 		} 

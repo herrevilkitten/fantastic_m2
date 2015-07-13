@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using RAIN.Action;
 using RAIN.Core;
+using System;
 
 [RAINAction]
 public class AJDetectPlayerPosition : RAINAction
@@ -21,15 +22,15 @@ public class AJDetectPlayerPosition : RAINAction
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
 	{
-		
+		/*
 		Debug.Log ("Entering Detect Player Position Logic");
 		Debug.Log ("pNew = " + ai.WorkingMemory.GetItem<Vector3> ("pNew"));
 		Debug.Log ("pLast = " + ai.WorkingMemory.GetItem<Vector3> ("pLast"));
 		Debug.Log ("npcLastPosition = " + ai.WorkingMemory.GetItem<Vector3> ("npcLastPosition"));
-		
+		*/
 		SetHeadoffLocation (ai);
-		SetPositionVariables (ai);
-		Debug.Log ("Exiting Detect Player Position Logic");
+		SetPositionVariables ();
+		//Debug.Log ("Exiting Detect Player Position Logic");
 
 
 		return ActionResult.SUCCESS;
@@ -39,14 +40,23 @@ public class AJDetectPlayerPosition : RAINAction
 	{
 		//		Debug.Log ("IsPlayerMoving (ai)=" + ObjectInteractionUtilities.IsPlayerMoving (ai));
 		bool IsTriggeringSecret = ai.WorkingMemory.GetItem<bool> ("trigSecrAnim");
+
+		Vector3 positionForNPC = _detectPlayerPosition.GetPositionForNPC ();
+		System.Object objectToFace = _detectPlayerPosition.GetObjectForNPCToFace ();
+		bool continueChasingPlayer = _detectPlayerPosition.ShouldContinueChasingPlayer (ai.Body.transform.position);
+
+		ai.WorkingMemory.SetItem ("headoffPosition", positionForNPC);
+		ai.WorkingMemory.SetItem ("objectToFace", objectToFace);
+		ai.WorkingMemory.SetItem("continueChasingPlayer", continueChasingPlayer && !IsTriggeringSecret);
 		
+		/*
 		if (_detectPlayerPosition.IsPlayerMoving ()) {
 
 			Vector3 headoffPosition = _detectPlayerPosition.GetHeadoffPosition();
 			/*
 			Debug.Log ("velocity="+velocity);
 			Debug.Log ("Heading off Player at " + headoffPosition);
-			*/
+
 			ai.WorkingMemory.SetItem ("headoffPosition", headoffPosition);
 			ai.WorkingMemory.SetItem ("objectToFace", headoffPosition);
 			ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
@@ -62,18 +72,13 @@ public class AJDetectPlayerPosition : RAINAction
 			{
 				ai.WorkingMemory.SetItem("continueChasingPlayer", true && !IsTriggeringSecret);
 			}
-		}
+		}*/
 	}
 	
 	
-	private void SetPositionVariables(RAIN.Core.AI ai) 
+	private void SetPositionVariables() 
 	{
-		_detectPlayerPosition.SetPLast (_detectPlayerPosition.GetNewLastPosition ());
-		_detectPlayerPosition.SetPNew (_detectPlayerPosition.GetCurrentPosition ());
-
-
-		ai.WorkingMemory.SetItem ("pLast", ObjectInteractionUtilities.GetNewLastPosition(ai));
-		ai.WorkingMemory.SetItem ("pNew", ObjectInteractionUtilities.GetCurrentPosition(ai));
+		_detectPlayerPosition.ResetPlayerPositions ();
 	}
 	
 	/*
