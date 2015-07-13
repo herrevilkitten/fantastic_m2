@@ -78,7 +78,7 @@ points on the navigation network.
 
 c. the NPC utilizes the waypoint network around the lake.
 
-d. the NPC detects player movment near them using a visual sense and a visual
+d. the NPC detects player movement near them using a visual sense and a visual
 asepct attached to the player. When the girl is near the player, it will dance.
 
 ================================================================================
@@ -148,7 +148,19 @@ will still jump onto other characters.
 ================================================================================
 Individual Requirement: Hannah Glazebrook
 ================================================================================
+a. I used the group SimpleBehaviorTree (renamed to CatBehaviorTree for ease), 
+and modified the wander, detect and patrol trees. The cat wanders around to 
+different points on the map, and follows the player when he gets close. 
+Additionally, the cat paws up at the player when the player gets near. 
 
+b. The cat uses the navigation mesh, patrols and wanders around the map using 
+its own routes, idles while pausing, and paws up at the player when the player 
+is nearby.
+
+c. The wander tree utilizes waypoint targets (5 of them around the map), while 
+the patrol tree utilizes a waypoint route called Cat Patrol Route.
+
+d. The cat can detect the player, and follow him when he approaches.
 
 ================================================================================
 Special Instructions for building and running code
