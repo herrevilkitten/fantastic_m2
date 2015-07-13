@@ -64,7 +64,32 @@ less than 5m
 ================================================================================
 Individual Requirement: Eric Kidder
 ================================================================================
+a.  I forked an earlier version of our behavior tree and heavily modified it.
+The patrol and detection behavior is different, but it uses our standard
+wandering behavior.  Patrol now makes a decision at each waypoint to either smoke,
+pause, or start wandering.  Each thing it detects will get a unique message --
+and it will only say the message once every 30 seconds because of a timer.
 
+b. Everything is integrated with the navigation mesh and waypoint system.
+
+c. Fulfilled by a and b
+
+d. The NPC will detect different Visual Aspects and react to them differently.
+This can be seen by the floating words that appear over the NPC when it sees
+different things.
+
+Other:
+The dialog system reads its state machine from text files.
+The dialog system can support different state trees depending on code.  For
+exampe, my NPC will have different text if he's in the smoking animation or
+not.
+RAIN AI's "Wait for Mecanim State" feature is really hard to use and wouldn't
+work for me at all.  I had to use a timer to get the character to NOT move and
+smoke.
+The turning is really bad.  I honestly could not figure out what the various
+values meant and just tweaked things until they looked less bad.
+My NPC is using the PC's animation controller and it mostly works, but RAIN
+seems to have some preconceptions on variable names.
 
 ================================================================================
 Individual Requirement: Gina Nguyen
