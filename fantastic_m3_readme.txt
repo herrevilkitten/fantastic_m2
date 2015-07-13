@@ -48,7 +48,7 @@ individual section)
 1. Matt = Mystery Girl
 2. Gina = AJ
 3. Hannah = Dark Cat
-4. Eric = **?**
+4. Eric = Smoky Ghost
 
 7) Custom RAIN AI Element for a NPC to predict player position - Complete
 We have 2 versions of DetectPlayer. 
@@ -96,7 +96,8 @@ c. Fulfilled by a and b
 
 d. The NPC will detect different Visual Aspects and react to them differently.
 This can be seen by the floating words that appear over the NPC when it sees
-different things.
+different things.  The NPC responds to the player, the other students' NPCs,
+and the fountain.
 
 Other:
 The dialog system reads its state machine from text files.
