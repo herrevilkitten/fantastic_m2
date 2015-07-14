@@ -20,6 +20,7 @@ public class TitleScripting : MonoBehaviour
 	public Text presents;
 	public Text production;
 	public MusicManager musicManager;
+	public GameObject buttonPanel;
 
 	// Use this for initialization
 	void Start ()
@@ -35,14 +36,12 @@ public class TitleScripting : MonoBehaviour
 		switch (titleState) {
 		case TitleState.SHOW_PRESENTS:
 			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 1.0f, .05f));
-			Debug.Log ("Presents Color: " + presents.color);
 			if (presents.color.a >= .9f) {
 				titleState = TitleState.HIDE_PRESENTS;
 			}
 			break;
 		case TitleState.HIDE_PRESENTS:
 			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 0f, .05f));
-			Debug.Log ("Presents Color: " + presents.color);
 			if (presents.color.a <= .01f) {
 				presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 0f);
 				titleState = TitleState.SHOW_PRODUCTION;
@@ -50,14 +49,12 @@ public class TitleScripting : MonoBehaviour
 			break;
 		case TitleState.SHOW_PRODUCTION:
 			production.color = new Color (production.color.r, production.color.g, production.color.b, Mathf.Lerp (production.color.a, 1.0f, .05f));
-			Debug.Log ("Presents Color: " + production.color);
 			if (production.color.a >= .9f) {
 				titleState = TitleState.HIDE_PRODUCTION;
 			}
 			break;
 		case TitleState.HIDE_PRODUCTION:
 			production.color = new Color (production.color.r, production.color.g, production.color.b, Mathf.Lerp (production.color.a, 0f, .05f));
-			Debug.Log ("Presents Color: " + production.color);
 			if (production.color.a <= .01f) {
 				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				titleState = TitleState.SHOW_LOGO;
@@ -65,7 +62,20 @@ public class TitleScripting : MonoBehaviour
 			break;
 		case TitleState.SHOW_LOGO:
 			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, Mathf.Lerp (logo.color.a, 1f, .05f));
-			Debug.Log ("Presents Color: " + logo.color);
+
+			Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
+			foreach (Button button in buttons) {
+				ColorBlock colorBlock = button.colors;
+				Color color = colorBlock.normalColor;
+				colorBlock.normalColor = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
+				button.colors = colorBlock;
+			}
+
+			Text[] texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
+			foreach (Text text in texts) {
+				Color color = text.color;
+				text.color = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
+			}
 			break;
 		}
 	}
