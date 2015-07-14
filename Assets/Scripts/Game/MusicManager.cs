@@ -14,7 +14,7 @@ public class MusicManager : MonoBehaviour
 		audioSource = GetComponent<AudioSource> ();
 	}
 
-	void PlayClip (AudioClip clip)
+	public void PlayClip (AudioClip clip)
 	{
 		if (audioSource.isPlaying) {
 			audioSource.Stop ();
