@@ -14,22 +14,29 @@ public class MusicManager : MonoBehaviour
 		audioSource = GetComponent<AudioSource> ();
 	}
 
+	void PlayClip (AudioClip clip)
+	{
+		if (audioSource.isPlaying) {
+			audioSource.Stop ();
+		}
+		audioSource.clip = clip;
+		audioSource.Play ();
+
+	}
+
 	public void PlayTitleClip ()
 	{
-		audioSource.clip = titleClip;
-		audioSource.Play ();
+		PlayClip (titleClip);
 	}
 
 	public void PlayGameClip ()
 	{
-		audioSource.clip = gameClip;
-		audioSource.Play ();
+		PlayClip (gameClip);
 	}
 	
 	public void PlayCreditsClip ()
 	{
-		audioSource.clip = creditsClip;
-		audioSource.Play ();
+		PlayClip (creditsClip);
 	}
 	
 	public void SetMusicVolume (float volume)

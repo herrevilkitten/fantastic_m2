@@ -10,7 +10,8 @@ public class TitleScripting : MonoBehaviour
 		HIDE_PRESENTS,
 		SHOW_PRODUCTION,
 		HIDE_PRODUCTION,
-		SHOW_LOGO
+		SHOW_LOGO,
+		DONE
 	}
 	;
 
@@ -75,6 +76,9 @@ public class TitleScripting : MonoBehaviour
 			foreach (Text text in texts) {
 				Color color = text.color;
 				text.color = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
+			}
+			if (logo.color.a >= .9f) {
+				titleState = TitleState.DONE;
 			}
 			break;
 		}

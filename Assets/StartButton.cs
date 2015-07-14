@@ -7,14 +7,18 @@ public class StartButton : MonoBehaviour
 	Button button;
 
 	public Canvas titleCanvas;
+	public MusicManager musicManager;
+	public Camera flybyCamera;
 
 	// Use this for initialization
 	void Start ()
 	{
 		button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
+			flybyCamera.enabled = false;
 			titleCanvas.enabled = false;
 			StateManager.Play ();
+			musicManager.PlayGameClip ();
 		});
 	}
 }
