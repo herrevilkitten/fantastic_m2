@@ -33,7 +33,6 @@ public class TitleScripting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log ("Title state: " + titleState);
 		switch (titleState) {
 		case TitleState.SHOW_PRESENTS:
 			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 1.0f, .05f));

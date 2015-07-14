@@ -14,11 +14,13 @@ public class CameraFlyby : MonoBehaviour
 	void Start ()
 	{
 		locations = new Transform[transform.childCount - 1];
+		int count = 0;
 		for (int i = 0; i < transform.childCount; ++i) {
-			if (transform.gameObject.name == "FlybyCamera") {
+			Transform child = transform.GetChild (i);
+			if (child.gameObject.name.Equals ("FlybyCamera")) {
 				continue;
 			}
-			locations [i] = transform.GetChild (i);
+			locations [count++] = child;
 		}
 		currentLocation = 0;
 
