@@ -33,6 +33,28 @@ public class TitleScripting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetButtonDown ("Cancel")) {
+			// Skip title sequence.
+			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 1f);
+			production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
+			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, 1f);
+			Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
+			foreach (Button button in buttons) {
+				ColorBlock colorBlock = button.colors;
+				Color color = colorBlock.normalColor;
+				colorBlock.normalColor = new Color (color.r, color.g, color.b, 1f);
+				button.colors = colorBlock;
+			}
+			
+			Text[] texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
+			foreach (Text text in texts) {
+				Color color = text.color;
+				text.color = new Color (color.r, color.g, color.b, 1f);
+			}
+
+			titleState = TitleState.DONE;
+		}
+
 		switch (titleState) {
 		case TitleState.SHOW_PRESENTS:
 			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 1.0f, .05f));
@@ -77,6 +99,21 @@ public class TitleScripting : MonoBehaviour
 				text.color = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
 			}
 			if (logo.color.a >= .9f) {
+				presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 1f);
+				logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, 1f);
+				buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
+				foreach (Button button in buttons) {
+					ColorBlock colorBlock = button.colors;
+					Color color = colorBlock.normalColor;
+					colorBlock.normalColor = new Color (color.r, color.g, color.b, 1f);
+					button.colors = colorBlock;
+				}
+				
+				texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
+				foreach (Text text in texts) {
+					Color color = text.color;
+					text.color = new Color (color.r, color.g, color.b, 1f);
+				}
 				titleState = TitleState.DONE;
 			}
 			break;
