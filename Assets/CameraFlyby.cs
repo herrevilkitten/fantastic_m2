@@ -39,7 +39,6 @@ public class CameraFlyby : MonoBehaviour
 			currentLocation = (currentLocation + 1) % locations.Length;
 		}
 
-		Debug.Log ("#" + currentLocation + " " + cameraPosition.position + " => " + locations [currentLocation].position + " = " + distance);
 		cameraPosition.position = Vector3.Lerp (cameraPosition.position, locations [currentLocation].position, .01f);
 		cameraPosition.LookAt (Vector3.zero);
 	}
