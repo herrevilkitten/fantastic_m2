@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Effects
         {
             m_Power = Mathf.Lerp(m_Power, Input.GetMouseButton(0) ? maxPower : minPower, Time.deltaTime*changeSpeed);
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 systemRenderer.enabled = !systemRenderer.enabled;
             }
