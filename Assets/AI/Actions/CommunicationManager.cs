@@ -10,9 +10,13 @@ using RAIN.Serialization;
 public class CommunicationManager : CustomAIElement {
 
 	// the full set dialog that will be spoken between two NPCs (Assumes that conversation will go back and forth
-	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="NPC Full dialog")]
-	private List<string> conversations = new List<string>();
-		
+	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="NPC Clue dialog")]
+	private List<string> clueConversations = new List<string>();
+
+	// the full set dialog that will be spoken between two NPCs (Assumes that conversation will go back and forth
+	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="NPC Fake dialog")]
+	private List<string> fakeConversations = new List<string>();
+
 	// NPC Starting conversation
 	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip = "NPC Conversation Starter")]
 	private GameObject npcStarter = null;
@@ -22,25 +26,50 @@ public class CommunicationManager : CustomAIElement {
 	private GameObject npcResponder = null;
 
 	private GameObject getTalkingNPC;
-	private int currentDialogCounter = 0;
+	private int currentRealDialogCounter = 0;
+	private int currentFakeDialogCounter = 0;
 
 
-	public string NextDialog() {
+	public string NextClueDialog() {
 		string dialog = "";
 
-		if (currentDialogCounter < conversations.Count) {
-			dialog = conversations[currentDialogCounter++];
+		if (currentRealDialogCounter < clueConversations.Count) {
+			dialog = clueConversations[currentRealDialogCounter++];
 		}
 
 		return dialog;
 	}
 
-	public GameObject GetCurrentTalker() {
+	public GameObject GetCurrentClueTalker() {
 
-		if (currentDialogCounter % 2 == 0) {
+		if (currentRealDialogCounter % 2 == 0) {
 			return npcStarter;
 		}
 
+		return npcResponder;
+	}
+
+	public string NextFakeDialog() {
+		string dialog = "";
+
+		if (currentFakeDialogCounter < fakeConversations.Count) {
+			currentFakeDialogCounter = currentFakeDialogCounter+1;
+		} else {
+			currentFakeDialogCounter = 0;
+
+		}
+
+		dialog = fakeConversations [currentFakeDialogCounter++];
+		
+		return dialog;
+	}
+
+	public GameObject GetCurrentFakeTalker() {
+		
+		if (currentFakeDialogCounter % 2 == 0) {
+			return npcStarter;
+		}
+		
 		return npcResponder;
 	}
 }
