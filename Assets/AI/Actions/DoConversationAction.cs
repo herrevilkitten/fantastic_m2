@@ -25,6 +25,7 @@ public class DoConversationAction : RAINAction
 		//Debug.Log ("Next Dialog=" + commManager.NextDialog ());
 
 		DialogManager.Floating (currentTalker, message);
+		DialogManager.Conversation ("test1", "test2");
         return ActionResult.SUCCESS;
     }
 

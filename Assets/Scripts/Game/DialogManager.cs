@@ -79,4 +79,19 @@ public class DialogManager : MonoBehaviour
 		overheadText.GetComponent<StayWithObject> ().target = target;
 		overheadText.GetComponent<StayWithObject> ().offset = Vector3.up * height;
 	}
+
+	public static void Conversation(string person1Text, string person2Text) {
+		Image conversationPanel =  GameObject.Find("ConversationPanel").GetComponent<Image>();
+		conversationPanel.color = new Color (50f, 50f, 50f, 128f);
+
+		GameObject Person1TextBox = GameObject.Find ("Person1TextBox");
+		Text person1TextBoxText = Person1TextBox.GetComponent<Text> ();
+		person1TextBoxText.text = person1Text;
+		person1TextBoxText.color = new Color (255f, 255f, 255f, 255f);
+
+		GameObject Person2TextBox = GameObject.Find ("Person2TextBox");
+		Text person2TextBoxText = Person2TextBox.GetComponent<Text> ();
+		person2TextBoxText.text = person2Text;
+		person2TextBoxText.color = new Color (255f, 255f, 255f, 255f);
+	}
 }
