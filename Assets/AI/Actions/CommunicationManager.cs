@@ -52,14 +52,13 @@ public class CommunicationManager : CustomAIElement {
 	public string NextFakeDialog() {
 		string dialog = "";
 
-		if (currentFakeDialogCounter < fakeConversations.Count) {
+		if (currentFakeDialogCounter < fakeConversations.Count-1) {
 			currentFakeDialogCounter = currentFakeDialogCounter+1;
 		} else {
 			currentFakeDialogCounter = 0;
-
 		}
 
-		dialog = fakeConversations [currentFakeDialogCounter++];
+		dialog = fakeConversations [currentFakeDialogCounter];
 		
 		return dialog;
 	}
