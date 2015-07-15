@@ -17,18 +17,16 @@ public class CommunicationManager : CustomAIElement {
 	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="NPC Fake dialog")]
 	private List<string> fakeConversations = new List<string>();
 
-	// NPC Starting conversation
-	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip = "NPC Conversation Starter")]
-	private GameObject npcStarter = null;
+	// the full set dialog that will be spoken between two NPCs (Assumes that conversation will go back and forth
+	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="NPC Participants")]
+	private List<GameObject> participants = new List<GameObject>();
 
-	// NPC Responding to conversation
-	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip = "NPC Conversation Responder")]
-	private GameObject npcResponder = null;
-
-	private GameObject getTalkingNPC;
 	private int currentRealDialogCounter = 0;
 	private int currentFakeDialogCounter = 0;
 
+	public bool IsFinishedTalking() {
+		return currentRealDialogCounter >= clueConversations.Count;
+	}
 
 	public string NextClueDialog() {
 		string dialog = "";
@@ -41,12 +39,7 @@ public class CommunicationManager : CustomAIElement {
 	}
 
 	public GameObject GetCurrentClueTalker() {
-
-		if (currentRealDialogCounter % 2 == 0) {
-			return npcStarter;
-		}
-
-		return npcResponder;
+		return participants [currentRealDialogCounter % participants.Count];
 	}
 
 	public string NextFakeDialog() {
@@ -64,11 +57,6 @@ public class CommunicationManager : CustomAIElement {
 	}
 
 	public GameObject GetCurrentFakeTalker() {
-		
-		if (currentFakeDialogCounter % 2 == 0) {
-			return npcStarter;
-		}
-		
-		return npcResponder;
+		return participants [currentFakeDialogCounter % participants.Count];
 	}
 }
