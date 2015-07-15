@@ -19,28 +19,27 @@ public class DoConversationAction : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		DialogManager.StopConversation();
+		if (!commManager.IsFinishedTalking ()) {
+			GameObject currentTalker1 = commManager.GetCurrentClueTalker ();
 
-		GameObject currentTalker1 = commManager.GetCurrentClueTalker ();
-		string message1 = commManager.NextClueDialog ();
-		//Debug.Log ("Current Talker=" + commManager.GetCurrentTalker ());
-		//Debug.Log ("Next Dialog=" + commManager.NextDialog ());
+			string message1 = commManager.NextClueDialog ();
 
-		GameObject currentTalker2 = commManager.GetCurrentClueTalker ();
-		string message2 = commManager.NextClueDialog ();
+			GameObject currentTalker2 = commManager.GetCurrentClueTalker ();
+			string message2 = commManager.NextClueDialog ();
 
-		string displaySecondMessage = "";
+			string displaySecondMessage = "";
 
-		if (message2.Length != 0) {
-			displaySecondMessage = currentTalker2.name + ": " + message2;
-		}
+			if (message2.Length != 0) {
+				displaySecondMessage = currentTalker2.name + ": " + message2;
+			}
 
-		if (message1.Length > 0) {
 			DialogManager.Conversation (currentTalker1.name + ": " + message1, displaySecondMessage);
+		
 		} else {
-			DialogManager.StopConversation();
+			DialogManager.StopConversation ();
 		}
-        return ActionResult.SUCCESS;
+
+		return ActionResult.SUCCESS;
     }
 
     public override void Stop(RAIN.Core.AI ai)

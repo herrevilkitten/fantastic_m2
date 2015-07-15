@@ -81,27 +81,34 @@ public class DialogManager : MonoBehaviour
 	}
 
 	public static void Conversation(string person1Text, string person2Text) {
-		Image conversationPanel =  GameObject.Find("ConversationPanel").GetComponent<Image>();
-		conversationPanel.color = new Color (0f, 0f, 0f, 0.5f);
+		GetConversationPanel().color = new Color (0f, 0f, 0f, 0.5f);
 
-		GameObject Person1TextBox = GameObject.Find ("Person1TextBox");
-		Text person1TextBoxText = Person1TextBox.GetComponent<Text> ();
+		Text person1TextBoxText = GetPersonTextBox ("Person1TextBox");
 		person1TextBoxText.text = person1Text;
 		person1TextBoxText.color = new Color (255f, 255f, 33f, 1f);
 
-		GameObject Person2TextBox = GameObject.Find ("Person2TextBox");
-		Text person2TextBoxText = Person2TextBox.GetComponent<Text> ();
+		Text person2TextBoxText = GetPersonTextBox ("Person2TextBox");
 		person2TextBoxText.text = person2Text;
 		person2TextBoxText.color = new Color (255f, 255f, 33f, 1f);
 	}
 
 	public static void StopConversation() {
-		GameObject Person1TextBox = GameObject.Find ("Person1TextBox");
-		Text person1TextBoxText = Person1TextBox.GetComponent<Text> ();
-		person1TextBoxText.color = new Color (255f, 255f, 33f, 1f);
+		GetConversationPanel().color = new Color (0f, 0f, 0f, 0f);
+
+		Text person1TextBoxText = GetPersonTextBox ("Person1TextBox");
+		person1TextBoxText.color = new Color (255f, 255f, 33f, 0f);
 		
-		GameObject Person2TextBox = GameObject.Find ("Person2TextBox");
-		Text person2TextBoxText = Person2TextBox.GetComponent<Text> ();
-		person2TextBoxText.color = new Color (255f, 255f, 33f, 1f);
+		Text person2TextBoxText = GetPersonTextBox ("Person2TextBox");
+		person2TextBoxText.color = new Color (255f, 255f, 33f, 0f);
 	}
+
+	public static Text GetPersonTextBox(string name) {
+		GameObject PersonTextBox = GameObject.Find (name);
+		return PersonTextBox.GetComponent<Text> ();
+	}
+
+	public static Image GetConversationPanel() {
+		return GameObject.Find("ConversationPanel").GetComponent<Image>();
+	}
+
 }

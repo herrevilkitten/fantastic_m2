@@ -36,8 +36,13 @@ public class SfxManager : MonoBehaviour
 		audioSource.mute = !audioSource.mute;
 	}
 
-	public void SetSfxMute (bool mute)
+	public void SetMute (bool SetMute)
 	{
-		audioSource.mute = mute;
+		audioSource.mute = SetMute;
+	}
+	
+	public bool GetMute ()
+	{
+		return audioSource.mute;
 	}
 }

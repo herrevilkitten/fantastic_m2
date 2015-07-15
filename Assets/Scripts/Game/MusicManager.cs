@@ -41,12 +41,23 @@ public class MusicManager : MonoBehaviour
 	
 	public void SetMusicVolume (float volume)
 	{
+		Debug.Log ("Set volum to " + volume);
 		audioSource.volume = volume;
 	}
 
 	public float GetMusicVolume ()
 	{
 		return audioSource.volume;
+	}
+
+	public void SetMute (bool SetMute)
+	{
+		audioSource.mute = SetMute;
+	}
+
+	public bool GetMute ()
+	{
+		return audioSource.mute;
 	}
 
 	public void ToggleMusic ()
