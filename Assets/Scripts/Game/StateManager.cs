@@ -64,7 +64,6 @@ public class StateManager : MonoBehaviour
 			break;
 		case GameState.Journal:
 			stateManager.journalPanel.SetActive (false);
-			stateManager.titlePanel.SetActive (false);
 			break;
 		case GameState.Playing:
 			Pause ();
@@ -87,7 +86,6 @@ public class StateManager : MonoBehaviour
 			break;
 		case GameState.Journal:
 			stateManager.journalPanel.SetActive (true);
-			stateManager.titlePanel.SetActive (true);
 			break;
 		case GameState.Playing:
 			Play ();
