@@ -30,10 +30,13 @@ the mist around the fountain, and the splash of the drops into the water.
 It spawns the drops in a cone fashion and uses velocity over time curves to
 randomize the drop effect for more realism.
 
-b. 
+b. the player's footsteps through the water/lake create water splashes. This
+splash is attached to the feet of the player rig, and contains two particle
+systems, one to generate a mist, and one to create some water drops.
 
 8) Change size of particles - Complete
-This is satisfied by the 
+This is satisfied by the smoke coming out of the pipe next to the lake. The
+smoke particle size grows using the size over lifetime module.
 
 9) Change speed of particles - Complete
 This is satisified by the stone fountain water particle system. The water drops
@@ -42,9 +45,9 @@ control and randomize the direction of the water drops
 
 10) Use a 2d custom material for a particle - Complete
 On the Island in the middle of the lake, the trees have a particle system
-generating falling leafs that land on the ground. The leafs are using a bush
-material from the Unity Terrain Assets. We chose this material as it gave a
-mostly realistic feel that fit the park environment.
+generating falling leafs that land on the ground. The leafs are using a leaf
+material we created in photoshop. The leaf material adds some realism to the
+scene.
 
 11) Complicated Effect using a Sub-Emitter - Complete
 The stone fountain's water effect leverages a sub-emitter to create splashes
