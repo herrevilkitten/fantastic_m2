@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class StateManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class StateManager : MonoBehaviour
 	public static CameraMode cameraMode = CameraMode.Floating;
 	static float timeScale;
 	static bool paused = false;
+	static HashSet<string> flags = new HashSet<string> ();
 
 	static StateManager ()
 	{
@@ -26,6 +28,21 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
+	public static void SetFlag (string flag)
+	{
+		flags.Add (flag);
+	}
+
+	public static void ClearFlag (string flag)
+	{
+		flags.Remove (flag);
+	}
+	
+	public static bool HasFlag (string flag)
+	{
+		return flags.Contains (flag);
+	}
+	
 	public static void Pause ()
 	{
 		if (paused) {
