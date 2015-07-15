@@ -8,8 +8,7 @@ public class CameraFlyby : MonoBehaviour
 	int currentLocation;
 
 	public Camera camera;
-
-
+	
 	// Use this for initialization
 	void Start ()
 	{

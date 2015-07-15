@@ -8,14 +8,12 @@ public class StartButton : MonoBehaviour
 
 	public Canvas titleCanvas;
 	public MusicManager musicManager;
-	public Camera flybyCamera;
 
 	// Use this for initialization
 	void Start ()
 	{
 		button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			flybyCamera.enabled = false;
 
 			StateManager.ChangeGameState (StateManager.GameState.Playing);
 

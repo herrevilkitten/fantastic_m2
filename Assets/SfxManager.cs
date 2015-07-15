@@ -5,7 +5,7 @@ public class SfxManager : MonoBehaviour
 {
 	AudioSource audioSource;
 	
-	void Start ()
+	void Awake ()
 	{
 		audioSource = GetComponent<AudioSource> ();
 	}

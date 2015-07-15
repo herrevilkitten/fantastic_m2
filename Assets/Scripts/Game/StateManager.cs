@@ -27,21 +27,22 @@ public class StateManager : MonoBehaviour
 	static bool paused = false;
 	static HashSet<string> flags = new HashSet<string> ();
 
-	public  GameObject titlePanel;
+	public GameObject titlePanel;
 	public GameObject logoPanel;
-	public  GameObject settingsPanel;
-	public  GameObject creditsPanel;
-	public  GameObject journalPanel;
+	public GameObject settingsPanel;
+	public GameObject creditsPanel;
+	public GameObject journalPanel;
+	public GameObject flybyCamera;
 	public Image crosshairs;
 
 	public static StateManager stateManager;
 
-	void Start ()
+	void Awake ()
 	{
 		StateManager.stateManager = this;
 	}
 
-	static GameState currentState = GameState.Title;
+	public static GameState currentState = GameState.Title;
 	public static void ChangeGameState (GameState newState)
 	{
 		if (newState == currentState) {
@@ -88,6 +89,7 @@ public class StateManager : MonoBehaviour
 			stateManager.journalPanel.SetActive (true);
 			break;
 		case GameState.Playing:
+			stateManager.flybyCamera.SetActive (false);
 			Play ();
 			break;
 		}

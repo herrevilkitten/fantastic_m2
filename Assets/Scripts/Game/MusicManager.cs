@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
 
 	AudioSource audioSource;
 
-	void Start ()
+	void Awake ()
 	{
 		audioSource = GetComponent<AudioSource> ();
 	}
@@ -41,7 +41,6 @@ public class MusicManager : MonoBehaviour
 	
 	public void SetMusicVolume (float volume)
 	{
-		Debug.Log ("Set volum to " + volume);
 		audioSource.volume = volume;
 	}
 
