@@ -21,6 +21,7 @@ public class TitleScripting : MonoBehaviour
 	public Text presents;
 	public Text production;
 	public MusicManager musicManager;
+	public SfxManager sfxManager;
 	public GameObject buttonPanel;
 
 	// Use this for initialization
@@ -28,6 +29,30 @@ public class TitleScripting : MonoBehaviour
 	{
 		StateManager.Pause ();
 		musicManager.PlayTitleClip ();
+
+		InitializePrefs ();
+	}
+
+	void InitializePrefs ()
+	{
+		if (!PlayerPrefs.HasKey ("initialized")) {
+			PlayerPrefs.SetFloat ("MusicVolume", 1f);
+			PlayerPrefs.SetInt ("MusicMuted", 0);
+
+			PlayerPrefs.SetFloat ("SfxVolume", 1f);
+			PlayerPrefs.SetInt ("SfxMuted", 0);
+
+			PlayerPrefs.SetInt ("ShowInteractive", 1);
+			PlayerPrefs.SetInt ("Difficulty", 2);
+
+			PlayerPrefs.SetInt ("initialized", 1);
+		}
+
+		musicManager.SetMusicVolume (PlayerPrefs.GetFloat ("MusicVolume"));
+		musicManager.SetMute (PlayerPrefs.GetInt ("MusicMuted") != 0 ? true : false);
+
+		sfxManager.SetSfxVolume (PlayerPrefs.GetFloat ("SfxVolume"));
+		sfxManager.SetMute (PlayerPrefs.GetInt ("SfxMuted") != 0 ? true : false);
 	}
 	
 	// Update is called once per frame
@@ -38,6 +63,7 @@ public class TitleScripting : MonoBehaviour
 			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 1f);
 			production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, 1f);
+			buttonPanel.SetActive (true);
 			Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
 			foreach (Button button in buttons) {
 				ColorBlock colorBlock = button.colors;
@@ -80,6 +106,7 @@ public class TitleScripting : MonoBehaviour
 			if (production.color.a <= .01f) {
 				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				titleState = TitleState.SHOW_LOGO;
+				buttonPanel.SetActive (true);
 			}
 			break;
 		case TitleState.SHOW_LOGO:
