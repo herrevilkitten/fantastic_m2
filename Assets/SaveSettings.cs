@@ -4,8 +4,6 @@ using System.Collections;
 
 public class SaveSettings : MonoBehaviour
 {
-	public GameObject logoPanel;
-	public GameObject settingsPanel;
 	public MusicManager musicManager;
 	public SfxManager sfxManager;
 	public Slider difficultySlider;
@@ -26,8 +24,7 @@ public class SaveSettings : MonoBehaviour
 			PlayerPrefs.SetInt ("Difficulty", (int)difficultySlider.value);
 			PlayerPrefs.SetInt ("ShowInteractive", showInteractive.isOn ? 1 : 0);
 
-			settingsPanel.SetActive (false);
-			logoPanel.SetActive (true);
+			StateManager.ChangeGameState (StateManager.GameState.Title);
 		});
 
 	}

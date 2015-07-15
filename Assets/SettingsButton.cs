@@ -4,8 +4,6 @@ using System.Collections;
 
 public class SettingsButton : MonoBehaviour
 {
-	public GameObject logoPanel;
-	public GameObject settingsPanel;
 	Button button;
 
 	public Slider musicVolume;
@@ -29,8 +27,7 @@ public class SettingsButton : MonoBehaviour
 			showInteractive.isOn = PlayerPrefs.GetInt ("MusicMuted") != 0 ? true : false;
 			difficulty.value = PlayerPrefs.GetInt ("Difficulty");
 
-			logoPanel.SetActive (false);
-			settingsPanel.SetActive (true);
+			StateManager.ChangeGameState (StateManager.GameState.Settings);
 		});
 	}
 }
