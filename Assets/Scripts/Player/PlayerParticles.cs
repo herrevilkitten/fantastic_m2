@@ -22,9 +22,11 @@ public class PlayerParticles : MonoBehaviour
 
 		if (surfaceTag.Equals ("Water")) {
 			if(foot.Equals ("leftFoot")) {
+				splashParticles[0].transform.rotation = new Quaternion(0,0,0,0);
 				splashParticles[0].Play ();
 			}
 			else {
+				splashParticles[1].transform.rotation = new Quaternion(0,0,0,0);
 				splashParticles[1].Play ();
 			}
 
