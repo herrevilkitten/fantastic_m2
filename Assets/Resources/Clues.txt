@@ -1,2 +1,27 @@
 [
+	{
+		"flag": "favoriteRestaurant",
+		"description": "Receipt from China Zing restaurant. I'm not sure if this is important."
+	},
+	{
+		"flag": "hairColor",
+		"description": "According to the hair dye box, the Viper likely has brown hair now."
+	},
+	{
+		"flag": "transferDevice",
+		"description": "The electronic equipment and specs found at the Viper's lair suggest that the file transfer device for the virus is fairly large, and would require a purse or briefcase to transport."
+	},
+	{
+		"flag": "shoeSize",
+		"description": "Athletic shoes found in the home are a size 9 mens or 11 womens, indicating that the Viper is likely fairly tall for a woman, or average for a man."
+	},
+	{
+		"flag": "medicine",
+		"description": "Medicine found in the home for plaque psoriasis indicates that the Viper has a skin condition he may want to cover up by wearing more clothing."
+	}
 ]
+	
+	
+	
+	
+	
