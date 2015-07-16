@@ -33,6 +33,7 @@ public class StateManager : MonoBehaviour
 	public GameObject creditsPanel;
 	public GameObject journalPanel;
 	public GameObject flybyCamera;
+	public GameObject timerCanvas;
 	public Image crosshairs;
 
 	public static StateManager stateManager;
@@ -67,6 +68,7 @@ public class StateManager : MonoBehaviour
 			stateManager.journalPanel.SetActive (false);
 			break;
 		case GameState.Playing:
+			stateManager.timerCanvas.SetActive(true);
 			Pause ();
 			break;
 		}
@@ -90,6 +92,7 @@ public class StateManager : MonoBehaviour
 			break;
 		case GameState.Playing:
 			stateManager.flybyCamera.SetActive (false);
+			stateManager.timerCanvas.SetActive(true);
 			Play ();
 			break;
 		}
