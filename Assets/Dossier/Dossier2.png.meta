@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Dossier/Dossier2.png.meta
+guid: 73d005ac7f05043709417b970f333cf1
+timeCreated: 1437009598
+=======
 guid: f6789b550d90e4cafbe674ef96661e9d
 timeCreated: 1437004144
+>>>>>>> origin/alpha:Assets/Dossier/Dossier2.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

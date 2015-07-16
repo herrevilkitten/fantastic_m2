@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Ragdoll : MonoBehaviour {
 
-	void SetKinematic(bool newValue)
+	public void SetKinematic(bool newValue)
 	{
 		//Get an array of components that are of type Rigidbody
 		Rigidbody[] bodies=GetComponentsInChildren<Rigidbody>();
@@ -29,4 +29,6 @@ public class Ragdoll : MonoBehaviour {
 			GetComponent<Animator>().enabled=false;
 		}
 	}
+
+
 }
