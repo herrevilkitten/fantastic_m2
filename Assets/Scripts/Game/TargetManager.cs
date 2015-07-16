@@ -21,6 +21,7 @@ public class TargetManager : MonoBehaviour {
 	}
 
 	public static void SetLastTarget(GameObject npc) {
+		Debug.Log ("Setting npc = " + npc);
 		withinRangePlayer = npc;
 	}
 
