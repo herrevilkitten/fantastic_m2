@@ -2,44 +2,44 @@
 	states: [
 	{
 		state: 0,
-		dialog: “*phone ringing*“,
+		dialog: "*phone ringing*",
 		options: [
 			{
-				text: “Hello?”,
+				text: "Hello?",
 				state: 1
 			}
 		]
 	},
 	{
 		state: 1,
-		dialog: “HQ: Hello, Agent Walker. Stand by for new mission orders. ”,
+		dialog: "HQ: Hello, Agent Walker. Stand by for new mission orders.",
 		options: [
 			{
-				text: “Standing by for mission orders.”,
+				text: "Standing by for mission orders.",
 				state: 2
 			},
 			{
-				text: “There must be a mistake, I haven’t finished my training yet.”,
+				text: "There must be a mistake, I haven’t finished my training yet.",
 				state: 3
 			}
 		]
 	},
 	{
 		state: 2,
-		dialog: “HQ: You’re ready for this, Agent Walker.”,
+		dialog: "HQ: You’re ready for this, Agent Walker.",
 		options: [
 			{
-				text: “Standing by for mission orders.”,
+				text: "Standing by for mission orders.",
 				state: 3
 			}
 		]
 	},
 	{
 		state: 3,
-		dialog: “HQ: This mission is time critical, and you are the nearest agent to the scene.",
+		dialog: "HQ: This mission is time critical, and you are the nearest agent to the scene.",
 		options: [
 			{
-				text: “Acknowledged.”,
+				text: "Acknowledged.",
 				state: 4
 			}
 		]
@@ -47,10 +47,10 @@
 	{
 
 		state: 4,
-		dialog: “HQ: Recent intelligence has indicated that the Viper has developed a computer virus capable of taking out an entire city’s power and water grids. We have learned that the Viper intends to sell the virus he has developed today in Plaza Park. The virus cannot be allowed to end up in enemy hands.",
+		dialog: "HQ: Recent intelligence has indicated that the Viper has developed a computer virus capable of taking out an entire city’s power and water grids. We have learned that the Viper intends to sell the virus he has developed today in Plaza Park. The virus cannot be allowed to end up in enemy hands.",
 		options: [
 			{
-				text: “Understood.”,
+				text: "Understood.",
 				state: 5
 			}
 		]
@@ -58,10 +58,10 @@
 	{
 
 		state: 5,
-		dialog: “HQ: We have a sniper in the area ready to attack your target. You will need to identify and paint the target before the sale is set to go down. We are sending the dossier to your phone, and will be sending you information from the agents on the scene as it becomes available. The sale is set to go down in at 12:00. You don’t have much time. When you identify the target, radio in and the sniper will fire. Good Luck, Agent Walker.",
+		dialog: "HQ: We have a sniper in the area ready to attack your target. You will need to identify and paint the target before the sale is set to go down. We are sending the dossier to your phone, and will be sending you information from the agents on the scene as it becomes available. The sale is set to go down in at 12:00. You don’t have much time. When you identify the target, radio in and the sniper will fire. Good Luck, Agent Walker.",
 		options: [
 			{
-				text: “Thank you.”,
+				text: "Thank you.",
 			}
 		]
 

@@ -1,0 +1,25 @@
+
+	states: [
+	{
+		state: 0,
+		dialog: "HQ: Target Eliminated",
+		options: [
+			{
+				text: "Status Report?",
+				state: 1
+			}
+		]
+	},
+	{
+		state: 1,
+		dialog: "Intelligence indicates that the Viper has been eliminated. Agents will retrieve the briefcase and return to HQ. Good work today, Agent Walker.",
+		options: [
+			{
+				text: "Thank you, sir.",
+				
+			}
+		]
+	}		
+
+]
+}
