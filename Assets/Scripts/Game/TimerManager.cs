@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TimerManager : MonoBehaviour {
 	public float myTimer = 120.0f;
-
+	public GameObject player = null;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,7 +13,13 @@ public class TimerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		myTimer -= Time.deltaTime;
-		Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text>();
-		timerTextBox.text = "Remaining Time=" + (int)myTimer;
+		if (myTimer > 0) {
+			Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text> ();
+			timerTextBox.text = "Remaining Time=" + (int)myTimer;
+		} else {
+			Ragdoll doll =  player.GetComponent<Ragdoll> ();
+			doll.SetKinematic(false);
+			player.GetComponent<Animator>().enabled=false;
+		}
 	}
 }
