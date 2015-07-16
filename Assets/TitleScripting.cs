@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class TitleScripting : MonoBehaviour
@@ -23,6 +24,8 @@ public class TitleScripting : MonoBehaviour
 	public MusicManager musicManager;
 	public SfxManager sfxManager;
 	public GameObject buttonPanel;
+	public Button startButton;
+	public EventSystem eventSystem;
 
 	// Use this for initialization
 	void Start ()
@@ -107,6 +110,12 @@ public class TitleScripting : MonoBehaviour
 				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				titleState = TitleState.SHOW_LOGO;
 				buttonPanel.SetActive (true);
+				if (startButton != null) {
+					Debug.Log ("Select that button!");
+//					startButton.OnSelect (null);
+					eventSystem.SetSelectedGameObject (startButton.gameObject);
+					startButton.GetComponent<EventTrigger> ().OnSelect (null);
+				}				
 			}
 			break;
 		case TitleState.SHOW_LOGO:

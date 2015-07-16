@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class StartButton : MonoBehaviour
@@ -19,5 +20,22 @@ public class StartButton : MonoBehaviour
 
 			musicManager.PlayGameClip ();
 		});
+
+		EventTrigger trigger = GetComponent<EventTrigger> ();
+
+		// http://answers.unity3d.com/questions/854251/how-do-you-add-an-ui-eventtrigger-by-script.html
+		EventTrigger.Entry entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.Select;
+		entry.callback.AddListener ((eventData) => {
+			Debug.Log ("Start button selected");
+		});
+		trigger.triggers.Add (entry);
+
+		entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.Deselect;
+		entry.callback.AddListener ((eventData) => {
+			Debug.Log ("Start button deselected");
+		});
+		trigger.triggers.Add (entry);
 	}
 }
