@@ -14,7 +14,8 @@ public class NPCCommentAction : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		DialogManager.Floating (ai.Body, ai.WorkingMemory.GetItem<string>("message"));
+		DialogManager.PopUp (ai.WorkingMemory.GetItem<string>("message"));
+		TargetManager.SetLastTarget (ai.Body);
 
 		return ActionResult.SUCCESS;
     }
