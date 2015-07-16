@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class ToggleJournalButton : MonoBehaviour
 {
+	public EventSystem eventSystem;
 
 	// Use this for initialization
 	void Start ()
@@ -16,6 +18,7 @@ public class ToggleJournalButton : MonoBehaviour
 				Debug.Log ("Pressing that button");
 				StateManager.ChangeGameState (StateManager.GameState.Playing);
 			}
+			eventSystem.SetSelectedGameObject (null);
 		});
 	}
 }
