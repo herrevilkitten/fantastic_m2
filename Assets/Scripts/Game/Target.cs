@@ -18,4 +18,5 @@ public class Target : MonoBehaviour {
 	public void Confess() {
 		DialogManager.PopUp (name + ": " + message);
 	}
+
 }
