@@ -32,6 +32,7 @@ public class StateManager : MonoBehaviour
 	public GameObject settingsPanel;
 	public GameObject creditsPanel;
 	public GameObject journalPanel;
+	public GameObject conversationPanel;
 	public GameObject flybyCamera;
 	public Image crosshairs;
 
@@ -90,6 +91,7 @@ public class StateManager : MonoBehaviour
 			break;
 		case GameState.Playing:
 			stateManager.flybyCamera.SetActive (false);
+			stateManager.conversationPanel.SetActive (true);
 			Play ();
 			break;
 		}
