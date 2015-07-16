@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TimerManager : MonoBehaviour {
-	public float myTimer = 120.0f;
+	public float myTimer;
 	public GameObject player = null;
 	// Use this for initialization
 	void Start () {
