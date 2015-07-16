@@ -1,0 +1,25 @@
+
+	states: [
+	{
+		state: 0,
+		dialog: "HQ: Target Eliminated",
+		options: [
+			{
+				text: "Status Report?",
+				state: 1
+			}
+		]
+	},
+	{
+		state: 1,
+		dialog: "Intelligence indicates that the target selected is not the Viper. It appears that the Viper has fled with the device, and we may not be able to track him. Return to HQ for debriefing, Agent Walker.",
+		options: [
+			{
+				text: "Yes, sir.",
+				
+			}
+		]
+	}		
+
+]
+}
