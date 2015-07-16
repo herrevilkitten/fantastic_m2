@@ -64,7 +64,7 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	UnityEngine.Events.UnityAction changeState (int state, JSONNode node)
 	{
 		return () => {
-			Debug.Log ("Player chose " + json.ToJSON (0));
+			Debug.Log ("Player chose " + node.ToJSON (0));
 			if (node ["setFlag"] != null) {
 				StateManager.SetFlag (node ["setFlag"]);
 			}

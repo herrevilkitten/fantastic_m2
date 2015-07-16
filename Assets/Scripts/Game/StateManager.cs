@@ -101,6 +101,11 @@ public class StateManager : MonoBehaviour
 		currentState = newState;
 	}
 
+	public static bool IsPlaying ()
+	{
+		return currentState == GameState.Playing;
+	}
+
 	public static void SetFlag (string flag)
 	{
 		flags.Add (flag);
