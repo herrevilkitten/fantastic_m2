@@ -102,12 +102,22 @@ Scenes/Yuk City Park/Yuk City Market.unity
 ================================================================================
 Game Url:
 ================================================================================
-http://www.redcoatmedia.com/cs6475/milestone3/index.html
+http://www.redcoatmedia.com/cs6475/milestone4/index.html
 
 ================================================================================
 Assets Used
 ================================================================================
 NPCs without AI made by Matt with Fuse. Animations from Mixamo.
+
+Assets used in title sequence:
+Typeface: Soul Mission
+http://www.dafont.com/soulmission.font?text=The+Target
+
+Texture: Crosshairs
+http://cdn-5.freeclipartnow.com/d/41645-1/Crosshairs.jpg
+
+Background Music: Corridor
+http://www.purple-planet.com/mysterious-backgrounds/4588158576
 
 Assets used in the creation of the scene:
 Piano (Miroslav Uhlir)
