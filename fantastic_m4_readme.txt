@@ -1,5 +1,5 @@
 ================================================================================
-Milestone 3 - Team Fantastic!
+Milestone 4 - Team Fantastic!
 ================================================================================
 Authors:
 Matthew Moldavan - mmoldavan@gatech.edu - mmoldavan3
@@ -88,11 +88,11 @@ camera.
 ================================================================================
 Steps to show game requirements:
 ================================================================================
-All AI characters begin near the player's spawn area and on the left side of the
-lake. They are generally easy to find. AJ (Gina's AI) begins on the hill to the
-left. The Mysterious Girl (red and black, transparent ghost) is Matt's AI and 
-also on the hill to the left. Eric's ghost begins near the girl. The gray cat
-near where the player spawns is Hannah's
+Run to the fountain (left side of the lake from the spawn point) to see the
+fountain particle effect. To the right of spawn is the smoke effect coming from
+a pipe on the edge of the lake. If you run through the water, you will see
+splashes from the feet. The leaf falling effect is present next to the fountain
+and on the island.
 
 ================================================================================
 Scene:
@@ -102,7 +102,7 @@ Scenes/Yuk City Park/Yuk City Market.unity
 ================================================================================
 Game Url:
 ================================================================================
-http://www.redcoatmedia.com/cs6475/milestone4/index.html
+http://projects.mattmoldavan.com/cs6457/alpha/
 
 ================================================================================
 Assets Used
