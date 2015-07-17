@@ -138,7 +138,7 @@ public class StateManager : MonoBehaviour
 			return;
 		}
 
-		Time.timeScale = timeScale;
+		Time.timeScale = 1f;
 		paused = false;
 	}
 
