@@ -1,7 +1,7 @@
 [
 	{
 		title: "Team Fantastic",
-		text: "Team Fantastic is the high-powered squad of\n<b>Hannah Glazebrook</b>\n<b>Eric Kidder</b>\n<b>Matt Moldavan</b>\n<b>Gina Nguyen</b>"
+		text: "Team Fantastic is the high-powered squad of\n<b>Hannah Glazebrook</b>\nAI, NPC\n\n<b>Eric Kidder</b>\nTitle, Scripting\n\n<b>Matt Moldavan</b>\nScene, AI, NPC, SFX\n\n<b>Gina Nguyen</b>\nAI, NPC"
 	},
 	{
 		title: "Assets",

@@ -40,20 +40,23 @@ public class CreditsPanel : MonoBehaviour
 	void Update ()
 	{
 		JSONNode currentNode = creditsJson [frame];
-		string currentTitle = currentNode ["title"].Value;
-		string currentText = currentNode ["text"].Value;
 
-		title.text = currentTitle;
-		credits.text = "\n" + currentText;
-
+		Debug.Log ("Value: " + scrollbar.value + " / " + scrollbar.size + " / " + frame);
 		switch (state) {
 		case CreditsState.Start:
+			string currentTitle = currentNode ["title"].Value;
+			string currentText = currentNode ["text"].Value;
+
 			title.color = new Color (1f, 1f, 1f, 0f);
 			credits.color = new Color (1f, 1f, 1f, 0f);
+			title.text = currentTitle;
+			credits.text = "\n" + currentText + "\n";
+
 			state = CreditsState.FadeIn;
 			break;
 
 		case CreditsState.FadeIn:
+			scrollbar.value = 1f;
 			title.color = new Color (1f, 1f, 1f, Mathf.Lerp (title.color.a, 1f, .15f));
 			credits.color = new Color (1f, 1f, 1f, Mathf.Lerp (credits.color.a, 1f, .15f));
 
@@ -65,8 +68,9 @@ public class CreditsPanel : MonoBehaviour
 			}
 			break;
 		case CreditsState.Show:
-			if (scrollbar.value < .95f) {
-				scrollbar.value = Mathf.Lerp (scrollbar.value, 1f, .1f);
+			if (scrollbar.value > .05f && scrollbar.size < .95f) {
+				scrollbar.value = scrollbar.value - scrollbar.size / 10f;
+				frameShowTime = Time.realtimeSinceStartup;
 			} else {
 				if (Time.realtimeSinceStartup > frameShowTime + 4f) {
 					state = CreditsState.FadeOut;

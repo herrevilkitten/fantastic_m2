@@ -11,17 +11,25 @@ Gina Nguyen - gnguyen37@gatech.edu
 ================================================================================
 Team Requirements
 ================================================================================
-1)
+1) The introduction starts off with a number of fades before displaying the 
+game title and buttons.
 
-2)
+2) The title screen background is a camera flyby of the level.  The red color
+and background music are used to heighten the dramatic tension of the level.
 
-3)
+3) The menu buttons are placed at the bottom of the screen.  All of the menu
+buttons should be in the same locations for the Title, Settings, and Credits
+screens.  The size, color, and font were chosen to indicate the modern feel
+of the game.  Selected buttons are darker in color and have a pair of crosshairs
+(from the game's logo) in them.
 
-4)
+4) Menu is navigable with both mouse and keyboard (arrow keys).  Settings
+controls currently do not support keyboard.
 
-5)
+5) Credits are present.
 
-6)
+6) Credits are split up into sections.  Each section fades in, scrolls to the
+bottom, and then fades out.
 
 7) At least two different particle effects with two particle systems - Complete
 a. The stone fountain has a water fountain particle system. It has three 
