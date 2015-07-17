@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using System.Collections;
 
-public class CreditsButton : MonoBehaviour
+public class BackToMenu : MonoBehaviour
 {
 	// Use this for initialization
 	void Start ()
 	{
 		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			StateManager.ChangeGameState (StateManager.GameState.Credits);
+			StateManager.ChangeGameState (StateManager.GameState.Title);
 		});
+
 	}
 }

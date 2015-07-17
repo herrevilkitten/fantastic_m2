@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class CancelSettings : MonoBehaviour
@@ -8,12 +9,11 @@ public class CancelSettings : MonoBehaviour
 	public GameObject settingsPanel;
 	public MusicManager musicManager;
 	public SfxManager sfxManager;
-	Button button;
 
 	// Use this for initialization
 	void Start ()
 	{
-		button = GetComponent<Button> ();
+		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
 			// Revert sounds settings
 			musicManager.SetMusicVolume (PlayerPrefs.GetFloat ("MusicVolume"));

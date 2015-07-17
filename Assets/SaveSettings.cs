@@ -8,12 +8,11 @@ public class SaveSettings : MonoBehaviour
 	public SfxManager sfxManager;
 	public Slider difficultySlider;
 	public Toggle showInteractive;
-	Button button;
-	
+
 	// Use this for initialization
 	void Start ()
 	{
-		button = GetComponent<Button> ();
+		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
 			// Revert sounds settings
 			PlayerPrefs.SetFloat ("MusicVolume", musicManager.GetMusicVolume ());

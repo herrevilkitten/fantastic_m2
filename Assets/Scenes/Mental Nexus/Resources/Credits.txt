@@ -1,0 +1,18 @@
+[
+	{
+		title: "Team Fantastic",
+		text: "Team Fantastic is the high-powered squad of\n<b>Hannah Glazebrook</b>\n<b>Eric Kidder</b>\n<b>Matt Moldavan</b>\n<b>Gina Nguyen</b>"
+	},
+	{
+		title: "Assets",
+		text: "<b>Typefaces</b>\nSoul Mission: http://www.dafont.com/soulmission.font\nPlay-Regular: http://www.fontsquirrel.com/fonts/play\n\n<b>Images</b>\nCrosshairs: http://cdn-5.freeclipartnow.com/d/41645-1/Crosshairs.jpg\n\n<b>Code and Mods</b>\nSimpleJSON: http://wiki.unity3d.com/index.php/SimpleJSON\n3DText Shader: http://wiki.unity3d.com/index.php?title=3DText\nScrollableText: http://sloankelly.net/unity-4-6-ui-components/\nTransparent Model Shader: http://wiki.unity3d.com/index.php?title=AlphaVertexLitZ\nOther: http://answers.unity3d.com/questions/854251/how-do-you-add-an-ui-eventtrigger-by-script.html\nCinema Themes (Cinema Suite Inc) - For the camera filter: https://kharma.unity3d.com/en/#!/content/20394"
+	},
+	{
+		title: "Assets",
+		text: "<b>Background Music</b>\nCorridor: http://www.purple-planet.com/mysterious-backgrounds/4588158576\n\n<b>Sound Effects</b>\nThe Ultimate Footsteps Sounds FX Pack: quirogalabs\nFootsteps pack 1: no9 Game Sounds\nBird chirping and water fountain sounds: http://www.pacdv.com/sounds/ambience_sounds.html"
+	},
+	{
+		title: "Assets",
+		text: "<b>Models, Textures, and Objects</b>\nAtlas Buildings 00 (office buildings): Sevn-Interactive\nBarricade: Universal Image\nSimple Modular Street Kit (streets): Jacek Jankowski\nStaircase: Side Effects Software\nPiano (Miroslav Uhlir): https://kharma.unity3d.com/en/#!/content/154\nShanty Town: Concrete Pipe (Unity Technologies): https://www.assetstore.unity3d.com/en/#!/content/58\nOrigami Paper Crane (Longitude Unknown): https://kharma.unity3d.com/en/#!/content/16630\nStone Fence (Ben Droste): https://www.assetstore.unity3d.com/en/#!/content/2437\nBarrels (Gabro Media): https://www.assetstore.unity3d.com/en/#!/content/32975\nCrate (Amanda3D): https://www.assetstore.unity3d.com/en/#!/content/31462\nMedieval Buildings (Lukas Bobor) - Bridge and Sign model only: https://kharma.unity3d.com/en/#!/content/34770\nPark Bench (Universal Image): https://kharma.unity3d.com/en/#!/content/850\nTerrain Assets (Unity Technologies): https://kharma.unity3d.com/en/#!/content/"
+	}
+]
