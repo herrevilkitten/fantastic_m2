@@ -81,6 +81,13 @@ public class TitleScripting : MonoBehaviour
 				text.color = new Color (color.r, color.g, color.b, 1f);
 			}
 
+			if (startButton != null) {
+				Debug.Log ("Select that button!");
+				//					startButton.OnSelect (null);
+				eventSystem.SetSelectedGameObject (startButton.gameObject);
+				startButton.GetComponent<EventTrigger> ().OnSelect (null);
+			}				
+
 			titleState = TitleState.DONE;
 		}
 
@@ -110,6 +117,7 @@ public class TitleScripting : MonoBehaviour
 				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				titleState = TitleState.SHOW_LOGO;
 				buttonPanel.SetActive (true);
+				Debug.Log ("Start button is " + startButton);
 				if (startButton != null) {
 					Debug.Log ("Select that button!");
 //					startButton.OnSelect (null);

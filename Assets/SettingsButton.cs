@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class SettingsButton : MonoBehaviour
@@ -10,6 +11,8 @@ public class SettingsButton : MonoBehaviour
 	public Toggle musicMute;
 	public Slider sfxVolume;
 	public Toggle sfxMute;
+	public GameObject selection;
+	public EventSystem eventSystem;
 
 	public Toggle showInteractive;
 	public Slider difficulty;
@@ -44,5 +47,31 @@ public class SettingsButton : MonoBehaviour
 
 			StateManager.ChangeGameState (StateManager.GameState.Settings);
 		});
+
+		EventTrigger trigger = GetComponent<EventTrigger> ();
+		
+		// http://answers.unity3d.com/questions/854251/how-do-you-add-an-ui-eventtrigger-by-script.html
+		EventTrigger.Entry entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.UpdateSelected;
+		entry.callback.AddListener ((eventData) => {
+			Debug.Log ("Settings button selected");
+			selection.SetActive (true);
+		});
+		trigger.triggers.Add (entry);
+		
+		entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.Deselect;
+		entry.callback.AddListener ((eventData) => {
+			Debug.Log ("Settings button deselected");
+			selection.SetActive (false);
+		});
+		trigger.triggers.Add (entry);
+
+		entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.PointerEnter;
+		entry.callback.AddListener ((eventData) => {
+			eventSystem.SetSelectedGameObject (button.gameObject);
+		});
+		trigger.triggers.Add (entry);
 	}
 }
