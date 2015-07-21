@@ -43,8 +43,9 @@ public class InteractiveHighlighter : MonoBehaviour
 				//    Debug.DrawLine (ray.origin, hit.point);
 				GameObject objectHit = hit.collider.gameObject;
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
+				Debug.Log (hit.collider + " is " + hit.distance + " away");
 				if (interaction != null) {
-					if (objectHit.transform.FindChild (HIGHLIGHTER_NAME)) {
+					if (objectHit.transform.FindChild (HIGHLIGHTER_NAME) || hit.distance <= 6f) {
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
 							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
 						}
@@ -64,6 +65,7 @@ public class InteractiveHighlighter : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
+		Debug.Log ("Looks like we just collided with " + other);
 		InteractiveObject interaction = other.gameObject.GetComponent<InteractiveObject> ();
 		if (interaction != null) {
 			if (particles != null) {
