@@ -20,9 +20,10 @@ public class StateManager : MonoBehaviour
 		Playing
 	}
 
-	public static bool knowsAboutYukMountain = false;
-	public static bool canPassBarrier = false;
 	public static CameraMode cameraMode = CameraMode.Floating;
+	public static int suspicionLevel = 0;
+	public static int detectionCount = 0;
+	public static int evidenceCount = 0;
 	static float timeScale;
 	static bool paused = false;
 	static HashSet<string> flags = new HashSet<string> ();
@@ -32,9 +33,8 @@ public class StateManager : MonoBehaviour
 	public GameObject settingsPanel;
 	public GameObject creditsPanel;
 	public GameObject journalPanel;
-	public GameObject conversationPanel;
+	public GameObject gamePanel;
 	public GameObject flybyCamera;
-	public GameObject timerCanvas;
 	public Image crosshairs;
 
 	public static StateManager stateManager;
@@ -42,8 +42,44 @@ public class StateManager : MonoBehaviour
 	void Awake ()
 	{
 		StateManager.stateManager = this;
+
+		InvokeRepeating ("UpdateSuspicion", 0f, 1.0f);
 	}
 
+	void UpdateSuspicion ()
+	{
+		if (evidenceCount < 0) {
+			ReduceSuspicion (1);
+		} else if (evidenceCount > 1) {
+			AddSuspicion (1);
+		}
+	}
+
+	public static void ModifySuspicion (int amount = 1)
+	{
+		suspicionLevel = Mathf.Clamp (suspicionLevel + amount, 0, 50);
+	}
+
+	public static void ReduceSuspicion (int amount = 1)
+	{
+		ModifySuspicion (-amount);
+	}
+	
+	public static void AddSuspicion (int amount = 1)
+	{
+		ModifySuspicion (amount);
+	}
+	
+	public static void ReduceDetection (int amount = 1)
+	{
+		detectionCount = Mathf.Max (detectionCount - amount, 0);
+	}
+	
+	public static void AddDetection (int amount = 1)
+	{
+		detectionCount = detectionCount + amount;
+	}
+	
 	public static GameState currentState = GameState.Title;
 	public static void ChangeGameState (GameState newState)
 	{
@@ -69,7 +105,6 @@ public class StateManager : MonoBehaviour
 			stateManager.journalPanel.SetActive (false);
 			break;
 		case GameState.Playing:
-			stateManager.timerCanvas.SetActive (true);
 			Pause ();
 			break;
 		}
@@ -93,8 +128,7 @@ public class StateManager : MonoBehaviour
 			break;
 		case GameState.Playing:
 			stateManager.flybyCamera.SetActive (false);
-			stateManager.conversationPanel.SetActive (true);
-			stateManager.timerCanvas.SetActive (true);
+			stateManager.gamePanel.SetActive (true);
 			Play ();
 			break;
 		}

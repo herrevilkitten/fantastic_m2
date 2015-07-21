@@ -46,7 +46,6 @@ public class CityMadnessDialog : TalkableObject
 				text += "\nThere are rules and there are times to break rules. But this is not one of those times. You must bring me two things before I can send you on your way.";
 				if (!InventoryManager.HasMemory ()) {
 					text += "\nYou should talk to my compatriot on top of the mountain about lost things being found.";
-					StateManager.knowsAboutYukMountain = true;
 				}
 				DialogManager.SetText (text);
 				DialogManager.SetDialog (0, "I will return.", changeState (1));
@@ -57,7 +56,6 @@ public class CityMadnessDialog : TalkableObject
 			break;
 		case 2:
 			DialogManager.SetText ("I bestow upon you my blessing: 'the gray fires shall not scald your flesh, nor shall you be thrown back'!\nGo now and retrieve the final token!");
-			StateManager.canPassBarrier = true;
 			DialogManager.SetDialog (0, "Thanks?", changeState (1));
 			break;
 		}

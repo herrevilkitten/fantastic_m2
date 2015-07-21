@@ -13,7 +13,7 @@ public class VortexLauncher : MonoBehaviour
 	
 	IEnumerator OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.tag == "Player" && !StateManager.canPassBarrier) {
+		if (other.gameObject.tag == "Player") {
 			Debug.Log ("Vector on " + other.gameObject);
 
 			repulsionSound.Play ();

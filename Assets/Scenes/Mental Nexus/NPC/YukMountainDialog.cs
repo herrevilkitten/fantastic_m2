@@ -22,11 +22,7 @@ public class YukMountainDialog : TalkableObject
 		switch (dialogState) {
 		case 0:
 			DialogManager.SetText ("Hello. Is there something I can do for you?");
-			if (StateManager.knowsAboutYukMountain) {
-				DialogManager.SetDialog (0, "I was told you know how to find things that lost me.", changeState (2));
-			} else {
-				DialogManager.SetDialog (0, "No thank you.", changeState (1));
-			}
+			DialogManager.SetDialog (0, "I was told you know how to find things that lost me.", changeState (2));
 			break;
 		case 1:
 			DialogManager.Hide ();

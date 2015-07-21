@@ -22,7 +22,6 @@ public class GreeterDialog : TalkableObjectWithDialog
 
 	public void GainYukMountainKnowledge ()
 	{
-		StateManager.knowsAboutYukMountain = true;
 	}
 
 	override public string GetDialogResourceName ()
