@@ -24,7 +24,9 @@ public class ButtonHighlight : MonoBehaviour
 		entry.callback.AddListener ((eventData) => {
 			Debug.Log ("Settings button selected");
 			if (selection != null) {
-				selection.SetActive (true);
+				foreach (Image image in selection.GetComponentsInChildren<Image>()) {
+					image.enabled = true;
+				}
 			}
 		});
 		trigger.triggers.Add (entry);
@@ -33,7 +35,11 @@ public class ButtonHighlight : MonoBehaviour
 		entry.eventID = EventTriggerType.Deselect;
 		entry.callback.AddListener ((eventData) => {
 			Debug.Log ("Settings button deselected");
-			selection.SetActive (false);
+			if (selection != null) {
+				foreach (Image image in selection.GetComponentsInChildren<Image>()) {
+					image.enabled = false;
+				}
+			}
 		});
 		trigger.triggers.Add (entry);
 		
