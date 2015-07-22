@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 9742f961ebd4c44af9e064f22d6279c1
-timeCreated: 1435535339
+timeCreated: 1437534256
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - highlightShader: {fileID: 22, guid: 0000000000000000f000000000000000, type: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

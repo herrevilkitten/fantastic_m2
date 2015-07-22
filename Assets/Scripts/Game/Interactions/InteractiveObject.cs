@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 abstract public class InteractiveObject : MonoBehaviour
 {
@@ -13,42 +14,36 @@ abstract public class InteractiveObject : MonoBehaviour
 		void OnInteractClick (GameObject actor);
 	}
 
-	protected Renderer originalRenderer;
-	protected Shader[] originalShaders;
 	protected bool highlighted = false;
+	protected Dictionary<Material,Shader> allShaders;
 	public Shader highlightShader;
 
 	void Awake ()
 	{
-		this.originalRenderer = GetComponent<Renderer> ();
-		if (this.originalRenderer != null) {
-			int i = 0;
-			this.originalShaders = new Shader[this.originalRenderer.materials.Length];
-			foreach (Material material in this.originalRenderer.materials) {
-				this.originalShaders [i++] = material.shader;
-			}
-		}
-
 		if (this.highlightShader == null) {
 			this.highlightShader = Shader.Find ("Legacy Shaders/Reflective/Parallax Specular");
+		}
+		this.allShaders = new Dictionary<Material, Shader> ();
+		foreach (Renderer renderer in  GetComponentsInChildren<Renderer> ()) {
+			foreach (Material material in renderer.materials) {
+				this.allShaders [material] = material.shader;
+			}
 		}
 	}
 
 	public void HighlightObject ()
 	{
-		int i = 0;
-		foreach (Material material in this.originalRenderer.materials) {
-			this.originalRenderer.materials [i++].shader = highlightShader;
+		Debug.Log ("highlighting with " + highlightShader);
+		foreach (Material material in this.allShaders.Keys) {
+			material.shader = highlightShader;
 		}
 		highlighted = true;
 	}
 
 	public void UnhighlightObject ()
 	{
-		int i = 0;
-		foreach (Material material in this.originalRenderer.materials) {
-			this.originalRenderer.materials [i].shader = this.originalShaders [i];
-			i++;
+		foreach (Material material in this.allShaders.Keys) {
+			material.shader = this.allShaders [material];
 		}
 		highlighted = false;
 	}
