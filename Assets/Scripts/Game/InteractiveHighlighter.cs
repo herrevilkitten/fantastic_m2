@@ -45,7 +45,7 @@ public class InteractiveHighlighter : MonoBehaviour
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				Debug.Log (hit.collider + " is " + hit.distance + " away");
 				if (interaction != null) {
-					if (objectHit.transform.FindChild (HIGHLIGHTER_NAME) || hit.distance <= 6f) {
+					if (interaction.IsHightlighted ()) {
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
 							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
 						}
@@ -65,18 +65,10 @@ public class InteractiveHighlighter : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Looks like we just collided with " + other);
 		InteractiveObject interaction = other.gameObject.GetComponent<InteractiveObject> ();
 		if (interaction != null) {
 			if (particles != null) {
-				ParticleSystem instance = (ParticleSystem)Instantiate (particles, other.transform.position, Quaternion.LookRotation (Vector3.up, Vector3.up));
-				instance.transform.Rotate (Vector3.up);
-				instance.name = HIGHLIGHTER_NAME;
-				instance.playOnAwake = true;
-				instance.loop = true;
-				instance.Play ();
-				instance.GetComponent<ObjectHighlightMover> ().highlightedObject = other.transform;
-				instance.transform.SetParent (other.gameObject.transform);
+				interaction.HighlightObject ();
 			}
 		}
 	}
@@ -85,10 +77,7 @@ public class InteractiveHighlighter : MonoBehaviour
 	{
 		InteractiveObject interaction = other.gameObject.GetComponent<InteractiveObject> ();
 		if (interaction != null) {
-			Transform t = other.gameObject.transform.FindChild (HIGHLIGHTER_NAME);
-			if (t != null) {
-				Destroy (t.gameObject);
-			}
+			interaction.UnhighlightObject ();
 		}
 	}
 }
