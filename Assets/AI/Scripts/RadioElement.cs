@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using RAIN.Core;
 using RAIN.Serialization;
 
@@ -19,12 +20,14 @@ public class RadioElement : CustomAIElement
 	}
 
 	public void ReceiveMessage(string sender, string variableName, object value) {
+		Debug.Log ("Receive Message: " + sender + " " + variableName + " " + value);
 		if (!this.sender.Equals (sender)) {
 			AI.WorkingMemory.SetItem<object> (variableName, value);
 		}
 	}
 
-	public void RadioMessage(string sender, string variableName, object value) {
+	public void RadioMessage(string variableName, object value) {
+		//TODO: Add timestamp
 		RadioManager.Singleton.RadioMessage (sender, variableName, value);
 	}
 }

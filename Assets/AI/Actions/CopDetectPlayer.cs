@@ -22,6 +22,7 @@ public class CopDetectPlayer : RAINAction
 			if (aspect != null) {
 				Debug.Log ("aspectpoint=" + aspect.MountPoint);
 				ai.WorkingMemory.SetItem("Player", aspect.MountPoint);
+				ai.WorkingMemory.SetItem("currentAction", "callBackup");
 				break;
 			}
 		}
