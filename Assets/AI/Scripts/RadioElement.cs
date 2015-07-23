@@ -15,7 +15,7 @@ public class RadioElement : CustomAIElement
 	}
 
 	public void ListenTo() {
-		RadioManager.SingletonInstance.Listen (this);
+		RadioManager.Singleton.Listen (this);
 	}
 
 	public void ReceiveMessage(string sender, string variableName, object value) {
@@ -25,7 +25,7 @@ public class RadioElement : CustomAIElement
 	}
 
 	public void RadioMessage(string sender, string variableName, object value) {
-		RadioManager.SingletonInstance.RadioMessage (sender, variableName, value);
+		RadioManager.Singleton.RadioMessage (sender, variableName, value);
 	}
 }
 

@@ -3,24 +3,25 @@ using System.Collections;
 using System;
 
 public class RadioManager {
-	private static RadioManager singletonInstance = new RadioManager();
+	private static RadioManager singleton = new RadioManager();
 	private ArrayList cops = new ArrayList ();
 
 	private RadioManager() {
 	}
 
-	public static RadioManager SingletonInstance {
+	public static RadioManager Singleton {
 		get 
 		{
-			if(singletonInstance == null) {
-				singletonInstance = new RadioManager();
+			if(singleton == null) {
+				singleton = new RadioManager();
 			}
 
-			return singletonInstance;
+			return singleton;
 		}
 	}
 
 	public void Listen(RadioElement copRadio) {
+		Debug.Log ("Listening");
 		cops.Add (copRadio);
 	}
 
