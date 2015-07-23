@@ -21,9 +21,9 @@ public class CallBackup : RAINAction
 		Debug.Log ("Player = " + ai.WorkingMemory.GetItem ("Player"));
 		Debug.Log ("Player = " + ((Transform) ai.WorkingMemory.GetItem ("Player")).position);
 		radio.RadioMessage ("PlayerPosition", ((Transform) ai.WorkingMemory.GetItem ("Player")).position);
-		Debug.Log ("calling player position");
+		//Debug.Log ("calling player position");
 		radio.RadioMessage ("currentAction", "backup");
-		Debug.Log ("calling backup");
+		//Debug.Log ("calling backup");
 		return ActionResult.SUCCESS;
     }
 

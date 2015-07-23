@@ -21,7 +21,7 @@ public class RadioManager {
 	}
 
 	public void Listen(RadioElement copRadio) {
-		Debug.Log ("Listening");
+		//Debug.Log ("Listening");
 		cops.Add (copRadio);
 	}
 
