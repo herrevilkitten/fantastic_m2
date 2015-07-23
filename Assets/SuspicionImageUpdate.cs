@@ -21,8 +21,6 @@ public class SuspicionImageUpdate : MonoBehaviour
 		Vector3 scalingVector = new Vector3 (scaling, scaling, scaling);
 		suspicionImage.rectTransform.localScale = scalingVector;
 
-		Debug.Log ("Rescaling image to " + scalingVector);
-
 		if (StateManager.detectionCount == 0) {
 			suspicionImage.sprite = noSuspicionSprite;
 		} else {
@@ -42,7 +40,5 @@ public class SuspicionImageUpdate : MonoBehaviour
 		} else {
 			suspicionImage.color = new Color (1f, 0f, 0f);
 		}
-
-		Debug.Log ("Image color is " + suspicionImage.color);
 	}
 }

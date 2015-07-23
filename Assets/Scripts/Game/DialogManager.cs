@@ -59,8 +59,6 @@ public class DialogManager : MonoBehaviour
 		button.SetActive (true);
 		button.transform.FindChild ("Button").FindChild ("Text").GetComponent<Text> ().text = " " + text;
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.RemoveAllListeners ();
-		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.AddListener (() => {
-			Debug.Log ("Chose " + index);});
 		button.transform.FindChild ("Button").GetComponent<Button> ().onClick.AddListener (action);
 	}
 
@@ -80,8 +78,9 @@ public class DialogManager : MonoBehaviour
 		overheadText.GetComponent<StayWithObject> ().offset = Vector3.up * height;
 	}
 
-	public static void Conversation(string person1Text, string person2Text) {
-		GetConversationPanel().color = new Color (0f, 0f, 0f, 0.5f);
+	public static void Conversation (string person1Text, string person2Text)
+	{
+		GetConversationPanel ().color = new Color (0f, 0f, 0f, 0.5f);
 
 		Text person1TextBoxText = GetPersonTextBox ("Person1TextBox");
 		person1TextBoxText.text = person1Text;
@@ -92,8 +91,9 @@ public class DialogManager : MonoBehaviour
 		person2TextBoxText.color = new Color (255f, 255f, 33f, 1f);
 	}
 
-	public static void StopConversation() {
-		GetConversationPanel().color = new Color (0f, 0f, 0f, 0f);
+	public static void StopConversation ()
+	{
+		GetConversationPanel ().color = new Color (0f, 0f, 0f, 0f);
 
 		Text person1TextBoxText = GetPersonTextBox ("Person1TextBox");
 		person1TextBoxText.color = new Color (255f, 255f, 33f, 0f);
@@ -102,13 +102,15 @@ public class DialogManager : MonoBehaviour
 		person2TextBoxText.color = new Color (255f, 255f, 33f, 0f);
 	}
 
-	public static Text GetPersonTextBox(string name) {
+	public static Text GetPersonTextBox (string name)
+	{
 		GameObject PersonTextBox = GameObject.Find (name);
 		return PersonTextBox.GetComponent<Text> ();
 	}
 
-	public static Image GetConversationPanel() {
-		return GameObject.Find("ConversationPanel").GetComponent<Image>();
+	public static Image GetConversationPanel ()
+	{
+		return GameObject.Find ("ConversationPanel").GetComponent<Image> ();
 	}
 
 }

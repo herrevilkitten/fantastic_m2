@@ -48,7 +48,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		if (node == null) {
 			return;
 		}
-		Debug.Log ("Trying to invoke: " + node.ToJSON (0));
 		string invoke = node ["invoke"].Value;
 		if (invoke == null || invoke == "") {
 			return;
@@ -64,7 +63,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	UnityEngine.Events.UnityAction changeState (int state, JSONNode node)
 	{
 		return () => {
-			Debug.Log ("Player chose " + node.ToJSON (0));
 			if (node ["setFlag"] != null) {
 				StateManager.SetFlag (node ["setFlag"]);
 			}
@@ -120,7 +118,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 						invoke = options [i] ["invoke"];
 					}
 
-					Debug.Log ("Setting dialog " + i + " to " + text);
 					DialogManager.SetDialog (i, text, changeState (destination, option));
 				}
 			}
@@ -146,7 +143,6 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		}
 
 		JSONNode results = JSON.Parse (dialogResource.text);
-		Debug.Log (resourceName + " = " + results.ToJSON (0));
 		if (results ["states"] == null) {
 			results = null;
 		}

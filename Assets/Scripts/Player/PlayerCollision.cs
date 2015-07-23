@@ -48,7 +48,7 @@ public class PlayerCollision : MonoBehaviour
 
 		if (collisionHandlers != null) {
 			foreach (CharacterCollisionHandler collisionHandler in collisionHandlers) {
-				Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
+//				Debug.Log ("Invoking " + collisionHandler + " with (" + hit + ", " + force + ")");
 				bool stop = collisionHandler.handleCollision (hit, body, force);
 				if (stop) {
 					break;
