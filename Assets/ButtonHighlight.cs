@@ -5,12 +5,12 @@ using System.Collections;
 
 public class ButtonHighlight : MonoBehaviour
 {
-	public GameObject selection;
-	public EventSystem eventSystem;
-
 	// Use this for initialization
 	void Start ()
 	{
+		GameObject selection = transform.FindChild ("SelectionHighlight").gameObject;
+		EventSystem eventSystem = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();
+
 		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
 			selection.SetActive (false);

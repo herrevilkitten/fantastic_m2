@@ -7,11 +7,15 @@ public class MusicManager : MonoBehaviour
 	public AudioClip gameClip;
 	public AudioClip creditsClip;
 
+	public static MusicManager instance;
+
 	AudioSource audioSource;
+	
 
 	void Awake ()
 	{
 		audioSource = GetComponent<AudioSource> ();
+		MusicManager.instance = this;
 	}
 
 	public void PlayClip (AudioClip clip)

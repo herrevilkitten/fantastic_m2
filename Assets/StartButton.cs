@@ -9,7 +9,6 @@ public class StartButton : MonoBehaviour
 
 	public Canvas titleCanvas;
 	public MusicManager musicManager;
-	public GameObject selection;
 	public EventSystem eventSystem;
 
 	// Use this for initialization
