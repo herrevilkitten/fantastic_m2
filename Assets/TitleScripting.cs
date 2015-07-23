@@ -49,6 +49,7 @@ public class TitleScripting : MonoBehaviour
 			PlayerPrefs.SetInt ("Difficulty", 2);
 
 			PlayerPrefs.SetInt ("initialized", 1);
+			PlayerPrefs.SetInt ("Quality", QualitySettings.GetQualityLevel ());
 		}
 
 		musicManager.SetMusicVolume (PlayerPrefs.GetFloat ("MusicVolume"));
@@ -56,6 +57,8 @@ public class TitleScripting : MonoBehaviour
 
 		sfxManager.SetSfxVolume (PlayerPrefs.GetFloat ("SfxVolume"));
 		sfxManager.SetMute (PlayerPrefs.GetInt ("SfxMuted") != 0 ? true : false);
+
+		QualitySettings.SetQualityLevel (PlayerPrefs.GetInt ("Quality"));
 	}
 	
 	// Update is called once per frame
@@ -82,8 +85,6 @@ public class TitleScripting : MonoBehaviour
 			}
 
 			if (startButton != null) {
-				Debug.Log ("Select that button!");
-				//					startButton.OnSelect (null);
 				eventSystem.SetSelectedGameObject (startButton.gameObject);
 				startButton.GetComponent<EventTrigger> ().OnSelect (null);
 			}				
@@ -117,10 +118,7 @@ public class TitleScripting : MonoBehaviour
 				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				titleState = TitleState.SHOW_LOGO;
 				buttonPanel.SetActive (true);
-				Debug.Log ("Start button is " + startButton);
 				if (startButton != null) {
-					Debug.Log ("Select that button!");
-//					startButton.OnSelect (null);
 					eventSystem.SetSelectedGameObject (startButton.gameObject);
 					startButton.GetComponent<EventTrigger> ().OnSelect (null);
 				}				
