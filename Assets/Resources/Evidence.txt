@@ -1,0 +1,8 @@
+[
+	{
+		id: "",
+		shortDescription: "",
+		longDescription: "",
+		disposalMethod: ""
+	}
+]
