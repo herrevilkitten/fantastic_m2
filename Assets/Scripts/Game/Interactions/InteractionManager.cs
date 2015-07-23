@@ -4,6 +4,7 @@ using System.Collections;
 
 public class InteractionManager : MonoBehaviour
 {
+	public Image fill;
 	static InteractionManager instance;
 
 	public delegate void OnInteractionSuccess ();
@@ -30,7 +31,6 @@ public class InteractionManager : MonoBehaviour
 	void Update ()
 	{
 		if (!Input.GetButton ("Use") && startTime != 0f) {
-			Debug.Log ("Cancelling action");
 			startTime = 0f;
 			if (onInteractionFailure != null) {
 				onInteractionFailure ();
@@ -42,9 +42,11 @@ public class InteractionManager : MonoBehaviour
 			timeLabel.text = "";
 		} else {
 			timeBar.value = Mathf.Min (100, (Time.time - startTime) / duration * 100);
+			float color = timeBar.value / 100f;
+			fill.color = new Color (1f - color, color, 0f);
+			Debug.Log ("fill color " + fill.color);
 			
 			if ((startTime + duration) < Time.time) {
-				Debug.Log ("Interaction time: " + startTime + " " + duration + " " + Time.time + " " + ((startTime + duration) > Time.time));
 				startTime = 0f;
 				if (onInteractionSuccess != null) {
 					onInteractionSuccess ();
