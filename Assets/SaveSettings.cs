@@ -22,6 +22,7 @@ public class SaveSettings : MonoBehaviour
 
 			PlayerPrefs.SetInt ("Difficulty", (int)difficultySlider.value);
 			PlayerPrefs.SetInt ("ShowInteractive", showInteractive.isOn ? 1 : 0);
+			PlayerPrefs.SetInt ("Quality", QualitySettings.GetQualityLevel ());
 
 			StateManager.ChangeGameState (StateManager.GameState.Title);
 		});

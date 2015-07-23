@@ -22,6 +22,8 @@ public class CancelSettings : MonoBehaviour
 			sfxManager.SetSfxVolume (PlayerPrefs.GetFloat ("SfxVolume"));
 			sfxManager.SetMute (PlayerPrefs.GetInt ("SfxMuted") != 0 ? true : false);
 
+			QualitySettings.SetQualityLevel (PlayerPrefs.GetInt ("Quality"));
+
 			StateManager.ChangeGameState (StateManager.GameState.Title);
 		});
 	}
