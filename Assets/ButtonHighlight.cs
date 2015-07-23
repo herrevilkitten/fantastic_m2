@@ -13,7 +13,11 @@ public class ButtonHighlight : MonoBehaviour
 
 		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			selection.SetActive (false);
+			if (selection != null) {
+				foreach (Image image in selection.GetComponentsInChildren<Image>()) {
+					image.enabled = false;
+				}
+			}
 			eventSystem.SetSelectedGameObject (null);
 		});
 		EventTrigger trigger = GetComponent<EventTrigger> ();
@@ -50,11 +54,5 @@ public class ButtonHighlight : MonoBehaviour
 		});
 		trigger.triggers.Add (entry);
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
 	}
 }
