@@ -3,20 +3,20 @@ using System.Collections;
 using System;
 
 public class RadioManager {
-	private static RadioManager singleton = new RadioManager();
+	private static RadioManager singletonInstance = new RadioManager();
 	private ArrayList cops = new ArrayList ();
 
 	private RadioManager() {
 	}
 
-	public static RadioManager Singleton {
+	public static RadioManager SingletonInstance {
 		get 
 		{
-			if(singleton == null) {
-				singleton = RadioManager();
+			if(singletonInstance == null) {
+				singletonInstance = new RadioManager();
 			}
 
-			return singleton;
+			return singletonInstance;
 		}
 	}
 
@@ -26,7 +26,7 @@ public class RadioManager {
 
 	public void RadioMessage(string sender, string messageName, object value) {
 		for(int i=0; i<cops.Count; i++) {
-			RadioElement element = cops[i];
+			RadioElement element = (RadioElement) cops[i];
 			element.ReceiveMessage(sender, messageName, value);
 		}
 	}
