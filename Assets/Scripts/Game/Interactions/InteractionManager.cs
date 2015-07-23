@@ -8,11 +8,14 @@ public class InteractionManager : MonoBehaviour
 
 	public delegate void OnInteractionSuccess ();
 
+	public delegate void OnInteractionFailure ();
+
 	float startTime;
 	float duration;
 	Slider timeBar;
 	Text timeLabel;
 	OnInteractionSuccess onInteractionSuccess;
+	OnInteractionFailure onInteractionFailure;
 
 	// Use this for initialization
 	void Awake ()
@@ -29,6 +32,9 @@ public class InteractionManager : MonoBehaviour
 		if (!Input.GetButton ("Use") && startTime != 0f) {
 			Debug.Log ("Cancelling action");
 			startTime = 0f;
+			if (onInteractionFailure != null) {
+				onInteractionFailure ();
+			}
 		}
 
 		if (startTime == 0f) {
@@ -40,7 +46,9 @@ public class InteractionManager : MonoBehaviour
 			if ((startTime + duration) < Time.time) {
 				Debug.Log ("Interaction time: " + startTime + " " + duration + " " + Time.time + " " + ((startTime + duration) > Time.time));
 				startTime = 0f;
-				onInteractionSuccess ();
+				if (onInteractionSuccess != null) {
+					onInteractionSuccess ();
+				}
 			}
 		}
 
@@ -49,11 +57,13 @@ public class InteractionManager : MonoBehaviour
 		}
 	}
 
-	public static void StartInteraction (float duration, OnInteractionSuccess onInteractionSuccess, string label = "")
+	public static void StartInteraction (float duration, OnInteractionSuccess onInteractionSuccess, 
+	                                     OnInteractionFailure onInteractionFailure, string label = "")
 	{
-		InteractionManager.instance.startTime = Time.time;
-		InteractionManager.instance.duration = duration;
-		InteractionManager.instance.onInteractionSuccess = onInteractionSuccess;
+		instance.startTime = Time.time;
+		instance.duration = duration;
+		instance.onInteractionSuccess = onInteractionSuccess;
+		instance.onInteractionFailure = onInteractionFailure;
 		instance.timeLabel.text = label;
 	}
 }
