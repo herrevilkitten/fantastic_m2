@@ -5,7 +5,7 @@ public class IntroductionDialog : TalkableObjectWithDialog
 {
 	public override string GetDialogResourceName ()
 	{
-		return "Introduction";
+		return "Cleaner-intro";
 	}
 
 	bool dialogShown = false;
