@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 				StateManager.ToggleCamera ();
 			}
 
-			if (Input.GetKeyDown (KeyCode.J)) {
+			if (Input.GetKeyDown (KeyCode.J) || Input.GetButtonDown ("Cancel")) {
 				StateManager.ChangeGameState (StateManager.GameState.Journal);
 			}
 			break;
