@@ -152,6 +152,16 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 'MuscleClip ''Player@standard_run'' conversion warning:
+      ''mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2'' is between
+      humanoid transforms and has rotation animation. This might lower retargeting
+      quality.
+
+
+'
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -180,7 +190,84 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: LeftFootIKWeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .236496866
+            value: 0
+            inSlope: 0
+            outSlope: 4.41581011
+            tangentMode: 5
+          - time: .32054925
+            value: .632730305
+            inSlope: 7.30523634
+            outSlope: 7.30523634
+            tangentMode: 0
+          - time: .431818157
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .553882599
+            value: .692825615
+            inSlope: -5.94807053
+            outSlope: -5.94807053
+            tangentMode: 0
+          - time: .643449664
+            value: 0
+            inSlope: -1.80661678
+            outSlope: -0
+            tangentMode: 17
+          - time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
+      - name: RightFootIKWeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: 0
+            value: .899999976
+            inSlope: -.647728086
+            outSlope: -.647728086
+            tangentMode: 0
+          - time: .0943181515
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .768910527
+            value: 0
+            inSlope: 0
+            outSlope: 2.82347202
+            tangentMode: 5
+          - time: .851668
+            value: .745060384
+            inSlope: 10.5228548
+            outSlope: 10.5228548
+            tangentMode: 0
+          - time: .954829574
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: .899999976
+            inSlope: -8.99998569
+            outSlope: -8.99998569
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
       events:
       - time: .324120611
         functionName: OnStep

@@ -15,7 +15,6 @@ public class ToggleJournalButton : MonoBehaviour
 			if (StateManager.currentState == StateManager.GameState.Playing) {
 				StateManager.ChangeGameState (StateManager.GameState.Journal);
 			} else {
-				Debug.Log ("Pressing that button");
 				StateManager.ChangeGameState (StateManager.GameState.Playing);
 			}
 			eventSystem.SetSelectedGameObject (null);

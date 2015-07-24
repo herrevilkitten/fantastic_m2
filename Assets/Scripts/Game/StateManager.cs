@@ -42,6 +42,7 @@ public class StateManager : MonoBehaviour
 	void Awake ()
 	{
 		StateManager.stateManager = this;
+		StateManager.ChangeGameState (GameState.Title);
 
 		InvokeRepeating ("UpdateSuspicion", 0f, 1.0f);
 	}
