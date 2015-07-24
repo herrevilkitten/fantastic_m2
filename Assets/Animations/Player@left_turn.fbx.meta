@@ -190,7 +190,59 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: LeftFootIKWeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: 0
+            value: .800000012
+            inSlope: -9.37500095
+            outSlope: -9.37500095
+            tangentMode: 0
+          - time: .251420438
+            value: 0
+            inSlope: -0
+            outSlope: -0
+            tangentMode: 0
+          - time: .823863626
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: .800000012
+            inSlope: -2.45454216
+            outSlope: -2.45454216
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
+      - name: RightFootIKWeight
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: 0
+            value: .25
+            inSlope: 4.32352638
+            outSlope: 4.32352638
+            tangentMode: 0
+          - time: .251420438
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .822443187
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: .25
+            inSlope: 1.76470876
+            outSlope: 1.76470876
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
       events: []
       transformMask:
       - path: 
