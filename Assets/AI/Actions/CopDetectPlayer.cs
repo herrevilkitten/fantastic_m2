@@ -20,12 +20,13 @@ public class CopDetectPlayer : RAINAction
 				continue;
 
 			if (aspect != null) {
-				//Debug.Log ("aspectpoint=" + aspect.MountPoint);
+
 				Debug.Log ("InteractionManager = " + InteractionManager.IsPlayerInteractingWithObject());
 				if (InteractionManager.IsPlayerInteractingWithObject()) {
-					ai.WorkingMemory.SetItem("Player", aspect.MountPoint);
-					ai.WorkingMemory.SetItem("currentAction", "callBackup");
-					Debug.Log ("Calling backup");
+					RadioManager.Singleton.RadioDispatcher(ai, aspect.MountPoint, Time.deltaTime);
+					break;
+				} else {
+					ai.WorkingMemory.SetItem("currentAction", "patrol");
 					break;
 				}
 			}

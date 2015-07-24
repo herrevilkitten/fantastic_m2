@@ -18,8 +18,8 @@ public class CallBackup : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		Debug.Log ("Player = " + ai.WorkingMemory.GetItem ("Player"));
-		Debug.Log ("Player = " + ((Transform) ai.WorkingMemory.GetItem ("Player")).position);
+		//Debug.Log ("Player = " + ai.WorkingMemory.GetItem ("Player"));
+		//Debug.Log ("Player = " + ((Transform) ai.WorkingMemory.GetItem ("Player")).position);
 		radio.RadioMessage ("PlayerPosition", ((Transform) ai.WorkingMemory.GetItem ("Player")).position);
 		//Debug.Log ("calling player position");
 		radio.RadioMessage ("currentAction", "backup");

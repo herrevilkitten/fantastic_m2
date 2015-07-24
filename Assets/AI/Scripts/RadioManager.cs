@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using RAIN.Core;
 
 public class RadioManager {
 	private static RadioManager singleton = new RadioManager();
@@ -29,6 +30,32 @@ public class RadioManager {
 		for(int i=0; i<cops.Count; i++) {
 			RadioElement element = (RadioElement) cops[i];
 			element.ReceiveMessage(sender, messageName, value);
+		}
+	}
+
+	public void RadioDispatcher(AI cop, Transform player, float detectTime) {
+		Debug.Log ("cop = " + cop.Body.name);
+		Debug.Log ("player position = " + player.position);
+		Debug.Log ("detectTime = " + detectTime);
+	}
+
+	class DetectMetadata {
+		string _copName;
+		Vector3 _lastPosition;
+		float _lastDetectTimeAtPosition;
+
+		public DetectMetadata(string copName, Vector3 lastPosition, float lastDetectTimeAtPosition) {
+			_copName = copName;
+			_lastPosition = lastPosition;
+			_lastDetectTimeAtPosition = lastDetectTimeAtPosition;
+		}
+
+		public Vector3 LastPosition {
+			get { return _lastPosition; }
+		}
+
+		public float LastDetectTime {
+			get { return _lastDetectTimeAtPosition; }
 		}
 	}
 }
