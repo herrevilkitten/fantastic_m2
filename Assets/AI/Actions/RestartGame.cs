@@ -28,7 +28,13 @@ public class RestartGame : RAINAction
 				return ActionResult.SUCCESS;
 			}
 
-			if ((currentTime - triggerPlayerAnimTime) > 4.0f) {
+			if ((currentTime - triggerPlayerAnimTime) > 4.0f && (currentTime - triggerPlayerAnimTime) < 10.0f) {
+				StateManager.TurnOnGameOverPanel();
+				return ActionResult.SUCCESS;
+			}
+
+			if ((currentTime - triggerPlayerAnimTime) > 10.0f) {
+				StateManager.TurnOffGameOverPanel();
 				Application.LoadLevel (Application.loadedLevel);
 				return ActionResult.SUCCESS;
 			}

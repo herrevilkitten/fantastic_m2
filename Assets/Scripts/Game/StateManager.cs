@@ -35,6 +35,8 @@ public class StateManager : MonoBehaviour
 	public GameObject journalPanel;
 	public GameObject gamePanel;
 	public GameObject flybyCamera;
+	public GameObject gameOverPanel;
+
 	public Image crosshairs;
 
 	public static StateManager stateManager;
@@ -205,5 +207,13 @@ public class StateManager : MonoBehaviour
 			}
 			CursorManager.CrosshairsCursor ();
 		}
+	}
+
+	public static void TurnOnGameOverPanel() {
+		stateManager.gameOverPanel.SetActive (true);
+	}
+
+	public static void TurnOffGameOverPanel() {
+		stateManager.gameOverPanel.SetActive (false);
 	}
 }
