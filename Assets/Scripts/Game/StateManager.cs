@@ -5,6 +5,20 @@ using System.Collections.Generic;
 
 public class StateManager : MonoBehaviour
 {
+	public const string EVIDENCE_KNIFE = "knife";
+	public const string EVIDENCE_PHONE = "phone";
+	public const string EVIDENCE_PRINTS = "prints";
+	public const string EVIDENCE_WALLET = "wallet";
+	public const string EVIDENCE_KEYS = "keys";
+
+	public static string[] EVIDENCES = {
+		EVIDENCE_KNIFE,
+		EVIDENCE_PHONE,
+		EVIDENCE_PRINTS,
+		EVIDENCE_WALLET,
+		EVIDENCE_KEYS
+	};
+
 	public enum CameraMode
 	{
 		Fixed,
@@ -149,6 +163,11 @@ public class StateManager : MonoBehaviour
 	public static void ClearFlag (string flag)
 	{
 		flags.Remove (flag);
+	}
+	
+	public static void ClearAllFlags (string flag)
+	{
+		flags.Clear ();
 	}
 	
 	public static bool HasFlag (string flag)

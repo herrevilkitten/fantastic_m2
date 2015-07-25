@@ -1,8 +1,45 @@
 [
 	{
-		id: "",
-		shortDescription: "",
-		longDescription: "",
-		disposalMethod: ""
+		id: "knife",
+		notFound: "Client dropped a knife when he fled the scene.",
+		found: "I found the knife. Now to get rid of it.",
+		methods: {
+			"toss",
+			"plant"
+		}
+	},
+	{
+		id: "phone",
+		notFound: "The victim's phone has some compromising messages.",
+		found: "I found the phone. Let's delete the messages and get rid of the phone.",
+		methods: {
+			"toss",
+			"burn"
+		}
+	},
+	{
+		id: "prints",
+		notFound: "The client grabbed the back of the bench before he got his gloves on.",
+		methods: {
+			"wipe"
+		}
+	},
+	{
+		id: "wallet",
+		notFound: "On the way out of the park, the client's wallet fell out of his jacket.",
+		found: "I've got the wallet. A good burning should fix it.",
+		methods: {
+			"burn"
+		}
+	},
+	{
+		id: "keys",
+		notFound: "Keys keys keys",
+		found: "keys",
+		methods: {
+			"toss",
+			"burn",
+			"plant"
+		}
 	}
 ]
