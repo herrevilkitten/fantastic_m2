@@ -39,7 +39,7 @@ public class CopDetectPlayer : RAINAction
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
-
+						ai.WorkingMemory.SetItem ("PlayerPosition", aspect.MountPoint.position);
 						// nothing to observe here. move along (i'm not currently arresting the player either)
 						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
@@ -88,6 +88,7 @@ public class CopDetectPlayer : RAINAction
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("LastDetectedPosition", new Vector3());
+		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
 	}
 
 	public bool ShouldLookForPlayer(AI ai, float currentTime) {
