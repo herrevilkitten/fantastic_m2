@@ -29,14 +29,14 @@ public class CopDetectPlayer : RAINAction
 
 			//i see the player
 			if (matches.Count > 0) {
-				Debug.Log ("Found player");
+				Debug.Log (ai.Body.name + "Found player");
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
 						string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
 						// nothing to observe here. move along (i'm not currently arresting the player either)
 						if (!InteractionManager.IsPlayerInteractingWithObject() && !currentAction.Equals("arrest")) {
-							Debug.Log ("nothing to observe here. move along (i'm not currently arresting the player either)");
+							Debug.Log (ai.Body.name + "nothing to observe here. move along (i'm not currently arresting the player either)");
 							Patrol (ai);
 							break;
 						}
@@ -44,7 +44,7 @@ public class CopDetectPlayer : RAINAction
 						if (InteractionManager.IsPlayerInteractingWithObject()) {
 							// hmm... i'm not observing. let me check out what this guy is doing
 							if (!currentAction.Equals("observe")) {
-								Debug.Log ("hmm... i'm not observing. let me check out what this guy is doing");
+								Debug.Log (ai.Body.name + "hmm... i'm not observing. let me check out what this guy is doing");
 
 								ai.WorkingMemory.SetItem("currentAction", "observe");
 								ai.WorkingMemory.SetItem("FirstObservedTime", currentTime);
@@ -54,7 +54,7 @@ public class CopDetectPlayer : RAINAction
 
 							//currently observing the player
 							if (currentAction.Equals ("observe")) {
-								Debug.Log ("i'm observing and he looks suspicius. let's check with dispatcher if i should radio him in");
+								Debug.Log (ai.Body.name + "i'm observing and he looks suspicius. let's check with dispatcher if i should radio him in");
 								//call in suspicious behavior and see what dispatcher tells me to do based on current suspicion score
 								string nextAction = radio.RadioDispatcher(ai, aspect.MountPoint, currentTime);
 								ai.WorkingMemory.SetItem("currentAction", nextAction);
@@ -63,18 +63,18 @@ public class CopDetectPlayer : RAINAction
 
 							//do not stop the arrest sequence
 							if (currentAction.Equals("arrest")) {
-								Debug.Log ("continue arresting");
+								Debug.Log (ai.Body.name + "continue arresting");
 								break;
 							} 
 
-							Debug.Log ("I'm gonna patrol. he does not look suspicious");
+							Debug.Log (ai.Body.name + "I'm gonna patrol. he does not look suspicious");
 							Patrol (ai);
 						}
 					}
 				}
 				//I do not see the player. Keep patrolling
 			} else {
-				Debug.Log ("No player, patrol");
+				Debug.Log (ai.Body.name + "No player, patrol");
 				Patrol (ai);
 			}
 		}

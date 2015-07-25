@@ -34,10 +34,14 @@ public class RadioElement : CustomAIElement
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
 		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
+
 		if (HasPlayerNotMovedFromLastObjectDetection (cop, player) && ( (firstObservedTime != 0) && (currentTime - firstObservedTime) > 2 )) {
+			Debug.Log (cop.Body.name + "did radio dispatcher");
 			RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
 			return "observe";
 		} 
+
+		Debug.Log (cop.Body.name + "did not radio dispatcher");
 
 		return "observe";
 	}
