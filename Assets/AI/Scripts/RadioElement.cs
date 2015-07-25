@@ -34,11 +34,21 @@ public class RadioElement : CustomAIElement
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
 		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
+		Debug.Log ("firstObservedTime = " + firstObservedTime);
+		Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
+		if ((firstObservedTime != 0) && ((currentTime - firstObservedTime) > 1.0f )) {
+			if (HasPlayerNotMovedFromLastObjectDetection(cop, player)) {
+				Debug.Log (cop.Body.name + "Player is linger enough to cause suspicion. Calling dispatcher");
+				RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
 
-		if (HasPlayerNotMovedFromLastObjectDetection (cop, player) && ( (firstObservedTime != 0) && (currentTime - firstObservedTime) > 2 )) {
-			Debug.Log (cop.Body.name + "did radio dispatcher");
-			RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
-			return "observe";
+				Debug.Log ("Suspicion Level = " + StateManager.GetSuspicion());
+				if (StateManager.GetSuspicion()>=50) {
+					return "arrest";
+				} else {
+					return "observe";
+				}
+
+			}
 		} 
 
 		Debug.Log (cop.Body.name + "did not radio dispatcher");
@@ -46,11 +56,11 @@ public class RadioElement : CustomAIElement
 		return "observe";
 	}
 
-	private bool HasPlayerNotMovedFromLastObjectDetection(AI cop, Transform player) {
+	private bool HasPlayerMovedFromLastObjectDetection(AI cop, Transform player) {
 		return !HasPlayerMovedFromLastObjectDetection (cop , player);
 	}
 	
-	private bool HasPlayerMovedFromLastObjectDetection(AI cop, Transform player) {
+	private bool HasPlayerNotMovedFromLastObjectDetection(AI cop, Transform player) {
 		Vector3 latestPosition = player.position;
 		Vector3 lastPosition = cop.WorkingMemory.GetItem <Vector3> ("LastDetectedPosition");
 
@@ -60,11 +70,12 @@ public class RadioElement : CustomAIElement
 			
 			bool xNear = ((-1) * 10.0f) <= difference.x && difference.x <= 10.0f;
 			bool zNear = ((-1) * 10.0f) <= difference.z && difference.z <= 10.0f;
-			
+		
+			Debug.Log ("xNear && zNear= " + (xNear && zNear));
 			return xNear && zNear;
 		}
-
-		return true;
+		Debug.Log ("no last position found");
+		return false;
 	}
 }
 

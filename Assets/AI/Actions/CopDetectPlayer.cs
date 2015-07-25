@@ -19,6 +19,12 @@ public class CopDetectPlayer : RAINAction
 		}
 
 		float currentTime = Time.fixedTime;
+		string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
+		//do not stop the arrest sequence
+		if (currentAction.Equals("arrest")) {
+			Debug.Log (ai.Body.name + "continue arresting");
+			return;
+		} 
 
 		//has it been greater than 1.5f seconds since I last looked for the player
 
@@ -33,9 +39,11 @@ public class CopDetectPlayer : RAINAction
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
-						string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
+						ai.WorkingMemory.SetItem ("PlayerPosition", aspect.MountPoint.position);
 						// nothing to observe here. move along (i'm not currently arresting the player either)
-						if (!InteractionManager.IsPlayerInteractingWithObject() && !currentAction.Equals("arrest")) {
+						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
+
+						if (!InteractionManager.IsPlayerInteractingWithObject() && !currentAction.Equals("arrest") && (currentTime - lastObservedTime > 7.0f) ) {
 							Debug.Log (ai.Body.name + "nothing to observe here. move along (i'm not currently arresting the player either)");
 							Patrol (ai);
 							break;
@@ -61,11 +69,6 @@ public class CopDetectPlayer : RAINAction
 								break;
 							}
 
-							//do not stop the arrest sequence
-							if (currentAction.Equals("arrest")) {
-								Debug.Log (ai.Body.name + "continue arresting");
-								break;
-							} 
 
 							Debug.Log (ai.Body.name + "I'm gonna patrol. he does not look suspicious");
 							Patrol (ai);
@@ -85,13 +88,14 @@ public class CopDetectPlayer : RAINAction
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("LastDetectedPosition", new Vector3());
+		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
 	}
 
 	public bool ShouldLookForPlayer(AI ai, float currentTime) {
 
 		float lastDetectCycle = ai.WorkingMemory.GetItem<float> ("LastDetectCycle");
 
-		return (lastDetectCycle == 0.0f) || ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 1.0f);
+		return (lastDetectCycle == 0.0f) || ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 0.5f);
 	}
 
 }

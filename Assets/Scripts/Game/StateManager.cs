@@ -94,6 +94,10 @@ public class StateManager : MonoBehaviour
 	{
 		detectionCount = detectionCount + amount;
 	}
+
+	public static int GetSuspicion() {
+		return suspicionLevel;
+	}
 	
 	public static GameState currentState = GameState.Title;
 	public static void ChangeGameState (GameState newState)
