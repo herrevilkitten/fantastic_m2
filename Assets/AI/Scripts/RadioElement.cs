@@ -34,8 +34,9 @@ public class RadioElement : CustomAIElement
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
 		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
-
-		if (HasPlayerNotMovedFromLastObjectDetection (cop, player) && ( (firstObservedTime != 0) && (currentTime - firstObservedTime) > 2 )) {
+		Debug.Log ("firstObservedTime = " + firstObservedTime);
+		Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
+		if ((firstObservedTime != 0) && ((currentTime - firstObservedTime) > 1.0f )) {
 			Debug.Log (cop.Body.name + "did radio dispatcher");
 			RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
 			return "observe";
@@ -60,10 +61,11 @@ public class RadioElement : CustomAIElement
 			
 			bool xNear = ((-1) * 10.0f) <= difference.x && difference.x <= 10.0f;
 			bool zNear = ((-1) * 10.0f) <= difference.z && difference.z <= 10.0f;
-			
+		
+			Debug.Log ("xNear && zNear= " + (xNear && zNear));
 			return xNear && zNear;
 		}
-
+		Debug.Log ("no last position found");
 		return true;
 	}
 }

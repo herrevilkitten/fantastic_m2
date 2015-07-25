@@ -35,7 +35,9 @@ public class CopDetectPlayer : RAINAction
 					if (aspect != null) {
 						string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
 						// nothing to observe here. move along (i'm not currently arresting the player either)
-						if (!InteractionManager.IsPlayerInteractingWithObject() && !currentAction.Equals("arrest")) {
+						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
+
+						if (!InteractionManager.IsPlayerInteractingWithObject() && !currentAction.Equals("arrest") && (currentTime - lastObservedTime > 7.0f) ) {
 							Debug.Log (ai.Body.name + "nothing to observe here. move along (i'm not currently arresting the player either)");
 							Patrol (ai);
 							break;
@@ -91,7 +93,7 @@ public class CopDetectPlayer : RAINAction
 
 		float lastDetectCycle = ai.WorkingMemory.GetItem<float> ("LastDetectCycle");
 
-		return (lastDetectCycle == 0.0f) || ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 1.0f);
+		return (lastDetectCycle == 0.0f) || ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 0.5f);
 	}
 
 }
