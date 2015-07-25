@@ -19,6 +19,12 @@ public class CopDetectPlayer : RAINAction
 		}
 
 		float currentTime = Time.fixedTime;
+		string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
+		//do not stop the arrest sequence
+		if (currentAction.Equals("arrest")) {
+			Debug.Log (ai.Body.name + "continue arresting");
+			return;
+		} 
 
 		//has it been greater than 1.5f seconds since I last looked for the player
 
@@ -33,7 +39,7 @@ public class CopDetectPlayer : RAINAction
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
-						string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
+
 						// nothing to observe here. move along (i'm not currently arresting the player either)
 						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
@@ -63,11 +69,6 @@ public class CopDetectPlayer : RAINAction
 								break;
 							}
 
-							//do not stop the arrest sequence
-							if (currentAction.Equals("arrest")) {
-								Debug.Log (ai.Body.name + "continue arresting");
-								break;
-							} 
 
 							Debug.Log (ai.Body.name + "I'm gonna patrol. he does not look suspicious");
 							Patrol (ai);

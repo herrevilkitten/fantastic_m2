@@ -37,9 +37,18 @@ public class RadioElement : CustomAIElement
 		Debug.Log ("firstObservedTime = " + firstObservedTime);
 		Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
 		if ((firstObservedTime != 0) && ((currentTime - firstObservedTime) > 1.0f )) {
-			Debug.Log (cop.Body.name + "did radio dispatcher");
-			RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
-			return "observe";
+			if (HasPlayerNotMovedFromLastObjectDetection(cop, player)) {
+				Debug.Log (cop.Body.name + "Player is linger enough to cause suspicion. Calling dispatcher");
+				RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
+
+				Debug.Log ("Suspicion Level = " + StateManager.GetSuspicion());
+				if (StateManager.GetSuspicion()>=50) {
+					return "arrest";
+				} else {
+					return "observe";
+				}
+
+			}
 		} 
 
 		Debug.Log (cop.Body.name + "did not radio dispatcher");
@@ -47,11 +56,11 @@ public class RadioElement : CustomAIElement
 		return "observe";
 	}
 
-	private bool HasPlayerNotMovedFromLastObjectDetection(AI cop, Transform player) {
+	private bool HasPlayerMovedFromLastObjectDetection(AI cop, Transform player) {
 		return !HasPlayerMovedFromLastObjectDetection (cop , player);
 	}
 	
-	private bool HasPlayerMovedFromLastObjectDetection(AI cop, Transform player) {
+	private bool HasPlayerNotMovedFromLastObjectDetection(AI cop, Transform player) {
 		Vector3 latestPosition = player.position;
 		Vector3 lastPosition = cop.WorkingMemory.GetItem <Vector3> ("LastDetectedPosition");
 
@@ -66,7 +75,7 @@ public class RadioElement : CustomAIElement
 			return xNear && zNear;
 		}
 		Debug.Log ("no last position found");
-		return true;
+		return false;
 	}
 }
 

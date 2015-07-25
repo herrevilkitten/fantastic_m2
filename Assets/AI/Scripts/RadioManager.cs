@@ -35,6 +35,6 @@ public class RadioManager {
 	}
 
 	public void RadioDispatcher(AI cop, Transform player, float detectTime) {
-		StateManager.AddDetection (5);
+		StateManager.AddSuspicion (10);
 	}
 }
