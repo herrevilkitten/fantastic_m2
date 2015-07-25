@@ -9,13 +9,14 @@ public class InteractionManager : MonoBehaviour
 
 	private static bool isInteracting;
 
-	public static bool IsPlayerInteractingWithObject() {
+	public static bool IsPlayerInteractingWithObject ()
+	{
 		return isInteracting;
 	}
 
-	public delegate void OnInteractionSuccess ();
+	public delegate void OnInteractionSuccess (GameObject actor);
 
-	public delegate void OnInteractionFailure ();
+	public delegate void OnInteractionFailure (GameObject actor);
 
 	float startTime;
 	float duration;
@@ -43,7 +44,7 @@ public class InteractionManager : MonoBehaviour
 			isInteracting = false;
 
 			if (onInteractionFailure != null) {
-				onInteractionFailure ();
+				onInteractionFailure (GameObject.FindGameObjectWithTag ("Player"));
 			}
 		}
 
@@ -63,7 +64,7 @@ public class InteractionManager : MonoBehaviour
 				isInteracting = false;
 
 				if (onInteractionSuccess != null) {
-					onInteractionSuccess ();
+					onInteractionSuccess (GameObject.FindGameObjectWithTag ("Player"));
 				}
 			}
 		}

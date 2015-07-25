@@ -27,7 +27,7 @@ public class ShowJournal : MonoBehaviour
 		string text = "";
 		foreach (string evidence in StateManager.EVIDENCES) {
 			Debug.Log ("Evidence: " + evidences [evidence].ToJSON (0));
-			if (!StateManager.HasFlag (evidence + "Found")) {
+			if (!StateManager.HasFlag (evidence + "Gathered")) {
 				text = text + "* " + evidences [evidence] ["notFound"].Value + "\n";
 			} else if (!StateManager.HasFlag (evidence + "Removed")) {
 				text = text + "* " + evidences [evidence] ["found"].Value + "\n";

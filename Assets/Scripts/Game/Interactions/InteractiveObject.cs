@@ -55,6 +55,7 @@ abstract public class InteractiveObject : MonoBehaviour
 	
 	virtual public void OnMouseEnter ()
 	{
+		Debug.Log ("Entering an object");
 		CursorManager.UseCursor ();
 	}
 	

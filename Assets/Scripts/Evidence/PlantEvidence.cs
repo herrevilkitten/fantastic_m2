@@ -5,7 +5,7 @@ public class PlantEvidence : UsableAfterTime
 {
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()
 	{
-		return () => {
+		return (GameObject actor) => {
 			Debug.Log ("Plant that evidence!");
 		};
 	}
