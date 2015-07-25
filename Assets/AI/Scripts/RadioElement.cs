@@ -30,6 +30,38 @@ public class RadioElement : CustomAIElement
 		//TODO: Add timestamp
 		RadioManager.Singleton.RadioMessage (sender, variableName, value);
 	}
+
+	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
+		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
+
+		if (HasPlayerNotMovedFromLastObjectDetection (cop, player) && ( (firstObservedTime != 0) && (currentTime - firstObservedTime) > 2 )) {
+			RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
+			return "observe";
+		} 
+
+		return "observe";
+	}
+
+	private bool HasPlayerNotMovedFromLastObjectDetection(AI cop, Transform player) {
+		return !HasPlayerMovedFromLastObjectDetection (cop , player);
+	}
+	
+	private bool HasPlayerMovedFromLastObjectDetection(AI cop, Transform player) {
+		Vector3 latestPosition = player.position;
+		Vector3 lastPosition = cop.WorkingMemory.GetItem <Vector3> ("LastDetectedPosition");
+
+		if (lastPosition != null) {
+
+			Vector3 difference = latestPosition - lastPosition;
+			
+			bool xNear = ((-1) * 10.0f) <= difference.x && difference.x <= 10.0f;
+			bool zNear = ((-1) * 10.0f) <= difference.z && difference.z <= 10.0f;
+			
+			return xNear && zNear;
+		}
+
+		return true;
+	}
 }
 
 

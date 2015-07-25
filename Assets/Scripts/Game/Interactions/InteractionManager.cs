@@ -39,7 +39,7 @@ public class InteractionManager : MonoBehaviour
 		if (!Input.GetButton ("Use") && startTime != 0f) {
 			startTime = 0f;
 
-			Debug.Log ("No longer interacting");
+//			Debug.Log ("No longer interacting");
 			isInteracting = false;
 
 			if (onInteractionFailure != null) {
@@ -59,7 +59,7 @@ public class InteractionManager : MonoBehaviour
 			if ((startTime + duration) < Time.time) {
 				startTime = 0f;
 
-				Debug.Log ("No longer interacting");
+//				Debug.Log ("No longer interacting");
 				isInteracting = false;
 
 				if (onInteractionSuccess != null) {

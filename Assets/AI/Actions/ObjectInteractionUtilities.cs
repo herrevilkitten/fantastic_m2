@@ -12,8 +12,6 @@ public class ObjectInteractionUtilities {
 		
 		Vector3 difference = playerPosition - npcPosition;
 		
-		Debug.Log ("difference = " + difference);
-		
 		bool xNear = ((-1)*range) <= difference.x && difference.x <= range;
 		bool zNear = ((-1)*range) <= difference.z && difference.z <= range;
 		
@@ -43,7 +41,6 @@ public class ObjectInteractionUtilities {
 	public static bool IsLastPositionInitialized(RAIN.Core.AI ai)  
 	{
 		Vector3 lastPosition = GetLastPosition (ai);
-		Debug.Log ("lastPosition = " + lastPosition);
 		return (lastPosition.x != 0 || lastPosition.y != 0 || lastPosition.z != 0);
 		
 	}

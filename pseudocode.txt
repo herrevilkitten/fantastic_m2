@@ -1,0 +1,48 @@
+1. Sees the player doing something fishy
+- Checks if anyone has noted suspicious character
+-- if first time caught, then cop will follow for 5 seconds. Increase suspicion level by 5
+-- if second time caught, then cop will follow for 10 seconds. Increase suspicion level by 10
+-- if third time caught, then cop will call reinforcement and arrrest you
+
+-- if no, cop will observe and note suspicions character
+
+=====
+
+If (IsPlayerInteractingWithObject) {
+	
+	//start observing
+	if (last time observed player NEAR (within a range of) position and interacting with the object > 25 seconds ago || never seen player interact here) {
+		startOfObservation = currentTime;
+		storePlayerLastLocationAndTime
+		currentAction = observe;
+		return success;
+	} else if ((startOfObservation + 2 < currentTime) && currentAction = observe) {
+		increaseDetectionScore (5*numberOfTimesObserved)
+		If (DetectionScore > 50) {
+			currentAction = callBackupForArrest
+			call in position + velocity 
+		} else {
+			currentAction = patrol;
+		}
+	}
+}
+	
+If (!IsPlayerInteractingWithObject) {
+	currentAction = patrol
+}
+	
+
+
+
+
+If cop is currently observing... 
+	//same cop observed for longer than 3 seconds doing the same behavior
+	if currentAction == observe AND should I report suspicious behavior
+		call in behavior to dispatcher (dispatcher increases suspicion score)
+	
+		
+	
+If cop is not observing...
+	start observing
+
+
