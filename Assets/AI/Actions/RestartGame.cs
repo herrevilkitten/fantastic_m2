@@ -28,7 +28,7 @@ public class RestartGame : RAINAction
 				return ActionResult.SUCCESS;
 			}
 
-			if ((currentTime - triggerPlayerAnimTime) > 5.0f) {
+			if ((currentTime - triggerPlayerAnimTime) > 4.0f) {
 				Application.LoadLevel (Application.loadedLevel);
 				return ActionResult.SUCCESS;
 			}
