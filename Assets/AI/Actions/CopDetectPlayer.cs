@@ -43,6 +43,7 @@ public class CopDetectPlayer : RAINAction
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
+						ai.WorkingMemory.SetItem ("Player", aspect.MountPoint);
 						ai.WorkingMemory.SetItem ("PlayerPosition", aspect.MountPoint.position);
 
 						if (currentAction.Equals("arrest")) {
