@@ -4,21 +4,20 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class PlayerIK : MonoBehaviour {
 	public bool ikActive = false;
-
 	public Transform rightHandObj = null;
+	
+	protected Animator animator;
 
 	Vector3 leftFootPos;
 	Vector3 rightFootPos;
 	Quaternion leftFootRot;
 	Quaternion rightFootRot;
-
-	float leftFootWeight = 1f;
-	float rightFootWeight = 1f;
-
 	Transform leftFoot;
 	Transform rightFoot;
 
-	protected Animator animator;
+	float leftFootWeight = 0f;
+	float rightFootWeight = 0f;
+	float ikStartDelay = 5.0f;
 
 	void Start () 
 	{
@@ -52,7 +51,7 @@ public class PlayerIK : MonoBehaviour {
 	void OnAnimatorIK()
 	{
 		if(animator) {
-			if(ikActive) {
+			if(ikActive && Time.realtimeSinceStartup > ikStartDelay) {
 				UpdateFeet();
 				UpdateHands();
 			}
