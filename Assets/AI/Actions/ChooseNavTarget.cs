@@ -18,41 +18,44 @@ public class ChooseNavTarget : RAINAction
 		Vector3 location = ai.WorkingMemory.GetItem<Vector3> ("location");
 		Vector3 myLastLocation = ai.WorkingMemory.GetItem<Vector3> ("myLastLocation");
 		Vector3 myCurrentLocation = ai.Body.transform.position;
+		Vector3 myPreviousLocation = ai.WorkingMemory.GetItem<Vector3> ("previousLocation");
 
 		float myLastLocationTime = ai.WorkingMemory.GetItem<float> ("myLastLocationTime");
 		float myCurrentLocationTime = Time.time;
-
-
+		float replacedLocationTime = ai.WorkingMemory.GetItem<float> ("replacedLocationTime");
+		/*
 		Debug.Log (ai.Body.name + ": myLastLocation = " + myLastLocation);
 		Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
+		Debug.Log (ai.Body.name + ": myPreviousLocation = " + myPreviousLocation);
 		Debug.Log (ai.Body.name + ": going to location = " + location);
 		Debug.Log (ai.Body.name + ": ai.Motor.IsAt = " + ai.Motor.IsAt(location));
+*/
 
-		if (location.Equals (Vector3.zero) || ai.Motor.IsAt (location)) {
+		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough (myCurrentLocation, location)) {
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 			
-//			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
-
+			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
 		
 			ai.WorkingMemory.SetItem ("location", nextPosition);
 			ai.Motor.Speed = 1.5f;
 
 			RAIN.Navigation.Pathfinding.RAINPath myPath;
 			ai.Navigator.GetPathTo (nextPosition, 100, 1000, true, out myPath);
-
+//			ai.Motor.AllowOffGraphMovement = false;
 			ai.Navigator.CurrentPath = myPath;
 			ai.Motor.MoveTo (nextPosition);
+
+			ai.WorkingMemory.RemoveItem("replacedLocationTime");
+			ai.WorkingMemory.RemoveItem("previousLocation");
 		} else {
 			RaycastHit hit;
 			Vector3 startPoint = new Vector3 (ai.Body.transform.position.x, ai.Body.transform.position.y + 1, ai.Body.transform.position.z);
-			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 8.0f)) {
-				Debug.Log ("tag = " + hit.transform.tag);
-
-				Debug.Log (ai.Body.name + ": **************************************something is in front of me. I'm gonna avoid it**************************************");
+			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 5.0f)) {
+//				Debug.Log (ai.Body.name + ": **************************************something is in front of me. I'm gonna avoid it**************************************");
 				Vector3 dir = (location - ai.Body.transform.position).normalized;
-				dir += hit.normal * 20;
+				dir += hit.normal * 10;
 				Quaternion rot = Quaternion.LookRotation (dir);
-				Debug.Log("rot : " + rot);
+//				Debug.Log("rot : " + rot);
 				ai.Body.transform.rotation = Quaternion.Slerp (ai.Body.transform.rotation, rot, Time.deltaTime);
 			}
 
@@ -66,19 +69,31 @@ public class ChooseNavTarget : RAINAction
 				newlocation.y = myCurrentLocation.y;
 				newlocation.z = (float) (myCurrentLocation.z + rand.Next(-5, 5) + rand.NextDouble());
 
-				ai.WorkingMemory.SetItem ("previousLocation", location);
+				if (myPreviousLocation.Equals(Vector3.zero)) {
+					ai.WorkingMemory.SetItem ("previousLocation", location);
+				}
+
 				location = newlocation;
 				ai.WorkingMemory.SetItem ("location", newlocation);
 				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+
+				ai.WorkingMemory.SetItem ("replacedLocationTime", myCurrentLocationTime);
+				location = newlocation;
 			}
 
 			ai.Motor.MoveTo (location);
 		}
 
 		if (myCurrentLocationTime - myLastLocationTime > 2.0f) {
-			Debug.Log ("Should record my last position");
+//			Debug.Log ("Should record my last position");
 			ai.WorkingMemory.SetItem ("myLastLocation", myCurrentLocation);
 			ai.WorkingMemory.SetItem ("myLastLocationTime", myCurrentLocationTime);
+		}
+
+		if (replacedLocationTime!=0.0f && myCurrentLocationTime - replacedLocationTime > 15.0f) {
+			ai.WorkingMemory.SetItem ("location", myPreviousLocation);
+			ai.WorkingMemory.RemoveItem("replacedLocationTime");
+			ai.WorkingMemory.RemoveItem("previousLocation");
 		}
 
 

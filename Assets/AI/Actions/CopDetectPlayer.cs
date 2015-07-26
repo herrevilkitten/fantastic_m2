@@ -55,17 +55,20 @@ public class CopDetectPlayer : RAINAction
 						Vector3 lastDetectedPosition = ai.WorkingMemory.GetItem <Vector3> ("LastDetectedPosition");
 
 						if (!currentAction.Equals("observe")) {
+							/*
 							Debug.Log (ai.Body.name + "hmm... i'm not observing. let me check out what this guy is doing");
 							Debug.Log ("aspect.MountPoint.position = " + aspect.MountPoint.position);
 							Debug.Log ("lastDetectedPosition = " + lastDetectedPosition);
-
+*/
 							if (AreTwoVectorsCloseEnough(lastDetectedPosition, aspect.MountPoint.position)) {
-								Debug.Log (ai.Body.name + "hmm... looks like he hasn't moved since i last looked at him. Nothing to do here!");
+//								Debug.Log (ai.Body.name + "hmm... looks like he hasn't moved since i last looked at him. Nothing to do here!");
 								Patrol (ai);
 								break;
 							} else {
+								/*
 								Debug.Log (ai.Body.name + " lastDetectedPosition = " + lastDetectedPosition);
 								Debug.Log (ai.Body.name + "hmm... looks like he's moved since i last observed him. Let's observe him");
+								*/
 								ai.WorkingMemory.SetItem("currentAction", "observe");
 								ai.WorkingMemory.SetItem("FirstObservedTime", currentTime);
 								ai.WorkingMemory.SetItem("LastDetectedPosition", aspect.MountPoint.position);
@@ -76,7 +79,7 @@ public class CopDetectPlayer : RAINAction
 						//currently observing the player
 						if (currentAction.Equals ("observe")) {
 							if (InteractionManager.IsPlayerInteractingWithObject()) {
-								Debug.Log (ai.Body.name + "i'm observing and he looks suspicius. let's check with dispatcher if i should radio him in");
+								//Debug.Log (ai.Body.name + "i'm observing and he looks suspicius. let's check with dispatcher if i should radio him in");
 								//call in suspicious behavior and see what dispatcher tells me to do based on current suspicion score
 								string nextAction = radio.RadioDispatcher(ai, aspect.MountPoint, currentTime);
 								ai.WorkingMemory.SetItem("currentAction", nextAction);
@@ -84,7 +87,7 @@ public class CopDetectPlayer : RAINAction
 							}
 
 							if (currentTime - lastObservedTime > 10.0f) {
-								Debug.Log (ai.Body.name + "Player is not doing anything suspicous after 25 seconds. Move along.");
+								//Debug.Log (ai.Body.name + "Player is not doing anything suspicous after 25 seconds. Move along.");
 								Patrol (ai);
 								break;
 							}
@@ -101,7 +104,7 @@ public class CopDetectPlayer : RAINAction
 					return Arrest (ai);
 				}
 
-				Debug.Log (ai.Body.name + "No player, patrol");
+				//Debug.Log (ai.Body.name + "No player, patrol");
 				Patrol (ai);
 
 				//StateManager.ReduceDetection(ai.Body.name);
@@ -123,7 +126,7 @@ public class CopDetectPlayer : RAINAction
 	}
 
 	public void Patrol(AI ai) {
-		Debug.Log ("just patrolling");
+//		Debug.Log ("just patrolling");
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
