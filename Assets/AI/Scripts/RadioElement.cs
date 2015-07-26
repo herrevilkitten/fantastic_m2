@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using RAIN.Core;
 using RAIN.Serialization;
@@ -9,10 +11,21 @@ public class RadioElement : CustomAIElement
 	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip = "")]
 	private string sender = "";
 
+	// the full set dialog that will be spoken between two NPCs (Assumes that conversation will go back and forth
+	[RAINSerializableField(Visibility = FieldVisibility.Show, ToolTip="Navigation targets")]
+	private List<GameObject> listOfTargets = new List<GameObject>();
+
 	public override void AIInit()
 	{
 		base.AIInit();
+		InitializeTargets ();
 		ListenTo ();	
+	}
+
+	private void InitializeTargets() {
+		foreach (GameObject element in listOfTargets) {
+			RadioManager.Singleton.AddTarget(element);
+		}
 	}
 
 	public void ListenTo() {
@@ -29,6 +42,16 @@ public class RadioElement : CustomAIElement
 	public void RadioMessage(string variableName, object value) {
 		//TODO: Add timestamp
 		RadioManager.Singleton.RadioMessage (sender, variableName, value);
+	}
+
+	public void RadioReduceDetection(AI cop) {
+		//TODO: Add timestamp
+		RadioManager.Singleton.RadioReduceDetection (cop);
+	}
+
+	public void RadioAddDetection(AI cop) {
+		//TODO: Add timestamp
+		RadioManager.Singleton.RadioAddDetection (cop);
 	}
 
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {

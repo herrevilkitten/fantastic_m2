@@ -44,7 +44,8 @@ public class CopDetectPlayer : RAINAction
 						ai.WorkingMemory.SetItem ("PlayerPosition", aspect.MountPoint.position);
 
 						//add detection
-						StateManager.AddDetection(ai.Body.name);
+						//StateManager.AddDetection(ai.Body.name);
+						radio.RadioReduceDetection(ai);
 
 						if (currentAction.Equals("arrest")) {
 							Debug.Log (ai.Body.name + "continue arresting");
@@ -58,14 +59,23 @@ public class CopDetectPlayer : RAINAction
 						} 
 
 						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
+						Vector3 lastDetectedPosition = ai.WorkingMemory.GetItem <Vector3> ("LastDetectedPosition");
 
 						if (!currentAction.Equals("observe")) {
 							Debug.Log (ai.Body.name + "hmm... i'm not observing. let me check out what this guy is doing");
-							
-							ai.WorkingMemory.SetItem("currentAction", "observe");
-							ai.WorkingMemory.SetItem("FirstObservedTime", currentTime);
-							ai.WorkingMemory.SetItem("LastDetectedPosition", aspect.MountPoint.position);
-							break;
+
+							if (aspect.MountPoint.position.Equals(lastDetectedPosition)) {
+								Debug.Log (ai.Body.name + "hmm... looks like he's not moving. Nothing to do here!");
+								Patrol (ai);
+								break;
+							} else {
+								Debug.Log (ai.Body.name + " lastDetectedPosition = " + lastDetectedPosition);
+								Debug.Log (ai.Body.name + "hmm... looks like he's moved since i last observed him. Let's observe him");
+								ai.WorkingMemory.SetItem("currentAction", "observe");
+								ai.WorkingMemory.SetItem("FirstObservedTime", currentTime);
+								ai.WorkingMemory.SetItem("LastDetectedPosition", aspect.MountPoint.position);
+								break;
+							}
 						}
 						
 						//currently observing the player
@@ -106,7 +116,8 @@ public class CopDetectPlayer : RAINAction
 //				Debug.Log (ai.Body.name + "No player, patrol");
 				Patrol (ai);
 
-				StateManager.ReduceDetection(ai.Body.name);
+				//StateManager.ReduceDetection(ai.Body.name);
+				radio.RadioReduceDetection(ai);
 
 			}
 		}
@@ -117,7 +128,6 @@ public class CopDetectPlayer : RAINAction
 //		Debug.Log ("just patrolling");
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
-		ai.WorkingMemory.SetItem("LastDetectedPosition", new Vector3());
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
 	}
 
