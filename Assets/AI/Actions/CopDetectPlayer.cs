@@ -30,18 +30,21 @@ public class CopDetectPlayer : RAINAction
 		//has it been greater than 1.5f seconds since I last looked for the player
 
 		if (ShouldLookForPlayer(ai, currentTime)) {
-			Debug.Log ("Look for player");
+//			Debug.Log ("Look for player");
 			IList<RAINAspect> matches = ai.Senses.Sense("VisualSensor", "PlayerAspect", RAINSensor.MatchType.ALL);
 			ai.WorkingMemory.SetItem<float>("LastDetectCycle", currentTime);
 
 			//i see the player
 			if (matches.Count > 0) {
-				Debug.Log (ai.Body.name + "Found player");
+//				Debug.Log (ai.Body.name + "Found player");
 				foreach (RAINAspect aspect in matches)
 				{
 					if (aspect != null) {
 						ai.WorkingMemory.SetItem ("Player", aspect.MountPoint);
 						ai.WorkingMemory.SetItem ("PlayerPosition", aspect.MountPoint.position);
+
+						//add detection
+						StateManager.AddDetection(ai.Body.name);
 
 						if (currentAction.Equals("arrest")) {
 							Debug.Log (ai.Body.name + "continue arresting");
@@ -100,15 +103,18 @@ public class CopDetectPlayer : RAINAction
 					return ActionResult.SUCCESS;
 				}
 
-				Debug.Log (ai.Body.name + "No player, patrol");
+//				Debug.Log (ai.Body.name + "No player, patrol");
 				Patrol (ai);
+
+				StateManager.ReduceDetection(ai.Body.name);
+
 			}
 		}
 		return ActionResult.SUCCESS;
 	}
 
 	public void Patrol(AI ai) {
-		Debug.Log ("just patrolling");
+//		Debug.Log ("just patrolling");
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("LastDetectedPosition", new Vector3());

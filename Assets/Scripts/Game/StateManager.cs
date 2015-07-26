@@ -12,6 +12,9 @@ public class StateManager : MonoBehaviour
 	public const string EVIDENCE_WALLET = "wallet";
 	public const string EVIDENCE_KEYS = "keys";
 
+
+	private static Dictionary<string, string> detected = new Dictionary<string, string>();
+
 	public static string[] EVIDENCES = {
 		EVIDENCE_KNIFE,
 		EVIDENCE_PHONE,
@@ -88,14 +91,24 @@ public class StateManager : MonoBehaviour
 		ModifySuspicion (amount);
 	}
 	
-	public static void ReduceDetection (int amount = 1)
+	public static void ReduceDetection (string detectionName, int amount = 1)
 	{
-		detectionCount = Mathf.Max (detectionCount - amount, 0);
+		if (detected.ContainsKey (detectionName)) {
+		//	Debug.Log ("Remove " + detectionName);
+			detected.Remove (detectionName);
+			detectionCount = Mathf.Max (detectionCount - amount, 0);
+		}
 	}
 	
-	public static void AddDetection (int amount = 1)
+	public static void AddDetection (string detectionName, int amount = 1)
 	{
-		detectionCount = detectionCount + amount;
+		//Debug.Log ("detected.ContainsKey(detectionName)=" + detected.ContainsKey (detectionName));
+
+		if (!detected.ContainsKey(detectionName)) {
+			//Debug.Log ("Add " + detectionName);
+			detected.Add(detectionName, detectionName);
+			detectionCount = detectionCount + amount;
+		}
 	}
 
 	public static int GetSuspicion() {
