@@ -24,7 +24,7 @@ public class DoFakeConversationAction : RAINAction
 		GameObject currentTalker = commManager.GetCurrentFakeTalker ();
 		string message = commManager.NextFakeDialog ();
 
-		DialogManager.Floating(currentTalker, message);
+		DialogManager.Floating(currentTalker, currentTalker.name + ": " + message);
 
 		return ActionResult.SUCCESS;
 	}
