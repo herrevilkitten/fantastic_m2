@@ -3,6 +3,7 @@
 		id: "knife",
 		notFound: "Murder weapon; Client dropped it as he fled the scene.",
 		found: "I found and cleaned the knife. Now to get rid of it.",
+		complete: "Knife: CLEANED",
 		methods: {
 			"toss",
 			"plant"
@@ -12,6 +13,7 @@
 		id: "phone",
 		notFound: "Victim's phone: has evidence pointing to the client.",
 		found: "I found the phone and wiped the memory. Just need to get rid of it.",
+		complete: "Phone: CLEANED",
 		methods: {
 			"toss",
 			"burn"
@@ -20,6 +22,7 @@
 	{
 		id: "handprint",
 		notFound: "Client left bloody handprints on objects on his way out of the park.",
+		complete: "Handprints: CLEANED",
 		methods: {
 			"wipe"
 		}
@@ -28,6 +31,7 @@
 		id: "wallet",
 		notFound: "Client lost wallet somewhere in the park.",
 		found: "I've got the wallet. Now to make sure it's destroyed.",
+		complete: "Wallet: CLEANED",
 		methods: {
 			"burn"
 		}
@@ -36,6 +40,7 @@
 		id: "keys",
 		notFound: "Victim dropped her keys somewhere in the park.",
 		found: "I've found the keys. I need to hide them somewhere.",
+		complete: "Keys: CLEANED",
 		methods: {
 			"toss",
 			"plant"
@@ -44,6 +49,7 @@
 	{
 		id: "footprint",
 		notFound: "Client and victim left identifiable footprints around the park.",
+		complete: "Footprints: CLEANED",
 		methods: {
 			"wipe"
 			
@@ -53,6 +59,7 @@
 		id: "necklace",
 		notFound: "Victim's necklace was lost during the struggle",
 		found: "I've found and cleaned the necklace of prints. I just need to get rid of it.",
+		complete: "Necklace: CLEANED",
 		methods: {
 			"toss",
 			"plant",
