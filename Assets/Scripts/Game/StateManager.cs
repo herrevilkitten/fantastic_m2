@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class StateManager : MonoBehaviour
 {
+	public const int MAXIMUM_SUSPICION_LEVEL = 100;
 	public const string EVIDENCE_KNIFE = "knife";
 	public const string EVIDENCE_PHONE = "phone";
 	public const string EVIDENCE_PRINTS = "prints";
@@ -74,7 +75,7 @@ public class StateManager : MonoBehaviour
 
 	public static void ModifySuspicion (int amount = 1)
 	{
-		suspicionLevel = Mathf.Clamp (suspicionLevel + amount, 0, 50);
+		suspicionLevel = Mathf.Clamp (suspicionLevel + amount, 0, MAXIMUM_SUSPICION_LEVEL);
 	}
 
 	public static void ReduceSuspicion (int amount = 1)

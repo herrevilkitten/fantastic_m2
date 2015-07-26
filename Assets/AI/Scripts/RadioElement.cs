@@ -42,7 +42,7 @@ public class RadioElement : CustomAIElement
 				RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
 
 				Debug.Log ("Suspicion Level = " + StateManager.GetSuspicion());
-				if (StateManager.GetSuspicion()>=50) {
+				if (StateManager.GetSuspicion()>=StateManager.MAXIMUM_SUSPICION_LEVEL) {
 					return "arrest";
 				} else {
 					return "observe";
