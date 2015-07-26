@@ -3,16 +3,10 @@ using System.Collections;
 
 public class PlantableEvidence : MonoBehaviour, AbstractEvidence
 {
+	public string evidenceFlag;
 
-	// Use this for initialization
-	void Start ()
+	public string EvidenceFlag ()
 	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+		return evidenceFlag;
 	}
 }

@@ -3,16 +3,10 @@ using System.Collections;
 
 public class BurnableEvidence : MonoBehaviour, AbstractEvidence
 {
-
-	// Use this for initialization
-	void Start ()
+	public string evidenceFlag;
+	
+	public string EvidenceFlag ()
 	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+		return evidenceFlag;
 	}
 }

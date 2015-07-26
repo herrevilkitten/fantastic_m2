@@ -13,12 +13,19 @@ public abstract class UsableAfterTime : UsableObject
 		return null;
 	}
 
+	virtual protected bool CanInteract (GameObject actor)
+	{
+		return true;
+	}
+
 	override public void OnInteractContinuous (GameObject actor, bool changed)
 	{
 		if (!changed) {
 			return;
 		}
 
-		InteractionManager.StartInteraction (duration, OnInteractionSuccess (), OnInteractionFailure (), label);
+		if (CanInteract (actor)) {
+			InteractionManager.StartInteraction (duration, OnInteractionSuccess (), OnInteractionFailure (), label);
+		}
 	}
 }
