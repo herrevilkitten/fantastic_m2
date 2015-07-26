@@ -26,7 +26,7 @@ public class DoConversationAction : RAINAction
 
 			//DialogManager.Conversation (currentTalker1.name + ": " + message1, displaySecondMessage);
 
-			DialogManager.Floating(currentTalker, message, 5);
+			DialogManager.Floating(currentTalker, message);
 		
 		} else {
 			DialogManager.StopConversation ();
