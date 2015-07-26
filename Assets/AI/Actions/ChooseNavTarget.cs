@@ -23,13 +23,13 @@ public class ChooseNavTarget : RAINAction
 		float myLastLocationTime = ai.WorkingMemory.GetItem<float> ("myLastLocationTime");
 		float myCurrentLocationTime = Time.time;
 		float replacedLocationTime = ai.WorkingMemory.GetItem<float> ("replacedLocationTime");
-
+		/*
 		Debug.Log (ai.Body.name + ": myLastLocationTime = " + myLastLocationTime);
 		Debug.Log (ai.Body.name + ": myLastLocation = " + myLastLocation);
 
 		Debug.Log (ai.Body.name + ": myCurrentLocationTime = " + myCurrentLocationTime);
 		Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
-
+*/
 //		Debug.Log (ai.Body.name + ": going to location = " + location);
 //		Debug.Log (ai.Body.name + ": ai.Motor.IsAt = " + ai.Motor.IsAt(location));
 
@@ -66,16 +66,18 @@ public class ChooseNavTarget : RAINAction
 
 			if ( AreTwoVectorsCloseEnough(myCurrentLocation, myLastLocation) && myLastLocationTime != 0.0f) {
 				Vector3 difference = myCurrentLocation - myLastLocation;
+				/*
 				Debug.Log (ai.Body.name + ": This is why I think i'm stuck = " + difference);
 
 				Debug.Log (ai.Body.name + ": **************************************Looks like im' stuck. Let's do a new location**************************************");
-
+*/
 				Vector3 forward = ai.Body.transform.forward;
+				/*
 				Debug.Log (ai.Body.name + ": forward.x = " + forward.x);
 				Debug.Log (ai.Body.name + ": forward.y = " + forward.y);
 				Debug.Log (ai.Body.name + ": forward.z = " + forward.z);
 				Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
-
+*/
 				Vector3 newlocation = new Vector3();
 
 				newlocation.x = myCurrentLocation.x;
