@@ -48,14 +48,7 @@ public class CopDetectPlayer : RAINAction
 						radio.RadioReduceDetection(ai);
 
 						if (currentAction.Equals("arrest")) {
-							Debug.Log (ai.Body.name + "continue arresting");
-
-							if (IsPlayerCloseToNPC (ai, 1.0f)) {
-								Debug.Log ("Trigger Arrest Sequence");
-								ai.WorkingMemory.SetItem ("trigArrestSequence", true);	
-							}
-
-							return ActionResult.SUCCESS;
+							return Arrest (ai);
 						} 
 
 						float lastObservedTime = ai.WorkingMemory.GetItem <float> ("FirstObservedTime");
@@ -63,9 +56,11 @@ public class CopDetectPlayer : RAINAction
 
 						if (!currentAction.Equals("observe")) {
 							Debug.Log (ai.Body.name + "hmm... i'm not observing. let me check out what this guy is doing");
+							Debug.Log ("aspect.MountPoint.position = " + aspect.MountPoint.position);
+							Debug.Log ("lastDetectedPosition = " + lastDetectedPosition);
 
-							if (aspect.MountPoint.position.Equals(lastDetectedPosition)) {
-								Debug.Log (ai.Body.name + "hmm... looks like he's not moving. Nothing to do here!");
+							if (AreTwoVectorsCloseEnough(lastDetectedPosition, aspect.MountPoint.position)) {
+								Debug.Log (ai.Body.name + "hmm... looks like he hasn't moved since i last looked at him. Nothing to do here!");
 								Patrol (ai);
 								break;
 							} else {
@@ -88,7 +83,7 @@ public class CopDetectPlayer : RAINAction
 								break;
 							}
 
-							if (currentTime - lastObservedTime > 25.0f) {
+							if (currentTime - lastObservedTime > 10.0f) {
 								Debug.Log (ai.Body.name + "Player is not doing anything suspicous after 25 seconds. Move along.");
 								Patrol (ai);
 								break;
@@ -103,17 +98,10 @@ public class CopDetectPlayer : RAINAction
 			} else {
 
 				if (currentAction.Equals("arrest")) {
-					Debug.Log (ai.Body.name + "continue arresting");
-					
-					if (IsPlayerCloseToNPC (ai, 1.5f)) {
-						Debug.Log ("Trigger Arrest Sequence");
-						ai.WorkingMemory.SetItem ("trigArrestSequence", true);	
-					}
-					
-					return ActionResult.SUCCESS;
+					return Arrest (ai);
 				}
 
-//				Debug.Log (ai.Body.name + "No player, patrol");
+				Debug.Log (ai.Body.name + "No player, patrol");
 				Patrol (ai);
 
 				//StateManager.ReduceDetection(ai.Body.name);
@@ -124,8 +112,18 @@ public class CopDetectPlayer : RAINAction
 		return ActionResult.SUCCESS;
 	}
 
+	private ActionResult Arrest (AI ai)
+	{
+		Debug.Log (ai.Body.name + "continue arresting");
+		if (IsPlayerCloseToNPC (ai, 1.0f)) {
+			Debug.Log ("Trigger Arrest Sequence");
+			ai.WorkingMemory.SetItem ("trigArrestSequence", true);
+		}
+		return ActionResult.SUCCESS;
+	}
+
 	public void Patrol(AI ai) {
-//		Debug.Log ("just patrolling");
+		Debug.Log ("just patrolling");
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
@@ -142,10 +140,12 @@ public class CopDetectPlayer : RAINAction
 		Vector3 playerPosition = GetCurrentPosition (ai);
 		Vector3 npcPosition = ai.Body.transform.position;
 		
-		Vector3 difference = playerPosition - npcPosition;
-		
-		Debug.Log (difference);
-		
+		return AreTwoVectorsCloseEnough (playerPosition, npcPosition, range);
+	}
+
+	private bool AreTwoVectorsCloseEnough(Vector3 vec1, Vector3 vec2, double range=0.25f) {
+		Vector3 difference = vec1 - vec2;
+
 		bool xNear = ((-1)*range) <= difference.x && difference.x <= range;
 		bool zNear = ((-1)*range) <= difference.z && difference.z <= range;
 		
