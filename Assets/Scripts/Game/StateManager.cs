@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class StateManager : MonoBehaviour
 {
-	public const int MAXIMUM_SUSPICION_LEVEL = 100;
+	public const int MAXIMUM_SUSPICION_LEVEL = 50;
 	public const string EVIDENCE_KNIFE = "knife";
 	public const string EVIDENCE_PHONE = "phone";
 	public const string EVIDENCE_PRINTS = "prints";

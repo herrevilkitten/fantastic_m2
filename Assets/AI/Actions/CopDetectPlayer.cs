@@ -130,6 +130,7 @@ public class CopDetectPlayer : RAINAction
 		ai.WorkingMemory.SetItem("currentAction", "patrol");
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
+
 	}
 
 	public bool ShouldLookForPlayer(AI ai, float currentTime) {
