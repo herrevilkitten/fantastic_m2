@@ -17,6 +17,8 @@ public class RestartGame : RAINAction
 		Animator anim = ai.Body.GetComponent<Animator> ();
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("FinishedArrest")) {
 
+			DialogManager.Floating(ai.Body, ai.Body.name + "You are under arrest");
+
 			Transform player = ai.WorkingMemory.GetItem<Transform>("Player");
 
 			float currentTime = Time.time;
