@@ -33,7 +33,7 @@
 	},
 	{
 		state: 3,
-		dialog: "Looks like they got into in Clearlake Park. Near the fountain.",
+		dialog: "Looks like they got into it in Clearlake Park. Near the fountain.",
 		options: [
 			{
 				text: "Any additional info you can give me?",
@@ -67,7 +67,7 @@
 	{
 
 		state: 6,
-		dialog: "The boy's parents are willing to pay whatever it takes. Get it done, and fast.",
+		dialog: "The boy's parents are willing to pay whatever it takes. We're sending you info on what the kid can remember he left behind. It should be on your PDA as soon as we're done talking. Get it done, and fast.",
 		options: [
 			{
 				text: "I'll call you when it's taken care of. (end call)",
