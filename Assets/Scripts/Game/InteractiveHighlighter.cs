@@ -12,6 +12,7 @@ public class InteractiveHighlighter : MonoBehaviour
 	{
 		Camera playerCamera = transform.parent.FindChild ("FollowCamera").gameObject.GetComponent<Camera> ();
 		Vector3 rayTarget = Input.mousePosition;
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 
 		bool use = Input.GetButton ("Use");
 		bool changed = false;
@@ -46,10 +47,10 @@ public class InteractiveHighlighter : MonoBehaviour
 				if (interaction != null) {
 					if (interaction.IsHightlighted ()) {
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
-							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (gameObject);
+							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (player);
 						}
 						if (interaction is InteractiveObject.ContinuousInteraction) {
-							((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (gameObject, changed);
+							((InteractiveObject.ContinuousInteraction)interaction).OnInteractContinuous (player, changed);
 						}
 					} else {
 						// Out of range

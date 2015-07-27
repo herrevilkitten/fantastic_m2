@@ -33,7 +33,6 @@ abstract public class InteractiveObject : MonoBehaviour
 
 	public void HighlightObject ()
 	{
-		Debug.Log ("highlighting with " + highlightShader);
 		foreach (Material material in this.allShaders.Keys) {
 			material.shader = highlightShader;
 		}
@@ -55,7 +54,6 @@ abstract public class InteractiveObject : MonoBehaviour
 	
 	virtual public void OnMouseEnter ()
 	{
-		Debug.Log ("Entering an object");
 		CursorManager.UseCursor ();
 	}
 	

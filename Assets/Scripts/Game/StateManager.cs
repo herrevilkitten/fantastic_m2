@@ -67,7 +67,7 @@ public class StateManager : MonoBehaviour
 	{
 		StateManager.stateManager = this;
 		StateManager.ChangeGameState (GameState.Title);
-		StateManager.ClearAllFlags ();
+		StateManager.ResetGame ();
 
 		InvokeRepeating ("UpdateSuspicion", 0f, 1.0f);
 	}
@@ -79,6 +79,14 @@ public class StateManager : MonoBehaviour
 		} else if (evidenceCount > 1) {
 			AddSuspicion (1);
 		}
+	}
+
+	public static void ResetGame ()
+	{
+		StateManager.suspicionLevel = 0;
+		StateManager.detectionCount = 0;
+		StateManager.evidenceCount = 0;
+		StateManager.ClearAllFlags ();
 	}
 
 	public static void ModifySuspicion (int amount = 1)

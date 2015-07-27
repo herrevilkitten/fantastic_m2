@@ -23,7 +23,7 @@ public class TossEvidence : UsableAfterTime
 
 			for (int i = 0; i < actor.transform.childCount; ++i) {
 				Transform child = actor.transform.GetChild (i);
-				if (child.GetComponent<PlantableEvidence> () != null) {
+				if (child.GetComponent<TossableEvidence> () != null) {
 					evidence = child;
 					Debug.Log ("We can toss " + evidence.gameObject);
 					break;
@@ -35,8 +35,7 @@ public class TossEvidence : UsableAfterTime
 				evidence.position = transform.position;
 				string flag = evidence.GetComponent<GatherEvidence> ().flag;
 				StateManager.SetFlag (flag + "Removed");
-				Debug.Log ("Plant that evidence!");
-				DialogManager.PopUp ("You have tossed the " + gameObject.name);
+				DialogManager.PopUp ("You have tossed the " + evidence.gameObject.name);
 			}
 		};
 	}

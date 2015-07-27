@@ -21,13 +21,10 @@ public class QuestGiverInteraction : TalkableObject
 
 	override public void OnInteractClick (GameObject actor)
 	{
-		Debug.Log ("Interacting with " + transform);
 		if (dialogSystem == null) {
 			return;
 		}
-
 		
-		Debug.Log ("Opening " + dialogSystem);
 		dialogSystem.enabled = true;
 
 		Time.timeScale = 0.0f;
