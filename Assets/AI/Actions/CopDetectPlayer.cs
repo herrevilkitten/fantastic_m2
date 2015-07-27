@@ -45,7 +45,7 @@ public class CopDetectPlayer : RAINAction
 
 						//add detection
 						//StateManager.AddDetection(ai.Body.name);
-						radio.RadioReduceDetection(ai);
+						radio.RadioAddDetection(ai);
 
 						if (currentAction.Equals("arrest")) {
 							return Arrest (ai);
