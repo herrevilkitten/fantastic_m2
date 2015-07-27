@@ -8,6 +8,7 @@ public class WipeEvidence : UsableEvidence
 		return (GameObject actor) => {
 			Debug.Log ("Wipe that evidence: " + flag);
 			StateManager.SetFlag (flag + "Removed");
+			CursorManager.DefaultCursor ();
 			Destroy (gameObject);
 		};
 	}

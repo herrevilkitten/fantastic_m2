@@ -18,6 +18,11 @@ public class InputManager : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.J) || Input.GetButtonDown ("Cancel")) {
 				StateManager.ChangeGameState (StateManager.GameState.Journal);
 			}
+
+			if (Input.GetKeyDown (KeyCode.P)) {
+				StateManager.PrintFlags ();
+			}
+			
 			break;
 
 		case StateManager.GameState.Journal:
