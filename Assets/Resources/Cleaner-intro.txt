@@ -1,11 +1,11 @@
-
+{
 	states: [
 	{
 		state: 0,
 		dialog: "*phone ringing*",
 		options: [
 			{
-				text: “Yes?”,
+				text: "Yes?",
 				state: 1
 			}
 		]
@@ -23,7 +23,7 @@
 	},
 	{
 		state: 2,
-		dialog: "Looks like another rich kid got in over his head with his girlfriend. We need you to clean the area." ,
+		dialog: "Looks like another rich kid got in over his head with his girlfriend. We need you to clean the area.",
 		options: [
 			{
 				text: "Location?",
@@ -67,7 +67,7 @@
 	{
 
 		state: 6,
-		dialog: "The boy's parents are willing to pay whatever it takes. Get it done, and fast. ",
+		dialog: "The boy's parents are willing to pay whatever it takes. Get it done, and fast.",
 		options: [
 			{
 				text: "I'll call you when it's taken care of. (end call)",
@@ -75,9 +75,5 @@
 		]
 
 	}
-
-
-
-
 ]
 }

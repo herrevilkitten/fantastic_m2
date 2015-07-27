@@ -8,19 +8,23 @@ public class StateManager : MonoBehaviour
 	public const int MAXIMUM_SUSPICION_LEVEL = 50;
 	public const string EVIDENCE_KNIFE = "knife";
 	public const string EVIDENCE_PHONE = "phone";
-	public const string EVIDENCE_PRINTS = "prints";
+	public const string EVIDENCE_HANDPRINT = "handprint";
 	public const string EVIDENCE_WALLET = "wallet";
 	public const string EVIDENCE_KEYS = "keys";
+	public const string EVIDENCE_FOOTPRINT = "footprint";
+	public const string EVIDENCE_NECKLACE = "necklace";
 
 
-	private static Dictionary<string, string> detected = new Dictionary<string, string>();
+	private static Dictionary<string, string> detected = new Dictionary<string, string> ();
 
 	public static string[] EVIDENCES = {
 		EVIDENCE_KNIFE,
 		EVIDENCE_PHONE,
-		EVIDENCE_PRINTS,
+		EVIDENCE_HANDPRINT,
 		EVIDENCE_WALLET,
-		EVIDENCE_KEYS
+		EVIDENCE_KEYS,
+		EVIDENCE_FOOTPRINT,
+		EVIDENCE_NECKLACE
 	};
 
 	public enum CameraMode
@@ -94,7 +98,7 @@ public class StateManager : MonoBehaviour
 	public static void ReduceDetection (string detectionName, int amount = 1)
 	{
 		if (detected.ContainsKey (detectionName)) {
-		//	Debug.Log ("Remove " + detectionName);
+			//	Debug.Log ("Remove " + detectionName);
 			detected.Remove (detectionName);
 			detectionCount = Mathf.Max (detectionCount - amount, 0);
 		}
@@ -104,14 +108,15 @@ public class StateManager : MonoBehaviour
 	{
 		//Debug.Log ("detected.ContainsKey(detectionName)=" + detected.ContainsKey (detectionName));
 
-		if (!detected.ContainsKey(detectionName)) {
+		if (!detected.ContainsKey (detectionName)) {
 			//Debug.Log ("Add " + detectionName);
-			detected.Add(detectionName, detectionName);
+			detected.Add (detectionName, detectionName);
 			detectionCount = detectionCount + amount;
 		}
 	}
 
-	public static int GetSuspicion() {
+	public static int GetSuspicion ()
+	{
 		return suspicionLevel;
 	}
 	
@@ -242,11 +247,13 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
-	public static void TurnOnGameOverPanel() {
+	public static void TurnOnGameOverPanel ()
+	{
 		stateManager.gameOverPanel.SetActive (true);
 	}
 
-	public static void TurnOffGameOverPanel() {
+	public static void TurnOffGameOverPanel ()
+	{
 		stateManager.gameOverPanel.SetActive (false);
 	}
 }
