@@ -8,6 +8,7 @@ public class RadioManager {
 	private static RadioManager singleton = new RadioManager();
 	private IList cops = new ArrayList ();
 	private IDictionary detections = new SortedList();
+	private System.Object thisLock = new System.Object();
 
 	private List<GameObject> listOfTargets = new List<GameObject>();
 
@@ -56,6 +57,19 @@ public class RadioManager {
 	public Vector3 RadioForNextPosition(AI ai) {
 		System.Random rand = new System.Random ();
 		int nextPosition = rand.Next(0, listOfTargets.Count);
-		return listOfTargets [nextPosition].transform.position;
+
+		return GetNextPosition(ai, nextPosition);
+	}
+
+	private Vector3 GetNextPosition(AI ai, int nextPosition) {
+		if (listOfTargets.Count > 0 && listOfTargets [0] == null) {
+			lock (thisLock) {
+				listOfTargets.Clear ();
+				RadioElement elem = ai.GetCustomElement<RadioElement> ();
+				elem.AIInit ();
+			}
+		}
+
+		return listOfTargets [nextPosition].transform.position; 
 	}
 }
