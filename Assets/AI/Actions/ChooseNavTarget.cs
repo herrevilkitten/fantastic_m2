@@ -37,10 +37,10 @@ public class ChooseNavTarget : RAINAction
 		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough (myCurrentLocation, location)) {
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 			
-			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
+//			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
 		
 			ai.WorkingMemory.SetItem ("location", nextPosition);
-			ai.Motor.Speed = 1.5f;
+			ai.Motor.Speed = 1.0f;
 
 			RAIN.Navigation.Pathfinding.RAINPath myPath;
 			ai.Navigator.GetPathTo (nextPosition, 100, 1000, true, out myPath);
@@ -96,7 +96,7 @@ public class ChooseNavTarget : RAINAction
 
 				location = newlocation;
 				ai.WorkingMemory.SetItem ("location", newlocation);
-				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+//				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
 				
 				ai.WorkingMemory.SetItem ("replacedLocationTime", myCurrentLocationTime);
 				location = newlocation;
