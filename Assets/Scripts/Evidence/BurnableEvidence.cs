@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BurnableEvidence : MonoBehaviour, AbstractEvidence
+public class BurnableEvidence : MonoBehaviour
 {
-	public string evidenceFlag;
-	
-	public string EvidenceFlag ()
-	{
-		return evidenceFlag;
-	}
 }

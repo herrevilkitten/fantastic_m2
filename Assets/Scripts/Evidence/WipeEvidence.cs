@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WipeEvidence : UsableAfterTime
+public class WipeEvidence : UsableEvidence
 {
-	public string flag;
-
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()
 	{
 		return (GameObject actor) => {
