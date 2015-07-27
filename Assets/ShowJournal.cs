@@ -9,7 +9,7 @@ public class ShowJournal : MonoBehaviour
 	public Text journalText;
 
 	// Use this for initialization
-	void Start ()
+	public void UpdateText ()
 	{
 		TextAsset evidenceText = Resources.Load ("Evidence") as TextAsset;
 		Debug.Log ("Evidence text = " + evidenceText.text);
@@ -28,12 +28,12 @@ public class ShowJournal : MonoBehaviour
 		foreach (string evidence in StateManager.EVIDENCES) {
 			if (evidences.ContainsKey (evidence)) {
 				Debug.Log ("Evidence: " + evidences [evidence].ToJSON (0));
-				if (!StateManager.HasFlag (evidence + "Gathered")) {
-					text = text + "* " + evidences [evidence] ["notFound"].Value + "\n";
-				} else if (!StateManager.HasFlag (evidence + "Removed")) {
+				if (StateManager.HasFlag (evidence + "Removed")) {
+					text = text + "* " + evidences [evidence] ["complete"].Value + "\n";
+				} else if (StateManager.HasFlag (evidence + "Gathered")) {
 					text = text + "* " + evidences [evidence] ["found"].Value + "\n";
 				} else {
-					text = text + "* " + evidences [evidence] ["complete"].Value + "\n";
+					text = text + "* " + evidences [evidence] ["notFound"].Value + "\n";
 				}
 			} else {
 				Debug.Log ("No matching evidence for " + evidence);

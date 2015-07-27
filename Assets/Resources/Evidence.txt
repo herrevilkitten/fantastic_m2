@@ -46,6 +46,7 @@
 			"plant"
 			
 		}
+	},
 	{
 		id: "footprint",
 		notFound: "Client and victim left identifiable footprints around the park.",
@@ -54,7 +55,7 @@
 			"wipe"
 			
 		}
-	}
+	},
 	{
 		id: "necklace",
 		notFound: "Victim's necklace was lost during the struggle",

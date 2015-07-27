@@ -67,6 +67,7 @@ public class StateManager : MonoBehaviour
 	{
 		StateManager.stateManager = this;
 		StateManager.ChangeGameState (GameState.Title);
+		StateManager.ClearAllFlags ();
 
 		InvokeRepeating ("UpdateSuspicion", 0f, 1.0f);
 	}
@@ -164,6 +165,7 @@ public class StateManager : MonoBehaviour
 			stateManager.titlePanel.SetActive (true);
 			break;
 		case GameState.Journal:
+			stateManager.journalPanel.GetComponent<ShowJournal> ().UpdateText ();
 			stateManager.journalPanel.SetActive (true);
 			break;
 		case GameState.Playing:
@@ -190,7 +192,7 @@ public class StateManager : MonoBehaviour
 		flags.Remove (flag);
 	}
 	
-	public static void ClearAllFlags (string flag)
+	public static void ClearAllFlags ()
 	{
 		flags.Clear ();
 	}
@@ -198,6 +200,13 @@ public class StateManager : MonoBehaviour
 	public static bool HasFlag (string flag)
 	{
 		return flags.Contains (flag);
+	}
+
+	public static void PrintFlags ()
+	{
+		foreach (string flag in flags) {
+			Debug.Log (flag);
+		}
 	}
 	
 	public static void Pause ()
