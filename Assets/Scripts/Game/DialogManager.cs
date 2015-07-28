@@ -4,41 +4,41 @@ using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
-	static Canvas dialogCanvas;
-	static Text dialogText;
-
-	static DialogManager ()
+	public Text dialogText;
+	Canvas dialogCanvas;
+	static DialogManager instance = null;
+	
+	void Start ()
 	{
-		dialogCanvas = GameObject.Find ("DialogCanvas").GetComponent<Canvas> ();
+		DialogManager.instance = this;
+		dialogCanvas = GetComponent<Canvas> ();
 	}
 
 	public static void Show ()
 	{
-		if (!dialogCanvas.enabled) {
+		if (!instance.dialogCanvas.enabled) {
 			StateManager.Pause ();
-			dialogCanvas.enabled = true;
-			dialogText = dialogCanvas.transform.Find ("DialogText/DialogText").GetComponent<Text> ();
-			dialogText.color = new Color (1f, 1f, 1f, 1f);
+			instance.dialogCanvas.enabled = true;
+			instance.dialogText.color = new Color (1f, 1f, 1f, 1f);
 		}
 	}
 
 	public static void Hide ()
 	{
-		if (dialogCanvas.enabled) {
+		if (instance.dialogCanvas.enabled) {
 			StateManager.Play ();
-			dialogCanvas.enabled = false;
+			instance.dialogCanvas.enabled = false;
 		}
 	}
 
 	public static bool IsShown ()
 	{
-		return dialogCanvas != null && dialogCanvas.enabled;
+		return instance.dialogCanvas != null && instance.dialogCanvas.enabled;
 	}
 
 	public static void SetText (string text)
 	{
-		dialogText = dialogCanvas.transform.Find ("DialogText/DialogText").GetComponent<Text> ();
-		dialogText.text = text;
+		instance.dialogText.text = text;
 	}
 
 	public static void DisableDialogs ()
@@ -50,7 +50,7 @@ public class DialogManager : MonoBehaviour
 
 	public static void SetDialog (int index, string text, UnityEngine.Events.UnityAction action)
 	{
-		GameObject button = dialogCanvas.transform.FindChild ("DialogOptions/DialogOption" + index).gameObject;
+		GameObject button = instance.dialogCanvas.transform.FindChild ("DialogOptions/DialogOption" + index).gameObject;
 		if (text == null) {
 			button.SetActive (false);
 			return;
