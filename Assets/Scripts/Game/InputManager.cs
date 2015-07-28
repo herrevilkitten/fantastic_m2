@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
 				StateManager.ChangeGameState (StateManager.GameState.Journal);
 			}
 
+			if (Input.GetButtonDown ("Help")) {
+				GetComponent<HelpDialog> ().ShowHelp ();
+			}
+			
 			if (Input.GetKeyDown (KeyCode.P)) {
 				StateManager.PrintFlags ();
 			}
