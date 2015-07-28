@@ -16,20 +16,22 @@ public class TimerManager : MonoBehaviour
 	void Update ()
 	{
 		myTimer -= Time.deltaTime;
-		if (myTimer > 0) {
-			int minutesLeft = (int)myTimer / 60;
-			int secondsLeft = (int)myTimer % 60;
-			Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text> ();
-			timerTextBox.text = string.Format ("{0:D2}:{1:D2}", minutesLeft, secondsLeft);
-		} else if (myTimer <= 0.0f && myTimer >= -5.0f) {
-			Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text> ();
-			timerTextBox.enabled = false;
-			player.GetComponent<Animator> ().SetBool ("IsOutOfTime", true);
-		} else if (myTimer < -0.5f && myTimer > -8.0f) {
-			StateManager.TurnOnGameOverPanel ();
-		} else if (myTimer <= -8.0f) {
-			StateManager.TurnOffGameOverPanel();
-			Application.LoadLevel (Application.loadedLevel);
+		if (!StateManager.CompletedEvidence ()) {
+			if (myTimer > 0) {
+				int minutesLeft = (int)myTimer / 60;
+				int secondsLeft = (int)myTimer % 60;
+				Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text> ();
+				timerTextBox.text = string.Format ("{0:D2}:{1:D2}", minutesLeft, secondsLeft);
+			} else if (myTimer <= 0.0f && myTimer >= -5.0f) {
+				Text timerTextBox = GameObject.Find ("TimerTextbox").GetComponent<Text> ();
+				timerTextBox.enabled = false;
+				player.GetComponent<Animator> ().SetBool ("IsOutOfTime", true);
+			} else if (myTimer < -0.5f && myTimer > -8.0f) {
+				StateManager.TurnOnGameOverPanel ();
+			} else if (myTimer <= -8.0f) {
+				StateManager.TurnOffGameOverPanel ();
+				Application.LoadLevel (Application.loadedLevel);
+			}
 		}
 		/*
 		Ragdoll doll = player.GetComponent<Ragdoll> ();

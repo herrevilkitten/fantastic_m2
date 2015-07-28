@@ -46,7 +46,7 @@ public class ChooseNavTarget : RAINAction
 			RaycastHit hit;
 			Vector3 startPoint = new Vector3 (ai.Body.transform.position.x, ai.Body.transform.position.y + 1, ai.Body.transform.position.z);
 
-			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 5.0f)) {
+			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 10.0f)) {
 				Vector3 dir = (location - ai.Body.transform.position).normalized;
 				dir += hit.normal * 10;
 				Quaternion rot = Quaternion.LookRotation (dir);

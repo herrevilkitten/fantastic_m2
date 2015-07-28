@@ -29,6 +29,11 @@ public class CopDetectPlayer : RAINAction
 
 		//has it been greater than 1.5f seconds since I last looked for the player
 
+		if (StateManager.CompletedEvidence ()) {
+			ai.WorkingMemory.SetItem("currentAction", "stop");
+			return ActionResult.SUCCESS;
+		}
+
 		if (ShouldLookForPlayer(ai, currentTime)) {
 //			Debug.Log ("Look for player");
 			IList<RAINAspect> matches = ai.Senses.Sense("VisualSensor", "PlayerAspect", RAINSensor.MatchType.ALL);
