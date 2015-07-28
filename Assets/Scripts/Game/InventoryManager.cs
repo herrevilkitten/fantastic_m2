@@ -31,6 +31,31 @@ public class InventoryManager : MonoBehaviour
 		inventoryItem.tooltipText = instance.tooltipText;
 
 		itemImage.transform.parent = instance.inventoryPanel.transform;
-		itemImage.rectTransform.anchoredPosition = new Vector2 (0, 0);
+
+		int offset = -60;
+		bool found = false;
+		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
+		while (!found) {
+			offset = offset + 60;
+			found = true;
+			foreach (InventoryItem existingItem in items) {
+				if (existingItem.GetComponent<Image> ().rectTransform.anchoredPosition.x == offset) {
+					found = false;
+					break;
+				}
+			}
+		}
+		itemImage.rectTransform.anchoredPosition = new Vector2 (offset, 0);
+	}
+
+	public static void RemoveItem (GameObject item)
+	{
+		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
+		foreach (InventoryItem existingItem in items) {
+			if (existingItem.evidence == item) {
+				Destroy (existingItem.gameObject);
+				break;
+			}
+		}
 	}
 }

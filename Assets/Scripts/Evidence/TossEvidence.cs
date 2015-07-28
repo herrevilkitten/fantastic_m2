@@ -25,7 +25,6 @@ public class TossEvidence : UsableAfterTime
 				Transform child = actor.transform.GetChild (i);
 				if (child.GetComponent<TossableEvidence> () != null) {
 					evidence = child;
-					Debug.Log ("We can toss " + evidence.gameObject);
 					break;
 				}
 			}
@@ -36,6 +35,8 @@ public class TossEvidence : UsableAfterTime
 				string flag = evidence.GetComponent<GatherEvidence> ().flag;
 				StateManager.SetFlag (flag + "Removed");
 				DialogManager.PopUp ("You have tossed the " + evidence.gameObject.name);
+				
+				InventoryManager.RemoveItem (evidence.gameObject);
 			}
 		};
 	}

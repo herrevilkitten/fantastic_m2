@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlantEvidence : UsableAfterTime
+public class BurnEvidence : UsableAfterTime
 {
 	override protected bool CanInteract (GameObject actor)
 	{
 		for (int i = 0; i < actor.transform.childCount; ++i) {
 			Transform child = actor.transform.GetChild (i);
-			if (child.GetComponent<PlantableEvidence> () != null) {
+			if (child.GetComponent<BurnableEvidence> () != null) {
 				return true;
 			}
 		}
 
-		DialogManager.PopUp ("You have nothing to plant.");
+		DialogManager.PopUp ("You have nothing to burn.");
 		return false;
 	}
 
@@ -23,7 +23,7 @@ public class PlantEvidence : UsableAfterTime
 
 			for (int i = 0; i < actor.transform.childCount; ++i) {
 				Transform child = actor.transform.GetChild (i);
-				if (child.GetComponent<PlantableEvidence> () != null) {
+				if (child.GetComponent<BurnableEvidence> () != null) {
 					evidence = child;
 					break;
 				}
@@ -34,7 +34,7 @@ public class PlantEvidence : UsableAfterTime
 				evidence.position = transform.position;
 				string flag = evidence.GetComponent<GatherEvidence> ().flag;
 				StateManager.SetFlag (flag + "Removed");
-				DialogManager.PopUp ("You have planted the " + gameObject.name);
+				DialogManager.PopUp ("You have burned the " + evidence.gameObject.name);
 				
 				InventoryManager.RemoveItem (evidence.gameObject);
 			}
