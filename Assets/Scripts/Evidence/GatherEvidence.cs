@@ -4,6 +4,8 @@ using System.Collections;
 public class GatherEvidence : UsableAfterTime
 {
 	public string flag;
+	public string tooltip;
+	public Sprite icon;
 
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()
 	{
@@ -26,6 +28,8 @@ public class GatherEvidence : UsableAfterTime
 			GetComponent<Collider> ().enabled = false;
 			transform.parent = actor.transform;
 			transform.position = transform.parent.position;
+
+			InventoryManager.AddItem (gameObject);
 		};
 	}
 }

@@ -7,8 +7,5 @@ public class BeerInteraction : ClickableObject
 
 	override public void OnInteractClick (GameObject actor)
 	{
-		DialogManager.PopUp ("You have gotten a tasty beer.");
-		InventoryManager.PickupKey ();
-		Destroy (gameObject);
 	}
 }
