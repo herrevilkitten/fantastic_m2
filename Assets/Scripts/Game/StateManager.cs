@@ -216,6 +216,16 @@ public class StateManager : MonoBehaviour
 			Debug.Log (flag);
 		}
 	}
+
+	public static bool CompletedEvidence ()
+	{
+		foreach (string evidence in StateManager.EVIDENCES) {
+			if (!HasFlag (evidence + "Removed")) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	public static void Pause ()
 	{
