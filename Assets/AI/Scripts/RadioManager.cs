@@ -9,10 +9,24 @@ public class RadioManager {
 	private IList cops = new ArrayList ();
 	private IDictionary detections = new SortedList();
 	private System.Object thisLock = new System.Object();
+	private static ArrayList tempStuckLocations = new ArrayList();
+	private static ArrayList permStuckLocations = new ArrayList ();
 
 	private List<GameObject> listOfTargets = new List<GameObject>();
 
 	private RadioManager() {
+	}
+
+	public static void AddStuckLocation(Vector3 location) {
+		if (tempStuckLocations.Contains (location)) {
+			permStuckLocations.Add (location);
+		}
+
+		tempStuckLocations.Add (location);
+	}
+
+	public static bool IsPreviousStuckLocation(Vector3 location) {
+		return permStuckLocations.Contains (location);
 	}
 
 	public static RadioManager Singleton {
@@ -71,5 +85,16 @@ public class RadioManager {
 		}
 
 		return listOfTargets [nextPosition].transform.position; 
+	}
+
+
+	//TODO: refactor this into a utilities class
+	private bool AreTwoVectorsCloseEnough(Vector3 vec1, Vector3 vec2, double range=0.1f) {
+		Vector3 difference = vec1 - vec2;
+		
+		bool xNear = ((-1)*range) <= difference.x && difference.x <= range;
+		bool zNear = ((-1)*range) <= difference.z && difference.z <= range;
+		
+		return xNear && zNear;
 	}
 }

@@ -46,7 +46,7 @@ public class ChooseNavTarget : RAINAction
 			RaycastHit hit;
 			Vector3 startPoint = new Vector3 (ai.Body.transform.position.x, ai.Body.transform.position.y + 1, ai.Body.transform.position.z);
 
-			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 10.0f)) {
+			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 15.0f)) {
 				Vector3 dir = (location - ai.Body.transform.position).normalized;
 				dir += hit.normal * 10;
 				Quaternion rot = Quaternion.LookRotation (dir);
@@ -61,7 +61,8 @@ public class ChooseNavTarget : RAINAction
 				Vector3 forward = ai.Body.transform.forward;
 
 				//Debug.Log (ai.Body.name + ": forward " + forward);
-				//Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
+				Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
+				RadioManager.AddStuckLocation(myCurrentLocation);
 
 				Vector3 newlocation = new Vector3();
 				System.Random rand = new System.Random();
@@ -82,7 +83,7 @@ public class ChooseNavTarget : RAINAction
 					Debug.Log (ai.Body.name + ": How close am I to the object " + hit.distance);
 					Debug.DrawLine (startPoint, hit.point, Color.green);
 */
-					backDistance = hit.distance;
+					backDistance = (-1)*hit.distance;
 
 					//Debug.Log (ai.Body.name + ": I should move back only " + ((-1) *backDistance / 2.0f));
 					isBlockedInBack = true;
@@ -122,10 +123,16 @@ public class ChooseNavTarget : RAINAction
 					newlocation.x = myCurrentLocation.x;
 				} else if (isBlockedOnLeft) {
 					//Debug.Log ("I'm going to the right=" + rightDistance);
-					newlocation.x = myCurrentLocation.x + rightDistance + forward.x;
+					newlocation.x = myCurrentLocation.x + (rightDistance * (-1)*forward.x);
 				} else if (isBlockedOnRight) {
 					//Debug.Log ("I'm going to the left=" + leftDistance);
-					newlocation.x = myCurrentLocation.x + leftDistance+ forward.x;
+					newlocation.x = myCurrentLocation.x + (leftDistance * (-1)*forward.x);
+				}
+
+				if (RadioManager.IsPreviousStuckLocation(newlocation)) {
+					Debug.Log (ai.Body.name + ": Altering new location by a random amount ");
+					newlocation.x = newlocation.x + rand.Next(1, 5);
+					newlocation.z = newlocation.z + rand.Next(1, 5);
 				}
 
 				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
