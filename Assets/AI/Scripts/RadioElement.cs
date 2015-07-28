@@ -57,8 +57,8 @@ public class RadioElement : CustomAIElement
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
 		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
-		Debug.Log ("firstObservedTime = " + firstObservedTime);
-		Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
+		//Debug.Log ("firstObservedTime = " + firstObservedTime);
+		//Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
 		if ((firstObservedTime != 0) && ((currentTime - firstObservedTime) > 1.0f )) {
 			if (HasPlayerNotMovedFromLastObjectDetection(cop, player)) {
 				Debug.Log (cop.Body.name + "Player is linger enough to cause suspicion. Calling dispatcher");
@@ -74,7 +74,7 @@ public class RadioElement : CustomAIElement
 			}
 		} 
 
-		Debug.Log (cop.Body.name + "did not radio dispatcher");
+		//Debug.Log (cop.Body.name + "did not radio dispatcher");
 
 		return "observe";
 	}
@@ -91,8 +91,8 @@ public class RadioElement : CustomAIElement
 
 			Vector3 difference = latestPosition - lastPosition;
 			
-			bool xNear = ((-1) * 10.0f) <= difference.x && difference.x <= 10.0f;
-			bool zNear = ((-1) * 10.0f) <= difference.z && difference.z <= 10.0f;
+			bool xNear = ((-1) * 5.0f) <= difference.x && difference.x <= 5.0f;
+			bool zNear = ((-1) * 5.0f) <= difference.z && difference.z <= 5.0f;
 		
 			Debug.Log ("xNear && zNear= " + (xNear && zNear));
 			return xNear && zNear;
