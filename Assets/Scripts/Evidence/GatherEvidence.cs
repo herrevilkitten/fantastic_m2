@@ -10,9 +10,18 @@ public class GatherEvidence : UsableAfterTime
 		return (GameObject actor) => {
 			StateManager.SetFlag (flag + "Gathered");
 			ParticleSystem particleSystem = GetComponent<ParticleSystem> ();
+
+			UnhighlightObject ();
+			
 			if (particleSystem != null) {
 				particleSystem.Stop ();
 			}
+			
+			Component halo = GetComponent ("Halo");
+			if (halo != null) {
+				halo.GetType ().GetProperty ("enabled").SetValue (halo, false, null);
+			}
+			
 			GetComponent<MeshRenderer> ().enabled = false;
 			GetComponent<Collider> ().enabled = false;
 			transform.parent = actor.transform;

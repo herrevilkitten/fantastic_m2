@@ -23,6 +23,7 @@ abstract public class InteractiveObject : MonoBehaviour
 		if (this.highlightShader == null) {
 			this.highlightShader = Shader.Find ("Legacy Shaders/Reflective/Parallax Specular");
 		}
+
 		this.allShaders = new Dictionary<Material, Shader> ();
 		foreach (Renderer renderer in  GetComponentsInChildren<Renderer> ()) {
 			foreach (Material material in renderer.materials) {
@@ -41,6 +42,16 @@ abstract public class InteractiveObject : MonoBehaviour
 			overheadText.GetComponent<TextMesh> ().text = labeledEvidence.label;
 		}
 
+		ParticleSystem particleSystem = GetComponent<ParticleSystem> ();
+		if (particleSystem != null) {
+			particleSystem.Stop ();
+		}
+
+		Component halo = GetComponent ("Halo");
+		if (halo != null) {
+			halo.GetType ().GetProperty ("enabled").SetValue (halo, false, null);
+		}
+
 		foreach (Material material in this.allShaders.Keys) {
 			material.shader = highlightShader;
 		}
@@ -56,6 +67,17 @@ abstract public class InteractiveObject : MonoBehaviour
 				Destroy (overheadTextTransform.gameObject);
 			}
 		}
+
+		ParticleSystem particleSystem = GetComponent<ParticleSystem> ();
+		if (particleSystem != null) {
+			particleSystem.Play ();
+		}
+
+		Component halo = GetComponent ("Halo");
+		if (halo != null) {
+			halo.GetType ().GetProperty ("enabled").SetValue (halo, true, null);
+		}
+		
 		foreach (Material material in this.allShaders.Keys) {
 			material.shader = this.allShaders [material];
 		}
