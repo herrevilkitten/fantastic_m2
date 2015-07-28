@@ -33,6 +33,14 @@ abstract public class InteractiveObject : MonoBehaviour
 
 	public void HighlightObject ()
 	{
+		LabeledEvidence labeledEvidence = GetComponent<LabeledEvidence> ();
+		if (labeledEvidence != null) {
+			GameObject overheadText = Instantiate (Resources.Load ("HighlightOverheadText") as GameObject);
+			overheadText.transform.parent = transform;
+			overheadText.transform.position = transform.position + Vector3.up * 1f;
+			overheadText.GetComponent<TextMesh> ().text = labeledEvidence.label;
+		}
+
 		foreach (Material material in this.allShaders.Keys) {
 			material.shader = highlightShader;
 		}
@@ -41,6 +49,13 @@ abstract public class InteractiveObject : MonoBehaviour
 
 	public void UnhighlightObject ()
 	{
+		LabeledEvidence labeledEvidence = GetComponent<LabeledEvidence> ();
+		if (labeledEvidence != null) {
+			Transform overheadTextTransform = transform.FindChild ("HighlightOverheadText(Clone)");
+			if (overheadTextTransform != null) {
+				Destroy (overheadTextTransform.gameObject);
+			}
+		}
 		foreach (Material material in this.allShaders.Keys) {
 			material.shader = this.allShaders [material];
 		}

@@ -40,9 +40,7 @@ public class InteractionManager : MonoBehaviour
 		if (!Input.GetButton ("Use") && startTime != 0f) {
 			startTime = 0f;
 
-//			Debug.Log ("No longer interacting");
 			isInteracting = false;
-
 			if (onInteractionFailure != null) {
 				onInteractionFailure (GameObject.FindGameObjectWithTag ("Player"));
 			}
@@ -55,14 +53,11 @@ public class InteractionManager : MonoBehaviour
 			timeBar.value = Mathf.Min (100, (Time.time - startTime) / duration * 100);
 			float color = timeBar.value / 100f;
 			fill.color = new Color (1f - color, color, 0f);
-//			Debug.Log ("fill color " + fill.color);
-			
+
 			if ((startTime + duration) < Time.time) {
 				startTime = 0f;
 
-//				Debug.Log ("No longer interacting");
 				isInteracting = false;
-
 				if (onInteractionSuccess != null) {
 					onInteractionSuccess (GameObject.FindGameObjectWithTag ("Player"));
 				}

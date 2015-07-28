@@ -25,7 +25,6 @@ public class PlantEvidence : UsableAfterTime
 				Transform child = actor.transform.GetChild (i);
 				if (child.GetComponent<PlantableEvidence> () != null) {
 					evidence = child;
-					Debug.Log ("We can plant " + evidence.gameObject);
 					break;
 				}
 			}
@@ -35,7 +34,6 @@ public class PlantEvidence : UsableAfterTime
 				evidence.position = transform.position;
 				string flag = evidence.GetComponent<GatherEvidence> ().flag;
 				StateManager.SetFlag (flag + "Removed");
-				Debug.Log ("Plant that evidence!");
 				DialogManager.PopUp ("You have planted the " + gameObject.name);
 			}
 		};
