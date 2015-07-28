@@ -18,13 +18,13 @@ public class StateManager : MonoBehaviour
 	private static Dictionary<string, string> detected = new Dictionary<string, string> ();
 
 	public static string[] EVIDENCES = {
-		//EVIDENCE_KNIFE,
-		//EVIDENCE_PHONE,
-		//EVIDENCE_HANDPRINT
-		//EVIDENCE_WALLET,
-		//EVIDENCE_KEYS,
-		EVIDENCE_FOOTPRINT
-		//EVIDENCE_NECKLACE
+		EVIDENCE_KNIFE,
+		EVIDENCE_PHONE,
+		EVIDENCE_HANDPRINT,
+		EVIDENCE_WALLET,
+		EVIDENCE_KEYS,
+		EVIDENCE_FOOTPRINT,
+		EVIDENCE_NECKLACE
 	};
 
 	public enum CameraMode
