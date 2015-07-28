@@ -8,8 +8,11 @@ public class GatherEvidence : UsableAfterTime
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()
 	{
 		return (GameObject actor) => {
-			Debug.Log ("Gather that evidence: " + flag);
 			StateManager.SetFlag (flag + "Gathered");
+			ParticleSystem particleSystem = GetComponent<ParticleSystem> ();
+			if (particleSystem != null) {
+				particleSystem.Stop ();
+			}
 			GetComponent<MeshRenderer> ().enabled = false;
 			GetComponent<Collider> ().enabled = false;
 			transform.parent = actor.transform;
