@@ -1,19 +1,19 @@
--Objectives- /n
-* Find the evidence left behind by the client /n
-* Destroy or remove the evidence without being seen /n
-* Leave the area before time runs out /n
+-Objectives- \n
+* Find the evidence left behind by the client \n
+* Destroy or remove the evidence without being seen \n
+* Leave the area before time runs out \n
 
 
--Hints- /n
- * You can throw evidence in the lake (if it sinks) /n
- * You can burn evidence on something hot (if it is flammable) /n
- * You can wipe away evidence (if it is a stain or print) /n
- * You can hide an item in another person’s belongings /n
- * (if it would not still point back to the client) /n
- /n
- * If a cop or bystander sees you, their suspicion of you will go up /n
- * If the eye icon changes color and is open, you are being watched /n
- * If you are observed hiding clues too many times, you will be caught /n
+-Hints- \n
+ * You can throw evidence in the lake (if it sinks) \n
+ * You can burn evidence on something hot (if it is flammable) \n
+ * You can wipe away evidence (if it is a stain or print) \n
+ * You can hide an item in another person’s belongings \n
+  (if it would not still point back to the client) \n
+ \n
+ * If a cop or bystander sees you, their suspicion of you will go up \n
+ * If the eye icon changes color and is open, you are being watched \n
+ * If you are observed hiding clues too many times, you will be caught \n
  
 	
 	
