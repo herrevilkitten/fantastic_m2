@@ -28,7 +28,11 @@ public class SuspicionImageUpdate : MonoBehaviour
 		}
 
 		if (StateManager.suspicionLevel == 0) {
-			suspicionImage.color = new Color (.5f, .5f, .5f);
+			if (StateManager.detectionCount == 0) {
+				suspicionImage.color = new Color (.5f, .5f, .5f);
+			} else {
+				suspicionImage.color = new Color (1f, 1f, 1f);
+			}
 		} else if (StateManager.suspicionLevel <= 12) {
 			suspicionImage.color = new Color (0f, 1f, 0f);
 		} else if (StateManager.suspicionLevel <= 25) {
