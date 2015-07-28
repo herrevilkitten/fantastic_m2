@@ -149,7 +149,7 @@ public class ChooseNavTarget : RAINAction
 
 		ai.Motor.MoveTo (location);
 
-		if ((myCurrentLocationTime - myLastLocationTime) > 2.0f) {
+		if ((myCurrentLocationTime - myLastLocationTime) > 4.0f) {
 //			Debug.Log ("Should record my last position");
 			ai.WorkingMemory.SetItem ("myLastLocation", myCurrentLocation);
 			ai.WorkingMemory.SetItem ("myLastLocationTime", myCurrentLocationTime);
