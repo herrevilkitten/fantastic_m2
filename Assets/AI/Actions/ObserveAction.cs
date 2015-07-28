@@ -14,12 +14,12 @@ public class ObserveAction : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		Debug.Log (ai.Body.name + ": Observing the player");
+//		Debug.Log (ai.Body.name + ": Observing the player");
 		Vector3 player = ai.WorkingMemory.GetItem<Vector3> ("PlayerPosition");
-		Debug.Log (ai.Body.name + ": player" + player);
+//		Debug.Log (ai.Body.name + ": player" + player);
 
 		if (player != null) {
-			Debug.Log ("Look at player");
+//			Debug.Log ("Look at player");
 			ai.Motor.FaceAt(player);
 			/*
 			Vector3 dir = (player - ai.Body.transform.position).normalized;

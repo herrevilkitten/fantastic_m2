@@ -18,29 +18,23 @@ public class ChooseNavTarget : RAINAction
 		Vector3 location = ai.WorkingMemory.GetItem<Vector3> ("location");
 		Vector3 myLastLocation = ai.WorkingMemory.GetItem<Vector3> ("myLastLocation");
 		Vector3 myCurrentLocation = ai.Body.transform.position;
-		Vector3 myPreviousLocation = ai.WorkingMemory.GetItem<Vector3> ("previousLocation");
 
 		float myLastLocationTime = ai.WorkingMemory.GetItem<float> ("myLastLocationTime");
 		float myCurrentLocationTime = Time.time;
-		float replacedLocationTime = ai.WorkingMemory.GetItem<float> ("replacedLocationTime");
-		/*
-		Debug.Log (ai.Body.name + ": myLastLocationTime = " + myLastLocationTime);
-		Debug.Log (ai.Body.name + ": myLastLocation = " + myLastLocation);
 
-		Debug.Log (ai.Body.name + ": myCurrentLocationTime = " + myCurrentLocationTime);
-		Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
-*/
-//		Debug.Log (ai.Body.name + ": going to location = " + location);
-//		Debug.Log (ai.Body.name + ": ai.Motor.IsAt = " + ai.Motor.IsAt(location));
+		if (AreTwoVectorsCloseEnough (myCurrentLocation, location)) {
+			if (Time.time - myLastLocationTime < 7.0f) {
+				return ActionResult.SUCCESS;
+			}
+		}
 
-
-		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough (myCurrentLocation, location)) {
+		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough(myCurrentLocation, location)) {
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 			
-//			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
+			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
 		
 			ai.WorkingMemory.SetItem ("location", nextPosition);
-			ai.Motor.Speed = 1.0f;
+			ai.Motor.Speed = 1.5f;
 
 			RAIN.Navigation.Pathfinding.RAINPath myPath;
 			ai.Navigator.GetPathTo (nextPosition, 100, 1000, true, out myPath);
@@ -48,81 +42,122 @@ public class ChooseNavTarget : RAINAction
 			ai.Navigator.CurrentPath = myPath;
 			ai.Motor.MoveTo (nextPosition);
 
-			ai.WorkingMemory.RemoveItem("replacedLocationTime");
-			ai.WorkingMemory.RemoveItem("previousLocation");
 		} else {
 			RaycastHit hit;
 			Vector3 startPoint = new Vector3 (ai.Body.transform.position.x, ai.Body.transform.position.y + 1, ai.Body.transform.position.z);
+
 			if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.forward), out hit, 5.0f)) {
-				//				Debug.Log (ai.Body.name + ": **************************************something is in front of me. I'm gonna avoid it**************************************");
 				Vector3 dir = (location - ai.Body.transform.position).normalized;
 				dir += hit.normal * 10;
 				Quaternion rot = Quaternion.LookRotation (dir);
-				//				Debug.Log("rot : " + rot);
 				ai.Body.transform.rotation = Quaternion.Slerp (ai.Body.transform.rotation, rot, Time.deltaTime);
-
-
 			} 
+
 
 			if ( AreTwoVectorsCloseEnough(myCurrentLocation, myLastLocation) && myLastLocationTime != 0.0f) {
 				Vector3 difference = myCurrentLocation - myLastLocation;
-				/*
-				Debug.Log (ai.Body.name + ": This is why I think i'm stuck = " + difference);
-
 				Debug.Log (ai.Body.name + ": **************************************Looks like im' stuck. Let's do a new location**************************************");
-*/
+
 				Vector3 forward = ai.Body.transform.forward;
-				/*
-				Debug.Log (ai.Body.name + ": forward.x = " + forward.x);
-				Debug.Log (ai.Body.name + ": forward.y = " + forward.y);
-				Debug.Log (ai.Body.name + ": forward.z = " + forward.z);
-				Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
-*/
+
+				//Debug.Log (ai.Body.name + ": forward " + forward);
+				//Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
+
 				Vector3 newlocation = new Vector3();
+				System.Random rand = new System.Random();
 
-				newlocation.x = myCurrentLocation.x;
-				newlocation.y = myCurrentLocation.y;
-				newlocation.z = myCurrentLocation.z;
+				bool isBlockedInBack = false;
+				float backDistance = (-1)*rand.Next(15, 25);
 
+				bool isBlockedOnRight = false;
+				float rightDistance = rand.Next(15, 25);
 
+				bool isBlockedOnLeft = false;
+				float leftDistance = (-1)*rand.Next(15, 25);
+
+				if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.back), out hit, 35.0f)) {
+					/*
+					Debug.Log (ai.Body.name + ": Who am I hitting behind me = " + hit.transform.name);
+					Debug.Log (ai.Body.name + ": hit.transform " + hit.point);
+					Debug.Log (ai.Body.name + ": How close am I to the object " + hit.distance);
+					Debug.DrawLine (startPoint, hit.point, Color.green);
+*/
+					backDistance = hit.distance;
+
+					//Debug.Log (ai.Body.name + ": I should move back only " + ((-1) *backDistance / 2.0f));
+					isBlockedInBack = true;
+				}
+
+				if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.right), out hit, 35.0f)) {
+					//Debug.Log (ai.Body.name + ": Who am I hitting right of me = " + hit.transform.name);
+					//Debug.Log (ai.Body.name + ": hit.transform " + hit.point);
+					//Debug.Log (ai.Body.name + ": How close am I to the object " + hit.distance);
+					//Debug.DrawLine (startPoint, hit.point, Color.blue);
+
+					rightDistance = hit.distance;
+					//Debug.Log (ai.Body.name + ": I should move back only " + ((+1) *rightDistance / 2.0f));
+					isBlockedOnRight = true;
+				}
+
+				if (Physics.Raycast (startPoint, ai.Body.transform.TransformDirection (Vector3.left), out hit, 35.0f)) {
+					//Debug.Log (ai.Body.name + ": Who am I hitting left of me = " + hit.transform.name);
+					//Debug.Log (ai.Body.name + ": hit.transform " + hit.point);
+					//Debug.Log (ai.Body.name + ": How close am I to the object " + hit.distance);
+					//Debug.DrawLine (startPoint, hit.point, Color.cyan);
+
+					leftDistance = hit.distance;
+					//Debug.Log (ai.Body.name + ": I should move back only " + ((-1) *leftDistance / 2.0f));
+					isBlockedOnLeft = true;
+				}
+
+				if (isBlockedInBack) {
+					//Debug.Log ("I'm going back this much = " + backDistance);
+					newlocation.z = (float) (myCurrentLocation.z + backDistance);
+				}
+
+				newlocation.y = (float) (myCurrentLocation.y);
+
+				if (isBlockedOnLeft && isBlockedOnRight) {
+					//Debug.Log ("I'm blocked on both sides");
+					newlocation.x = myCurrentLocation.x;
+				} else if (isBlockedOnLeft) {
+					//Debug.Log ("I'm going to the right=" + rightDistance);
+					newlocation.x = myCurrentLocation.x + rightDistance + forward.x;
+				} else if (isBlockedOnRight) {
+					//Debug.Log ("I'm going to the left=" + leftDistance);
+					newlocation.x = myCurrentLocation.x + leftDistance+ forward.x;
+				}
+
+				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+				ai.Motor.FaceAt(newlocation);
+				ai.WorkingMemory.SetItem ("location", newlocation);
+				/*
+				Vector3 newlocation = new Vector3();
 				System.Random rand = new System.Random();
 				newlocation.x = (float) (myCurrentLocation.x + ((-1) * (forward.x) * rand.Next(5, 15)));
 				newlocation.y = myCurrentLocation.y;
 				newlocation.z = (float) (myCurrentLocation.z + ((-1) * (forward.z) * rand.Next(0, 5)));
-				
-				if (myPreviousLocation.Equals(Vector3.zero)) {
-					ai.WorkingMemory.SetItem ("previousLocation", location);
-				}
 
 				location = newlocation;
 				ai.WorkingMemory.SetItem ("location", newlocation);
-//				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
-				
-				ai.WorkingMemory.SetItem ("replacedLocationTime", myCurrentLocationTime);
+				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+
 				location = newlocation;
+				*/
 			} 
-
-
-
 		}
 
 		ai.Motor.MoveTo (location);
 
-		if ((myCurrentLocationTime - myLastLocationTime) > 3.0f) {
+		if ((myCurrentLocationTime - myLastLocationTime) > 2.0f) {
 //			Debug.Log ("Should record my last position");
 			ai.WorkingMemory.SetItem ("myLastLocation", myCurrentLocation);
 			ai.WorkingMemory.SetItem ("myLastLocationTime", myCurrentLocationTime);
 		}
-		/*
-		if (replacedLocationTime!=0.0f && myCurrentLocationTime - replacedLocationTime > 15.0f) {
-			ai.WorkingMemory.SetItem ("location", myPreviousLocation);
-			ai.WorkingMemory.RemoveItem("replacedLocationTime");
-			ai.WorkingMemory.RemoveItem("previousLocation");
-		}
-*/
 
 		return ActionResult.SUCCESS;
     }
+
 
 	private bool AreTwoVectorsCloseEnough(Vector3 vec1, Vector3 vec2, double range=0.1f) {
 		Vector3 difference = vec1 - vec2;
