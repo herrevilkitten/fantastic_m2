@@ -93,6 +93,8 @@ public class StateManager : MonoBehaviour
 		StateManager.detectionCount = 0;
 		StateManager.evidenceCount = 0;
 		StateManager.ClearAllFlags ();
+		ballStates [0] = BALL_AVAILABLE;
+		ballStates [1] = BALL_AVAILABLE;
 	}
 
 	public static void ModifySuspicion (int amount = 1)
