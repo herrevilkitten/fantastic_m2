@@ -29,10 +29,9 @@ public class ChooseNavTarget : RAINAction
 		}
 
 		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough(myCurrentLocation, location)) {
+			Debug.Log ("NextPosition for " + ai.Body.name);
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 			
-			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition);
-		
 			ai.WorkingMemory.SetItem ("location", nextPosition);
 			ai.Motor.Speed = 1.5f;
 
@@ -56,12 +55,12 @@ public class ChooseNavTarget : RAINAction
 
 			if ( AreTwoVectorsCloseEnough(myCurrentLocation, myLastLocation) && myLastLocationTime != 0.0f) {
 				Vector3 difference = myCurrentLocation - myLastLocation;
-				Debug.Log (ai.Body.name + ": **************************************Looks like im' stuck. Let's do a new location**************************************");
+//				Debug.Log (ai.Body.name + ": **************************************Looks like im' stuck. Let's do a new location**************************************");
 
 				Vector3 forward = ai.Body.transform.forward;
 
 				//Debug.Log (ai.Body.name + ": forward " + forward);
-				Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
+//				Debug.Log (ai.Body.name + ": myCurrentLocation = " + myCurrentLocation);
 				RadioManager.AddStuckLocation(myCurrentLocation);
 
 				Vector3 newlocation = new Vector3();
@@ -130,12 +129,12 @@ public class ChooseNavTarget : RAINAction
 				}
 
 				if (RadioManager.IsPreviousStuckLocation(newlocation)) {
-					Debug.Log (ai.Body.name + ": Altering new location by a random amount ");
+//					Debug.Log (ai.Body.name + ": Altering new location by a random amount ");
 					newlocation.x = newlocation.x + rand.Next(1, 5);
 					newlocation.z = newlocation.z + rand.Next(1, 5);
 				}
 
-				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+//				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
 				ai.Motor.FaceAt(newlocation);
 				ai.WorkingMemory.SetItem ("location", newlocation);
 				/*
