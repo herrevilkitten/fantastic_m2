@@ -36,7 +36,7 @@ public class CopDetectPlayer : RAINAction
 				actionNumber = "" + lastObserveAction;
 			} else {
 				System.Random rand = new System.Random();
-				actionNumber = "" + rand.Next(1, 4);
+				actionNumber = "" + rand.Next(1, 9);
 				ai.WorkingMemory.SetItem("lastObserveAction", actionNumber);
 			}
 

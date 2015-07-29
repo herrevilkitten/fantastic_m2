@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 99cfda0076929a14cb9897e55984f50b
-timeCreated: 1438186670
+guid: e1c6a19ed98188241904733884bdd73c
+timeCreated: 1438212749
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -139,7 +139,7 @@ ModelImporter:
     400128: Beta:Spine
     400130: Beta:Spine1
     400132: Beta:Spine2
-    7400000: looking_around
+    7400000: warrior_idle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -151,7 +151,7 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 'MuscleClip ''AIPlayer@looking_around'' conversion warning:
+    animationImportWarnings: 'MuscleClip ''AIPlayer@warrior_idle'' conversion warning:
       ''Beta:Hips/Beta:Spine/Beta:Spine1/Beta:Spine2'' is between humanoid transforms
       and has rotation animation. This might lower retargeting quality.
 
@@ -167,10 +167,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: looking_around
+      name: warrior_idle
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 190
+      lastFrame: 344
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -762,34 +762,34 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: AIPlayer@looking_around(Clone)
+    - name: AIPlayer@warrior_idle(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:Hips
-      position: {x: .00181056466, y: .917144954, z: .00198269868}
-      rotation: {x: -.00808427203, y: .0146179404, z: .0171929393, w: .999712646}
-      scale: {x: .99999994, y: .99999994, z: 1}
+      position: {x: .000494525535, y: .927391469, z: .0114446431}
+      rotation: {x: -.0530791953, y: -.0106123146, z: .00266836397, w: .998530388}
+      scale: {x: 1, y: 1, z: 1.00000012}
       transformModified: 1
     - name: Beta:LeftUpLeg
       position: {x: -.0963379964, y: -.0327329971, z: 0}
-      rotation: {x: -.136978135, y: -.0262598563, z: -.0417304486, w: .989346325}
+      rotation: {x: -.0796319544, y: -.0976399705, z: -.0994760394, w: .987030745}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftLeg
       position: {x: -0, y: -.417299986, z: -.0173000004}
-      rotation: {x: .349960893, y: -.0743898004, z: -.038437508, w: .933014572}
+      rotation: {x: .280506253, y: .0708293319, z: .0558685325, w: .95560354}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftFoot
       position: {x: -.000125999999, y: -.391899973, z: -.00847699959}
-      rotation: {x: -.198959321, y: -.0697421059, z: .0788958818, w: .974333942}
+      rotation: {x: -.150431097, y: .0541043431, z: .0114270346, w: .987072766}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftToeBase
       position: {x: .00183299999, y: -.121930994, z: .0828230008}
-      rotation: {x: -.00877476111, y: -5.62583438e-08, z: 2.81865606e-08, w: .999961495}
+      rotation: {x: -.00381133799, y: 2.98297813e-08, z: -1.38584455e-09, w: .999992728}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftFootToeBase_End
@@ -799,22 +799,22 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightUpLeg
       position: {x: .0963379964, y: -.0327329971, z: 0}
-      rotation: {x: -.133439079, y: .112553485, z: .0329241678, w: .984094441}
+      rotation: {x: -.0805363879, y: .135770768, z: .070793435, w: .984920561}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightLeg
       position: {x: -0, y: -.417299986, z: -.0173000004}
-      rotation: {x: .323499799, y: .0387561098, z: .0245130043, w: .945116401}
+      rotation: {x: .282471567, y: -.0748351589, z: -.00108324876, w: .956351578}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightFoot
       position: {x: -.000125999999, y: -.391899973, z: -.00847699959}
-      rotation: {x: -.174610183, y: .0172057394, z: -.0616570972, w: .982554674}
+      rotation: {x: -.150802791, y: .00316056609, z: -.0459958017, w: .98748821}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightToeBase
       position: {x: .00183299999, y: -.121930994, z: .0828230008}
-      rotation: {x: -7.2532282e-07, y: -1.40232572e-07, z: 1.65091585e-08, w: 1}
+      rotation: {x: -.00867176894, y: 4.42841532e-08, z: -4.922732e-09, w: .999962389}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightFootToeBase_End
@@ -824,32 +824,32 @@ ModelImporter:
       transformModified: 1
     - name: Beta:Spine
       position: {x: -0, y: .0922629982, z: .0157709997}
-      rotation: {x: .0130818924, y: .00223295717, z: .000427311985, w: .999911845}
+      rotation: {x: .0114776492, y: -.000723251374, z: -.000542959722, w: .99993372}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:Spine1
       position: {x: -0, y: .162539989, z: -.00165600004}
-      rotation: {x: .0168532263, y: .0141486311, z: -.000954690273, w: .999757409}
+      rotation: {x: .024104584, y: -.00142481748, z: -.00137665775, w: .99970752}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:Spine2
       position: {x: -0, y: .136395991, z: -.0129229994}
-      rotation: {x: .0168436803, y: .0140865743, z: -.00136249873, w: .999758005}
+      rotation: {x: .0241048485, y: -.0014221326, z: -.00137508614, w: .99970752}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftShoulder
       position: {x: -.0614419989, y: .10187, z: -.0379320011}
-      rotation: {x: .00235450687, y: -.0187284332, z: .0502841808, w: .998556554}
+      rotation: {x: .0754449517, y: -.0288528334, z: .0632755682, w: .994722009}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftArm
       position: {x: -.123190999, y: -.0111300005, z: -.0179349985}
-      rotation: {x: .156921878, y: -.018471133, z: -.05128159, w: .9861058}
+      rotation: {x: .0915410146, y: .0205391347, z: -.0539353974, w: .994127452}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftForeArm
       position: {x: -.276869982, y: 0, z: 0}
-      rotation: {x: -.00164534827, y: .0308826938, z: -.00862740818, w: .999484479}
+      rotation: {x: -.000777188514, y: .0324653797, z: -.00788565446, w: .999441504}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHand
@@ -859,17 +859,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:LeftHandIndex1
       position: {x: -.103944995, y: .00614799978, z: .027054999}
-      rotation: {x: -.000931500399, y: .00863320474, z: .0501993448, w: .998701513}
+      rotation: {x: -.0261936802, y: .0220349617, z: .0323062763, w: .998891711}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandIndex2
       position: {x: -.0554930009, y: 0, z: 0}
-      rotation: {x: -1.20140555e-07, y: -6.76139848e-07, z: .0289388932, w: .999581218}
+      rotation: {x: 3.66242432e-07, y: 7.43195073e-07, z: -1.12596842e-06, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandIndex3
       position: {x: -.0339109972, y: 0, z: 0}
-      rotation: {x: -3.63215662e-08, y: 2.04890895e-08, z: .0412404351, w: .999149323}
+      rotation: {x: -6.92671023e-08, y: -8.81030928e-07, z: .0251953769, w: .999682605}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandIndex4
@@ -879,17 +879,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:LeftHandMiddle1
       position: {x: -.104638994, y: .00614799978, z: .00429800013}
-      rotation: {x: -.00145056646, y: .0114376349, z: .0468454324, w: .998835683}
+      rotation: {x: -.0298381019, y: .0222004503, z: .0304342564, w: .998844683}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandMiddle2
       position: {x: -.0579209998, y: 0, z: 0}
-      rotation: {x: 8.38190051e-09, y: -3.05473691e-07, z: .031553518, w: .999502063}
+      rotation: {x: -3.94298354e-07, y: -7.05476282e-07, z: 4.63798244e-07, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandMiddle3
       position: {x: -.0371319987, y: 0, z: 0}
-      rotation: {x: -3.14321227e-08, y: 3.91155304e-08, z: .041223608, w: .999150038}
+      rotation: {x: 7.4040102e-08, y: 8.48434354e-07, z: .0231088214, w: .999732971}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandMiddle4
@@ -899,17 +899,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:LeftHandPinky1
       position: {x: -.100129992, y: -.000782999967, z: -.0396709964}
-      rotation: {x: -.000366040942, y: .014187268, z: .0391921625, w: .999130964}
+      rotation: {x: -.014730908, y: .0195050761, z: .0256789029, w: .99937135}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandPinky2
       position: {x: -.0367630012, y: 0, z: 0}
-      rotation: {x: -8.31204972e-08, y: -1.01141586e-06, z: .0365094207, w: .999333322}
+      rotation: {x: 6.28642516e-09, y: -2.48663042e-07, z: .00722185476, w: .999973893}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandPinky3
       position: {x: -.0281130001, y: 0, z: 0}
-      rotation: {x: -2.61640203e-08, y: 9.50675059e-08, z: .0393279195, w: .999226391}
+      rotation: {x: -1.74040892e-07, y: -7.19912236e-07, z: .0249823965, w: .99968791}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandPinky4
@@ -919,17 +919,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:LeftHandRing1
       position: {x: -.103252001, y: .003211, z: -.0187550001}
-      rotation: {x: .0010212264, y: .011441227, z: .0419891477, w: .999052048}
+      rotation: {x: -.0163019486, y: .0197324883, z: .0286971256, w: .999260426}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandRing2
       position: {x: -.0544519983, y: 0, z: 0}
-      rotation: {x: -4.6100439e-08, y: 6.51925447e-08, z: .0345120393, w: .999404252}
+      rotation: {x: -1.86264408e-08, y: 1.46217559e-07, z: .00547503214, w: .999985039}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandRing3
       position: {x: -.0371319987, y: 0, z: 0}
-      rotation: {x: 7.82310892e-08, y: 1.2107192e-07, z: .0412778817, w: .999147773}
+      rotation: {x: -2.81957739e-07, y: -1.287087e-06, z: .0269210581, w: .999637544}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandRing4
@@ -939,17 +939,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:LeftHandThumb1
       position: {x: -.0237849988, y: -.0100290002, z: .0262089986}
-      rotation: {x: -.107304208, y: .0268641934, z: -.167455256, w: .979654491}
+      rotation: {x: -.115790255, y: .0468618348, z: -.123764165, w: .984418154}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandThumb2
       position: {x: -.0336240008, y: -.0100290002, z: .0283979978}
-      rotation: {x: -.066291146, y: .0749743506, z: .0230853334, w: .994711697}
+      rotation: {x: -.0848772079, y: .0765604973, z: .0391742177, w: .992673039}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandThumb3
       position: {x: -.0450179987, y: -.0134449992, z: .021782998}
-      rotation: {x: -.00700139022, y: .0121835712, z: -.00811484549, w: .999868393}
+      rotation: {x: -.08629217, y: .000762688986, z: -.000720543379, w: .996269405}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:LeftHandThumb4
@@ -959,7 +959,7 @@ ModelImporter:
       transformModified: 1
     - name: Beta:Neck
       position: {x: -0, y: .138774008, z: -.0435419977}
-      rotation: {x: -.00197479571, y: .004158122, z: -.00182201678, w: .999987781}
+      rotation: {x: -.0177449454, y: .00151761679, z: -.0121987499, w: .999767005}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:Neck1
@@ -969,7 +969,7 @@ ModelImporter:
       transformModified: 1
     - name: Beta:Head
       position: {x: -0, y: .0402659997, z: .00858499948}
-      rotation: {x: .0333130211, y: .0249315966, z: -.0309596192, w: .998654187}
+      rotation: {x: -.0303771775, y: -.00768933818, z: -.00157678034, w: .999507725}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:HeadTop_End
@@ -979,17 +979,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightShoulder
       position: {x: .0614020005, y: .10187, z: -.0379320011}
-      rotation: {x: .00950210262, y: -.0546022803, z: -.0697919354, w: .996020794}
+      rotation: {x: .0553106517, y: .00917115435, z: -.0587964244, w: .996694386}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightArm
       position: {x: .123231001, y: -.0111300005, z: -.0179349985}
-      rotation: {x: .0267550889, y: .0274810102, z: .0445504002, w: .998270631}
+      rotation: {x: .0552430749, y: -.00728615932, z: .047872059, w: .997298121}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightForeArm
       position: {x: .276869982, y: 0, z: 0}
-      rotation: {x: -.00195501535, y: -.0314085446, z: .00879111327, w: .999466062}
+      rotation: {x: -.000377022894, y: -.0360274501, z: .00538884988, w: .999336183}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHand
@@ -999,17 +999,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightHandIndex1
       position: {x: .104665004, y: .00489600003, z: .0271199979}
-      rotation: {x: -.0103256181, y: -.0262193829, z: -.0536608957, w: .998161554}
+      rotation: {x: -.0306836627, y: -.0210165717, z: -.0345516913, w: .998710692}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandIndex2
       position: {x: .0537679978, y: 0, z: 0}
-      rotation: {x: -1.00117155e-07, y: 3.45054929e-07, z: -.0287867654, w: .999585629}
+      rotation: {x: 1.79512341e-07, y: 9.40635374e-08, z: -1.05472236e-06, w: -1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandIndex3
       position: {x: .0338549986, y: 0, z: 0}
-      rotation: {x: 1.51892821e-09, y: 3.01888612e-08, z: .00984571595, w: .999951541}
+      rotation: {x: 5.70434793e-08, y: 1.40629638e-07, z: -.0348488949, w: .999392569}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandIndex4
@@ -1019,17 +1019,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightHandMiddle1
       position: {x: .107595995, y: .00489600003, z: .00427799998}
-      rotation: {x: -.00562714878, y: -.0165365171, z: -.0506281704, w: .998564839}
+      rotation: {x: -.0237316992, y: -.0201490615, z: -.0351580754, w: .998896778}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandMiddle2
       position: {x: .0561679974, y: 0, z: 0}
-      rotation: {x: -2.85217432e-08, y: 6.16535317e-07, z: -.0298001748, w: .999555886}
+      rotation: {x: -2.40979602e-07, y: -1.81142155e-07, z: -.00250103581, w: .999996901}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandMiddle3
       position: {x: .0373639986, y: 0, z: 0}
-      rotation: {x: -.00559916627, y: -6.16152684e-05, z: .0110042095, w: .999923766}
+      rotation: {x: -.000177958456, y: 4.57512033e-06, z: -.0261218268, w: .999658763}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandMiddle4
@@ -1039,17 +1039,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightHandPinky1
       position: {x: .0997150019, y: -.00119099999, z: -.0395400003}
-      rotation: {x: .0198494196, y: -.00776297646, z: -.0416459627, w: .998905122}
+      rotation: {x: -.0132211111, y: -.0186027437, z: -.0352985337, w: .999116242}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandPinky2
       position: {x: .0365279987, y: 0, z: 0}
-      rotation: {x: -8.32369196e-09, y: 1.43889267e-07, z: -.0325198956, w: .999471068}
+      rotation: {x: -5.07570554e-08, y: -4.74508624e-07, z: -.0033566521, w: .999994397}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandPinky3
       position: {x: .0278200004, y: 0, z: 0}
-      rotation: {x: -5.59690161e-09, y: -9.0497112e-09, z: .014240819, w: .999898612}
+      rotation: {x: 1.31316355e-07, y: 1.05239351e-07, z: -.0235030819, w: .999723792}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandPinky4
@@ -1059,17 +1059,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightHandRing1
       position: {x: .104701996, y: .00387899997, z: -.0193629991}
-      rotation: {x: .00784951076, y: -.00908418465, z: -.0456901863, w: .998883545}
+      rotation: {x: -.0133560449, y: -.0186370891, z: -.0340758041, w: .999156177}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandRing2
       position: {x: .0540129989, y: 0, z: 0}
-      rotation: {x: -2.95112734e-08, y: -1.63447055e-07, z: -.0312726721, w: .999510944}
+      rotation: {x: 3.4226094e-08, y: 2.1886072e-07, z: -.0045616175, w: .999989629}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandRing3
       position: {x: .0339159966, y: 0, z: 0}
-      rotation: {x: -.00652314676, y: -8.08230616e-05, z: .0123937288, w: .99990195}
+      rotation: {x: -.000379193865, y: 1.03916927e-05, z: -.0289896838, w: .999579668}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandRing4
@@ -1079,17 +1079,17 @@ ModelImporter:
       transformModified: 1
     - name: Beta:RightHandThumb1
       position: {x: .0251780003, y: -.00936699938, z: .0251369998}
-      rotation: {x: -.0974803716, y: -.0126616303, z: .0726874098, w: .992498815}
+      rotation: {x: -.143178329, y: -.0398588441, z: .0550350063, w: .987361312}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandThumb2
       position: {x: .0326379985, y: -.0108699994, z: .0296689998}
-      rotation: {x: -.0742930546, y: -.0901179686, z: -.0337943137, w: .992581189}
+      rotation: {x: -.0515639633, y: -.105856612, z: -.0211881176, w: .992817581}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandThumb3
       position: {x: .0441650003, y: -.0137029998, z: .0213500001}
-      rotation: {x: -.0039733923, y: -.0102114491, z: .00392604293, w: .999932289}
+      rotation: {x: -.0426153578, y: -.0046191127, z: .0138906706, w: .998984396}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Beta:RightHandThumb4
