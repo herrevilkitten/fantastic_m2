@@ -23,6 +23,8 @@ public class StateManager : MonoBehaviour
 
 	private static Dictionary<string, string> detected = new Dictionary<string, string> ();
 
+	public GameObject[] targets;
+
 	public static string[] EVIDENCES = {
 		EVIDENCE_KNIFE,
 		EVIDENCE_PHONE,

@@ -18,15 +18,16 @@ public class RadioElement : CustomAIElement
 	public override void AIInit()
 	{
 		base.AIInit();
-		InitializeTargets ();
+	//	InitializeTargets ();
 		ListenTo ();	
 	}
-
+	/*
 	private void InitializeTargets() {
 		foreach (GameObject element in listOfTargets) {
 			RadioManager.Singleton.AddTarget(element);
 		}
 	}
+	*/
 
 	public void ListenTo() {
 		RadioManager.Singleton.Listen (this);

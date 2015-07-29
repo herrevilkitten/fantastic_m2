@@ -15,7 +15,7 @@ public class RadioManager {
 	private static ArrayList tempDestLocations = new ArrayList();
 	private static ArrayList permDestLocations = new ArrayList ();
 
-	private List<GameObject> listOfTargets = new List<GameObject>();
+	//private List<GameObject> listOfTargets = new List<GameObject>();
 
 	private RadioManager() {
 	}
@@ -60,11 +60,11 @@ public class RadioManager {
 			return singleton;
 		}
 	}
-
+	/*
 	public void AddTarget(GameObject element) {
 		listOfTargets.Add (element);
 	}
-
+*/
 	public void Listen(RadioElement copRadio) {
 		//Debug.Log ("Listening");
 		cops.Add (copRadio);
@@ -91,12 +91,13 @@ public class RadioManager {
 
 	public Vector3 RadioForNextPosition(AI ai) {
 		System.Random rand = new System.Random ();
-		int nextPosition = rand.Next(0, listOfTargets.Count);
+		int nextPosition = rand.Next(0, StateManager.stateManager.targets.Length);
 
 		return GetNextPosition(ai, nextPosition);
 	}
 
 	private Vector3 GetNextPosition(AI ai, int nextPosition) {
+		/*
 		if (listOfTargets.Count > 0 && listOfTargets [0] == null) {
 			lock (thisLock) {
 				listOfTargets.Clear ();
@@ -104,8 +105,8 @@ public class RadioManager {
 				elem.AIInit ();
 			}
 		}
-
-		return listOfTargets [nextPosition].transform.position; 
+*/
+		return StateManager.stateManager.targets [nextPosition].transform.position; 
 	}
 
 
