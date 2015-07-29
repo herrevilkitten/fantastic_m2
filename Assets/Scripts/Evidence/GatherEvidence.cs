@@ -11,11 +11,10 @@ public class GatherEvidence : UsableAfterTime
 	{
 		return (GameObject actor) => {
 			StateManager.SetFlag (flag + "Gathered");
-			ParticleSystem particleSystem = GetComponent<ParticleSystem> ();
-
 			UnhighlightObject ();
 			
-			if (particleSystem != null) {
+			ParticleSystem[] particleSystems = transform.parent.GetComponentsInChildren<ParticleSystem> ();
+			foreach (ParticleSystem particleSystem in particleSystems) {
 				particleSystem.Stop ();
 			}
 			
