@@ -29,7 +29,7 @@ public class ChooseNavTarget : RAINAction
 		}
 
 		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough(myCurrentLocation, location)) {
-			Debug.Log ("NextPosition for " + ai.Body.name);
+//			Debug.Log ("NextPosition for " + ai.Body.name);
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 			
 			ai.WorkingMemory.SetItem ("location", nextPosition);
