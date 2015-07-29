@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
 
 		Image itemImage = Instantiate (instance.inventoryItem);
 		InventoryItem inventoryItem = itemImage.GetComponent<InventoryItem> ();
+		itemImage.sprite = gatherEvidence.icon;
 		inventoryItem.evidence = item;
 		inventoryItem.eventSystem = instance.eventSystem;
 		inventoryItem.tooltipText = instance.tooltipText;

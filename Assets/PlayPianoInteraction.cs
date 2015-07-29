@@ -3,13 +3,16 @@ using System.Collections;
 
 public class PlayPianoInteraction : ClickableObject
 {
-	public float maxPlayTime = 3.0f;
+	public float maxPlayTime = 30.0f;
 	AudioSource audioSource;
 	float playStartTime;
 
 	void Start ()
 	{
 		audioSource = GetComponent<AudioSource> ();
+		if (audioSource == null) {
+			audioSource = GetComponentInParent<AudioSource> ();
+		}
 	}
 
 	void Update ()
@@ -17,22 +20,28 @@ public class PlayPianoInteraction : ClickableObject
 		if (!audioSource.isPlaying) {
 			return;
 		}
+		float currentTime = Time.realtimeSinceStartup;
 
-		if ((playStartTime + maxPlayTime + 2f) > Time.time) {
+		if (currentTime < playStartTime + maxPlayTime) {
+			return;
+		}
+
+		if (currentTime < playStartTime + maxPlayTime + 2f) {
+			audioSource.volume = Mathf.Lerp (audioSource.volume, 0f, .05f);
+		} else {
 			audioSource.Stop ();
-		} else if (playStartTime + maxPlayTime > Time.time) {
-			audioSource.volume = Mathf.Lerp (audioSource.volume, 0f, .1f);
 		}
 	}
 
 	override public void OnInteractClick (GameObject actor)
 	{
-		playStartTime = Time.time;
+		playStartTime = Time.realtimeSinceStartup;
 
 		if (audioSource.isPlaying) {
 			return;
 		}
 
+		audioSource.volume = 1f;
 		audioSource.Play ();
 	}
 }

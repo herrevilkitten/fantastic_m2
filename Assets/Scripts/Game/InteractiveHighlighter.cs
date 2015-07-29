@@ -41,11 +41,11 @@ public class InteractiveHighlighter : MonoBehaviour
 			Ray ray = playerCamera.ScreenPointToRay (rayTarget);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {
-				//    Debug.DrawLine (ray.origin, hit.point);
 				GameObject objectHit = hit.collider.gameObject;
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				if (interaction != null) {
 					if (interaction.IsHightlighted ()) {
+						Debug.Log (changed + " " + (interaction is InteractiveObject.ClickableInteraction));
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
 							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (player);
 						}
