@@ -95,6 +95,7 @@ public class FollowMouseLookCamera : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Linecast (eyePosition.transform.position, transform.position, out hit)) {
 				if (hit.collider.transform != transform.parent) {
+					Debug.Log ("Camera blocked by " + hit.collider);
 					transform.position = hit.point;
 				}
 			}

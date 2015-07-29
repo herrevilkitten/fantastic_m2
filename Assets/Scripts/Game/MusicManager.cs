@@ -45,7 +45,7 @@ public class MusicManager : MonoBehaviour
 	
 	public void SetMusicVolume (float volume)
 	{
-		audioSource.volume = volume;
+		audioSource.volume = volume * .5f;
 	}
 
 	public float GetMusicVolume ()

@@ -43,5 +43,7 @@ public class PlayPianoInteraction : ClickableObject
 
 		audioSource.volume = 1f;
 		audioSource.Play ();
+
+		DialogManager.PopUp ("You play a jaunty tune on the piano.");
 	}
 }
