@@ -12,10 +12,31 @@ public class RadioManager {
 	private static ArrayList tempStuckLocations = new ArrayList();
 	private static ArrayList permStuckLocations = new ArrayList ();
 
+	private static ArrayList tempDestLocations = new ArrayList();
+	private static ArrayList permDestLocations = new ArrayList ();
+
 	private List<GameObject> listOfTargets = new List<GameObject>();
 
 	private RadioManager() {
 	}
+
+	public static void AddDestLocation(Vector3 location) {
+		if (tempDestLocations.Contains (location)) {
+			permDestLocations.Add (location);
+		}
+		
+		tempDestLocations.Add (location);
+	}
+	
+	public static bool IsPreviousDestLocation(Vector3 location) {
+		return permDestLocations.Contains (location);
+	}
+	/*
+	public static void RemoveStuckDestination(Vector3 location) {
+		return permDestLocations.Remove (location);
+	}
+*/
+
 
 	public static void AddStuckLocation(Vector3 location) {
 		if (tempStuckLocations.Contains (location)) {
