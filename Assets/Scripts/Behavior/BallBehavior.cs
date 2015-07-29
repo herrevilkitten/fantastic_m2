@@ -4,18 +4,8 @@ using System.Collections;
 public class BallBehavior : MonoBehaviour {
 	private Transform player;
 	public float throwForce = 1;
-	bool hasPlayer = false;
-
-	void OnTriggerEnter(Collider other)
-	{
-		hasPlayer = true;
-	}
-	
-	void OnTriggerExit(Collider other)
-	{
-		hasPlayer = false;
-	}	
-
+	bool released = false;
+	float timeThrown;
 
 	public void ReleaseMe(Transform player, Animator animator) {
 		Rigidbody ballRB = GetComponent<Rigidbody> ();
@@ -33,7 +23,17 @@ public class BallBehavior : MonoBehaviour {
 
 		ballRB.velocity = vel;
 		//ballRB.AddForce (transform.forward * throwForce);
+		released = true;
+		timeThrown = Time.time;
+	}
 
+	public float GetThrownTime() {
+		return timeThrown;
+	}
 
+	public void OnCollisionEnter(Collision collision) {
+		if (released) {
+			Debug.Log ("get ball again");
+		}
 	}
 }

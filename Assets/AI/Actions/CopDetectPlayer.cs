@@ -35,21 +35,27 @@ public class CopDetectPlayer : RAINAction
 		IList<RAINAspect> redBalls = ai.Senses.Sense ("VisualSensor", "RedBall", RAINSensor.MatchType.ALL);
 
 		if (redBalls.Count > 0) {
-			Debug.Log (ai.Body.name + ": There are red balls");
+			//Debug.Log (ai.Body.name + ": There are red balls");
 			foreach (RAINAspect aspect in redBalls) {
-				Debug.Log (ai.Body.name + ": Ball position" + aspect.MountPoint.position);
-				ai.WorkingMemory.SetItem<float>("LastBallDetect" + aspect.MountPoint.name, currentTime);
-				ai.WorkingMemory.SetItem<Vector3>("LastBallPosition" + aspect.MountPoint.name, aspect.MountPoint.position);
-				ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
-				return ActionResult.SUCCESS;
+				BallBehavior behavior = aspect.MountPoint.GetComponent<BallBehavior>();
+				if (currentTime-behavior.GetThrownTime() < 2.5f) {
+					//deliberate here. last ball overrides previous ball distraction
+					Debug.Log (ai.Body.name + ": Ball position" + aspect.MountPoint.position);
+					ai.WorkingMemory.SetItem<Transform>("LastBallDetect", aspect.MountPoint);
+					ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
+					return ActionResult.SUCCESS;
+				}
 			}
 		}
 
 		if (currentAction.Equals ("distracted")) {
-			if (!ShouldIgnoreBall(ai, currentTime)) {
-				Debug.Log (ai.Body.name + ": Still distracted");
-				ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
-				return ActionResult.SUCCESS;
+			Transform ball = ai.WorkingMemory.GetItem<Transform>("LastBallDetect");
+			if (ball!=null) {
+				BallBehavior behavior = ball.GetComponent<BallBehavior>();
+				if (currentTime - behavior.GetThrownTime() < 10.0f) {
+					ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
+					return ActionResult.SUCCESS;
+				}
 			}
 		}
 
@@ -157,13 +163,6 @@ public class CopDetectPlayer : RAINAction
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
 
-	}
-
-	public bool ShouldIgnoreBall(AI ai, float currentTime) {
-		
-		float lastDetectCycle = ai.WorkingMemory.GetItem<float> ("LastBallDetect");
-		
-		return ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 7.0f);
 	}
 
 	public bool ShouldLookForPlayer(AI ai, float currentTime) {
