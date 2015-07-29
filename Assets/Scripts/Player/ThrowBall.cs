@@ -12,9 +12,14 @@ public class ThrowBall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("t") && !animator.GetBool("IsThrowing")) {
-			Animator anim = GetComponent<Animator>();
-			anim.SetBool("IsThrowing", true);
-			//Invoke ("StopThrowing", 0.25f);
+
+			if (StateManager.ballStates[0] == StateManager.BALL_AVAILABLE) {
+				StateManager.ballStates[0] = StateManager.BALL_THROWING;
+				animator.SetBool("IsThrowing", true);
+			} else if (StateManager.ballStates[1] == StateManager.BALL_AVAILABLE) {
+				StateManager.ballStates[1] = StateManager.BALL_THROWING;
+				animator.SetBool("IsThrowing", true);
+			}
 		}
 	}
 
@@ -26,6 +31,12 @@ public class ThrowBall : MonoBehaviour {
 		position.z = this.transform.position.z + 0.30f;
 
 		ball = (GameObject)Instantiate (ballToThrow, position, this.transform.rotation);
+
+		if (StateManager.ballStates[0] == StateManager.BALL_THROWING) {
+			ball.name = StateManager.ballNames[0];
+		} else if (StateManager.ballStates[1] == StateManager.BALL_THROWING) {
+			ball.name = StateManager.ballNames[1];
+		}
 
 		Rigidbody ballRB = ball.GetComponent<Rigidbody> ();
 		ballRB.useGravity = false;
@@ -50,6 +61,11 @@ public class ThrowBall : MonoBehaviour {
 
 	public void StopThrow() {
 		animator.SetBool ("IsThrowing", false);
+		if (StateManager.ballStates[0] == StateManager.BALL_THROWING) {
+			StateManager.ballStates[0] = StateManager.BALL_THROWN;
+		} else if (StateManager.ballStates[1] == StateManager.BALL_THROWING) {
+			StateManager.ballStates[1] = StateManager.BALL_THROWN;
+		}
 
 	}
 }

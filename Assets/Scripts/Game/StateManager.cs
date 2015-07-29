@@ -14,6 +14,12 @@ public class StateManager : MonoBehaviour
 	public const string EVIDENCE_FOOTPRINT = "footprint";
 	public const string EVIDENCE_NECKLACE = "necklace";
 
+	public const int BALL_THROWN = 2;
+	public const int BALL_THROWING = 1;
+	public const int BALL_AVAILABLE = 0;
+
+	public static int[] ballStates = { BALL_AVAILABLE, BALL_AVAILABLE };
+	public static string[] ballNames = { "Ball1", "Ball2" };
 
 	private static Dictionary<string, string> detected = new Dictionary<string, string> ();
 

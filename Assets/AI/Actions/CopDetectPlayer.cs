@@ -26,14 +26,35 @@ public class CopDetectPlayer : RAINAction
 		float currentTime = Time.fixedTime;
 		string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
 		//do not stop the arrest sequence
-
-		//has it been greater than 1.5f seconds since I last looked for the player
-
 		if (StateManager.CompletedEvidence ()) {
 			ai.WorkingMemory.SetItem("currentAction", "stop");
 			return ActionResult.SUCCESS;
 		}
 
+
+		IList<RAINAspect> redBalls = ai.Senses.Sense ("VisualSensor", "RedBall", RAINSensor.MatchType.ALL);
+
+		if (redBalls.Count > 0) {
+			Debug.Log (ai.Body.name + ": There are red balls");
+			foreach (RAINAspect aspect in redBalls) {
+				Debug.Log (ai.Body.name + ": Ball position" + aspect.MountPoint.position);
+				ai.WorkingMemory.SetItem<float>("LastBallDetect" + aspect.MountPoint.name, currentTime);
+				ai.WorkingMemory.SetItem<Vector3>("LastBallPosition" + aspect.MountPoint.name, aspect.MountPoint.position);
+				ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
+				return ActionResult.SUCCESS;
+			}
+		}
+
+		if (currentAction.Equals ("distracted")) {
+			if (!ShouldIgnoreBall(ai, currentTime)) {
+				Debug.Log (ai.Body.name + ": Still distracted");
+				ai.WorkingMemory.SetItem<string>("currentAction", "distracted");
+				return ActionResult.SUCCESS;
+			}
+		}
+
+
+		//has it been greater than 1.5f seconds since I last looked for the player
 		if (ShouldLookForPlayer(ai, currentTime)) {
 //			Debug.Log ("Look for player");
 			IList<RAINAspect> matches = ai.Senses.Sense("VisualSensor", "PlayerAspect", RAINSensor.MatchType.ALL);
@@ -136,6 +157,13 @@ public class CopDetectPlayer : RAINAction
 		ai.WorkingMemory.SetItem<float>("FirstObservedTime", 0.0f);
 		ai.WorkingMemory.SetItem("PlayerPosition", new Vector3());
 
+	}
+
+	public bool ShouldIgnoreBall(AI ai, float currentTime) {
+		
+		float lastDetectCycle = ai.WorkingMemory.GetItem<float> ("LastBallDetect");
+		
+		return ((lastDetectCycle != 0) && (currentTime - lastDetectCycle) >= 7.0f);
 	}
 
 	public bool ShouldLookForPlayer(AI ai, float currentTime) {
