@@ -25,6 +25,27 @@ public class StationaryCopDetectPlayer : RAINAction
 	{
 		float currentTime = Time.fixedTime;
 		string currentAction = ai.WorkingMemory.GetItem<string>("currentAction");
+		int lastObserveAction = ai.WorkingMemory.GetItem<int> ("lastObserveAction");
+		
+		if (currentAction != null && (currentAction.Equals ("distracted") || currentAction.Equals ("observe"))) {
+			Animator anim = ai.Body.GetComponent<Animator> ();
+			string actionNumber;
+			if (lastObserveAction!=0) {
+				actionNumber = "" + lastObserveAction;
+			} else {
+				System.Random rand = new System.Random();
+				actionNumber = "" + rand.Next(1, 4);
+				ai.WorkingMemory.SetItem("lastObserveAction", actionNumber);
+			}
+			
+			anim.SetBool ("IsObserving" + actionNumber, true);
+		} else {
+			Animator anim = ai.Body.GetComponent<Animator> ();
+			if (lastObserveAction > 0) {
+				anim.SetBool ("IsObserving" + lastObserveAction, false);
+				ai.WorkingMemory.RemoveItem("lastObserveAction");
+			}
+		}
 		//do not stop the arrest sequence
 		if (StateManager.CompletedEvidence ()) {
 			ai.WorkingMemory.SetItem("currentAction", "stop");
