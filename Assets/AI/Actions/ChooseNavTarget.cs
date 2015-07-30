@@ -32,7 +32,7 @@ public class ChooseNavTarget : RAINAction
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
 		//	Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition );			
 			ai.WorkingMemory.SetItem ("location", nextPosition);
-			ai.Motor.Speed = 1.5f;
+			ai.Motor.Speed = 1.0f;
 
 			RAIN.Navigation.Pathfinding.RAINPath myPath;
 			ai.Navigator.GetPathTo (nextPosition, 100, 1000, true, out myPath);
