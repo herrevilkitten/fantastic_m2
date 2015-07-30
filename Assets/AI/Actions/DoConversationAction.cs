@@ -29,7 +29,7 @@ public class DoConversationAction : RAINAction
 			DialogManager.Floating(currentTalker, currentTalker.name + ": " + message);
 		
 		} else {
-			DialogManager.StopConversation ();
+			//DialogManager.StopConversation ();
 		}
 
 		return ActionResult.SUCCESS;
