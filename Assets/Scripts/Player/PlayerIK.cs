@@ -17,7 +17,7 @@ public class PlayerIK : MonoBehaviour {
 
 	float leftFootWeight = 0f;
 	float rightFootWeight = 0f;
-	float ikStartDelay = 5.0f;
+	float ikStartDelay = 0.0f;
 
 	void Start () 
 	{
