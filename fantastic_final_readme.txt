@@ -68,8 +68,6 @@ Yes
 
 Real-time NPC Steering Behaviors / Artificial Intelligence (20 pts)
 - Reasonably effective and believable AI?
-- Fluid? Continuity of motion?
-- Sensory feedback of AI state? (e.g. animation and sounds identify passive or aggressive AI)
 Yes - We have 3 trees for AI behavior:
 1. Patrolling Cops
 -- Patrol
@@ -92,6 +90,14 @@ Yes - We have 3 trees for AI behavior:
 -- Have two types of conversation
 --- Gossiping when they don't sense the player nearby
 --- Have a fake conversation when the player gets too close
+
+- Fluid? Continuity of motion?
+1. NPCs have various animation states for observations
+2. Walk across the terrain slowly
+(known issue) - NPCs sometimes slide (which does not look as believable) when they move between states in the tree
+
+- Sensory feedback of AI state? (e.g. animation and sounds identify passive or aggressive AI)
+1. Different reactions based on current actions
 
 Polish (20 pts)
 - Overall UI
