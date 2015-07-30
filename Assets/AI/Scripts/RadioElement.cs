@@ -58,14 +58,14 @@ public class RadioElement : CustomAIElement
 	public string RadioDispatcher(AI cop, Transform player, float currentTime) {
 		float firstObservedTime = cop.WorkingMemory.GetItem <float> ("FirstObservedTime");
 
-		//Debug.Log ("firstObservedTime = " + firstObservedTime);
-		//Debug.Log ("currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
+		//Debug.Log (cop.Body.name + ": firstObservedTime = " + firstObservedTime);
+		//Debug.Log (cop.Body.name + ": currentTime - firstObservedTime = " + (currentTime - firstObservedTime));
 		if ((firstObservedTime != 0) && ((currentTime - firstObservedTime) > 1.0f )) {
 			if (HasPlayerNotMovedFromLastObjectDetection(cop, player)) {
-				Debug.Log (cop.Body.name + "Player is linger enough to cause suspicion. Calling dispatcher");
+		//		Debug.Log (cop.Body.name + "Player is linger enough to cause suspicion. Calling dispatcher");
 				RadioManager.Singleton.RadioDispatcher (cop, player, currentTime);
 
-				Debug.Log ("Suspicion Level = " + StateManager.GetSuspicion());
+		//		Debug.Log ("Suspicion Level = " + StateManager.GetSuspicion());
 				if (StateManager.GetSuspicion()>=StateManager.MAXIMUM_SUSPICION_LEVEL) {
 					return "arrest";
 				} else {

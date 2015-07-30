@@ -173,9 +173,9 @@ public class CopDetectPlayer : RAINAction
 
 	private ActionResult Arrest (AI ai)
 	{
-		Debug.Log (ai.Body.name + "continue arresting");
+//		Debug.Log (ai.Body.name + "continue arresting");
 		if (IsPlayerCloseToNPC (ai, 1.0f)) {
-			Debug.Log ("Trigger Arrest Sequence");
+//			Debug.Log ("Trigger Arrest Sequence");
 			ai.WorkingMemory.SetItem ("trigArrestSequence", true);
 		}
 		return ActionResult.SUCCESS;

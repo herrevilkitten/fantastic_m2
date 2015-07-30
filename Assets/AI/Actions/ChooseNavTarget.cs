@@ -30,7 +30,7 @@ public class ChooseNavTarget : RAINAction
 
 		if (location.Equals (Vector3.zero) || AreTwoVectorsCloseEnough(myCurrentLocation, location)) {
 			Vector3 nextPosition = RadioManager.Singleton.RadioForNextPosition (ai);
-			Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition );			
+		//	Debug.Log ("NextPosition for " + ai.Body.name + " " + nextPosition );			
 			ai.WorkingMemory.SetItem ("location", nextPosition);
 			ai.Motor.Speed = 1.5f;
 
@@ -133,7 +133,7 @@ public class ChooseNavTarget : RAINAction
 					newlocation.z = newlocation.z + rand.Next(1, 5);
 				}
 
-				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
+//				Debug.Log (ai.Body.name + ": Going to a new location" + newlocation);
 				ai.Motor.FaceAt(newlocation);
 				ai.WorkingMemory.SetItem ("location", newlocation);
 				/*
