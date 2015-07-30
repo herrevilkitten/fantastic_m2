@@ -19,7 +19,7 @@ public class DoFakeConversationAction : RAINAction
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
 	{
-		DialogManager.StopConversation();
+		//DialogManager.StopConversation();
 		
 		GameObject currentTalker = commManager.GetCurrentFakeTalker ();
 		string message = commManager.NextFakeDialog ();
