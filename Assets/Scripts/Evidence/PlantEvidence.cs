@@ -5,15 +5,24 @@ public class PlantEvidence : UsableAfterTime
 {
 	override protected bool CanInteract (GameObject actor)
 	{
+		bool canInteract = false;
 		for (int i = 0; i < actor.transform.childCount; ++i) {
 			Transform child = actor.transform.GetChild (i);
 			if (child.GetComponent<PlantableEvidence> () != null) {
-				return true;
+				canInteract = true;
 			}
 		}
-
-		DialogManager.PopUp ("You have nothing to plant.");
-		return false;
+		if (!canInteract) {
+			DialogManager.PopUp ("You have nothing to plant.");
+			return false;
+		}
+		
+		if (transform.GetComponentInChildren<PlantableEvidence> () != null) {
+			DialogManager.PopUp ("It's not safe to plant more than one thing in the same location.");
+			return false;
+		}
+		
+		return true;
 	}
 
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()

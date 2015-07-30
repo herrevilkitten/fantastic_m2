@@ -5,15 +5,24 @@ public class TossEvidence : UsableAfterTime
 {
 	override protected bool CanInteract (GameObject actor)
 	{
+		bool canInteract = false;
 		for (int i = 0; i < actor.transform.childCount; ++i) {
 			Transform child = actor.transform.GetChild (i);
 			if (child.GetComponent<TossableEvidence> () != null) {
-				return true;
+				canInteract = true;
 			}
 		}
+		if (!canInteract) {
+			DialogManager.PopUp ("You have nothing to toss.");
+			return false;
+		}
 
-		DialogManager.PopUp ("You have nothing to toss.");
-		return false;
+		if (transform.GetComponentInChildren<TossableEvidence> () != null) {
+			DialogManager.PopUp ("It's not safe to toss more than one thing in the same location.");
+			return false;
+		}
+
+		return true;
 	}
 
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()

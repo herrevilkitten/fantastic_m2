@@ -10,7 +10,6 @@ public class StateManager : MonoBehaviour
 	public const string EVIDENCE_PHONE = "phone";
 	public const string EVIDENCE_HANDPRINT = "handprint";
 	public const string EVIDENCE_WALLET = "wallet";
-	public const string EVIDENCE_KEYS = "keys";
 	public const string EVIDENCE_FOOTPRINT = "footprint";
 	public const string EVIDENCE_NECKLACE = "necklace";
 
@@ -30,7 +29,6 @@ public class StateManager : MonoBehaviour
 		EVIDENCE_PHONE,
 		EVIDENCE_HANDPRINT,
 		EVIDENCE_WALLET,
-		EVIDENCE_KEYS,
 		EVIDENCE_FOOTPRINT,
 		EVIDENCE_NECKLACE
 	};
