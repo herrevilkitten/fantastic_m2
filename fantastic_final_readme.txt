@@ -99,11 +99,14 @@ Yes - We have 3 trees for AI behavior:
 - Sensory feedback of AI state? (e.g. animation and sounds identify passive or aggressive AI)
 1. Different reactions based on current actions
 
-Polish (20 pts)
+Polish (20 pts) - Complete. You told us to stop.
 - Overall UI
 o Your software should feel like a game from start of execution to the end
+Yes.
 o There should be no debug output visible (you can remove your team name from the GUI as well for final project)
+Debug output is hidden.
 o GUI elements should be styled appropriately (e.g. replacing plain printed health text number with stylized health text [e.g. HL2] or health bar [e.g. Halo])
+Yes, we use icons for many of our inventory and evidence elements.
 o Transitions between scenes should be done aesthetically (e.g. fade in, fade out, panning cameras, etc.)
 - Environment Acknowledges Player
 o Should include many of the following:
@@ -112,13 +115,16 @@ o Should include many of the following:
 § Surface effects, such as texture changes or decals
 § Particle effects
 § Auditory events & effects
+Lots of environmental particle effects in use: water splashes when stepping through water, water fountain particle effect, steam/smoke, fire, and falling leafs from trees. Sound effects enhance the environment, for example there are bird churping sounds near some trees, and a water fountain effect sound. 
 - Cohesiveness / Unified Aesthetic o Artistic style (extremely simple is fine!)
 o Color palette
 o Sound theme, including consonance
 o Lighting Style
 - Appeal
+Dynamic point lights from the path lights and a dark, evening setting.
 o No glitches
 o No easily escaping the confines of the game world (make proper barriers)
+- Invisible walls surround the level and the park fence/hill. 
 o Stable (e.g. should play consistently the same on variety of hardware)
 
 ================================================================================
