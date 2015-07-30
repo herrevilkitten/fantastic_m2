@@ -45,7 +45,6 @@ public class InteractiveHighlighter : MonoBehaviour
 				InteractiveObject interaction = objectHit.GetComponent<InteractiveObject> ();
 				if (interaction != null) {
 					if (interaction.IsHightlighted ()) {
-						Debug.Log (changed + " " + (interaction is InteractiveObject.ClickableInteraction));
 						if (changed && interaction is InteractiveObject.ClickableInteraction) {
 							((InteractiveObject.ClickableInteraction)interaction).OnInteractClick (player);
 						}

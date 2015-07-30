@@ -15,10 +15,6 @@ public class PlayerCollision : MonoBehaviour
 	{
 		movement = GetComponent<PlayerMovement> ();
 		collisionHandlers = GetComponents<CharacterCollisionHandler> ();
-
-		foreach (CharacterCollisionHandler collisionHandler in collisionHandlers) {
-			Debug.Log ("Collision Handler: " + collisionHandler);
-		}
 	}
 
 	void Initialize ()

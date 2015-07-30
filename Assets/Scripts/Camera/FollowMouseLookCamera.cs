@@ -95,23 +95,10 @@ public class FollowMouseLookCamera : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Linecast (eyePosition.transform.position, transform.position, out hit)) {
 				if (hit.collider.transform != transform.parent) {
-					Debug.Log ("Camera blocked by " + hit.collider);
 					transform.position = hit.point;
 				}
 			}
 
-			if (cameraStatusText != null) {
-				cameraStatusText.text = 
-				"Looking at: " + eyePosition + "\n" +
-					"From: " + followPosition + "\n" +
-					"Mouse Y: " + upDown + "\n"
-					+ "Mouse X: " + leftRight + "\n"
-					+ "Follow Cam:\n   " + followPosition.transform.position + "/" + "\n   " + followPosition.transform.eulerAngles + "\n"
-					+ "Main Cam:\n   " + transform.position + "/" + "\n" + "   " + transform.eulerAngles + "\n"
-					+ "Mouse: " + xPosition + ", " + yPosition + "\n"
-					+ "Collision: " + hit.point + "\n   With:" + hit.collider;
-			}
-		
 			transform.LookAt (eyePosition.transform);
 		}
 	}
