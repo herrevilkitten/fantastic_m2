@@ -1,5 +1,5 @@
 ================================================================================
-Milestone 4 - Team Fantastic!
+Final Product - Team Fantastic!
 ================================================================================
 Authors:
 Matthew Moldavan - mmoldavan@gatech.edu - mmoldavan3
@@ -11,64 +11,48 @@ Gina Nguyen - gnguyen37@gatech.edu
 ================================================================================
 Team Requirements
 ================================================================================
-1) The introduction starts off with a number of fades before displaying the 
-game title and buttons.
+It must be a 3D game! (20 pts)
+- 3D Game
+- Achievable objective? (e.g. player can complete a level. NOT a sandbox)
+- Communication of success or failure to player!
+- Able to reset and replay on success or failure (e.g. Minecraft when “You died”, there is a “respawn” button)
 
-2) The title screen background is a camera flyby of the level.  The red color
-and background music are used to heighten the dramatic tension of the level.
+Skeletal-Animated 3D Mesh Character Controller with Real-Time Control (20 pts)
+- Mecanim Controlled and Blendtree enabled character
+- Player has direct control of character majority of time? - Choice of controls is intuitive and appropriate (e.g. shouldn’t make difficult keyboard mappings or controls where its hard to pick up objects)
+- Fluid? Continuity of motion? - Offer a dynamic range of control (e.g. Mario’s variable jump height, “analog” control of speeds, etc.)
 
-3) The menu buttons are placed at the bottom of the screen.  All of the menu
-buttons should be in the same locations for the Title, Settings, and Credits
-screens.  The size, color, and font were chosen to indicate the modern feel
-of the game.  Selected buttons are darker in color and have a pair of crosshairs
-(from the game's logo) in them.
+3D World with Physics and Spatial Simulation (20 pts)
+- Both graphically and auditory represented - Aligned with physics representation (e.g. minimal clipping through objects)
+- Interactive
+- Consistent spatial simulation throughout (e.g. Running speed remains same regardless of framerate. Gravity constrains maximum jump to x distance in all cases; shouldn’t be able to jump more or less in different cases unless obvious input control or environmental changes are presented to the user.).
 
-4) Menu is navigable with both mouse and keyboard (arrow keys).  Settings
-controls currently do not support keyboard.
+Real-time NPC Steering Behaviors / Artificial Intelligence (20 pts)
+- Reasonably effective and believable AI?
+- Fluid? Continuity of motion?
+- Sensory feedback of AI state? (e.g. animation and sounds identify passive or aggressive AI)
 
-5) Credits are present.
-
-6) Credits are split up into sections.  Each section fades in, scrolls to the
-bottom, and then fades out.
-
-7) At least two different particle effects with two particle systems - Complete
-a. The stone fountain has a water fountain particle system. It has three 
-particle components: the water drops originating from the jet of the fountain, 
-the mist around the fountain, and the splash of the drops into the water.
-It spawns the drops in a cone fashion and uses velocity over time curves to
-randomize the drop effect for more realism.
-
-b. the player's footsteps through the water/lake create water splashes. This
-splash is attached to the feet of the player rig, and contains two particle
-systems, one to generate a mist, and one to create some water drops.
-
-8) Change size of particles - Complete
-This is satisfied by the smoke coming out of the pipe next to the lake. The
-smoke particle size grows using the size over lifetime module.
-
-9) Change speed of particles - Complete
-This is satisified by the stone fountain water particle system. The water drops
-originating from the top of the fountain use Velocity over Lifetime curves to
-control and randomize the direction of the water drops
-
-10) Use a 2d custom material for a particle - Complete
-On the Island in the middle of the lake, the trees have a particle system
-generating falling leafs that land on the ground. The leafs are using a leaf
-material we created in photoshop. The leaf material adds some realism to the
-scene.
-
-11) Complicated Effect using a Sub-Emitter - Complete
-The stone fountain's water effect leverages a sub-emitter to create splashes
-and mist on the water when water drops collide with the water plane.
-
-12) Triggered Particle Effect - Complete
-There is a particle system attached to the player's feet of a water splash. The
-splash is triggered when the player walks across water using animation events
-attached to the Player's run and walk animations, which call an OnStep()
-function in code. 
-
-The code can be viewed in Scripts/Player/PlayerParticles.cs OnStep() and is
-attached to the Player object.
+Polish (20 pts)
+- Overall UI
+o Your software should feel like a game from start of execution to the end
+o There should be no debug output visible (you can remove your team name from the GUI as well for final project)
+o GUI elements should be styled appropriately (e.g. replacing plain printed health text number with stylized health text [e.g. HL2] or health bar [e.g. Halo])
+o Transitions between scenes should be done aesthetically (e.g. fade in, fade out, panning cameras, etc.)
+- Environment Acknowledges Player
+o Should include many of the following:
+§ Physically simulated movement
+§ Scripted animation
+§ Surface effects, such as texture changes or decals
+§ Particle effects
+§ Auditory events & effects
+- Cohesiveness / Unified Aesthetic o Artistic style (extremely simple is fine!)
+o Color palette
+o Sound theme, including consonance
+o Lighting Style
+- Appeal
+o No glitches
+o No easily escaping the confines of the game world (make proper barriers)
+o Stable (e.g. should play consistently the same on variety of hardware)
 
 ================================================================================
 Special Instructions for building and running code
@@ -78,11 +62,8 @@ In the game:
 W/S move the player forward and back
 A/D turn the character (tank control)
 SPACE jumps
-E uses interactive objects
-Z ragdolls the player
-1-4 load the appropriate level
-ESC reloads the current level
-Holding Mouse1 turns on mouse look.  Releasing it snaps back to the follow
+Mouse1 interacts with items in the world
+Holding Mouse2 turns on mouse look.  Releasing it snaps back to the follow
 camera.
 
 ================================================================================
@@ -102,7 +83,7 @@ Scenes/Yuk City Park/Yuk City Market.unity
 ================================================================================
 Game Url:
 ================================================================================
-http://projects.mattmoldavan.com/cs6457/alpha/
+http://projects.mattmoldavan.com/cs6457/final/
 
 ================================================================================
 Assets Used
