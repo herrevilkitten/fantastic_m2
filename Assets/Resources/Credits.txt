@@ -1,7 +1,7 @@
 [
 	{
 		title: "Team Fantastic",
-		text: "Team Fantastic is the high-powered squad of\n<b>Hannah Glazebrook</b>\nAI, NPC, Dialog\n\n<b>Eric Kidder</b>\nTitle, Scripting\n\n<b>Matt Moldavan</b>\nScene, AI, NPC, SFX\n\n<b>Gina Nguyen</b>\nAI, NPC"
+		text: "Team Fantastic is the high-powered squad of\n<b>Hannah Glazebrook</b>\nDesign, Game Feel, Dialogue, Icons and Graphics\n\n<b>Eric Kidder</b>\nTitle, Scripting, Interactions\n\n<b>Matt Moldavan</b>\nEnvironment Design, NPC, SFX\n\n<b>Gina Nguyen</b>\nAI, NPC"
 	},
 	{
 		title: "Assets",
@@ -9,7 +9,9 @@
 	},
 	{
 		title: "Assets",
-		text: "<b>Background Music</b>\nCorridor: http://www.purple-planet.com/mysterious-backgrounds/4588158576\n\n<b>Sound Effects</b>\nThe Ultimate Footsteps Sounds FX Pack: quirogalabs\nFootsteps pack 1: no9 Game Sounds\nBird chirping and water fountain sounds: http://www.pacdv.com/sounds/ambience_sounds.html"
+		text: "<b>Music</b>\nIntro -Possessed Doll - Chris Martyn and Geoff Harvey (www.purple-planet.com)4588158576\n \n Background Music:  "Penumbra" Kevin MacLeod (incompetech.com) 
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/\n<b>Sound Effects</b>\nThe Ultimate Footsteps Sounds FX Pack: quirogalabs\nFootsteps pack 1: no9 Game Sounds\nBird chirping and water fountain sounds: http://www.pacdv.com/sounds/ambience_sounds.html"
 	},
 	{
 		title: "Assets",
