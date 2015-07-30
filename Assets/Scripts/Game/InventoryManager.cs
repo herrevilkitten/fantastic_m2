@@ -9,12 +9,22 @@ public class InventoryManager : MonoBehaviour
 	public Image inventoryItem;
 	public EventSystem eventSystem;
 	public Text tooltipText;
+	public GameObject[] initialInventory;
 
 	static InventoryManager instance;
 
 	void Start ()
 	{
 		InventoryManager.instance = this;
+		if (inventoryPanel != null) {
+			foreach (Transform child in inventoryPanel.transform) {
+				Destroy (child.gameObject);
+			}
+		}
+
+		foreach (GameObject item in initialInventory) {
+			InventoryManager.AddItem (item);
+		}
 	}
 
 	public static void AddItem (GameObject item)
@@ -49,6 +59,17 @@ public class InventoryManager : MonoBehaviour
 		itemImage.rectTransform.anchoredPosition = new Vector2 (offset, 0);
 	}
 
+	public static void RemoveItem (string name)
+	{
+		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
+		foreach (InventoryItem existingItem in items) {
+			if (existingItem.evidence.name == name) {
+				Destroy (existingItem.gameObject);
+				break;
+			}
+		}
+	}
+	
 	public static void RemoveItem (GameObject item)
 	{
 		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
@@ -58,5 +79,27 @@ public class InventoryManager : MonoBehaviour
 				break;
 			}
 		}
+	}
+
+	public static bool HasItem (string name)
+	{
+		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
+		foreach (InventoryItem existingItem in items) {
+			if (existingItem.evidence.name == name) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static bool HasItem (GameObject item)
+	{
+		InventoryItem[] items = instance.inventoryPanel.GetComponentsInChildren<InventoryItem> ();
+		foreach (InventoryItem existingItem in items) {
+			if (existingItem.evidence == item) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
