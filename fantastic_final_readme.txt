@@ -70,6 +70,28 @@ Real-time NPC Steering Behaviors / Artificial Intelligence (20 pts)
 - Reasonably effective and believable AI?
 - Fluid? Continuity of motion?
 - Sensory feedback of AI state? (e.g. animation and sounds identify passive or aggressive AI)
+Yes - We have 3 trees for AI behavior:
+1. Patrolling Cops
+-- Patrol
+-- Observe player for suspicious activities
+-- Report back suspicious activities
+-- React to distractions (like the ball)
+-- Arrest the player
+-- Get angry when the player wins!
+-- Dynamic obstruction... it detects obstructions and will after a period of time move around the obstruction
+-- (not used, but implemented) - used custom objects to allow for cops to communicate with each other. This was intended to be used for backup
+
+2. Cops on guard
+-- Observe player for suspicious activities
+-- Report back suspicious activities
+-- Arrest the player
+-- React to distractions (like the ball)
+-- Get angry when the player wins!
+
+3. Conversation NPCs
+-- Have two types of conversation
+--- Gossiping when they don't sense the player nearby
+--- Have a fake conversation when the player gets too close
 
 Polish (20 pts)
 - Overall UI
