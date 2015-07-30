@@ -140,6 +140,22 @@ Holding Mouse2 turns on mouse look.  Releasing it snaps back to the follow
 camera.
 
 ================================================================================
+General instructions for playing the game
+================================================================================
+Find the evidence left behind by the client
+Destroy or remove the evidence without being seen
+Leave the area before time runs out
+You can throw evidence in the lake (if it sinks)
+You can burn evidence on something hot (if it is flammable) 
+You can wipe away evidence (if it is a stain or print)
+You can hide an item in another personâ€™s belonging
+(if it would not still point back to the client)
+If a cop or bystander sees you, their suspicion of you will go up
+If the eye icon changes color and is open, you are being watched
+If you are observed hiding clues too many times, you will be caught
+If you see a cop, you can distract them by throwing a ball
+
+================================================================================
 Steps to show game requirements:
 ================================================================================
 Run to the fountain (left side of the lake from the spawn point) to see the
