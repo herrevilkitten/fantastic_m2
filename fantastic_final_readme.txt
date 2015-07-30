@@ -13,19 +13,58 @@ Team Requirements
 ================================================================================
 It must be a 3D game! (20 pts)
 - 3D Game
+
+Yes
+
 - Achievable objective? (e.g. player can complete a level. NOT a sandbox)
+
+Yes.  When all of the evidence is cleaned, the PC will dance.
+
 - Communication of success or failure to player!
+
+Yes.
+
 - Able to reset and replay on success or failure (e.g. Minecraft when “You died”, there is a “respawn” button)
+
+The game automatically resets after a short delay.
 
 Skeletal-Animated 3D Mesh Character Controller with Real-Time Control (20 pts)
 - Mecanim Controlled and Blendtree enabled character
-- Player has direct control of character majority of time? - Choice of controls is intuitive and appropriate (e.g. shouldn’t make difficult keyboard mappings or controls where its hard to pick up objects)
-- Fluid? Continuity of motion? - Offer a dynamic range of control (e.g. Mario’s variable jump height, “analog” control of speeds, etc.)
+
+Yes
+
+- Player has direct control of character majority of time?
+
+Yes
+
+- Choice of controls is intuitive and appropriate (e.g. shouldn’t make difficult keyboard mappings or controls where its hard to pick up objects)
+
+Tank controls can be annoying, but yes.
+
+- Fluid? Continuity of motion?
+
+Yes
+
+- Offer a dynamic range of control (e.g. Mario’s variable jump height, “analog” control of speeds, etc.)
+
+Yes
 
 3D World with Physics and Spatial Simulation (20 pts)
-- Both graphically and auditory represented - Aligned with physics representation (e.g. minimal clipping through objects)
+- Both graphically and auditory represented
+
+Yes
+
+- Aligned with physics representation (e.g. minimal clipping through objects)
+
+Yes
+
 - Interactive
+
+Some objects, like the trash cans and barrels, will react to the player running into them.  Other items, like the paper cranes, user the game's interaction system.
+
 - Consistent spatial simulation throughout (e.g. Running speed remains same regardless of framerate. Gravity constrains maximum jump to x distance in all cases; shouldn’t be able to jump more or less in different cases unless obvious input control or environmental changes are presented to the user.).
+
+Yes
 
 Real-time NPC Steering Behaviors / Artificial Intelligence (20 pts)
 - Reasonably effective and believable AI?
