@@ -27,13 +27,23 @@ public class TitleScripting : MonoBehaviour
 	public Button startButton;
 	public EventSystem eventSystem;
 
+	RawImage backgroundMovieImage;
+	MovieTexture backgroundMovie;
+	float movieStartTime;
+
+	void Awake ()
+	{
+		backgroundMovieImage = GetComponent<RawImage> ();
+		backgroundMovie = (MovieTexture)backgroundMovieImage.mainTexture;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
-		StateManager.Pause ();
-		musicManager.PlayTitleClip ();
-
 		InitializePrefs ();
+
+		backgroundMovie.Play ();
+		movieStartTime = Time.time;
 	}
 
 	void InitializePrefs ()
@@ -64,101 +74,36 @@ public class TitleScripting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetButtonDown ("Cancel")) {
-			// Skip title sequence.
-			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 1f);
-			production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
-			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, 1f);
-			buttonPanel.SetActive (true);
-			Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
-			foreach (Button button in buttons) {
-				ColorBlock colorBlock = button.colors;
-				Color color = colorBlock.normalColor;
-				colorBlock.normalColor = new Color (color.r, color.g, color.b, 1f);
-				button.colors = colorBlock;
-			}
-			
-			Text[] texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
-			foreach (Text text in texts) {
-				Color color = text.color;
-				text.color = new Color (color.r, color.g, color.b, 1f);
-			}
-
-			if (startButton != null) {
-				eventSystem.SetSelectedGameObject (startButton.gameObject);
-				startButton.GetComponent<EventTrigger> ().OnSelect (null);
-			}				
-
-			titleState = TitleState.DONE;
-		}
-
-		switch (titleState) {
-		case TitleState.SHOW_PRESENTS:
-			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 1.0f, .05f));
-			if (presents.color.a >= .9f) {
-				titleState = TitleState.HIDE_PRESENTS;
-			}
-			break;
-		case TitleState.HIDE_PRESENTS:
-			presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, Mathf.Lerp (presents.color.a, 0f, .05f));
-			if (presents.color.a <= .01f) {
-				presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 0f);
-				titleState = TitleState.SHOW_PRODUCTION;
-			}
-			break;
-		case TitleState.SHOW_PRODUCTION:
-			production.color = new Color (production.color.r, production.color.g, production.color.b, Mathf.Lerp (production.color.a, 1.0f, .05f));
-			if (production.color.a >= .9f) {
-				titleState = TitleState.HIDE_PRODUCTION;
-			}
-			break;
-		case TitleState.HIDE_PRODUCTION:
-			production.color = new Color (production.color.r, production.color.g, production.color.b, Mathf.Lerp (production.color.a, 0f, .05f));
-			if (production.color.a <= .01f) {
-				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
-				titleState = TitleState.SHOW_LOGO;
-				buttonPanel.SetActive (true);
-				if (startButton != null) {
-					eventSystem.SetSelectedGameObject (startButton.gameObject);
-					startButton.GetComponent<EventTrigger> ().OnSelect (null);
-				}				
-			}
-			break;
-		case TitleState.SHOW_LOGO:
-			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, Mathf.Lerp (logo.color.a, 1f, .05f));
-
-			Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
-			foreach (Button button in buttons) {
-				ColorBlock colorBlock = button.colors;
-				Color color = colorBlock.normalColor;
-				colorBlock.normalColor = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
-				button.colors = colorBlock;
-			}
-
-			Text[] texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
-			foreach (Text text in texts) {
-				Color color = text.color;
-				text.color = new Color (color.r, color.g, color.b, Mathf.Lerp (color.a, 1f, .05f));
-			}
-			if (logo.color.a >= .9f) {
+		if (titleState != TitleState.DONE) {
+			Debug.Log ("Time: " + Time.time + " " + (movieStartTime + backgroundMovie.duration));
+			if (Input.GetButtonDown ("Cancel") || Time.time >= (movieStartTime + backgroundMovie.duration)) {
+				// Skip title sequence.
 				presents.color = new Color (presents.color.r, presents.color.g, presents.color.b, 1f);
+				production.color = new Color (production.color.r, production.color.g, production.color.b, 0f);
 				logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, 1f);
-				buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
+				buttonPanel.SetActive (true);
+				Button[] buttons = buttonPanel.transform.GetComponentsInChildren<Button> ();
 				foreach (Button button in buttons) {
 					ColorBlock colorBlock = button.colors;
 					Color color = colorBlock.normalColor;
 					colorBlock.normalColor = new Color (color.r, color.g, color.b, 1f);
 					button.colors = colorBlock;
 				}
-				
-				texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
+			
+				Text[] texts = buttonPanel.transform.GetComponentsInChildren<Text> ();
 				foreach (Text text in texts) {
 					Color color = text.color;
 					text.color = new Color (color.r, color.g, color.b, 1f);
 				}
+
+				if (startButton != null) {
+					eventSystem.SetSelectedGameObject (startButton.gameObject);
+					startButton.GetComponent<EventTrigger> ().OnSelect (null);
+				}				
+
 				titleState = TitleState.DONE;
+				backgroundMovie.Stop ();
 			}
-			break;
 		}
 	}
 }
