@@ -91,11 +91,11 @@ abstract public class InteractiveObject : MonoBehaviour
 	
 	virtual public void OnMouseEnter ()
 	{
-		CursorManager.UseCursor ();
+		CursorManager.instance.UseCursor ();
 	}
 	
 	public void OnMouseExit ()
 	{
-		CursorManager.DefaultCursor ();
+		CursorManager.instance.DefaultCursor ();
 	}
 }

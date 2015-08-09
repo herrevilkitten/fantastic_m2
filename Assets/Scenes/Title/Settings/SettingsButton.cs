@@ -40,8 +40,6 @@ public class SettingsButton : MonoBehaviour
 				break;
 			}
 			difficultyTitle.text = text;
-
-			StateManager.ChangeGameState (StateManager.GameState.Settings);
 		});
 	}
 }

@@ -7,7 +7,7 @@ abstract public class TalkableObject : InteractiveObject, InteractiveObject.Clic
 
 	override public void OnMouseEnter ()
 	{
-		CursorManager.TalkCursor ();
+		CursorManager.instance.TalkCursor ();
 	}
 }
 

@@ -12,10 +12,10 @@ public class ToggleJournalButton : MonoBehaviour
 	{
 		Button journalButton = GetComponent<Button> ();
 		journalButton.onClick.AddListener (() => {
-			if (StateManager.currentState == StateManager.GameState.Playing) {
-				StateManager.ChangeGameState (StateManager.GameState.Journal);
+			if (StateManager.instance.IsPlaying ()) {
+				StateManager.instance.ChangeGameState (StateManager.GameState.Pda);
 			} else {
-				StateManager.ChangeGameState (StateManager.GameState.Playing);
+				StateManager.instance.ChangeGameState (StateManager.GameState.Playing);
 			}
 			eventSystem.SetSelectedGameObject (null);
 		});

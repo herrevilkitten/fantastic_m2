@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CursorManager : MonoBehaviour
 {
-	class CursorData
+	public class CursorData
 	{
 		public Texture2D cursor { get; private set; }
 		public Vector2 hotspot { get; private set; }
@@ -28,117 +28,60 @@ public class CursorManager : MonoBehaviour
 	 * is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
 	 */
 
-	static Image crosshairs;
+	public static CursorManager instance;
 
-	static CursorData defaultCursor;
-	static CursorData talkCursor;
-	static CursorData useCursor;
-	static CursorData clickCursor;
-	static CursorData crosshairsCursor;
+	public Texture2D defaultCursor;
+	public Texture2D talkCursor;
+	public Texture2D useCursor;
+	public Texture2D clickCursor;
+	public Texture2D crosshairsCursor;
 
-	static Texture2D currentCursor;
+	public Image crosshairs;
 
-	// Use this for initialization
-	static CursorManager ()
+	Texture2D currentCursor;
+
+	void Awake ()
 	{
-		defaultCursor = new CursorData (
-			Resources.Load ("Cursors/default") as Texture2D,
-			new Vector2 (4, 4)
-		);
+		CursorManager.instance = this;
+	}
 
-		talkCursor = new CursorData (
-			Resources.Load ("Cursors/talk") as Texture2D,
-			Vector2.zero
-		);
-		
-		useCursor = new CursorData (
-			Resources.Load ("Cursors/use") as Texture2D,
-			Vector2.zero
-		);
+	public void DefaultCursor ()
+	{
+		SetCursor (defaultCursor);
+	}
 
-		clickCursor = new CursorData (
-			Resources.Load ("Cursors/click") as Texture2D,
-			Vector2.zero
-		);
+	public  void TalkCursor ()
+	{
+		SetCursor (talkCursor);
+	}
 
-		crosshairsCursor = new CursorData (
-			Resources.Load ("Cursors/crosshairs") as Texture2D,
-			new Vector2 (16, 16)
-		);
-
-		GameObject crosshairsObject = GameObject.Find ("FirstPersonCrosshairs");
-		if (crosshairsObject != null) {
-			crosshairs = crosshairsObject.GetComponent<Image> ();
-		}
-
-		Debug.Log ("Default Cursor:    " + defaultCursor.cursor);
-		Debug.Log ("Talk Cursor:       " + talkCursor.cursor);
-		Debug.Log ("Use Cursor:        " + useCursor.cursor);
-		Debug.Log ("Click Cursor:      " + clickCursor.cursor);
-		Debug.Log ("Crosshairs Cursor: " + crosshairsCursor.cursor);
-		Debug.Log ("1st Person Cursor: " + crosshairs);
-
-		DefaultCursor ();
+	public  void UseCursor ()
+	{
+		SetCursor (useCursor);
 	}
 	
-	public static void DefaultCursor ()
+	public  void ClickCursor ()
 	{
-		if (defaultCursor == null) {
-			return;
-		}
-		SetCursor (defaultCursor.cursor, defaultCursor.hotspot);
-	}
-
-	public static void TalkCursor ()
-	{
-		if (talkCursor == null) {
-			return;
-		}
-		SetCursor (talkCursor.cursor, talkCursor.hotspot);
-	}
-
-	public static void UseCursor ()
-	{
-		if (useCursor == null) {
-			return;
-		}
-		SetCursor (useCursor.cursor, useCursor.hotspot);
+		SetCursor (clickCursor);
 	}
 	
-	public static void ClickCursor ()
+	public  void CrosshairsCursor ()
 	{
-		if (clickCursor == null) {
-			return;
-		}
-		SetCursor (clickCursor.cursor, clickCursor.hotspot);
+		SetCursor (crosshairsCursor);
 	}
 	
-	public static void CrosshairsCursor ()
-	{
-		if (clickCursor == null) {
-			return;
-		}
-		SetCursor (crosshairsCursor.cursor, clickCursor.hotspot);
-	}
-	
-	public static void SetCursor (Texture2D cursor, Vector2 hotspot)
+	public  void SetCursor (Texture2D cursor)
 	{
 		if (cursor == null) {
 			return;
 		}
 		currentCursor = cursor;
-		Cursor.SetCursor (cursor, hotspot, CursorMode.ForceSoftware);
 		if (crosshairs != null) {
 			crosshairs.sprite = Sprite.Create (cursor, new Rect (Vector2.zero, new Vector2 (32, 32)), Vector2.zero);
 		}
 	}
 
-	public static void SetCursor (Texture2D cursor)
-	{
-		SetCursor (cursor, Vector2.zero);
-	}
-
-	public static Texture2D GetCursorTexture ()
+	public  Texture2D GetCurrentCursor ()
 	{
 		return currentCursor;
 	}

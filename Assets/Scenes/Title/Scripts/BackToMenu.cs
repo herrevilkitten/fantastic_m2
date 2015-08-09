@@ -10,7 +10,6 @@ public class BackToMenu : MonoBehaviour
 	{
 		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			StateManager.ChangeGameState (StateManager.GameState.Title);
 		});
 
 	}

@@ -11,8 +11,8 @@ public class WipeEvidence : UsableEvidence
 				particleSystem.Stop ();
 			}
 			
-			StateManager.SetFlag (flag + "Removed");
-			CursorManager.DefaultCursor ();
+			StateManager.instance.SetFlag (flag + "Removed");
+			CursorManager.instance.DefaultCursor ();
 			Destroy (gameObject);
 		};
 	}

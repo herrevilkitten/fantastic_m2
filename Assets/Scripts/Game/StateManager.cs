@@ -22,7 +22,7 @@ public class StateManager : MonoBehaviour
 
 	private static Dictionary<string, string> detected = new Dictionary<string, string> ();
 
-	public GameObject[] targets;
+	public GameObject[] targets = new GameObject[]{};
 
 	public static string[] EVIDENCES = {
 		EVIDENCE_KNIFE,
@@ -33,49 +33,72 @@ public class StateManager : MonoBehaviour
 		EVIDENCE_NECKLACE
 	};
 
-	public enum CameraMode
-	{
-		Fixed,
-		Floating
-	}
-
 	public enum GameState
 	{
-		Title,
-		Settings,
-		Credits,
-		Journal,
-		Playing
+		Briefing,
+		Pda,
+		Dialog,
+		Playing,
+		Debriefing
 	}
 
-	public static CameraMode cameraMode = CameraMode.Floating;
-	public static int suspicionLevel = 0;
-	public static int detectionCount = 0;
-	public static int evidenceCount = 0;
-	static float timeScale;
-	static bool paused = false;
-	static HashSet<string> flags = new HashSet<string> ();
+	public int suspicionLevel = 0;
+	public int detectionCount = 0;
+	public int evidenceCount = 0;
+	float timeScale;
+	bool paused = false;
+	HashSet<string> flags = new HashSet<string> ();
 
-	public GameObject titlePanel;
-	public GameObject logoPanel;
-	public GameObject settingsPanel;
-	public GameObject creditsPanel;
+	public GameObject briefingPanel;
+	public GameObject debriefingPanel;
+	public GameObject pdaPanel;
 	public GameObject journalPanel;
-	public GameObject gamePanel;
-	public GameObject flybyCamera;
+	public GameObject dialogPanel;
+	public GameObject hudPanel;
 	public GameObject gameOverPanel;
+	public GameState currentState = GameState.Playing;
 
 	public Image crosshairs;
 
-	public static StateManager stateManager;
+	public static StateManager instance;
 
 	void Awake ()
 	{
-		StateManager.stateManager = this;
-		StateManager.ChangeGameState (GameState.Title);
-		StateManager.ResetGame ();
+		StateManager.instance = this;
+		ChangeGameState (GameState.Playing);
+		ResetGame ();
+
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		CursorManager.instance.CrosshairsCursor ();
 
 		InvokeRepeating ("UpdateSuspicion", 0f, 1.0f);
+	}
+
+	void Update ()
+	{
+		switch (StateManager.instance.currentState) {
+		case StateManager.GameState.Playing:
+			if (Input.GetKeyDown (KeyCode.J) || Input.GetButtonDown ("Cancel")) {
+				ChangeGameState (GameState.Pda);
+			}
+			
+			if (Input.GetButtonDown ("Help")) {
+				GetComponent<HelpDialog> ().ShowHelp ();
+			}
+			
+			if (Input.GetKeyDown (KeyCode.P)) {
+				PrintFlags ();
+			}
+			
+			break;
+			
+		case StateManager.GameState.Pda:
+			if (Input.GetButtonDown ("Cancel") || Input.GetKeyDown (KeyCode.J)) {
+				ChangeGameState (GameState.Playing);
+			}
+			break;
+		}
 	}
 
 	void UpdateSuspicion ()
@@ -87,32 +110,32 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
-	public static void ResetGame ()
+	public void ResetGame ()
 	{
-		StateManager.suspicionLevel = 0;
-		StateManager.detectionCount = 0;
-		StateManager.evidenceCount = 0;
-		StateManager.ClearAllFlags ();
+		suspicionLevel = 0;
+		detectionCount = 0;
+		evidenceCount = 0;
+		ClearAllFlags ();
 		ballStates [0] = BALL_AVAILABLE;
 		ballStates [1] = BALL_AVAILABLE;
 	}
 
-	public static void ModifySuspicion (int amount = 1)
+	public void ModifySuspicion (int amount = 1)
 	{
 		suspicionLevel = Mathf.Clamp (suspicionLevel + amount, 0, MAXIMUM_SUSPICION_LEVEL);
 	}
 
-	public static void ReduceSuspicion (int amount = 1)
+	public void ReduceSuspicion (int amount = 1)
 	{
 		ModifySuspicion (-amount);
 	}
 	
-	public static void AddSuspicion (int amount = 1)
+	public void AddSuspicion (int amount = 1)
 	{
 		ModifySuspicion (amount);
 	}
 	
-	public static void ReduceDetection (string detectionName, int amount = 1)
+	public void ReduceDetection (string detectionName, int amount = 1)
 	{
 		if (detected.ContainsKey (detectionName)) {
 			//	Debug.Log ("Remove " + detectionName);
@@ -121,7 +144,7 @@ public class StateManager : MonoBehaviour
 		}
 	}
 	
-	public static void AddDetection (string detectionName, int amount = 1)
+	public void AddDetection (string detectionName, int amount = 1)
 	{
 		//Debug.Log ("detected.ContainsKey(detectionName)=" + detected.ContainsKey (detectionName));
 
@@ -132,13 +155,38 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
-	public static int GetSuspicion ()
+	public int GetSuspicion ()
 	{
 		return suspicionLevel;
 	}
+
+	private void HidePanel (GameObject panel)
+	{
+		if (panel == null) {
+			return;
+		}
+		CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup> ();
+		if (canvasGroup == null) {
+			return;
+		}
+
+		canvasGroup.alpha = 0f;
+	}
 	
-	public static GameState currentState = GameState.Title;
-	public static void ChangeGameState (GameState newState)
+	private void ShowPanel (GameObject panel)
+	{
+		if (panel == null) {
+			return;
+		}
+		CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup> ();
+		if (canvasGroup == null) {
+			return;
+		}
+		
+		canvasGroup.alpha = 1f;
+	}
+	
+	public void ChangeGameState (GameState newState)
 	{
 		if (newState == currentState) {
 			return;
@@ -146,20 +194,14 @@ public class StateManager : MonoBehaviour
 
 		// Clear out the old state
 		switch (currentState) {
-		case GameState.Title:
-			stateManager.logoPanel.SetActive (false);
-			stateManager.titlePanel.SetActive (false);
+		case GameState.Briefing:
+			HidePanel (briefingPanel);
 			break;
-		case GameState.Settings:
-			stateManager.settingsPanel.SetActive (false);
-			stateManager.titlePanel.SetActive (false);
+		case GameState.Pda:
+			HidePanel (pdaPanel);
 			break;
-		case GameState.Credits:
-			stateManager.creditsPanel.SetActive (false);
-			stateManager.titlePanel.SetActive (false);
-			break;
-		case GameState.Journal:
-			stateManager.journalPanel.SetActive (false);
+		case GameState.Dialog:
+			HidePanel (dialogPanel);
 			break;
 		case GameState.Playing:
 			Pause ();
@@ -168,64 +210,55 @@ public class StateManager : MonoBehaviour
 
 		// Activate the new state
 		switch (newState) {
-		case GameState.Title:
-			stateManager.logoPanel.SetActive (true);
-			stateManager.titlePanel.SetActive (true);
+		case GameState.Briefing:
+			ShowPanel (briefingPanel);
 			break;
-		case GameState.Settings:
-			stateManager.settingsPanel.SetActive (true);
-			stateManager.titlePanel.SetActive (true);
+		case GameState.Pda:
+			ShowPanel (pdaPanel);
 			break;
-		case GameState.Credits:
-			stateManager.creditsPanel.SetActive (true);
-			stateManager.titlePanel.SetActive (true);
-			break;
-		case GameState.Journal:
-			stateManager.journalPanel.GetComponent<ShowJournal> ().UpdateText ();
-			stateManager.journalPanel.SetActive (true);
+		case GameState.Dialog:
+			ShowPanel (dialogPanel);
 			break;
 		case GameState.Playing:
-			stateManager.flybyCamera.SetActive (false);
-			stateManager.gamePanel.SetActive (true);
 			Play ();
 			break;
 		}
 		currentState = newState;
 	}
 
-	public static bool IsPlaying ()
+	public bool IsPlaying ()
 	{
 		return currentState == GameState.Playing;
 	}
 
-	public static void SetFlag (string flag)
+	public void SetFlag (string flag)
 	{
 		flags.Add (flag);
 	}
 
-	public static void ClearFlag (string flag)
+	public void ClearFlag (string flag)
 	{
 		flags.Remove (flag);
 	}
 	
-	public static void ClearAllFlags ()
+	public void ClearAllFlags ()
 	{
 		flags.Clear ();
 	}
 	
-	public static bool HasFlag (string flag)
+	public bool HasFlag (string flag)
 	{
 		return flags.Contains (flag);
 	}
 
-	public static void PrintFlags ()
+	public void PrintFlags ()
 	{
 		foreach (string flag in flags) {
 			Debug.Log (flag);
 		}
 	}
 
-	public static bool CompletedEvidence ()
+	public bool CompletedEvidence ()
 	{
 		foreach (string evidence in StateManager.EVIDENCES) {
 			if (!HasFlag (evidence + "Removed")) {
@@ -235,7 +268,7 @@ public class StateManager : MonoBehaviour
 		return true;
 	}
 	
-	public static void Pause ()
+	public void Pause ()
 	{
 		if (paused) {
 			return;
@@ -246,7 +279,7 @@ public class StateManager : MonoBehaviour
 		paused = true;
 	}
 
-	public static void Play ()
+	public void Play ()
 	{
 		if (!paused) {
 			return;
@@ -256,39 +289,18 @@ public class StateManager : MonoBehaviour
 		paused = false;
 	}
 
-	public static bool IsPaused ()
+	public bool IsPaused ()
 	{
 		return paused;
 	}
 
-	public static void ToggleCamera ()
+	public void TurnOnGameOverPanel ()
 	{
-		if (StateManager.cameraMode == StateManager.CameraMode.Fixed) {
-			StateManager.cameraMode = StateManager.CameraMode.Floating;
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-			if (stateManager.crosshairs != null) {
-				stateManager.crosshairs.enabled = false;
-			}
-			CursorManager.DefaultCursor ();
-		} else {
-			StateManager.cameraMode = StateManager.CameraMode.Fixed;
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-			if (stateManager.crosshairs != null) {
-				stateManager.crosshairs.enabled = true;
-			}
-			CursorManager.CrosshairsCursor ();
-		}
+		gameOverPanel.SetActive (true);
 	}
 
-	public static void TurnOnGameOverPanel ()
+	public void TurnOffGameOverPanel ()
 	{
-		stateManager.gameOverPanel.SetActive (true);
-	}
-
-	public static void TurnOffGameOverPanel ()
-	{
-		stateManager.gameOverPanel.SetActive (false);
+		gameOverPanel.SetActive (false);
 	}
 }

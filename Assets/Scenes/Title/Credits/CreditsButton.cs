@@ -10,7 +10,6 @@ public class CreditsButton : MonoBehaviour
 	{
 		Button button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			StateManager.ChangeGameState (StateManager.GameState.Credits);
 		});
 	}
 }

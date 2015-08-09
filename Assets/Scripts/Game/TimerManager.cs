@@ -16,7 +16,7 @@ public class TimerManager : MonoBehaviour
 	void Update ()
 	{
 		myTimer -= Time.deltaTime;
-		if (!StateManager.CompletedEvidence ()) {
+		if (!StateManager.instance.CompletedEvidence ()) {
 			if (myTimer > 0) {
 				int minutesLeft = (int)myTimer / 60;
 				int secondsLeft = (int)myTimer % 60;
@@ -27,9 +27,9 @@ public class TimerManager : MonoBehaviour
 				timerTextBox.enabled = false;
 				player.GetComponent<Animator> ().SetBool ("IsOutOfTime", true);
 			} else if (myTimer < -0.5f && myTimer > -8.0f) {
-				StateManager.TurnOnGameOverPanel ();
+				StateManager.instance.TurnOnGameOverPanel ();
 			} else if (myTimer <= -8.0f) {
-				StateManager.TurnOffGameOverPanel ();
+				StateManager.instance.TurnOffGameOverPanel ();
 				Application.LoadLevel (Application.loadedLevel);
 			}
 		}

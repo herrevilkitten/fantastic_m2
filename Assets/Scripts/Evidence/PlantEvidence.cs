@@ -42,7 +42,7 @@ public class PlantEvidence : UsableAfterTime
 				evidence.parent = transform;
 				evidence.position = transform.position;
 				string flag = evidence.GetComponent<GatherEvidence> ().flag;
-				StateManager.SetFlag (flag + "Removed");
+				StateManager.instance.SetFlag (flag + "Removed");
 				DialogManager.PopUp ("You have planted the " + gameObject.name);
 				
 				InventoryManager.RemoveItem (evidence.gameObject);

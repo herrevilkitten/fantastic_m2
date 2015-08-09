@@ -10,7 +10,7 @@ public class GatherEvidence : UsableAfterTime
 	override protected InteractionManager.OnInteractionSuccess OnInteractionSuccess ()
 	{
 		return (GameObject actor) => {
-			StateManager.SetFlag (flag + "Gathered");
+			StateManager.instance.SetFlag (flag + "Gathered");
 			UnhighlightObject ();
 			
 			ParticleSystem[] particleSystems = transform.parent.GetComponentsInChildren<ParticleSystem> ();

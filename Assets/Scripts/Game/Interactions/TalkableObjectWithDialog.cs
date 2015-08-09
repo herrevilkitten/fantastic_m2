@@ -64,11 +64,11 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 	{
 		return () => {
 			if (node ["setFlag"] != null) {
-				StateManager.SetFlag (node ["setFlag"]);
+				StateManager.instance.SetFlag (node ["setFlag"]);
 			}
 			
 			if (node ["clearFlag"] != null) {
-				StateManager.SetFlag (node ["clearFlag"]);
+				StateManager.instance.SetFlag (node ["clearFlag"]);
 			}
 			dialogState = state;
 			InvokeJson (node);
@@ -89,11 +89,11 @@ abstract public class TalkableObjectWithDialog : TalkableObject
 		JSONNode jsonState;
 		if (states.TryGetValue (dialogState, out jsonState)) {
 			if (jsonState ["setFlag"] != null) {
-				StateManager.SetFlag (jsonState ["setFlag"]);
+				StateManager.instance.SetFlag (jsonState ["setFlag"]);
 			}
 			
 			if (jsonState ["clearFlag"] != null) {
-				StateManager.SetFlag (jsonState ["clearFlag"]);
+				StateManager.instance.SetFlag (jsonState ["clearFlag"]);
 			}
 
 			InvokeJson (jsonState ["onEnter"]);

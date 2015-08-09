@@ -10,11 +10,8 @@ public class IntroductionDialog : TalkableObjectWithDialog
 
 	bool dialogShown = false;
 
-	void Update ()
+	void Start ()
 	{
-		if (StateManager.IsPlaying () && !dialogShown) {
-			dialogShown = true;
-			this.OnInteractClick (null);
-		}
+		this.OnInteractClick (null);
 	}
 }

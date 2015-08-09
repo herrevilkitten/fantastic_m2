@@ -7,6 +7,6 @@ abstract public class ClickableObject : InteractiveObject, InteractiveObject.Cli
 
 	override public void OnMouseEnter ()
 	{
-		CursorManager.ClickCursor ();
+		CursorManager.instance.ClickCursor ();
 	}
 }

@@ -9,6 +9,7 @@ public class TitleBackground : MonoBehaviour
 	public Image backgroundImage;
 	public RawImage backgroundMovieImage;
 	public GameObject titlePanel;
+	public MusicManager musicManager;
 	MovieTexture backgroundMovie;
 	float movieStartTime;
 	float movieEndTime;
@@ -24,6 +25,7 @@ public class TitleBackground : MonoBehaviour
 		movieStartTime = Time.time;
 		movieEndTime = movieStartTime + backgroundMovie.duration - fadeTime;
 		backgroundMovie.Play ();
+		musicManager.PlayTitleClip ();
 	}
 	
 	// Update is called once per frame

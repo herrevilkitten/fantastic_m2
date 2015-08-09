@@ -5,35 +5,34 @@ using System.Collections;
 public class DialogManager : MonoBehaviour
 {
 	public Text dialogText;
-	Canvas dialogCanvas;
+	CanvasGroup dialogGroup;
 	static DialogManager instance = null;
 	
 	void Start ()
 	{
 		DialogManager.instance = this;
-		dialogCanvas = GetComponent<Canvas> ();
+		dialogGroup = GetComponent<CanvasGroup> ();
 	}
 
 	public static void Show ()
 	{
-		if (!instance.dialogCanvas.enabled) {
-			StateManager.Pause ();
-			instance.dialogCanvas.enabled = true;
-			instance.dialogText.color = new Color (1f, 1f, 1f, 1f);
+		if (instance.dialogGroup.alpha == 0f) {
+			StateManager.instance.Pause ();
+			instance.dialogGroup.alpha = 1f;
 		}
 	}
 
 	public static void Hide ()
 	{
-		if (instance.dialogCanvas.enabled) {
-			StateManager.Play ();
-			instance.dialogCanvas.enabled = false;
+		if (instance.dialogGroup.alpha == 1f) {
+			StateManager.instance.Play ();
+			instance.dialogGroup.alpha = 0f;
 		}
 	}
 
 	public static bool IsShown ()
 	{
-		return instance.dialogCanvas != null && instance.dialogCanvas.enabled;
+		return instance.dialogGroup != null && instance.dialogGroup.alpha == 1f;
 	}
 
 	public static void SetText (string text)
@@ -50,7 +49,7 @@ public class DialogManager : MonoBehaviour
 
 	public static void SetDialog (int index, string text, UnityEngine.Events.UnityAction action)
 	{
-		GameObject button = instance.dialogCanvas.transform.FindChild ("DialogOptions/DialogOption" + index).gameObject;
+		GameObject button = instance.dialogGroup.transform.FindChild ("DialogOptions/DialogOption" + index).gameObject;
 		if (text == null) {
 			button.SetActive (false);
 			return;

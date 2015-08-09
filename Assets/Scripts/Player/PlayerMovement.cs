@@ -73,11 +73,7 @@ public class PlayerMovement : MonoBehaviour
 		Boolean running = Input.GetButton ("Run");
 
 		float rotate = 0f;
-		if (StateManager.cameraMode == StateManager.CameraMode.Floating) {
-			rotate = Input.GetAxis ("Horizontal");
-		} else {
-			rotate = Input.GetAxisRaw ("Mouse X") * 2f;
-		}
+		rotate = Input.GetAxisRaw ("Mouse X") * 2f;
 		rotate = rotate * turningSpeed * Time.deltaTime;
 		if (running) {
 			rotate = rotate * 2f;

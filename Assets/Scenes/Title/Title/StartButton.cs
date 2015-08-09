@@ -16,8 +16,7 @@ public class StartButton : MonoBehaviour
 	{
 		button = GetComponent<Button> ();
 		button.onClick.AddListener (() => {
-			StateManager.ChangeGameState (StateManager.GameState.Playing);
-
+			Application.LoadLevel ("Yuk City Market");
 			musicManager.PlayGameClip ();
 		});
 	}
