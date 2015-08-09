@@ -45,14 +45,17 @@ public class StateManager : MonoBehaviour
 	public int suspicionLevel = 0;
 	public int detectionCount = 0;
 	public int evidenceCount = 0;
-	float timeScale;
-	bool paused = false;
+	public bool paused {
+		get;
+		private set;
+	}
+
 	HashSet<string> flags = new HashSet<string> ();
+	float timeScale;
 
 	public GameObject briefingPanel;
 	public GameObject debriefingPanel;
 	public GameObject pdaPanel;
-	public GameObject journalPanel;
 	public GameObject dialogPanel;
 	public GameObject hudPanel;
 	public GameObject gameOverPanel;
@@ -67,6 +70,8 @@ public class StateManager : MonoBehaviour
 		StateManager.instance = this;
 		ChangeGameState (GameState.Playing);
 		ResetGame ();
+
+		paused = false;
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -197,6 +202,9 @@ public class StateManager : MonoBehaviour
 		case GameState.Briefing:
 			HidePanel (briefingPanel);
 			break;
+		case GameState.Debriefing:
+			HidePanel (debriefingPanel);
+			break;
 		case GameState.Pda:
 			HidePanel (pdaPanel);
 			break;
@@ -212,6 +220,9 @@ public class StateManager : MonoBehaviour
 		switch (newState) {
 		case GameState.Briefing:
 			ShowPanel (briefingPanel);
+			break;
+		case GameState.Debriefing:
+			ShowPanel (debriefingPanel);
 			break;
 		case GameState.Pda:
 			ShowPanel (pdaPanel);
@@ -287,11 +298,6 @@ public class StateManager : MonoBehaviour
 
 		Time.timeScale = 1f;
 		paused = false;
-	}
-
-	public bool IsPaused ()
-	{
-		return paused;
 	}
 
 	public void TurnOnGameOverPanel ()
