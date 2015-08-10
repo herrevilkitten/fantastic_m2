@@ -9,7 +9,7 @@ public class TurnToFacePlayer : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		camera = GameObject.FindWithTag ("Player").transform.FindChild ("FollowCamera").transform;
+		camera = GameObject.FindWithTag ("MainCamera").transform;
 	}
 
 	void Update ()

@@ -53,6 +53,7 @@ public class StateManager : MonoBehaviour
 	HashSet<string> flags = new HashSet<string> ();
 	float timeScale;
 
+	public TextAsset levelConfiguration;
 	public GameObject briefingPanel;
 	public GameObject debriefingPanel;
 	public GameObject pdaPanel;
